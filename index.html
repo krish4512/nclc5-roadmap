@@ -18,6 +18,7 @@
     --accent-soft: #f3e3e1;
     --accent-soft-border: #e3c3bf;
     --teal: #1f5c52;
+    --teal-ink: #ffffff;
     --teal-soft: #dfeae5;
     --teal-soft-border: #bcd7cd;
     --shadow: 0 1px 2px rgba(28,37,33,0.06), 0 6px 20px -8px rgba(28,37,33,0.12);
@@ -41,6 +42,7 @@
       --accent-soft: #33201f;
       --accent-soft-border: #4a2d2c;
       --teal: #7fc9b8;
+      --teal-ink: #10241f;
       --teal-soft: #1b332d;
       --teal-soft-border: #2c4a41;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
@@ -60,6 +62,7 @@
     --accent-soft: #33201f;
     --accent-soft-border: #4a2d2c;
     --teal: #7fc9b8;
+    --teal-ink: #10241f;
     --teal-soft: #1b332d;
     --teal-soft-border: #2c4a41;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
@@ -590,26 +593,77 @@
   /* floating translator */
   .tr-dock {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 320px;
-    max-width: calc(100vw - 24px);
-    max-height: calc(100vh - 40px);
+    right: 14px;
+    bottom: 14px;
+    max-height: calc(100vh - 28px);
     overflow-y: auto;
+    padding: 6px;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 10px;
     z-index: 60;
   }
 
-  .tr-panel {
+  .tr-panel { flex: none; }
+
+  @keyframes tr-open {
+    from { opacity: 0; transform: scale(0.94) translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .tr-card {
+    width: 320px;
+    max-width: calc(100vw - 36px);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0,0,0,0.10), 0 16px 40px -12px rgba(0,0,0,0.30);
     overflow: hidden;
-    flex: none;
+    transform-origin: bottom right;
+    animation: tr-open 0.16s ease-out;
   }
+
+  .tr-bubble {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 58px;
+    height: 58px;
+    flex: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.1;
+    background: var(--accent);
+    color: var(--accent-ink);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18), 0 10px 26px -10px rgba(0,0,0,0.40);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    animation: tr-open 0.16s ease-out;
+  }
+
+  .tr-panel[data-from="fr"] .tr-bubble {
+    background: var(--teal);
+    color: var(--teal-ink);
+  }
+
+  .tr-bubble:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0,0,0,0.22), 0 14px 30px -10px rgba(0,0,0,0.45);
+  }
+
+  .tr-bubble:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .tr-bubble .tr-ar { font-size: 9.5px; opacity: 0.8; margin: -1px 0; }
+
+  .tr-panel.collapsed .tr-card { display: none; }
+  .tr-panel:not(.collapsed) .tr-bubble { display: none; }
 
   .tr-head {
     display: flex;
@@ -620,8 +674,6 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .tr-panel.min .tr-head { border-bottom: none; }
-  .tr-panel.min .tr-body { display: none; }
 
   .tr-title { font-weight: 600; font-size: 13.5px; }
 
@@ -723,7 +775,8 @@
   .tr-note { font-size: 11px; color: var(--ink-faint); line-height: 1.35; }
 
   @media (max-width: 640px) {
-    .tr-dock { left: 12px; right: 12px; bottom: 12px; width: auto; }
+    .tr-dock { left: 10px; right: 10px; bottom: 10px; }
+    .tr-card { width: 100%; max-width: none; }
     .tr-in { min-height: 46px; }
   }
 
@@ -1842,41 +1895,51 @@
 
 <div class="tr-dock" id="tr-dock">
 
-  <div class="tr-panel" data-from="en" data-to="fr" data-french="out" role="region" aria-label="English to French translator">
-    <div class="tr-head">
-      <span class="tr-title">English &rarr; French</span>
-      <button type="button" class="tr-toggle" title="Minimise" aria-expanded="true">&minus;</button>
-    </div>
-    <div class="tr-body">
-      <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Type English&hellip;" aria-label="English text"></textarea>
-      <div class="tr-out empty" aria-live="polite">French appears here.</div>
-      <div class="tr-actions">
-        <button type="button" class="tr-btn tr-speak">Hear French</button>
-        <button type="button" class="tr-btn tr-copy">Copy</button>
-        <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
-        <button type="button" class="tr-btn tr-clear">Clear</button>
+  <div class="tr-panel collapsed" data-from="en" data-to="fr" data-french="out" role="region" aria-label="English to French translator">
+    <button type="button" class="tr-bubble" aria-expanded="false" title="English to French">
+      <span>EN</span><span class="tr-ar">&darr;</span><span>FR</span>
+    </button>
+    <div class="tr-card">
+      <div class="tr-head">
+        <span class="tr-title">English &rarr; French</span>
+        <button type="button" class="tr-toggle" title="Collapse to bubble" aria-expanded="true">&minus;</button>
+      </div>
+      <div class="tr-body">
+        <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Type English&hellip;" aria-label="English text"></textarea>
+        <div class="tr-out empty" aria-live="polite">French appears here.</div>
+        <div class="tr-actions">
+          <button type="button" class="tr-btn tr-speak">Hear French</button>
+          <button type="button" class="tr-btn tr-copy">Copy</button>
+          <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
+          <button type="button" class="tr-btn tr-clear">Clear</button>
+        </div>
+        <div class="tr-note">Text you type is sent to Google Translate.</div>
       </div>
     </div>
   </div>
 
-  <div class="tr-panel" data-from="fr" data-to="en" data-french="in" role="region" aria-label="French to English translator">
-    <div class="tr-head">
-      <span class="tr-title">French &rarr; English</span>
-      <button type="button" class="tr-toggle" title="Minimise" aria-expanded="true">&minus;</button>
-    </div>
-    <div class="tr-body">
-      <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Tapez en fran&ccedil;ais&hellip;" aria-label="French text"></textarea>
-      <div class="tr-out empty" aria-live="polite">English appears here.</div>
-      <div class="tr-actions">
-        <button type="button" class="tr-btn tr-speak">Hear French</button>
-        <button type="button" class="tr-btn tr-copy">Copy</button>
-        <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
-        <button type="button" class="tr-btn tr-clear">Clear</button>
+  <div class="tr-panel collapsed" data-from="fr" data-to="en" data-french="in" role="region" aria-label="French to English translator">
+    <button type="button" class="tr-bubble" aria-expanded="false" title="French to English">
+      <span>FR</span><span class="tr-ar">&darr;</span><span>EN</span>
+    </button>
+    <div class="tr-card">
+      <div class="tr-head">
+        <span class="tr-title">French &rarr; English</span>
+        <button type="button" class="tr-toggle" title="Collapse to bubble" aria-expanded="true">&minus;</button>
+      </div>
+      <div class="tr-body">
+        <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Tapez en fran&ccedil;ais&hellip;" aria-label="French text"></textarea>
+        <div class="tr-out empty" aria-live="polite">English appears here.</div>
+        <div class="tr-actions">
+          <button type="button" class="tr-btn tr-speak">Hear French</button>
+          <button type="button" class="tr-btn tr-copy">Copy</button>
+          <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
+          <button type="button" class="tr-btn tr-clear">Clear</button>
+        </div>
+        <div class="tr-note">Text you type is sent to Google Translate.</div>
       </div>
     </div>
   </div>
-
-  <div class="tr-note">Text you type is sent to Google Translate.</div>
 </div>
 
 <script>
@@ -2203,18 +2266,29 @@
     var clearBtn = panel.querySelector(".tr-clear");
     var placeholder = outEl.textContent;
 
-    var MIN_KEY = "nclc5-roadmap-tr-min-" + from;
-    function setMin(min) {
-      panel.classList.toggle("min", min);
-      toggle.innerHTML = min ? "+" : "&minus;";
-      toggle.title = min ? "Expand" : "Minimise";
-      toggle.setAttribute("aria-expanded", min ? "false" : "true");
+    /* Each panel is a bubble until opened, and remembers which it was. */
+    var bubble = panel.querySelector(".tr-bubble");
+    var OPEN_KEY = "nclc5-roadmap-tr-open-" + from;
+
+    function setOpen(open, remember) {
+      panel.classList.toggle("collapsed", !open);
+      bubble.setAttribute("aria-expanded", open ? "true" : "false");
+      if (remember) {
+        try { localStorage.setItem(OPEN_KEY, open ? "1" : "0"); } catch (e) {}
+      }
     }
-    try { if (localStorage.getItem(MIN_KEY) === "1") setMin(true); } catch (e) {}
+
+    var startOpen = false;
+    try { startOpen = localStorage.getItem(OPEN_KEY) === "1"; } catch (e) {}
+    setOpen(startOpen, false);
+
+    bubble.addEventListener("click", function () {
+      setOpen(true, true);
+      input.focus();
+    });
     toggle.addEventListener("click", function () {
-      var min = !panel.classList.contains("min");
-      setMin(min);
-      try { localStorage.setItem(MIN_KEY, min ? "1" : "0"); } catch (e) {}
+      setOpen(false, true);
+      bubble.focus();
     });
 
     var seq = 0;                 /* drop replies a newer keystroke superseded */
