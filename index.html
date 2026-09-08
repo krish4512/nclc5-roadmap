@@ -1,0 +1,1513 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>NCLC 5 Roadmap (Copy)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #eff1ec;
+    --surface: #ffffff;
+    --surface-alt: #e6e9e1;
+    --ink: #1c2521;
+    --ink-soft: #52594e;
+    --ink-faint: #838c7d;
+    --border: #d6dbcf;
+    --accent: #7a1f2b;
+    --accent-ink: #ffffff;
+    --accent-soft: #f3e3e1;
+    --accent-soft-border: #e3c3bf;
+    --teal: #1f5c52;
+    --teal-soft: #dfeae5;
+    --teal-soft-border: #bcd7cd;
+    --shadow: 0 1px 2px rgba(28,37,33,0.06), 0 6px 20px -8px rgba(28,37,33,0.12);
+    --radius: 10px;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14201b;
+      --surface: #1b2621;
+      --surface-alt: #223028;
+      --ink: #e9ece5;
+      --ink-soft: #aab6a5;
+      --ink-faint: #7c8a78;
+      --border: #33413a;
+      --accent: #e8a1a8;
+      --accent-ink: #251316;
+      --accent-soft: #33201f;
+      --accent-soft-border: #4a2d2c;
+      --teal: #7fc9b8;
+      --teal-soft: #1b332d;
+      --teal-soft-border: #2c4a41;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14201b;
+    --surface: #1b2621;
+    --surface-alt: #223028;
+    --ink: #e9ece5;
+    --ink-soft: #aab6a5;
+    --ink-faint: #7c8a78;
+    --border: #33413a;
+    --accent: #e8a1a8;
+    --accent-ink: #251316;
+    --accent-soft: #33201f;
+    --accent-soft-border: #4a2d2c;
+    --teal: #7fc9b8;
+    --teal-soft: #1b332d;
+    --teal-soft-border: #2c4a41;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 56px 24px 100px;
+  }
+
+  header.page-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(30px, 4.4vw, 42px);
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  .dek {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .dek strong { color: var(--ink); font-weight: 600; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 23px;
+    margin: 0 0 4px;
+    letter-spacing: -0.005em;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15.5px;
+    margin: 0;
+  }
+
+  section.block { margin-bottom: 48px; }
+
+  .section-intro {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 6px 0 20px;
+    max-width: 68ch;
+  }
+
+  /* score cards */
+  .score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .score-grid { grid-template-columns: 1fr; }
+  }
+
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 22px 22px;
+  }
+
+  .score-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 8px;
+  }
+
+  .score-card-head .badge {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--teal);
+    background: var(--teal-soft);
+    border: 1px solid var(--teal-soft-border);
+    border-radius: 5px;
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+
+  table.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+
+  table.score-table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--ink-faint);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  table.score-table td {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+
+  table.score-table tr:last-child td { border-bottom: none; }
+
+  table.score-table td.skill { color: var(--ink-soft); }
+
+  table.score-table td.range {
+    font-family: var(--mono);
+    font-weight: 600;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* format table */
+  .format-table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+  table.format-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    background: var(--surface);
+    font-size: 14.5px;
+  }
+
+  table.format-table caption {
+    text-align: left;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 16px 10px;
+  }
+
+  table.format-table th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    font-weight: 500;
+    padding: 8px 16px;
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+  }
+
+  table.format-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-soft);
+  }
+
+  table.format-table tr:last-child td { border-bottom: none; }
+  table.format-table td.section-name { color: var(--ink); font-weight: 500; }
+  table.format-table td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* checklist cards */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 700px) {
+    .skill-grid { grid-template-columns: 1fr; }
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    align-items: start;
+  }
+
+  /* grammar roadmap / timeline */
+  .roadmap {
+    counter-reset: gramstep;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .roadmap-stage {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 16px;
+  }
+
+  .roadmap-marker-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .roadmap-num {
+    width: 30px;
+    height: 30px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .roadmap-line {
+    width: 2px;
+    flex: 1;
+    min-height: 28px;
+    margin-top: 4px;
+    background: var(--border);
+  }
+
+  .roadmap-stage:last-child .roadmap-line { display: none; }
+
+  .roadmap-content { padding-bottom: 30px; }
+  .roadmap-stage:last-child .roadmap-content { padding-bottom: 0; }
+
+  .roadmap-stage-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  .roadmap-why {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin: 2px 0 12px;
+    max-width: 62ch;
+  }
+
+  ol.roadmap-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  ol.roadmap-list li {
+    counter-increment: gramstep;
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--ink);
+    padding: 9px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  ol.roadmap-list li::before {
+    content: counter(gramstep);
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--teal);
+    background: var(--teal-soft);
+    border: 1px solid var(--teal-soft-border);
+    border-radius: 5px;
+    min-width: 20px;
+    height: 20px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  ol.roadmap-list li {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  ol.roadmap-list li::before { margin-top: 10px; }
+
+  ol.roadmap-list li > details { flex: 1; min-width: 0; }
+
+  ol.roadmap-list summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  ol.roadmap-list summary::-webkit-details-marker { display: none; }
+
+  ol.roadmap-list summary .open-hint {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    flex: none;
+  }
+
+  ol.roadmap-list summary .chevron {
+    display: inline-block;
+    color: var(--ink-faint);
+    transition: transform 0.15s ease;
+    flex: none;
+    font-size: 12px;
+  }
+
+  details[open] > summary .chevron { transform: rotate(90deg); }
+  details[open] > summary .open-hint { display: none; }
+
+  .topic-guide {
+    padding: 4px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .topic-explain {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .table-scroll { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+
+  table.conj-table {
+    width: 100%;
+    min-width: 340px;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--surface);
+  }
+
+  table.conj-table caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 8px 10px 6px;
+  }
+
+  table.conj-table th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ink-faint);
+    font-weight: 500;
+    padding: 6px 10px;
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  table.conj-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  table.conj-table td:first-child {
+    font-family: var(--sans);
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  table.conj-table tr:last-child td { border-bottom: none; }
+
+  .tip-box {
+    background: var(--teal-soft);
+    border: 1px solid var(--teal-soft-border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+
+  .tip-box b { color: var(--teal); }
+
+  .example-line {
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+
+  table.conj-table u.mute {
+    text-decoration-line: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+    color: inherit;
+  }
+
+  .pronun-key {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 4px 0 16px;
+  }
+
+  .pronun-key .sample {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 9px;
+  }
+
+  .howto-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+    margin: 4px 0 24px;
+  }
+
+  .howto-box h3 { margin-bottom: 10px; }
+
+  ol.howto-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: howto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  ol.howto-list li {
+    counter-increment: howto;
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  ol.howto-list li::before {
+    content: counter(howto) ".";
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--accent);
+    flex: none;
+  }
+
+  ol.howto-list li b { color: var(--ink); font-weight: 600; }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .skill-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+
+  ul.checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  ul.checklist li {
+    display: block;
+  }
+
+  ul.checklist label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  ul.checklist label:hover { background: var(--surface-alt); }
+
+  ul.checklist input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    flex: none;
+    margin-top: 2px;
+    border: 1.5px solid var(--ink-faint);
+    border-radius: 4px;
+    background: var(--surface);
+    position: relative;
+    cursor: pointer;
+  }
+
+  ul.checklist input[type="checkbox"]:checked {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+
+  ul.checklist input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--surface);
+    border-width: 0 2px 2px 0;
+    transform: rotate(40deg);
+  }
+
+  ul.checklist input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  ul.checklist input[type="checkbox"]:checked ~ span,
+  ul.checklist label:has(input:checked) span.item-text {
+    color: var(--ink-faint);
+    text-decoration: line-through;
+    text-decoration-color: var(--ink-faint);
+  }
+
+  /* plain list (no checkbox) for grammar/vocab */
+  .plain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 700px) {
+    .plain-grid { grid-template-columns: 1fr; }
+  }
+
+  .plain-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+  }
+
+  .plain-card h3 { margin-bottom: 10px; }
+
+  ul.plain-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+
+  ul.plain-list li { padding-left: 15px; position: relative; }
+  ul.plain-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  ul.plain-list b { color: var(--ink); font-weight: 600; }
+  ul.plain-list code {
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--surface-alt);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  .progress-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: var(--surface-alt);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+
+  .note {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-soft-border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  .note b { color: var(--accent); }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  footer .sources {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+  }
+
+  footer a { color: var(--ink-soft); }
+  footer a:hover { color: var(--accent); }
+</style>
+
+<div class="wrap">
+
+  <header class="page-head">
+    <span class="eyebrow">Français &middot; Canadian immigration language test</span>
+    <h1>NCLC 5 Roadmap</h1>
+    <p class="dek">Everything to cover to hit <strong>NCLC / CLB 5</strong> (CEFR B1) on either <strong>TCF Canada</strong> or <strong>TEF Canada</strong> &mdash; the score bands you're aiming for, the exam format, and a checklist of grammar, vocabulary and skills by section. Check items off as you go; your progress is saved on this page.</p>
+  </header>
+
+  <section class="block">
+    <h2>Score bands you need</h2>
+    <p class="section-intro">NCLC 5 corresponds to CEFR B1 on both tests, but each exam scores on its own scale. These are the published conversion bands &mdash; double‑check against your test centre's current chart before test day, since scales are occasionally revised.</p>
+    <div class="score-grid">
+
+      <div class="score-card">
+        <div class="score-card-head">
+          <h3>TCF Canada</h3>
+          <span class="badge">out of 699 &middot; /20</span>
+        </div>
+        <table class="score-table">
+          <thead><tr><th>Section</th><th style="text-align:right">NCLC 5 band</th></tr></thead>
+          <tbody>
+            <tr><td class="skill">Reading (CE)</td><td class="range">375&ndash;405</td></tr>
+            <tr><td class="skill">Listening (CO)</td><td class="range">369&ndash;397</td></tr>
+            <tr><td class="skill">Writing (EE)</td><td class="range">6 / 20</td></tr>
+            <tr><td class="skill">Speaking (EO)</td><td class="range">6 / 20</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="score-card">
+        <div class="score-card-head">
+          <h3>TEF Canada</h3>
+          <span class="badge">points per section</span>
+        </div>
+        <table class="score-table">
+          <thead><tr><th>Section</th><th style="text-align:right">NCLC 5 band</th></tr></thead>
+          <tbody>
+            <tr><td class="skill">Compr&eacute;hension &eacute;crite</td><td class="range">151&ndash;180</td></tr>
+            <tr><td class="skill">Compr&eacute;hension orale</td><td class="range">181&ndash;216</td></tr>
+            <tr><td class="skill">Expression &eacute;crite</td><td class="range">226&ndash;270</td></tr>
+            <tr><td class="skill">Expression orale</td><td class="range">226&ndash;270</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Exam format at a glance</h2>
+    <p class="section-intro">Knowing the shape of the test changes how you train &mdash; TEF's listening plays each recording only once; TCF's writing and speaking are shorter but tighter on time.</p>
+
+    <div class="format-table-wrap" style="margin-bottom:14px;">
+      <table class="format-table">
+        <caption>TCF Canada &middot; ~2h47 total</caption>
+        <thead><tr><th>Section</th><th>Tasks</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="section-name">Listening</td><td class="num">39 MCQ</td><td class="num">35 min</td></tr>
+          <tr><td class="section-name">Reading</td><td class="num">39 MCQ</td><td class="num">60 min</td></tr>
+          <tr><td class="section-name">Writing</td><td class="num">3 tasks</td><td class="num">60 min</td></tr>
+          <tr><td class="section-name">Speaking</td><td class="num">3 tasks</td><td class="num">12 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="format-table-wrap">
+      <table class="format-table">
+        <caption>TEF Canada &middot; ~2h55 total</caption>
+        <thead><tr><th>Section</th><th>Tasks</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td class="section-name">Compr&eacute;hension orale</td><td class="num">40 MCQ</td><td class="num">40 min</td></tr>
+          <tr><td class="section-name">Compr&eacute;hension &eacute;crite</td><td class="num">40 MCQ</td><td class="num">60 min</td></tr>
+          <tr><td class="section-name">Expression &eacute;crite</td><td class="num">2 tasks</td><td class="num">60 min</td></tr>
+          <tr><td class="section-name">Expression orale</td><td class="num">2 tasks</td><td class="num">15 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Grammar learning order</h2>
+    <p class="section-intro">The same 21 structures below, but sequenced &mdash; each stage leans on the one above it. Work top to bottom; inside a stage, order doesn't matter. Tap any item to open its conjugation table, a tip for learning it fast, and an example sentence.</p>
+
+    <div class="pronun-key"><span class="sample">parl<u class="mute">e</u></span> &mdash; underlined letters in the tables are silent. Say the word without them.</div>
+
+    <div class="howto-box">
+      <h3>How to learn this the easiest way</h3>
+      <ol class="howto-list">
+        <li><b>Active recall beats rereading.</b> Cover the table, try to reproduce it from memory, then check &mdash; don't just stare at it until it looks familiar.</li>
+        <li><b>Produce before you move on.</b> Write 3 original sentences with a new structure immediately after learning it. Recognizing it in a table and using it under pressure are different skills.</li>
+        <li><b>Learn verb tables by pattern, not verb-by-verb.</b> The 6 endings for -er verbs are one thing to learn, not 30 things &mdash; drill the pattern, then plug in new verbs.</li>
+        <li><b>Say it out loud.</b> Conjugations you can only recognize on paper won't show up in the speaking section. Read every table aloud at least once.</li>
+        <li><b>Revisit old stages weekly.</b> Once you've moved to Stage 3 or 4, spend 10 minutes a week reviewing Stage 1 &mdash; foundations decay fastest under new material.</li>
+        <li><b>Weight your time toward Stage 4.</b> It's the hardest to automate and the most directly graded in the writing and speaking tasks &mdash; don't split study time evenly across all four stages.</li>
+        <li><b>Watch the underlined letters.</b> Once you notice that je/tu forms usually end in a silent -s, il/elle forms in a silent -t, nous forms in a silent -s, vous forms in a silent -z, and ils/elles forms in a fully silent -ent, most present-tense pronunciation stops being memorization and starts being pattern recognition.</li>
+      </ol>
+    </div>
+
+    <div class="roadmap">
+
+      <div class="roadmap-stage">
+        <div class="roadmap-marker-col"><div class="roadmap-num">1</div><div class="roadmap-line"></div></div>
+        <div class="roadmap-content">
+          <div class="roadmap-stage-head"><h3>Foundations</h3><span class="skill-tag">lock these in first</span></div>
+          <p class="roadmap-why">Every later stage assumes these are automatic &mdash; conjugation, agreement, and basic sentence shape.</p>
+          <ol class="roadmap-list">
+            <li><details>
+              <summary>Present tense &mdash; regular -er / -ir / -re verbs<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Three verb families, three fixed endings. Learn the pattern once and it applies to hundreds of verbs.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>parle<u class="mute">r</u> (-er), finir (-ir), vendr<u class="mute">e</u> (-re)</caption>
+                  <thead><tr><th>Person</th><th>parle<u class="mute">r</u></th><th>finir</th><th>vendr<u class="mute">e</u></th></tr></thead>
+                  <tbody>
+                    <tr><td>je</td><td>parl<u class="mute">e</u></td><td>fini<u class="mute">s</u></td><td>ven<u class="mute">ds</u></td></tr>
+                    <tr><td>tu</td><td>parle<u class="mute">s</u></td><td>fini<u class="mute">s</u></td><td>ven<u class="mute">ds</u></td></tr>
+                    <tr><td>il / elle</td><td>parl<u class="mute">e</u></td><td>fini<u class="mute">t</u></td><td>ven<u class="mute">d</u></td></tr>
+                    <tr><td>nous</td><td>parlon<u class="mute">s</u></td><td>finisson<u class="mute">s</u></td><td>vendon<u class="mute">s</u></td></tr>
+                    <tr><td>vous</td><td>parle<u class="mute">z</u></td><td>finisse<u class="mute">z</u></td><td>vende<u class="mute">z</u></td></tr>
+                    <tr><td>ils / elles</td><td>parl<u class="mute">ent</u></td><td>finiss<u class="mute">ent</u></td><td>vend<u class="mute">ent</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> drill the six endings on their own first &mdash; e/es/e/ons/ez/ent for -er &mdash; then plug in five new verbs a day rather than memorizing verbs one at a time.</div>
+                <div class="example-line">Je parle fran&ccedil;ais. Nous finissons le travail &agrave; cinq heures. Ils vendent leur voiture.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Present tense &mdash; key irregulars<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">These seven verbs show up in roughly half of everyday sentences &mdash; memorize them before anything else on this list.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>&ecirc;tr<u class="mute">e</u>, avoir, alle<u class="mute">r</u>, fair<u class="mute">e</u>, pouvoir, vouloir, devoir</caption>
+                  <thead><tr><th>Person</th><th>&ecirc;tre</th><th>avoir</th><th>aller</th><th>faire</th><th>pouvoir</th><th>vouloir</th><th>devoir</th></tr></thead>
+                  <tbody>
+                    <tr><td>je</td><td>sui<u class="mute">s</u></td><td>ai</td><td>vai<u class="mute">s</u></td><td>fai<u class="mute">s</u></td><td>peu<u class="mute">x</u></td><td>veu<u class="mute">x</u></td><td>doi<u class="mute">s</u></td></tr>
+                    <tr><td>tu</td><td>e<u class="mute">s</u></td><td>a<u class="mute">s</u></td><td>va<u class="mute">s</u></td><td>fai<u class="mute">s</u></td><td>peu<u class="mute">x</u></td><td>veu<u class="mute">x</u></td><td>doi<u class="mute">s</u></td></tr>
+                    <tr><td>il / elle</td><td>e<u class="mute">st</u></td><td>a</td><td>va</td><td>fai<u class="mute">t</u></td><td>peu<u class="mute">t</u></td><td>veu<u class="mute">t</u></td><td>doi<u class="mute">t</u></td></tr>
+                    <tr><td>nous</td><td>somm<u class="mute">es</u></td><td>avon<u class="mute">s</u></td><td>allon<u class="mute">s</u></td><td>faison<u class="mute">s</u></td><td>pouvon<u class="mute">s</u></td><td>voulon<u class="mute">s</u></td><td>devon<u class="mute">s</u></td></tr>
+                    <tr><td>vous</td><td>&ecirc;t<u class="mute">es</u></td><td>ave<u class="mute">z</u></td><td>alle<u class="mute">z</u></td><td>fait<u class="mute">es</u></td><td>pouve<u class="mute">z</u></td><td>voule<u class="mute">z</u></td><td>deve<u class="mute">z</u></td></tr>
+                    <tr><td>ils / elles</td><td>son<u class="mute">t</u></td><td>on<u class="mute">t</u></td><td>von<u class="mute">t</u></td><td>fon<u class="mute">t</u></td><td>peuv<u class="mute">ent</u></td><td>veul<u class="mute">ent</u></td><td>doiv<u class="mute">ent</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> notice peux / veux / dois all end in -x or -s in je/tu &mdash; group irregulars by their rhyming forms instead of treating each as a separate puzzle.</div>
+                <div class="example-line">Je suis fatigu&eacute;. Nous avons faim. Ils peuvent venir demain.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Adjective agreement &amp; placement<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Adjectives agree in gender and number with the noun, and most sit after it &mdash; except a short list that goes before.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Agreement patterns</caption>
+                  <thead><tr><th>Masc. sing.</th><th>Fem. sing.</th><th>Masc. plural</th><th>Fem. plural</th></tr></thead>
+                  <tbody>
+                    <tr><td>peti<u class="mute">t</u></td><td>petit<u class="mute">e</u></td><td>peti<u class="mute">ts</u></td><td>petit<u class="mute">es</u></td></tr>
+                    <tr><td><u class="mute">h</u>eureu<u class="mute">x</u></td><td><u class="mute">h</u>eureus<u class="mute">e</u></td><td><u class="mute">h</u>eureu<u class="mute">x</u></td><td><u class="mute">h</u>eureus<u class="mute">es</u></td></tr>
+                    <tr><td>blan<u class="mute">c</u></td><td>blanch<u class="mute">e</u></td><td>blan<u class="mute">cs</u></td><td>blanch<u class="mute">es</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> remember <b>BAGS</b> &mdash; Beauty, Age, Goodness, Size (beau, jeune/vieux, bon/mauvais, grand/petit) go <em>before</em> the noun. Everything else goes after.</div>
+                <div class="example-line">Une petite maison blanche. Un bon film. Une femme heureuse.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Negation forms (ne...pas, ne...jamais, ne...plus, ne...rien)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Negation wraps around the conjugated verb: <code>ne</code> before it, the second part right after.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Common negation pairs</caption>
+                  <thead><tr><th>Form</th><th>Meaning</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>ne...pa<u class="mute">s</u></td><td>not</td><td>Je ne sai<u class="mute">s</u> pa<u class="mute">s</u>.</td></tr>
+                    <tr><td>ne...jamai<u class="mute">s</u></td><td>never</td><td>Il ne mang<u class="mute">e</u> jamai<u class="mute">s</u>.</td></tr>
+                    <tr><td>ne...plu<u class="mute">s</u></td><td>no longer</td><td>Nous n'<u class="mute">h</u>abiton<u class="mute">s</u> plu<u class="mute">s</u> ici.</td></tr>
+                    <tr><td>ne...rien</td><td>nothing</td><td>Elle ne di<u class="mute">t</u> rien.</td></tr>
+                    <tr><td>ne...personn<u class="mute">e</u></td><td>nobody</td><td>Je ne voi<u class="mute">s</u> personn<u class="mute">e</u>.</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> with pass&eacute; compos&eacute;, most forms wrap around the auxiliary (<em>je n'ai pas mangé</em>) &mdash; but <em>personne</em> is the exception and goes after the past participle (<em>je n'ai vu personne</em>).</div>
+                <div class="example-line">Je ne parle pas espagnol. Il n'a rien compris.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Question formation &mdash; est-ce que and simple inversion<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">French has three ways to ask the same question &mdash; you only need to produce one of them reliably.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Three ways to ask "Do you speak French?"</caption>
+                  <thead><tr><th>Style</th><th>Example</th><th>Register</th></tr></thead>
+                  <tbody>
+                    <tr><td>Intonation</td><td>Tu parle<u class="mute">s</u> fran&ccedil;ai<u class="mute">s</u> ?</td><td>informal, spoken</td></tr>
+                    <tr><td>Est-ce que</td><td>E<u class="mute">st</u>-ce que tu parle<u class="mute">s</u> fran&ccedil;ai<u class="mute">s</u> ?</td><td>neutral, safe everywhere</td></tr>
+                    <tr><td>Inversion</td><td>Parle<u class="mute">s</u>-tu fran&ccedil;ai<u class="mute">s</u> ?</td><td>formal, written</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> default to <b>est-ce que</b> on the exam &mdash; it needs no word-order changes and is never wrong, so it removes one source of mistakes under time pressure.</div>
+                <div class="example-line">Est-ce que vous avez un moment ? Qu'est-ce que tu penses de &ccedil;a ?</div>
+              </div>
+            </details></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="roadmap-stage">
+        <div class="roadmap-marker-col"><div class="roadmap-num">2</div><div class="roadmap-line"></div></div>
+        <div class="roadmap-content">
+          <div class="roadmap-stage-head"><h3>Everyday structures</h3><span class="skill-tag">extend the present</span></div>
+          <p class="roadmap-why">Still present-tense-adjacent, but this is where sentences stop being simple statements and start doing things &mdash; planning, judging, comparing, avoiding repetition.</p>
+          <ol class="roadmap-list">
+            <li><details>
+              <summary>Futur proche (aller + infinitive)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">The easiest future tense in French: present-tense <code>aller</code> plus any infinitive, no exceptions.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>alle<u class="mute">r</u> + infinitive</caption>
+                  <thead><tr><th>Person</th><th>aller</th><th>+ infinitive</th></tr></thead>
+                  <tbody>
+                    <tr><td>je</td><td>vai<u class="mute">s</u></td><td>parle<u class="mute">r</u></td></tr>
+                    <tr><td>tu</td><td>va<u class="mute">s</u></td><td>parle<u class="mute">r</u></td></tr>
+                    <tr><td>il / elle</td><td>va</td><td>parle<u class="mute">r</u></td></tr>
+                    <tr><td>nous</td><td>allon<u class="mute">s</u></td><td>parle<u class="mute">r</u></td></tr>
+                    <tr><td>vous</td><td>alle<u class="mute">z</u></td><td>parle<u class="mute">r</u></td></tr>
+                    <tr><td>ils / elles</td><td>von<u class="mute">t</u></td><td>parle<u class="mute">r</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> you already know <code>aller</code> from Stage 1 &mdash; this "tense" costs you nothing new to learn except sticking an infinitive on the end. Use it by default when speaking about the future.</div>
+                <div class="example-line">Je vais &eacute;tudier ce soir. Nous allons visiter Montr&eacute;al.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Devoir / pouvoir / vouloir + infinitive<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Your three modal verbs for obligation, ability, and desire &mdash; each followed directly by an infinitive.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Meaning &amp; use</caption>
+                  <thead><tr><th>Verb</th><th>Meaning</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>devoir</td><td>must / have to</td><td>Je doi<u class="mute">s</u> partir.</td></tr>
+                    <tr><td>pouvoir</td><td>can / may</td><td>Tu peu<u class="mute">x</u> entre<u class="mute">r</u>.</td></tr>
+                    <tr><td>vouloir</td><td>want to</td><td>Elle veu<u class="mute">t</u> apprendr<u class="mute">e</u>.</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> in Stage 4 you'll learn <em>je devrais / je pourrais / je voudrais</em> (conditionnel) &mdash; these are the softened, more natural-sounding versions of the same three verbs, so mastering the present forms now makes that stage nearly free later.</div>
+                <div class="example-line">Nous devons finir avant midi. Vous pouvez m'aider ?</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Direct &amp; indirect object pronouns (me, te, le, la, lui, nous, vous, leur)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Pronouns replace a noun already mentioned and sit right before the conjugated verb.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Direct vs. indirect object pronouns</caption>
+                  <thead><tr><th>Person</th><th>Direct (no preposition)</th><th>Indirect (to ...)</th></tr></thead>
+                  <tbody>
+                    <tr><td>me / te</td><td>me, te</td><td>me, te</td></tr>
+                    <tr><td>il / elle</td><td>le, la</td><td>lui</td></tr>
+                    <tr><td>nous / vous</td><td>nou<u class="mute">s</u>, vou<u class="mute">s</u></td><td>nou<u class="mute">s</u>, vou<u class="mute">s</u></td></tr>
+                    <tr><td>ils / elles</td><td>le<u class="mute">s</u></td><td>leur</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> the fast test &mdash; if the English verb takes "to" (talk <em>to</em> someone, write <em>to</em> someone), use the indirect form (<em>lui</em>, <em>leur</em>). If it doesn't (see someone, watch someone), use the direct form (<em>le/la</em>, <em>les</em>).</div>
+                <div class="example-line">Je le vois demain. Je lui parle souvent.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Comparatives &amp; superlatives (plus/moins/aussi... que, le/la plus)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Comparing things is a near-guaranteed vocabulary in the opinion tasks &mdash; three structures cover almost everything.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Comparative &amp; superlative structures</caption>
+                  <thead><tr><th>Structure</th><th>Meaning</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>plu<u class="mute">s</u> ... que</td><td>more ... than</td><td>plu<u class="mute">s</u> rapid<u class="mute">e</u> que</td></tr>
+                    <tr><td>moin<u class="mute">s</u> ... que</td><td>less ... than</td><td>moin<u class="mute">s</u> cher que</td></tr>
+                    <tr><td>aussi ... que</td><td>as ... as</td><td>aussi gran<u class="mute">d</u> que</td></tr>
+                    <tr><td>le/la/le<u class="mute">s</u> plu<u class="mute">s</u></td><td>the most</td><td>le plu<u class="mute">s</u> importan<u class="mute">t</u></td></tr>
+                    <tr><td>bon &rarr; meilleur</td><td>good &rarr; better (irregular)</td><td>meilleur que</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> <em>bon &rarr; meilleur</em> is the one everyone forgets under pressure and defaults to "plus bon" (wrong) &mdash; drill it on its own until it's automatic.</div>
+                <div class="example-line">Ce quartier est plus calme que le centre-ville. C'est la meilleure option.</div>
+              </div>
+            </details></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="roadmap-stage">
+        <div class="roadmap-marker-col"><div class="roadmap-num">3</div><div class="roadmap-line"></div></div>
+        <div class="roadmap-content">
+          <div class="roadmap-stage-head"><h3>Talking about the past</h3><span class="skill-tag">core of B1 narrative</span></div>
+          <p class="roadmap-why">This is the heart of the writing and speaking narrative tasks &mdash; recounting an experience is close to guaranteed on both exams.</p>
+          <ol class="roadmap-list">
+            <li><details>
+              <summary>Pass&eacute; compos&eacute; with avoir<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Most French verbs form the past with <code>avoir</code> + past participle. Regular participles follow the verb's family; a handful of common verbs are irregular.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Regular participle endings</caption>
+                  <thead><tr><th>Family</th><th>Ending</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>-er verbs</td><td>-&eacute;</td><td>parle<u class="mute">r</u> &rarr; parl&eacute;</td></tr>
+                    <tr><td>-ir verbs</td><td>-i</td><td>finir &rarr; fini</td></tr>
+                    <tr><td>-re verbs</td><td>-u</td><td>vendr<u class="mute">e</u> &rarr; vendu</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Common irregular participles</caption>
+                  <thead><tr><th>Infinitive</th><th>Participle</th><th>Infinitive</th><th>Participle</th></tr></thead>
+                  <tbody>
+                    <tr><td>avoir</td><td>eu</td><td>prendr<u class="mute">e</u></td><td>pri<u class="mute">s</u></td></tr>
+                    <tr><td>&ecirc;tr<u class="mute">e</u></td><td>&eacute;t&eacute;</td><td>mettr<u class="mute">e</u></td><td>mi<u class="mute">s</u></td></tr>
+                    <tr><td>fair<u class="mute">e</u></td><td>fai<u class="mute">t</u></td><td>voir</td><td>vu</td></tr>
+                    <tr><td>dir<u class="mute">e</u></td><td>di<u class="mute">t</u></td><td>pouvoir</td><td>pu</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> learn the 8 irregular participles above as a single block before worrying about regular ones &mdash; they're the ones that come up in almost every story you'll tell on the exam.</div>
+                <div class="example-line">J'ai mang&eacute; au restaurant. Elle a pris le bus. Nous avons eu de la chance.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Pass&eacute; compos&eacute; with &ecirc;tre + past-participle agreement<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">A fixed list of ~16 movement/state verbs (plus all reflexive verbs) use <code>&ecirc;tre</code> instead of <code>avoir</code> &mdash; and their participle agrees with the subject.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Dr &amp; Mrs Vandertramp verbs</caption>
+                  <thead><tr><th>Verb</th><th>Meaning</th><th>Verb</th><th>Meaning</th></tr></thead>
+                  <tbody>
+                    <tr><td>Devenir</td><td>become</td><td>Na&icirc;tr<u class="mute">e</u></td><td>be born</td></tr>
+                    <tr><td>Revenir</td><td>come back</td><td>Descendr<u class="mute">e</u></td><td>go down</td></tr>
+                    <tr><td>Monte<u class="mute">r</u></td><td>go up</td><td>Entre<u class="mute">r</u></td><td>enter</td></tr>
+                    <tr><td>Reste<u class="mute">r</u></td><td>stay</td><td>Rentre<u class="mute">r</u></td><td>go home</td></tr>
+                    <tr><td>Sortir</td><td>go out</td><td>Tombe<u class="mute">r</u></td><td>fall</td></tr>
+                    <tr><td>Venir</td><td>come</td><td>Retourne<u class="mute">r</u></td><td>return</td></tr>
+                    <tr><td>Alle<u class="mute">r</u></td><td>go</td><td>Arrive<u class="mute">r</u></td><td>arrive</td></tr>
+                    <tr><td>&mdash;</td><td>&mdash;</td><td>Mourir / Partir</td><td>die / leave</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> the mnemonic is literally the name <b>"Dr &amp; Mrs Vandertramp"</b> &mdash; each letter is the first letter of one verb. Learn the acronym, not the raw list.</div>
+                <div class="example-line">Elle est all&eacute;e au march&eacute;. Ils sont partis t&ocirc;t. Nous sommes rentr&eacute;s tard.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Imparfait &mdash; formation and uses<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Take the <em>nous</em>-form of the present tense, drop <code>-ons</code>, and add the imparfait endings. It works for every verb except one.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>parle<u class="mute">r</u> (regular) vs. &ecirc;tr<u class="mute">e</u> (the one exception)</caption>
+                  <thead><tr><th>Person</th><th>Ending</th><th>parler</th><th>&ecirc;tre</th></tr></thead>
+                  <tbody>
+                    <tr><td>je</td><td>-ais</td><td>parlai<u class="mute">s</u></td><td>&eacute;tai<u class="mute">s</u></td></tr>
+                    <tr><td>tu</td><td>-ais</td><td>parlai<u class="mute">s</u></td><td>&eacute;tai<u class="mute">s</u></td></tr>
+                    <tr><td>il / elle</td><td>-ait</td><td>parlai<u class="mute">t</u></td><td>&eacute;tai<u class="mute">t</u></td></tr>
+                    <tr><td>nous</td><td>-ions</td><td>parlion<u class="mute">s</u></td><td>&eacute;tion<u class="mute">s</u></td></tr>
+                    <tr><td>vous</td><td>-iez</td><td>parlie<u class="mute">z</u></td><td>&eacute;tie<u class="mute">z</u></td></tr>
+                    <tr><td>ils / elles</td><td>-aient</td><td>parlai<u class="mute">ent</u></td><td>&eacute;tai<u class="mute">ent</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> &ecirc;tre (stem <em>ét-</em>) is the only irregular stem in the entire language for this tense &mdash; every other verb, however irregular in the present, follows the nous-form trick.</div>
+                <div class="example-line">Quand j'&eacute;tais petit, nous habitions &agrave; Moncton. Il faisait beau ce jour-l&agrave;.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Pass&eacute; compos&eacute; vs. imparfait &mdash; choosing the right one<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">The single biggest source of past-tense mistakes at this level is picking the wrong one. Think camera snapshot vs. video background.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>When to use which</caption>
+                  <thead><tr><th>Use pass&eacute; compos&eacute; for</th><th>Use imparfait for</th></tr></thead>
+                  <tbody>
+                    <tr><td>a completed, specific action</td><td>an ongoing background action</td></tr>
+                    <tr><td>an event that moves the story forward</td><td>a description (people, places, weather)</td></tr>
+                    <tr><td>something that happened once</td><td>a repeated habit ("used to")</td></tr>
+                    <tr><td>an interruption</td><td>what was already happening</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> pass&eacute; compos&eacute; = the snapshot (what happened); imparfait = the video playing in the background (what was going on). Most narratives use both in the same sentence.</div>
+                <div class="example-line">Je regardais la t&eacute;l&eacute; quand le t&eacute;l&eacute;phone a sonn&eacute;.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Sequencing connectors &mdash; d'abord, ensuite, puis, enfin<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">These four words turn a list of events into a structured story &mdash; exactly what the narrative writing task is graded on.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Narrative sequencing</caption>
+                  <thead><tr><th>Connector</th><th>Meaning</th><th>Position</th></tr></thead>
+                  <tbody>
+                    <tr><td>d'abor<u class="mute">d</u></td><td>first</td><td>opens the story</td></tr>
+                    <tr><td>ensuit<u class="mute">e</u> / pui<u class="mute">s</u></td><td>then / next</td><td>middle events</td></tr>
+                    <tr><td>enfin</td><td>finally</td><td>closes the story</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> use one of these per paragraph in your narrative writing task &mdash; it guarantees a visible, gradable structure even if a sentence or two has small errors.</div>
+                <div class="example-line">D'abord, je suis arriv&eacute; en retard. Ensuite, j'ai cherch&eacute; une place. Enfin, la r&eacute;union a commenc&eacute;.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Relative pronouns qui / que / o&ugrave;<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Relative pronouns join two sentences into one, which is what separates B1 writing from a string of short A2 sentences.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>qui vs. que vs. o&ugrave;</caption>
+                  <thead><tr><th>Pronoun</th><th>Replaces</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>qui</td><td>the subject of the clause</td><td>le livr<u class="mute">e</u> qui e<u class="mute">st</u> sur la tabl<u class="mute">e</u></td></tr>
+                    <tr><td>que</td><td>the object of the clause</td><td>le livr<u class="mute">e</u> que je li<u class="mute">s</u></td></tr>
+                    <tr><td>o&ugrave;</td><td>a place or time</td><td>la vill<u class="mute">e</u> o&ugrave; j'<u class="mute">h</u>abit<u class="mute">e</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> the fast test &mdash; if a verb comes right after, use <em>qui</em>; if a subject + verb comes after, use <em>que</em>.</div>
+                <div class="example-line">C'est une amie qui travaille &agrave; l'h&ocirc;pital. Voici le film que j'ai vu hier.</div>
+              </div>
+            </details></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="roadmap-stage">
+        <div class="roadmap-marker-col"><div class="roadmap-num">4</div></div>
+        <div class="roadmap-content">
+          <div class="roadmap-stage-head"><h3>Opinions, hypotheticals &amp; argument</h3><span class="skill-tag">what B1 tasks actually score</span></div>
+          <p class="roadmap-why">The last stretch: everything the opinion-writing and persuasive-speaking tasks are graded on. Hardest to make automatic, so give it the most practice time.</p>
+          <ol class="roadmap-list">
+            <li><details>
+              <summary>Futur simple<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Endings are the present tense of <code>avoir</code> attached to the infinitive &mdash; if you know that, this tense is nearly free. A handful of verbs change their stem.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>parle<u class="mute">r</u> (regular)</caption>
+                  <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
+                  <tbody>
+                    <tr><td>parlerai</td><td>parlera<u class="mute">s</u></td><td>parlera</td><td>parleron<u class="mute">s</u></td><td>parlere<u class="mute">z</u></td><td>parleron<u class="mute">t</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Common irregular stems</caption>
+                  <thead><tr><th>Verb</th><th>Stem</th><th>Verb</th><th>Stem</th></tr></thead>
+                  <tbody>
+                    <tr><td>&ecirc;tr<u class="mute">e</u></td><td>ser-</td><td>pouvoir</td><td>pourr-</td></tr>
+                    <tr><td>avoir</td><td>aur-</td><td>vouloir</td><td>voudr-</td></tr>
+                    <tr><td>alle<u class="mute">r</u></td><td>ir-</td><td>devoir</td><td>devr-</td></tr>
+                    <tr><td>fair<u class="mute">e</u></td><td>fer-</td><td>venir</td><td>viendr-</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> the endings (-ai, -as, -a, -ons, -ez, -ont) never change &mdash; only the stem does. Learn the 8 irregular stems above as one block; every other verb just uses its infinitive.</div>
+                <div class="example-line">L'ann&eacute;e prochaine, je serai &eacute;tudiant. Nous ferons un voyage en France.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Conditionnel pr&eacute;sent &mdash; polite requests (je voudrais...)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Conditionnel = the same stem as futur simple + the imparfait endings. If you've learned both of those, this one is essentially free.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>vouloir (stem voudr-)</caption>
+                  <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
+                  <tbody>
+                    <tr><td>voudrai<u class="mute">s</u></td><td>voudrai<u class="mute">s</u></td><td>voudrai<u class="mute">t</u></td><td>voudrion<u class="mute">s</u></td><td>voudrie<u class="mute">z</u></td><td>voudrai<u class="mute">ent</u></td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> <em>je voudrais</em>, <em>je pourrais</em>, and <em>je devrais</em> instantly sound more natural and polite than the blunt present-tense versions &mdash; use them as your default register in speaking tasks.</div>
+                <div class="example-line">Je voudrais un caf&eacute;, s'il vous pla&icirc;t. Pourriez-vous m'aider ?</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Conditionnel pr&eacute;sent &mdash; hypotheticals with si<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">For NCLC 5 you only need one <em>si</em> pattern &mdash; it's the one examiners are listening for in "what would you do if..." opinion questions.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Si-clause patterns</caption>
+                  <thead><tr><th>Si-clause</th><th>Main clause</th><th>Meaning</th></tr></thead>
+                  <tbody>
+                    <tr><td>si + pr&eacute;sen<u class="mute">t</u></td><td>pr&eacute;sen<u class="mute">t</u> / futur</td><td>a real, likely condition</td></tr>
+                    <tr><td>si + imparfai<u class="mute">t</u></td><td>conditionnel pr&eacute;sen<u class="mute">t</u></td><td>a hypothetical (this is your B1 target)</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> memorize the shape <em>si + imparfait, ... + conditionnel</em> as one fixed template and reuse it &mdash; it's the single highest-value sentence pattern for the opinion tasks.</div>
+                <div class="example-line">Si j'avais plus de temps, je voyagerais davantage. Si je pouvais choisir, j'habiterais &agrave; Qu&eacute;bec.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Cause &amp; consequence connectors &mdash; parce que, donc, car, par cons&eacute;quent<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">Justifying an opinion is graded directly &mdash; these connectors are how you show cause and effect instead of just stating two facts side by side.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Cause &amp; consequence</caption>
+                  <thead><tr><th>Connector</th><th>Meaning</th><th>Note</th></tr></thead>
+                  <tbody>
+                    <tr><td>parc<u class="mute">e</u> que</td><td>because</td><td>answers "pourquoi ?", can open a sentence</td></tr>
+                    <tr><td>car</td><td>because</td><td>more formal/written, cannot open a sentence</td></tr>
+                    <tr><td>donc</td><td>so / therefore</td><td>everyday register</td></tr>
+                    <tr><td>par cons&eacute;quen<u class="mute">t</u></td><td>consequently</td><td>formal, written register</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> use <em>parce que</em> by default when speaking; save <em>car</em> and <em>par cons&eacute;quent</em> for writing tasks, where they signal a higher register.</div>
+                <div class="example-line">Je pr&eacute;f&egrave;re le t&eacute;l&eacute;travail, car il permet plus de flexibilit&eacute;.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Contrast connectors &mdash; mais, cependant, par contre<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">A two-sided opinion needs a contrast word to pivot between the two sides &mdash; three options at increasing levels of formality.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Contrast connectors</caption>
+                  <thead><tr><th>Connector</th><th>Meaning</th><th>Register</th></tr></thead>
+                  <tbody>
+                    <tr><td>mai<u class="mute">s</u></td><td>but</td><td>neutral, safest under pressure</td></tr>
+                    <tr><td>par contr<u class="mute">e</u></td><td>on the other hand</td><td>common in speech</td></tr>
+                    <tr><td>cependan<u class="mute">t</u></td><td>however</td><td>formal, strong for writing</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> lean on <em>mais</em> when speaking under pressure, and sprinkle <em>cependant</em> or <em>par contre</em> into writing tasks &mdash; variety here is one of the easiest ways to raise your writing score.</div>
+                <div class="example-line">Le loyer est &eacute;lev&eacute;, cependant le quartier est tr&egrave;s pratique.</div>
+              </div>
+            </details></li>
+            <li><details>
+              <summary>Balancing an argument &mdash; d'une part... d'autre part, en outre<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
+              <div class="topic-guide">
+                <p class="topic-explain">This is your ready-made template for the opinion-writing task &mdash; it structures a two-sided argument end to end.</p>
+                <div class="table-scroll"><table class="conj-table">
+                  <caption>Argument template</caption>
+                  <thead><tr><th>Connector</th><th>Role in the paragraph</th></tr></thead>
+                  <tbody>
+                    <tr><td>d'un<u class="mute">e</u> par<u class="mute">t</u></td><td>introduces the first point</td></tr>
+                    <tr><td>d'autr<u class="mute">e</u> par<u class="mute">t</u></td><td>introduces the contrasting second point</td></tr>
+                    <tr><td>en outr<u class="mute">e</u> / de plus</td><td>adds a bonus supporting point</td></tr>
+                  </tbody>
+                </table></div>
+                <div class="tip-box"><b>Tip:</b> memorize the whole skeleton as one unit: intro &rarr; <em>d'une part</em> (point 1) &rarr; <em>d'autre part</em> (point 2) &rarr; <em>en outre</em> (bonus) &rarr; conclusion. Reuse it for every opinion prompt.</div>
+                <div class="example-line">D'une part, le t&eacute;l&eacute;travail fait &eacute;conomiser du temps. D'autre part, il peut isoler les employ&eacute;s.</div>
+              </div>
+            </details></li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Grammar &amp; structures</h2>
+    <p class="section-intro">B1 is where you stop living in <em>le pr&eacute;sent</em>. If most of your answers are still present-tense, that alone caps you around A2 &mdash; these are the individual structures graders are listening and reading for. Tick each one off once you can use it without stopping to think.</p>
+    <div class="topic-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Verb tenses &amp; moods</h3><span class="skill-tag">10 topics</span></div>
+        <ul class="checklist" data-group="grammar-tenses">
+          <li><label><input type="checkbox" data-key="g1"><span class="item-text">Present tense &mdash; regular -er / -ir / -re verbs</span></label></li>
+          <li><label><input type="checkbox" data-key="g2"><span class="item-text">Present tense &mdash; key irregulars (&ecirc;tre, avoir, aller, faire, pouvoir, vouloir, devoir)</span></label></li>
+          <li><label><input type="checkbox" data-key="g3"><span class="item-text">Pass&eacute; compos&eacute; with avoir</span></label></li>
+          <li><label><input type="checkbox" data-key="g4"><span class="item-text">Pass&eacute; compos&eacute; with &ecirc;tre + past-participle agreement</span></label></li>
+          <li><label><input type="checkbox" data-key="g5"><span class="item-text">Imparfait &mdash; formation and uses (habits, background, description)</span></label></li>
+          <li><label><input type="checkbox" data-key="g6"><span class="item-text">Pass&eacute; compos&eacute; vs. imparfait &mdash; choosing the right one</span></label></li>
+          <li><label><input type="checkbox" data-key="g7"><span class="item-text">Futur proche (aller + infinitive)</span></label></li>
+          <li><label><input type="checkbox" data-key="g8"><span class="item-text">Futur simple</span></label></li>
+          <li><label><input type="checkbox" data-key="g9"><span class="item-text">Conditionnel pr&eacute;sent &mdash; polite requests (je voudrais...)</span></label></li>
+          <li><label><input type="checkbox" data-key="g10"><span class="item-text">Conditionnel pr&eacute;sent &mdash; hypotheticals with si</span></label></li>
+          <li><label><input type="checkbox" data-key="g11"><span class="item-text">Devoir / pouvoir / vouloir + infinitive (advice, ability, obligation)</span></label></li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Pronouns &amp; mechanics</h3><span class="skill-tag">6 topics</span></div>
+        <ul class="checklist" data-group="grammar-mechanics">
+          <li><label><input type="checkbox" data-key="g12"><span class="item-text">Comparatives &amp; superlatives (plus/moins/aussi... que, le/la plus)</span></label></li>
+          <li><label><input type="checkbox" data-key="g13"><span class="item-text">Relative pronouns qui / que / o&ugrave;</span></label></li>
+          <li><label><input type="checkbox" data-key="g14"><span class="item-text">Direct &amp; indirect object pronouns (me, te, le, la, lui, nous, vous, leur)</span></label></li>
+          <li><label><input type="checkbox" data-key="g15"><span class="item-text">Negation forms (ne...pas, ne...jamais, ne...plus, ne...rien)</span></label></li>
+          <li><label><input type="checkbox" data-key="g16"><span class="item-text">Question formation &mdash; est-ce que and simple inversion</span></label></li>
+          <li><label><input type="checkbox" data-key="g17"><span class="item-text">Adjective agreement &amp; placement</span></label></li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Connectors</h3><span class="skill-tag">4 topics</span></div>
+        <ul class="checklist" data-group="grammar-connectors">
+          <li><label><input type="checkbox" data-key="g18"><span class="item-text">Cause &amp; consequence &mdash; parce que, donc, car, par cons&eacute;quent</span></label></li>
+          <li><label><input type="checkbox" data-key="g19"><span class="item-text">Contrast &mdash; mais, cependant, par contre</span></label></li>
+          <li><label><input type="checkbox" data-key="g20"><span class="item-text">Sequencing &mdash; d'abord, ensuite, puis, enfin</span></label></li>
+          <li><label><input type="checkbox" data-key="g21"><span class="item-text">Balancing an argument &mdash; d'une part... d'autre part, en outre</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Vocabulary themes</h2>
+    <p class="section-intro">Both exams draw prompts from a narrow band of everyday situations &mdash; work through these word banks one at a time before chasing rare vocabulary.</p>
+    <div class="topic-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Word banks to build</h3><span class="skill-tag">10 topics</span></div>
+        <ul class="checklist" data-group="vocab">
+          <li><label><input type="checkbox" data-key="v1"><span class="item-text">Work &amp; job-search vocabulary (ads, applications, interviews)</span></label></li>
+          <li><label><input type="checkbox" data-key="v2"><span class="item-text">Workplace notices, schedules &amp; internal memos</span></label></li>
+          <li><label><input type="checkbox" data-key="v3"><span class="item-text">Studies &amp; education vocabulary</span></label></li>
+          <li><label><input type="checkbox" data-key="v4"><span class="item-text">Daily routines &amp; everyday life</span></label></li>
+          <li><label><input type="checkbox" data-key="v5"><span class="item-text">Shopping, prices &amp; transactions</span></label></li>
+          <li><label><input type="checkbox" data-key="v6"><span class="item-text">Housing &amp; rental vocabulary</span></label></li>
+          <li><label><input type="checkbox" data-key="v7"><span class="item-text">Health &amp; doctor's-visit vocabulary</span></label></li>
+          <li><label><input type="checkbox" data-key="v8"><span class="item-text">Travel &amp; transportation vocabulary</span></label></li>
+          <li><label><input type="checkbox" data-key="v9"><span class="item-text">Recounting a personal experience / storytelling</span></label></li>
+          <li><label><input type="checkbox" data-key="v10"><span class="item-text">Giving opinions with reasons (advantages / disadvantages)</span></label></li>
+        </ul>
+      </div>
+
+      <div class="plain-card">
+        <h3>How to build it</h3>
+        <ul class="plain-list">
+          <li>Learn vocabulary in sentence patterns, not as isolated word lists</li>
+          <li>Read authentic short texts in these themes: notices, ads, articles, emails</li>
+          <li>Retire literal translations from English &mdash; learn the French idiom directly</li>
+          <li>Keep a running list of connectors and reuse them until they're automatic</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Skill-by-skill checklist</h2>
+    <p class="section-intro">What examiners are actually scoring in each section. Tick items off as you can do them comfortably under time pressure.</p>
+
+    <div class="progress-bar-wrap" style="margin-bottom:16px;">
+      <span id="progress-label">0 / 0 done</span>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="skill-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Listening &middot; CO</h3><span class="skill-tag">audio, once or twice</span></div>
+        <ul class="checklist" data-group="listening">
+          <li><label><input type="checkbox" data-key="l1"><span class="item-text">Identify the situation and who's speaking within the first few seconds</span></label></li>
+          <li><label><input type="checkbox" data-key="l2"><span class="item-text">Catch the main point before chasing individual words</span></label></li>
+          <li><label><input type="checkbox" data-key="l3"><span class="item-text">Pick out numbers, dates, times, and prices accurately under pressure</span></label></li>
+          <li><label><input type="checkbox" data-key="l4"><span class="item-text">Tell a speaker's opinion apart from a stated fact</span></label></li>
+          <li><label><input type="checkbox" data-key="l5"><span class="item-text">Follow a single-play recording without needing a replay (TEF format)</span></label></li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Reading &middot; CE</h3><span class="skill-tag">39&ndash;40 MCQ</span></div>
+        <ul class="checklist" data-group="reading">
+          <li><label><input type="checkbox" data-key="r1"><span class="item-text">Spot a document's type, purpose, and intended audience quickly</span></label></li>
+          <li><label><input type="checkbox" data-key="r2"><span class="item-text">Locate key details &mdash; dates, deadlines, conditions &mdash; by scanning</span></label></li>
+          <li><label><input type="checkbox" data-key="r3"><span class="item-text">Separate fact from opinion in short articles</span></label></li>
+          <li><label><input type="checkbox" data-key="r4"><span class="item-text">Read workplace notices, ads, and emails without translating word by word</span></label></li>
+          <li><label><input type="checkbox" data-key="r5"><span class="item-text">Pace yourself across the full question set inside the time limit</span></label></li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Writing &middot; EE</h3><span class="skill-tag">2&ndash;3 timed tasks</span></div>
+        <ul class="checklist" data-group="writing">
+          <li><label><input type="checkbox" data-key="w1"><span class="item-text">Narrate a past experience using pass&eacute; compos&eacute; and imparfait together</span></label></li>
+          <li><label><input type="checkbox" data-key="w2"><span class="item-text">Write a two-sided opinion paragraph using connectors, not a one-line answer</span></label></li>
+          <li><label><input type="checkbox" data-key="w3"><span class="item-text">Control formal vs. informal register depending on the prompt</span></label></li>
+          <li><label><input type="checkbox" data-key="w4"><span class="item-text">Hit the required word count comfortably inside the time limit</span></label></li>
+          <li><label><input type="checkbox" data-key="w5"><span class="item-text">Prefer clear, correct sentences over ambitious ones you can't finish cleanly</span></label></li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head"><h3>Speaking &middot; EO</h3><span class="skill-tag">interview + tasks</span></div>
+        <ul class="checklist" data-group="speaking">
+          <li><label><input type="checkbox" data-key="s1"><span class="item-text">Sustain 60&ndash;90 second answers without long dead pauses</span></label></li>
+          <li><label><input type="checkbox" data-key="s2"><span class="item-text">Structure answers as: direct answer &rarr; reason &rarr; example &rarr; close</span></label></li>
+          <li><label><input type="checkbox" data-key="s3"><span class="item-text">Ask clear questions to get information from an interlocutor (TEF task A)</span></label></li>
+          <li><label><input type="checkbox" data-key="s4"><span class="item-text">Argue and defend an opinion persuasively (TEF task B / TCF task 3)</span></label></li>
+          <li><label><input type="checkbox" data-key="s5"><span class="item-text">Vary sentence openers instead of leaning on one memorized template</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="note">
+    <b>Rough timeline:</b> prep blogs estimate around 300&ndash;400 guided study hours to reach B1 from a true beginner, typically spread over 3&ndash;6 months of consistent practice across all four skills. If you're starting from A2, expect meaningfully less. Treat this as a planning estimate, not a guarantee.
+  </div>
+
+  <footer>
+    <div>Score bands compiled from third-party TCF/TEF prep resources, cross-checked across independent sources. Official conversion tables can shift &mdash; verify against IRCC and France Éducation international / Alliance Française before booking.</div>
+    <div class="sources">
+      <a href="https://www.languagenext.com/blog/tcf-canada-score-chart/" target="_blank" rel="noopener">TCF score chart</a>
+      <a href="https://www.languagenext.com/blog/tef-canada-score-chart/" target="_blank" rel="noopener">TEF score chart</a>
+      <a href="https://getpenvo.com/blog/tcf-canada-format-guide" target="_blank" rel="noopener">TCF format guide</a>
+      <a href="https://getpenvo.com/blog/tef-canada-format-guide" target="_blank" rel="noopener">TEF format guide</a>
+      <a href="https://ccccollege.com/b1-level-of-french-nclc-5/" target="_blank" rel="noopener">B1/NCLC 5 breakdown</a>
+      <a href="https://kochiva.com/blog/clb-5-in-french/" target="_blank" rel="noopener">CLB 5 requirements</a>
+      <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/language-test.html" target="_blank" rel="noopener">IRCC language test page</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = "nclc5-roadmap-checks";
+  var state = {};
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) state = JSON.parse(raw) || {};
+  } catch (e) { state = {}; }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.checklist input[type="checkbox"]'));
+
+  function save() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function updateProgress() {
+    var total = boxes.length;
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    var label = document.getElementById('progress-label');
+    var fill = document.getElementById('progress-fill');
+    if (label) label.textContent = done + ' / ' + total + ' done';
+    if (fill) fill.style.width = (total ? (done / total * 100) : 0) + '%';
+  }
+
+  boxes.forEach(function (box) {
+    var key = box.getAttribute('data-key');
+    try {
+      if (state[key]) box.checked = true;
+    } catch (e) {}
+    box.addEventListener('change', function () {
+      state[key] = box.checked;
+      save();
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+})();
+</script>
+
+</body></html>
