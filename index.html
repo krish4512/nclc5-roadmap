@@ -1783,10 +1783,13 @@
   }
   pickVoice();
 
+  var syncing = false;
   function syncPicker() {
     if (!picker) return;
-    if (picker.options.length !== frVoices.length) {
+    syncing = true;                       /* never persist a programmatic change */
+    if (picker.options.length !== frVoices.length + 1) {
       picker.innerHTML = "";
+      picker.appendChild(document.createElement("option"));
       frVoices.forEach(function (v) {
         var o = document.createElement("option");
         o.value = v.name;
@@ -1794,8 +1797,16 @@
         picker.appendChild(o);
       });
     }
-    if (voice) picker.value = voice.name;
+    var auto = picker.options[0];
+    if (auto) {
+      auto.value = "";
+      auto.textContent = voice && !savedVoice
+        ? "Auto — " + voice.name + " (" + voice.lang + ")"
+        : "Auto — best French voice";
+    }
+    picker.value = savedVoice && voice ? voice.name : "";
     picker.hidden = !frVoices.length;
+    syncing = false;
   }
 
   /* Table cells are written for the eye, not the ear: strip the notation
@@ -1893,9 +1904,14 @@
     picker.className = "speak-voice";
     picker.setAttribute("aria-label", "French voice");
     picker.addEventListener("change", function () {
-      savedVoice = picker.value;
-      try { localStorage.setItem(VOICE_KEY, savedVoice); } catch (e) {}
+      if (syncing) return;
+      savedVoice = picker.value || null;   /* "" is Auto: fall back to ranking */
+      try {
+        if (savedVoice) localStorage.setItem(VOICE_KEY, savedVoice);
+        else localStorage.removeItem(VOICE_KEY);
+      } catch (e) {}
       pickVoice();
+      syncPicker();
       if (voice) {                       /* sample it so the change is audible */
         var u = new SpeechSynthesisUtterance("Bonjour, je m'appelle " + voice.name + ".");
         u.voice = voice;
