@@ -265,9 +265,22 @@
   }
 
   /* ---------------- MCQ sections ---------------- */
+  /* Shuffle the options too, not just the question order: authored answers
+     cluster at one index, which makes the section guessable from position. */
+  function prepare(list) {
+    return shuffle(list).map(function (it) {
+      var order = shuffle(it.options.map(function (_, n) { return n; }));
+      return {
+        text: it.text, q: it.q, why: it.why,
+        options: order.map(function (n) { return it.options[n]; }),
+        answer: order.indexOf(it.answer)
+      };
+    });
+  }
+
   function runMCQ(kind) {
     var isListening = kind === "listening";
-    var items = shuffle(DATA[kind]);
+    var items = prepare(DATA[kind]);
     var totalSeconds = isListening ? 12 * 60 : 15 * 60;
     var i = 0, correct = 0, answered = false, plays = 0, wrong = [];
     var left = totalSeconds, ticker = null;
