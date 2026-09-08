@@ -514,6 +514,62 @@
     color: inherit;
   }
 
+  .speak-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-faint);
+    border-radius: 5px;
+    padding: 2px 4px;
+    margin-left: 6px;
+    line-height: 0;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .speak-btn svg { display: block; }
+
+  .speak-btn:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--accent-soft-border);
+  }
+
+  .speak-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .speak-btn.speaking {
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .speak-key {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: -8px 0 18px;
+  }
+
+  .speak-key svg { vertical-align: -2px; }
+
+  .speak-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .speak-warn { color: var(--accent); }
+
   .pronun-key {
     display: flex;
     align-items: center;
@@ -883,7 +939,7 @@
               <summary>Present tense &mdash; regular -er / -ir / -re verbs<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Three verb families, three fixed endings. Learn the pattern once and it applies to hundreds of verbs.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>parle<u class="mute">r</u> (-er), finir (-ir), vendr<u class="mute">e</u> (-re)</caption>
                   <thead><tr><th>Person</th><th>parle<u class="mute">r</u></th><th>finir</th><th>vendr<u class="mute">e</u></th></tr></thead>
                   <tbody>
@@ -903,7 +959,7 @@
               <summary>Present tense &mdash; key irregulars<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">These seven verbs show up in roughly half of everyday sentences &mdash; memorize them before anything else on this list.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>&ecirc;tr<u class="mute">e</u>, avoir, alle<u class="mute">r</u>, fair<u class="mute">e</u>, pouvoir, vouloir, devoir</caption>
                   <thead><tr><th>Person</th><th>&ecirc;tre</th><th>avoir</th><th>aller</th><th>faire</th><th>pouvoir</th><th>vouloir</th><th>devoir</th></tr></thead>
                   <tbody>
@@ -923,7 +979,7 @@
               <summary>Adjective agreement &amp; placement<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Adjectives agree in gender and number with the noun, and most sit after it &mdash; except a short list that goes before.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>Agreement patterns</caption>
                   <thead><tr><th>Masc. sing.</th><th>Fem. sing.</th><th>Masc. plural</th><th>Fem. plural</th></tr></thead>
                   <tbody>
@@ -940,7 +996,7 @@
               <summary>Negation forms (ne...pas, ne...jamais, ne...plus, ne...rien)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Negation wraps around the conjugated verb: <code>ne</code> before it, the second part right after.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3">
                   <caption>Common negation pairs</caption>
                   <thead><tr><th>Form</th><th>Meaning</th><th>Example</th></tr></thead>
                   <tbody>
@@ -959,7 +1015,7 @@
               <summary>Question formation &mdash; est-ce que and simple inversion<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">French has three ways to ask the same question &mdash; you only need to produce one of them reliably.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="2">
                   <caption>Three ways to ask "Do you speak French?"</caption>
                   <thead><tr><th>Style</th><th>Example</th><th>Register</th></tr></thead>
                   <tbody>
@@ -986,7 +1042,7 @@
               <summary>Futur proche (aller + infinitive)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">The easiest future tense in French: present-tense <code>aller</code> plus any infinitive, no exceptions.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>alle<u class="mute">r</u> + infinitive</caption>
                   <thead><tr><th>Person</th><th>aller</th><th>+ infinitive</th></tr></thead>
                   <tbody>
@@ -1006,7 +1062,7 @@
               <summary>Devoir / pouvoir / vouloir + infinitive<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Your three modal verbs for obligation, ability, and desire &mdash; each followed directly by an infinitive.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3">
                   <caption>Meaning &amp; use</caption>
                   <thead><tr><th>Verb</th><th>Meaning</th><th>Example</th></tr></thead>
                   <tbody>
@@ -1023,7 +1079,7 @@
               <summary>Direct &amp; indirect object pronouns (me, te, le, la, lui, nous, vous, leur)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Pronouns replace a noun already mentioned and sit right before the conjugated verb.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>Direct vs. indirect object pronouns</caption>
                   <thead><tr><th>Person</th><th>Direct (no preposition)</th><th>Indirect (to ...)</th></tr></thead>
                   <tbody>
@@ -1041,7 +1097,7 @@
               <summary>Comparatives &amp; superlatives (plus/moins/aussi... que, le/la plus)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Comparing things is a near-guaranteed vocabulary in the opinion tasks &mdash; three structures cover almost everything.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3">
                   <caption>Comparative &amp; superlative structures</caption>
                   <thead><tr><th>Structure</th><th>Meaning</th><th>Example</th></tr></thead>
                   <tbody>
@@ -1070,7 +1126,7 @@
               <summary>Pass&eacute; compos&eacute; with avoir<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Most French verbs form the past with <code>avoir</code> + past participle. Regular participles follow the verb's family; a handful of common verbs are irregular.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="3">
                   <caption>Regular participle endings</caption>
                   <thead><tr><th>Family</th><th>Ending</th><th>Example</th></tr></thead>
                   <tbody>
@@ -1079,7 +1135,7 @@
                     <tr><td>-re verbs</td><td>-u</td><td>vendr<u class="mute">e</u> &rarr; vendu</td></tr>
                   </tbody>
                 </table></div>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>Common irregular participles</caption>
                   <thead><tr><th>Infinitive</th><th>Participle</th><th>Infinitive</th><th>Participle</th></tr></thead>
                   <tbody>
@@ -1097,7 +1153,7 @@
               <summary>Pass&eacute; compos&eacute; with &ecirc;tre + past-participle agreement<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">A fixed list of ~16 movement/state verbs (plus all reflexive verbs) use <code>&ecirc;tre</code> instead of <code>avoir</code> &mdash; and their participle agrees with the subject.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3">
                   <caption>Dr &amp; Mrs Vandertramp verbs</caption>
                   <thead><tr><th>Verb</th><th>Meaning</th><th>Verb</th><th>Meaning</th></tr></thead>
                   <tbody>
@@ -1119,7 +1175,7 @@
               <summary>Imparfait &mdash; formation and uses<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Take the <em>nous</em>-form of the present tense, drop <code>-ons</code>, and add the imparfait endings. It works for every verb except one.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3,4">
                   <caption>parle<u class="mute">r</u> (regular) vs. &ecirc;tr<u class="mute">e</u> (the one exception)</caption>
                   <thead><tr><th>Person</th><th>Ending</th><th>parler</th><th>&ecirc;tre</th></tr></thead>
                   <tbody>
@@ -1157,7 +1213,7 @@
               <summary>Sequencing connectors &mdash; d'abord, ensuite, puis, enfin<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">These four words turn a list of events into a structured story &mdash; exactly what the narrative writing task is graded on.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1">
                   <caption>Narrative sequencing</caption>
                   <thead><tr><th>Connector</th><th>Meaning</th><th>Position</th></tr></thead>
                   <tbody>
@@ -1174,7 +1230,7 @@
               <summary>Relative pronouns qui / que / o&ugrave;<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Relative pronouns join two sentences into one, which is what separates B1 writing from a string of short A2 sentences.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3">
                   <caption>qui vs. que vs. o&ugrave;</caption>
                   <thead><tr><th>Pronoun</th><th>Replaces</th><th>Example</th></tr></thead>
                   <tbody>
@@ -1201,14 +1257,14 @@
               <summary>Futur simple<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Endings are the present tense of <code>avoir</code> attached to the infinitive &mdash; if you know that, this tense is nearly free. A handful of verbs change their stem.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>parle<u class="mute">r</u> (regular)</caption>
                   <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
                   <tbody>
                     <tr><td>parlerai</td><td>parlera<u class="mute">s</u></td><td>parlera</td><td>parleron<u class="mute">s</u></td><td>parlere<u class="mute">z</u></td><td>parleron<u class="mute">t</u></td></tr>
                   </tbody>
                 </table></div>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3">
                   <caption>Common irregular stems</caption>
                   <thead><tr><th>Verb</th><th>Stem</th><th>Verb</th><th>Stem</th></tr></thead>
                   <tbody>
@@ -1226,7 +1282,7 @@
               <summary>Conditionnel pr&eacute;sent &mdash; polite requests (je voudrais...)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Conditionnel = the same stem as futur simple + the imparfait endings. If you've learned both of those, this one is essentially free.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="all">
                   <caption>vouloir (stem voudr-)</caption>
                   <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
                   <tbody>
@@ -1257,7 +1313,7 @@
               <summary>Cause &amp; consequence connectors &mdash; parce que, donc, car, par cons&eacute;quent<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Justifying an opinion is graded directly &mdash; these connectors are how you show cause and effect instead of just stating two facts side by side.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1">
                   <caption>Cause &amp; consequence</caption>
                   <thead><tr><th>Connector</th><th>Meaning</th><th>Note</th></tr></thead>
                   <tbody>
@@ -1275,7 +1331,7 @@
               <summary>Contrast connectors &mdash; mais, cependant, par contre<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">A two-sided opinion needs a contrast word to pivot between the two sides &mdash; three options at increasing levels of formality.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1">
                   <caption>Contrast connectors</caption>
                   <thead><tr><th>Connector</th><th>Meaning</th><th>Register</th></tr></thead>
                   <tbody>
@@ -1292,7 +1348,7 @@
               <summary>Balancing an argument &mdash; d'une part... d'autre part, en outre<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">This is your ready-made template for the opinion-writing task &mdash; it structures a two-sided argument end to end.</p>
-                <div class="table-scroll"><table class="conj-table">
+                <div class="table-scroll"><table class="conj-table" data-speak="1">
                   <caption>Argument template</caption>
                   <thead><tr><th>Connector</th><th>Role in the paragraph</th></tr></thead>
                   <tbody>
@@ -1378,7 +1434,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Work &amp; job-search</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v1"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>une offre d'emploi</td><td>job posting</td><td>postuler (&agrave; un poste)</td><td>to apply</td></tr>
@@ -1395,7 +1451,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Workplace notices &amp; memos</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v2"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>une note de service</td><td>internal memo</td><td>le r&egrave;glement int&eacute;rieur</td><td>internal policy</td></tr>
@@ -1412,7 +1468,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Studies &amp; education</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v3"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>s'inscrire (&agrave; un cours)</td><td>to enroll</td><td>le dipl&ocirc;me</td><td>diploma / degree</td></tr>
@@ -1429,7 +1485,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Daily routines</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v4"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>se r&eacute;veiller / se lever</td><td>to wake up / get up</td><td>faire les courses</td><td>to go grocery shopping</td></tr>
@@ -1446,7 +1502,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Shopping &amp; transactions</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v5"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>le rabais / la r&eacute;duction</td><td>discount</td><td>le re&ccedil;u / la facture</td><td>receipt / invoice</td></tr>
@@ -1463,7 +1519,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Housing &amp; rental</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v6"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>le bail</td><td>lease</td><td>le/la locataire</td><td>tenant</td></tr>
@@ -1480,7 +1536,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Health &amp; doctor's visit</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v7"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>prendre rendez-vous</td><td>to make an appointment</td><td>la carte d'assurance maladie</td><td>health insurance card</td></tr>
@@ -1497,7 +1553,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Travel &amp; transportation</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v8"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>le billet aller-retour</td><td>round-trip ticket</td><td>l'horaire des d&eacute;parts</td><td>departure schedule</td></tr>
@@ -1514,7 +1570,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Recounting an experience</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v9"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>un jour</td><td>one day</td><td>soudain / tout &agrave; coup</td><td>suddenly</td></tr>
@@ -1531,7 +1587,7 @@
       <div class="skill-card">
         <div class="skill-card-head"><h3>Giving opinions with reasons</h3><span class="skill-tag">12 terms</span></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v10"><span class="item-text">Mark this theme mastered</span></label></li></ul>
-        <div class="table-scroll"><table class="conj-table">
+        <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
           <tbody>
             <tr><td>&agrave; mon avis</td><td>in my opinion</td><td>je pense que / je trouve que</td><td>I think that</td></tr>
@@ -1662,6 +1718,143 @@
   });
 
   updateProgress();
+})();
+</script>
+
+<script>
+(function () {
+  var synth = window.speechSynthesis;
+  if (!synth || typeof window.SpeechSynthesisUtterance === "undefined") return;
+
+  var SLOW_KEY = "nclc5-roadmap-slow-speech";
+  var slow = false;
+  try { slow = localStorage.getItem(SLOW_KEY) === "1"; } catch (e) {}
+
+  var SPEAKER = '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">' +
+    '<path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/>' +
+    '<path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+
+  /* Prefer a Canadian French voice, then metropolitan French, then any French. */
+  var voice = null;
+  function pickVoice() {
+    var all = synth.getVoices() || [];
+    var fr = all.filter(function (v) { return /^fr\b|^fr[-_]/i.test(v.lang || ""); });
+    if (!fr.length) { voice = null; return; }
+    voice = fr.filter(function (v) { return /ca/i.test(v.lang); })[0] ||
+            fr.filter(function (v) { return /fr[-_]fr/i.test(v.lang); })[0] ||
+            fr[0];
+  }
+  pickVoice();
+
+  /* Table cells are written for the eye, not the ear: strip the notation
+     that a speech engine would read out as literal punctuation. */
+  function clean(text) {
+    return String(text)
+      .replace(/\((?:e|s|es)\)/gi, "")
+      .replace(/[()]/g, " ")
+      .replace(/→|—|–/g, " ")
+      .replace(/…|\.\.\./g, " ")
+      .replace(/\s*\/\s*/g, ", ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  var active = null;
+  function speak(text, btn) {
+    var say = clean(text);
+    if (!say) return;
+    synth.cancel();
+    if (active) active.classList.remove("speaking");
+    var u = new SpeechSynthesisUtterance(say);
+    u.lang = voice ? voice.lang : "fr-CA";
+    if (voice) u.voice = voice;
+    u.rate = slow ? 0.7 : 0.92;
+    btn.classList.add("speaking");
+    active = btn;
+    u.onend = u.onerror = function () {
+      btn.classList.remove("speaking");
+      if (active === btn) active = null;
+    };
+    synth.speak(u);
+  }
+
+  function makeBtn(text) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "speak-btn";
+    b.innerHTML = SPEAKER;
+    b.setAttribute("aria-label", "Listen: " + clean(text));
+    b.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      speak(text, b);
+    });
+    return b;
+  }
+
+  function attach(el) {
+    var text = el.textContent;
+    if (!clean(text)) return 0;
+    el.appendChild(document.createTextNode(" "));
+    el.appendChild(makeBtn(text));
+    return 1;
+  }
+
+  var count = 0;
+
+  /* data-speak names the 1-indexed columns holding French, or "all". */
+  Array.prototype.forEach.call(document.querySelectorAll("table.conj-table[data-speak]"), function (table) {
+    var spec = (table.getAttribute("data-speak") || "").trim();
+    var cols = spec === "all" ? null : spec.split(",").map(function (n) { return n.trim(); });
+    Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (row) {
+      Array.prototype.forEach.call(row.children, function (cell, i) {
+        if (!cols || cols.indexOf(String(i + 1)) !== -1) count += attach(cell);
+      });
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".example-line"), function (line) {
+    count += attach(line);
+  });
+
+  if (!count) return;
+
+  var key = document.querySelector(".pronun-key");
+  var warn = null;
+  if (key && key.parentNode) {
+    var bar = document.createElement("div");
+    bar.className = "speak-key";
+
+    var note = document.createElement("span");
+    note.innerHTML = "Tap " + SPEAKER + " beside any French word or sentence to hear it read aloud.";
+    warn = document.createElement("span");
+    warn.className = "speak-warn";
+    note.appendChild(warn);
+
+    var label = document.createElement("label");
+    label.className = "speak-toggle";
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = slow;
+    cb.addEventListener("change", function () {
+      slow = cb.checked;
+      try { localStorage.setItem(SLOW_KEY, slow ? "1" : "0"); } catch (e) {}
+    });
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode("Slow playback"));
+
+    bar.appendChild(note);
+    bar.appendChild(label);
+    key.parentNode.insertBefore(bar, key.nextSibling);
+  }
+
+  /* Voices load asynchronously in most browsers, so re-check before warning. */
+  function refresh() {
+    pickVoice();
+    if (warn) warn.textContent = voice ? "" : " No French voice is installed here, so playback may use your default voice.";
+  }
+  if ("onvoiceschanged" in synth) synth.addEventListener("voiceschanged", refresh);
+  setTimeout(refresh, 1000);
 })();
 </script>
 
