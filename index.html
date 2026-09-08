@@ -588,18 +588,27 @@
   }
 
   /* floating translator */
-  .tr-panel {
+  .tr-dock {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    width: 330px;
+    width: 320px;
     max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 60;
+  }
+
+  .tr-panel {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0,0,0,0.10), 0 16px 40px -12px rgba(0,0,0,0.30);
-    z-index: 60;
     overflow: hidden;
+    flex: none;
   }
 
   .tr-head {
@@ -616,17 +625,7 @@
 
   .tr-title { font-weight: 600; font-size: 13.5px; }
 
-  .tr-dir {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--teal);
-    background: var(--teal-soft);
-    border: 1px solid var(--teal-soft-border);
-    border-radius: 5px;
-    padding: 1px 6px;
-    margin-left: auto;
-    white-space: nowrap;
-  }
+  .tr-title { margin-right: auto; }
 
   .tr-toggle {
     appearance: none;
@@ -655,7 +654,7 @@
   .tr-in {
     width: 100%;
     resize: vertical;
-    min-height: 62px;
+    min-height: 52px;
     font-family: var(--sans);
     font-size: 14px;
     line-height: 1.45;
@@ -667,7 +666,7 @@
   }
 
   .tr-out {
-    min-height: 46px;
+    min-height: 40px;
     font-size: 14.5px;
     line-height: 1.45;
     color: var(--ink);
@@ -724,11 +723,11 @@
   .tr-note { font-size: 11px; color: var(--ink-faint); line-height: 1.35; }
 
   @media (max-width: 640px) {
-    .tr-panel { left: 12px; right: 12px; bottom: 12px; width: auto; }
-    .tr-in { min-height: 52px; }
+    .tr-dock { left: 12px; right: 12px; bottom: 12px; width: auto; }
+    .tr-in { min-height: 46px; }
   }
 
-  @media print { .tr-panel { display: none; } }
+  @media print { .tr-dock { display: none; } }
 
   .pronun-key {
     display: flex;
@@ -1841,23 +1840,43 @@
 
 </div>
 
-<div class="tr-panel" id="tr-panel" role="region" aria-label="English and French translator">
-  <div class="tr-head">
-    <span class="tr-title">Translate</span>
-    <span class="tr-dir" id="tr-dir">auto</span>
-    <button type="button" class="tr-toggle" id="tr-toggle" aria-expanded="true" aria-controls="tr-body" title="Minimise">&minus;</button>
-  </div>
-  <div class="tr-body" id="tr-body">
-    <textarea id="tr-in" class="tr-in" rows="3" spellcheck="false" placeholder="Type English or French&hellip;" aria-label="Text to translate"></textarea>
-    <div class="tr-out empty" id="tr-out" aria-live="polite">Translation appears here.</div>
-    <div class="tr-actions">
-      <button type="button" class="tr-btn" id="tr-speak">Hear French</button>
-      <button type="button" class="tr-btn" id="tr-copy">Copy</button>
-      <button type="button" class="tr-btn" id="tr-retry" hidden>Retry</button>
-      <button type="button" class="tr-btn" id="tr-clear">Clear</button>
+<div class="tr-dock" id="tr-dock">
+
+  <div class="tr-panel" data-from="en" data-to="fr" data-french="out" role="region" aria-label="English to French translator">
+    <div class="tr-head">
+      <span class="tr-title">English &rarr; French</span>
+      <button type="button" class="tr-toggle" title="Minimise" aria-expanded="true">&minus;</button>
     </div>
-    <div class="tr-note">Detects the language and translates to the other. Text you type is sent to Google Translate.</div>
+    <div class="tr-body">
+      <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Type English&hellip;" aria-label="English text"></textarea>
+      <div class="tr-out empty" aria-live="polite">French appears here.</div>
+      <div class="tr-actions">
+        <button type="button" class="tr-btn tr-speak">Hear French</button>
+        <button type="button" class="tr-btn tr-copy">Copy</button>
+        <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
+        <button type="button" class="tr-btn tr-clear">Clear</button>
+      </div>
+    </div>
   </div>
+
+  <div class="tr-panel" data-from="fr" data-to="en" data-french="in" role="region" aria-label="French to English translator">
+    <div class="tr-head">
+      <span class="tr-title">French &rarr; English</span>
+      <button type="button" class="tr-toggle" title="Minimise" aria-expanded="true">&minus;</button>
+    </div>
+    <div class="tr-body">
+      <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Tapez en fran&ccedil;ais&hellip;" aria-label="French text"></textarea>
+      <div class="tr-out empty" aria-live="polite">English appears here.</div>
+      <div class="tr-actions">
+        <button type="button" class="tr-btn tr-speak">Hear French</button>
+        <button type="button" class="tr-btn tr-copy">Copy</button>
+        <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
+        <button type="button" class="tr-btn tr-clear">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tr-note">Text you type is sent to Google Translate.</div>
 </div>
 
 <script>
@@ -2126,46 +2145,12 @@
 
 <script>
 (function () {
-  var panel = document.getElementById("tr-panel");
-  if (!panel) return;
-  var input = document.getElementById("tr-in");
-  var outEl = document.getElementById("tr-out");
-  var dirEl = document.getElementById("tr-dir");
-  var speakBtn = document.getElementById("tr-speak");
-  var copyBtn = document.getElementById("tr-copy");
-  var clearBtn = document.getElementById("tr-clear");
-  var retryBtn = document.getElementById("tr-retry");
-  var toggle = document.getElementById("tr-toggle");
+  var dock = document.getElementById("tr-dock");
+  if (!dock) return;
 
-  var MIN_KEY = "nclc5-roadmap-tr-min";
-  function setMin(min) {
-    panel.classList.toggle("min", min);
-    toggle.innerHTML = min ? "+" : "&minus;";
-    toggle.title = min ? "Expand" : "Minimise";
-    toggle.setAttribute("aria-expanded", min ? "false" : "true");
-  }
-  try { if (localStorage.getItem(MIN_KEY) === "1") setMin(true); } catch (e) {}
-
-  toggle.addEventListener("click", function () {
-    var min = !panel.classList.contains("min");
-    setMin(min);
-    try { localStorage.setItem(MIN_KEY, min ? "1" : "0"); } catch (e) {}
-  });
-
-  /* Guess the direction locally so the first request is usually right; the
-     service's own detection corrects us below when the guess is wrong. */
-  var FR_ACCENT = /[àâçéèêëîïôûùüœ]/i;
-  var FR_WORDS = /\b(je|tu|il|elle|nous|vous|ils|elles|le|la|les|un|une|des|du|de|et|est|sont|ne|pas|que|qui|pour|avec|dans|sur|plus|tout|tres|etre|avoir|faire|suis|ce|cette|mon|ma|mes|son|sa|ses|au|aux|ou|si|bonjour|merci)\b/gi;
-  var EN_WORDS = /\b(the|is|are|and|to|of|a|an|in|on|for|with|that|this|it|you|i|we|they|have|has|do|does|not|but|from|at|by|be|was|were|will|would|can|could|my|your|please|hello)\b/gi;
-
-  function looksFrench(t) {
-    if (FR_ACCENT.test(t)) return true;
-    return (t.match(FR_WORDS) || []).length > (t.match(EN_WORDS) || []).length;
-  }
-
-  /* Both services can stall rather than refuse, which would leave the panel
-     stuck on "Translating…" forever, so every request is raced against a
-     timeout and always settles. */
+  /* Both services can stall rather than refuse, which would leave a box stuck
+     on "Translating…" forever, so every request is raced against a timeout
+     and always settles. */
   function fetchJson(url, ms) {
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer;
@@ -2183,110 +2168,132 @@
     );
   }
 
-  function viaGoogle(q, tl) {
-    return fetchJson("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&dt=t&tl=" +
-                     tl + "&q=" + encodeURIComponent(q))
+  /* Each box has a fixed direction, so source and target are both stated
+     outright. Nothing here depends on language detection — relying on the
+     detected source is what previously let French input come back as French. */
+  function viaGoogle(q, from, to) {
+    return fetchJson("https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&sl=" +
+                     from + "&tl=" + to + "&q=" + encodeURIComponent(q))
       .then(function (j) {
         if (!j || !j[0]) throw new Error("bad payload");
-        return { text: j[0].map(function (x) { return x[0]; }).join(""), detected: j[2] };
+        return j[0].map(function (x) { return x[0]; }).join("");
       });
   }
 
-  function viaMyMemory(q, tl) {
-    return fetchJson("https://api.mymemory.translated.net/get?langpair=" +
-                     (tl === "fr" ? "en|fr" : "fr|en") + "&q=" + encodeURIComponent(q))
+  function viaMyMemory(q, from, to) {
+    return fetchJson("https://api.mymemory.translated.net/get?langpair=" + from + "|" + to +
+                     "&q=" + encodeURIComponent(q))
       .then(function (j) {
         if (!j.responseData || !j.responseData.translatedText) throw new Error("no result");
-        return { text: j.responseData.translatedText, detected: null };
+        return j.responseData.translatedText;
       });
   }
 
-  var seq = 0;          /* drop responses that a newer keystroke has superseded */
-  var frenchText = "";
+  function initPanel(panel) {
+    var from = panel.getAttribute("data-from");
+    var to = panel.getAttribute("data-to");
+    var frenchIsOutput = panel.getAttribute("data-french") === "out";
 
-  function show(msg, cls) {
-    outEl.textContent = msg;
-    outEl.className = "tr-out" + (cls ? " " + cls : "");
-  }
+    var input = panel.querySelector(".tr-in");
+    var outEl = panel.querySelector(".tr-out");
+    var toggle = panel.querySelector(".tr-toggle");
+    var speakBtn = panel.querySelector(".tr-speak");
+    var copyBtn = panel.querySelector(".tr-copy");
+    var retryBtn = panel.querySelector(".tr-retry");
+    var clearBtn = panel.querySelector(".tr-clear");
+    var placeholder = outEl.textContent;
 
-  function run() {
-    var q = input.value.trim();
-    var mine = ++seq;
-    if (!q) {
-      show("Translation appears here.", "empty");
-      dirEl.textContent = "auto";
-      retryBtn.hidden = true;
-      frenchText = "";
-      return;
+    var MIN_KEY = "nclc5-roadmap-tr-min-" + from;
+    function setMin(min) {
+      panel.classList.toggle("min", min);
+      toggle.innerHTML = min ? "+" : "&minus;";
+      toggle.title = min ? "Expand" : "Minimise";
+      toggle.setAttribute("aria-expanded", min ? "false" : "true");
+    }
+    try { if (localStorage.getItem(MIN_KEY) === "1") setMin(true); } catch (e) {}
+    toggle.addEventListener("click", function () {
+      var min = !panel.classList.contains("min");
+      setMin(min);
+      try { localStorage.setItem(MIN_KEY, min ? "1" : "0"); } catch (e) {}
+    });
+
+    var seq = 0;                 /* drop replies a newer keystroke superseded */
+    var frenchText = "";
+
+    function show(msg, cls) {
+      outEl.textContent = msg;
+      outEl.className = "tr-out" + (cls ? " " + cls : "");
     }
 
-    var toFrench = !looksFrench(q);
-    show("Translating…", "empty");
-    retryBtn.hidden = true;
-    dirEl.textContent = toFrench ? "EN → FR" : "FR → EN";
-
-    viaGoogle(q, toFrench ? "fr" : "en")
-      .then(function (res) {
-        /* Detected source == the language we asked for means we guessed
-           backwards, so translate the other way instead. */
-        if (res.detected === (toFrench ? "fr" : "en")) {
-          toFrench = !toFrench;
-          return viaGoogle(q, toFrench ? "fr" : "en");
-        }
-        return res;
-      })
-      .catch(function () { return viaMyMemory(q, toFrench ? "fr" : "en"); })
-      .then(function (res) {
-        if (mine !== seq) return;
-        show(res.text);
-        dirEl.textContent = toFrench ? "EN → FR" : "FR → EN";
-        frenchText = toFrench ? res.text : q;
-      })
-      .catch(function () {
-        if (mine !== seq) return;
-        show("Couldn't reach the translation service. It may be busy — press Retry.", "err");
-        retryBtn.hidden = false;
+    function run() {
+      var q = input.value.trim();
+      var mine = ++seq;
+      retryBtn.hidden = true;
+      if (!q) {
+        show(placeholder, "empty");
         frenchText = "";
-      });
-  }
+        return;
+      }
+      show("Translating…", "empty");
+      /* In the FR box the French is what was typed, so it can be heard even
+         if the translation request fails. */
+      if (!frenchIsOutput) frenchText = q;
 
-  var timer = null;
-  input.addEventListener("input", function () {
-    clearTimeout(timer);
-    timer = setTimeout(run, 500);
-  });
-  input.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
+      viaGoogle(q, from, to)
+        .catch(function () { return viaMyMemory(q, from, to); })
+        .then(function (text) {
+          if (mine !== seq) return;
+          show(text);
+          if (frenchIsOutput) frenchText = text;
+        })
+        .catch(function () {
+          if (mine !== seq) return;
+          show("Couldn't reach the translation service. It may be busy — press Retry.", "err");
+          retryBtn.hidden = false;
+          if (frenchIsOutput) frenchText = "";
+        });
+    }
+
+    var timer = null;
+    input.addEventListener("input", function () {
+      clearTimeout(timer);
+      timer = setTimeout(run, 500);
+    });
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        clearTimeout(timer);
+        run();
+      }
+    });
+
+    if (!window.nclcSpeakFrench) speakBtn.hidden = true;
+    speakBtn.addEventListener("click", function () {
+      if (frenchText && window.nclcSpeakFrench) window.nclcSpeakFrench(frenchText, speakBtn);
+    });
+
+    copyBtn.addEventListener("click", function () {
+      if (outEl.classList.contains("empty") || outEl.classList.contains("err")) return;
+      var text = outEl.textContent;
+      var done = function () {
+        copyBtn.textContent = "Copied";
+        setTimeout(function () { copyBtn.textContent = "Copy"; }, 1200);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done);
+      else done();
+    });
+
+    retryBtn.addEventListener("click", function () { clearTimeout(timer); run(); });
+
+    clearBtn.addEventListener("click", function () {
+      input.value = "";
       clearTimeout(timer);
       run();
-    }
-  });
+      input.focus();
+    });
+  }
 
-  if (!window.nclcSpeakFrench) speakBtn.hidden = true;
-  speakBtn.addEventListener("click", function () {
-    if (frenchText && window.nclcSpeakFrench) window.nclcSpeakFrench(frenchText, speakBtn);
-  });
-
-  copyBtn.addEventListener("click", function () {
-    if (outEl.classList.contains("empty") || outEl.classList.contains("err")) return;
-    var text = outEl.textContent;
-    var done = function () {
-      copyBtn.textContent = "Copied";
-      setTimeout(function () { copyBtn.textContent = "Copy"; }, 1200);
-    };
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done);
-    else done();
-  });
-
-  retryBtn.addEventListener("click", function () { clearTimeout(timer); run(); });
-
-  clearBtn.addEventListener("click", function () {
-    input.value = "";
-    clearTimeout(timer);
-    run();
-    input.focus();
-  });
+  Array.prototype.forEach.call(dock.querySelectorAll(".tr-panel"), initPanel);
 })();
 </script>
 
