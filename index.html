@@ -782,6 +782,53 @@
 
   @media print { .tr-dock { display: none; } }
 
+  .practice-link {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-soft-border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .practice-link:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+
+  .practice-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .section-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 20px; }
+
+  .data-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  .data-btn {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+  }
+
+  .data-btn:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  .data-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
   .pronun-key {
     display: flex;
     align-items: center;
@@ -1047,6 +1094,7 @@
     <span class="eyebrow">Français &middot; Canadian immigration language test</span>
     <h1>NCLC 5 Roadmap</h1>
     <p class="dek">Everything to cover to hit <strong>NCLC / CLB 5</strong> (CEFR B1) on either <strong>TCF Canada</strong> or <strong>TEF Canada</strong> &mdash; the score bands you're aiming for, the exam format, and a checklist of grammar, vocabulary and skills by section. Check items off as you go; your progress is saved on this page.</p>
+    <div class="section-actions" style="margin:0;"><a class="practice-link" href="quiz.html">Open practice mode &rarr;</a></div>
   </header>
 
   <section class="block">
@@ -1151,7 +1199,7 @@
               <summary>Present tense &mdash; regular -er / -ir / -re verbs<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Three verb families, three fixed endings. Learn the pattern once and it applies to hundreds of verbs.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj">
                   <caption>parle<u class="mute">r</u> (-er), finir (-ir), vendr<u class="mute">e</u> (-re)</caption>
                   <thead><tr><th>Person</th><th>parle<u class="mute">r</u></th><th>finir</th><th>vendr<u class="mute">e</u></th></tr></thead>
                   <tbody>
@@ -1171,7 +1219,7 @@
               <summary>Present tense &mdash; key irregulars<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">These seven verbs show up in roughly half of everyday sentences &mdash; memorize them before anything else on this list.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj">
                   <caption>&ecirc;tr<u class="mute">e</u>, avoir, alle<u class="mute">r</u>, fair<u class="mute">e</u>, pouvoir, vouloir, devoir</caption>
                   <thead><tr><th>Person</th><th>&ecirc;tre</th><th>avoir</th><th>aller</th><th>faire</th><th>pouvoir</th><th>vouloir</th><th>devoir</th></tr></thead>
                   <tbody>
@@ -1387,7 +1435,7 @@
               <summary>Imparfait &mdash; formation and uses<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Take the <em>nous</em>-form of the present tense, drop <code>-ons</code>, and add the imparfait endings. It works for every verb except one.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="1,3,4">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3,4" data-quiz="conj">
                   <caption>parle<u class="mute">r</u> (regular) vs. &ecirc;tr<u class="mute">e</u> (the one exception)</caption>
                   <thead><tr><th>Person</th><th>Ending</th><th>parler</th><th>&ecirc;tre</th></tr></thead>
                   <tbody>
@@ -1469,7 +1517,7 @@
               <summary>Futur simple<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Endings are the present tense of <code>avoir</code> attached to the infinitive &mdash; if you know that, this tense is nearly free. A handful of verbs change their stem.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj-row" data-quiz-verb="parler (futur simple)">
                   <caption>parle<u class="mute">r</u> (regular)</caption>
                   <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
                   <tbody>
@@ -1494,7 +1542,7 @@
               <summary>Conditionnel pr&eacute;sent &mdash; polite requests (je voudrais...)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Conditionnel = the same stem as futur simple + the imparfait endings. If you've learned both of those, this one is essentially free.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj-row" data-quiz-verb="vouloir (conditionnel)">
                   <caption>vouloir (stem voudr-)</caption>
                   <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
                   <tbody>
@@ -1583,6 +1631,13 @@
   <section class="block">
     <h2>Grammar &amp; structures</h2>
     <p class="section-intro">B1 is where you stop living in <em>le pr&eacute;sent</em>. If most of your answers are still present-tense, that alone caps you around A2 &mdash; these are the individual structures graders are listening and reading for. Tick each one off once you can use it without stopping to think.</p>
+
+    <div class="section-actions"><a class="practice-link" href="quiz.html?set=conj">Practice verb conjugations &rarr;</a></div>
+
+    <div class="progress-bar-wrap" data-progress style="margin-bottom:18px;">
+      <span class="progress-label">0 / 0 done</span>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
     <div class="topic-grid">
 
       <div class="skill-card">
@@ -1631,6 +1686,13 @@
     <h2>Vocabulary themes</h2>
     <p class="section-intro">Both exams draw prompts from a narrow band of everyday situations &mdash; work through these word banks one at a time before chasing rare vocabulary. Tick a theme once you can use its terms without pausing to translate.</p>
 
+    <div class="section-actions"><a class="practice-link" href="quiz.html?set=vocab-all">Practice all 120 terms &rarr;</a></div>
+
+    <div class="progress-bar-wrap" data-progress style="margin-bottom:18px;">
+      <span class="progress-label">0 / 0 done</span>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+
     <div class="plain-card" style="margin-bottom:18px;">
       <h3>How to build it</h3>
       <ul class="plain-list">
@@ -1643,8 +1705,8 @@
 
     <div class="topic-grid">
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Work &amp; job-search</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="work" data-quiz-name="Work &amp; job-search">
+        <div class="skill-card-head"><h3>Work &amp; job-search</h3><a class="practice-link" href="quiz.html?set=vocab-work">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v1"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1660,8 +1722,8 @@
         <div class="example-line">J'ai postul&eacute; &agrave; trois offres d'emploi cette semaine.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Workplace notices &amp; memos</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="memos" data-quiz-name="Workplace notices &amp; memos">
+        <div class="skill-card-head"><h3>Workplace notices &amp; memos</h3><a class="practice-link" href="quiz.html?set=vocab-memos">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v2"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1677,8 +1739,8 @@
         <div class="example-line">Veuillez noter que la r&eacute;union est report&eacute;e &agrave; jeudi.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Studies &amp; education</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="studies" data-quiz-name="Studies &amp; education">
+        <div class="skill-card-head"><h3>Studies &amp; education</h3><a class="practice-link" href="quiz.html?set=vocab-studies">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v3"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1694,8 +1756,8 @@
         <div class="example-line">Je me suis inscrit &agrave; un cours du soir pour am&eacute;liorer mon fran&ccedil;ais.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Daily routines</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="routines" data-quiz-name="Daily routines">
+        <div class="skill-card-head"><h3>Daily routines</h3><a class="practice-link" href="quiz.html?set=vocab-routines">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v4"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1711,8 +1773,8 @@
         <div class="example-line">Le matin, je me r&eacute;veille &agrave; six heures et je pr&eacute;pare le petit-d&eacute;jeuner.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Shopping &amp; transactions</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="shopping" data-quiz-name="Shopping &amp; transactions">
+        <div class="skill-card-head"><h3>Shopping &amp; transactions</h3><a class="practice-link" href="quiz.html?set=vocab-shopping">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v5"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1728,8 +1790,8 @@
         <div class="example-line">J'ai gard&eacute; le re&ccedil;u au cas o&ugrave; je voudrais &eacute;changer l'article.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Housing &amp; rental</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="housing" data-quiz-name="Housing &amp; rental">
+        <div class="skill-card-head"><h3>Housing &amp; rental</h3><a class="practice-link" href="quiz.html?set=vocab-housing">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v6"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1745,8 +1807,8 @@
         <div class="example-line">Le loyer ne comprend pas les charges ce mois-ci.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Health &amp; doctor's visit</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="health" data-quiz-name="Health &amp; doctor's visit">
+        <div class="skill-card-head"><h3>Health &amp; doctor's visit</h3><a class="practice-link" href="quiz.html?set=vocab-health">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v7"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1762,8 +1824,8 @@
         <div class="example-line">J'ai pris rendez-vous avec mon m&eacute;decin de famille pour la semaine prochaine.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Travel &amp; transportation</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="travel" data-quiz-name="Travel &amp; transportation">
+        <div class="skill-card-head"><h3>Travel &amp; transportation</h3><a class="practice-link" href="quiz.html?set=vocab-travel">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v8"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1779,8 +1841,8 @@
         <div class="example-line">Notre vol a eu du retard &agrave; cause de la m&eacute;t&eacute;o.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Recounting an experience</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="story" data-quiz-name="Recounting an experience">
+        <div class="skill-card-head"><h3>Recounting an experience</h3><a class="practice-link" href="quiz.html?set=vocab-story">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v9"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1796,8 +1858,8 @@
         <div class="example-line">Un jour, je me suis perdu dans une ville que je ne connaissais pas ; heureusement, quelqu'un m'a aid&eacute;.</div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-head"><h3>Giving opinions with reasons</h3><span class="skill-tag">12 terms</span></div>
+      <div class="skill-card" data-quiz="vocab" data-quiz-id="opinions" data-quiz-name="Giving opinions with reasons">
+        <div class="skill-card-head"><h3>Giving opinions with reasons</h3><a class="practice-link" href="quiz.html?set=vocab-opinions">Practice &rarr;</a></div>
         <ul class="checklist" data-group="vocab"><li><label><input type="checkbox" data-key="v10"><span class="item-text">Mark this theme mastered</span></label></li></ul>
         <div class="table-scroll"><table class="conj-table" data-speak="1,3">
           <thead><tr><th>French</th><th>English</th><th>French</th><th>English</th></tr></thead>
@@ -1820,9 +1882,9 @@
     <h2>Skill-by-skill checklist</h2>
     <p class="section-intro">What examiners are actually scoring in each section. Tick items off as you can do them comfortably under time pressure.</p>
 
-    <div class="progress-bar-wrap" style="margin-bottom:16px;">
-      <span id="progress-label">0 / 0 done</span>
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-bar-wrap" data-progress style="margin-bottom:16px;">
+      <span class="progress-label">0 / 0 done</span>
+      <div class="progress-track"><div class="progress-fill"></div></div>
     </div>
 
     <div class="skill-grid">
@@ -1876,6 +1938,16 @@
 
   <div class="note">
     <b>Rough timeline:</b> prep blogs estimate around 300&ndash;400 guided study hours to reach B1 from a true beginner, typically spread over 3&ndash;6 months of consistent practice across all four skills. If you're starting from A2, expect meaningfully less. Treat this as a planning estimate, not a guarantee.
+  </div>
+
+  <div class="note" style="margin-top:20px;">
+    <b>Your progress lives in this browser.</b> Ticked items and practice scores are stored locally, so they don't follow you to another device and are lost if you clear site data. Export a backup file to move them.
+    <div class="data-actions">
+      <button type="button" class="data-btn" id="export-btn">Export progress</button>
+      <button type="button" class="data-btn" id="import-btn">Import progress</button>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
+      <span id="data-msg"></span>
+    </div>
   </div>
 
   <footer>
@@ -1957,13 +2029,24 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
   }
 
+  /* Each bar reports only the section it sits in, so the three checklists
+     are tracked separately rather than as one undifferentiated total. */
+  var bars = Array.prototype.slice.call(document.querySelectorAll('[data-progress]')).map(function (bar) {
+    var scope = bar.closest ? bar.closest('section.block') : null;
+    return {
+      label: bar.querySelector('.progress-label'),
+      fill: bar.querySelector('.progress-fill'),
+      boxes: Array.prototype.slice.call((scope || document).querySelectorAll('.checklist input[type="checkbox"]'))
+    };
+  });
+
   function updateProgress() {
-    var total = boxes.length;
-    var done = boxes.filter(function (b) { return b.checked; }).length;
-    var label = document.getElementById('progress-label');
-    var fill = document.getElementById('progress-fill');
-    if (label) label.textContent = done + ' / ' + total + ' done';
-    if (fill) fill.style.width = (total ? (done / total * 100) : 0) + '%';
+    bars.forEach(function (bar) {
+      var total = bar.boxes.length;
+      var done = bar.boxes.filter(function (b) { return b.checked; }).length;
+      if (bar.label) bar.label.textContent = done + ' / ' + total + ' done';
+      if (bar.fill) bar.fill.style.width = (total ? (done / total * 100) : 0) + '%';
+    });
   }
 
   boxes.forEach(function (box) {
@@ -1979,6 +2062,64 @@
   });
 
   updateProgress();
+
+  /* ---- backup / restore, since localStorage is per-browser ---- */
+  var KEYS = ["nclc5-roadmap-checks", "nclc5-quiz-scores", "nclc5-roadmap-voice",
+              "nclc5-roadmap-slow-speech", "nclc5-roadmap-tr-open-en", "nclc5-roadmap-tr-open-fr"];
+  var msg = document.getElementById("data-msg");
+  function say(text) {
+    if (!msg) return;
+    msg.textContent = text;
+    setTimeout(function () { msg.textContent = ""; }, 4000);
+  }
+
+  var exportBtn = document.getElementById("export-btn");
+  if (exportBtn) exportBtn.addEventListener("click", function () {
+    var out = { app: "nclc5-roadmap", saved: new Date().toISOString(), data: {} };
+    KEYS.forEach(function (k) {
+      try { var v = localStorage.getItem(k); if (v !== null) out.data[k] = v; } catch (e) {}
+    });
+    var blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "nclc5-progress.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    say("Downloaded nclc5-progress.json");
+  });
+
+  var importBtn = document.getElementById("import-btn");
+  var importFile = document.getElementById("import-file");
+  if (importBtn && importFile) {
+    importBtn.addEventListener("click", function () { importFile.click(); });
+    importFile.addEventListener("change", function () {
+      var file = importFile.files && importFile.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        var parsed;
+        try { parsed = JSON.parse(String(reader.result)); } catch (e) { parsed = null; }
+        if (!parsed || parsed.app !== "nclc5-roadmap" || !parsed.data) {
+          say("That file isn't an NCLC 5 progress export.");
+          importFile.value = "";
+          return;
+        }
+        var n = 0;
+        KEYS.forEach(function (k) {
+          if (typeof parsed.data[k] === "string") {
+            try { localStorage.setItem(k, parsed.data[k]); n++; } catch (e) {}
+          }
+        });
+        importFile.value = "";
+        say("Restored " + n + " item" + (n === 1 ? "" : "s") + " — reloading…");
+        setTimeout(function () { location.reload(); }, 900);
+      };
+      reader.readAsText(file);
+    });
+  }
 })();
 </script>
 

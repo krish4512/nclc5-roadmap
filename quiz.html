@@ -1,0 +1,520 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NCLC 5 Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eff1ec;
+    --surface: #ffffff;
+    --surface-alt: #e6e9e1;
+    --ink: #1c2521;
+    --ink-soft: #52594e;
+    --ink-faint: #838c7d;
+    --border: #d6dbcf;
+    --accent: #7a1f2b;
+    --accent-ink: #ffffff;
+    --accent-soft: #f3e3e1;
+    --accent-soft-border: #e3c3bf;
+    --teal: #1f5c52;
+    --teal-ink: #ffffff;
+    --teal-soft: #dfeae5;
+    --teal-soft-border: #bcd7cd;
+    --shadow: 0 1px 2px rgba(28,37,33,0.06), 0 6px 20px -8px rgba(28,37,33,0.12);
+    --radius: 10px;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14201b; --surface: #1b2621; --surface-alt: #223028;
+      --ink: #e9ece5; --ink-soft: #aab6a5; --ink-faint: #7c8a78; --border: #33413a;
+      --accent: #e8a1a8; --accent-ink: #251316; --accent-soft: #33201f; --accent-soft-border: #4a2d2c;
+      --teal: #7fc9b8; --teal-ink: #10241f; --teal-soft: #1b332d; --teal-soft-border: #2c4a41;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14201b; --surface: #1b2621; --surface-alt: #223028;
+    --ink: #e9ece5; --ink-soft: #aab6a5; --ink-faint: #7c8a78; --border: #33413a;
+    --accent: #e8a1a8; --accent-ink: #251316; --accent-soft: #33201f; --accent-soft-border: #4a2d2c;
+    --teal: #7fc9b8; --teal-ink: #10241f; --teal-soft: #1b332d; --teal-soft-border: #2c4a41;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  a.back {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  a.back:hover { color: var(--accent); }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.15;
+    margin: 12px 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .dek { color: var(--ink-soft); font-size: 15.5px; margin: 0 0 28px; max-width: 60ch; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 20px;
+    margin: 28px 0 10px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+  }
+
+  /* ---- set picker ---- */
+  .set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+
+  .set-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+    font-family: var(--sans);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    box-shadow: var(--shadow);
+    padding: 12px 14px;
+    cursor: pointer;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .set-btn:hover { border-color: var(--accent-soft-border); background: var(--accent-soft); }
+  .set-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .set-btn .n { font-weight: 600; font-size: 14.5px; }
+  .set-btn .m { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+  .set-btn .score { font-family: var(--mono); font-size: 11.5px; color: var(--teal); }
+
+  /* ---- quiz ---- */
+  .bar-row {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  .track { flex: 1; height: 6px; background: var(--surface-alt); border-radius: 4px; overflow: hidden; }
+  .fill { height: 100%; background: var(--teal); width: 0%; transition: width 0.2s ease; }
+
+  .prompt-label {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px;
+  }
+  .prompt {
+    font-family: var(--serif); font-size: clamp(22px, 3.6vw, 28px);
+    font-weight: 600; line-height: 1.25; margin: 0 0 16px; word-break: break-word;
+  }
+
+  .answer-in {
+    width: 100%;
+    font-family: var(--sans); font-size: 17px;
+    color: var(--ink); background: var(--bg);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .answer-in:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+  .btn {
+    font-family: var(--sans); font-size: 13.5px; font-weight: 500;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink-soft);
+    border-radius: 7px; padding: 7px 14px; cursor: pointer;
+  }
+  .btn:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn.primary:hover { opacity: 0.9; background: var(--accent); color: var(--accent-ink); }
+
+  .verdict { margin-top: 14px; border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+  .verdict.right { background: var(--teal-soft); border: 1px solid var(--teal-soft-border); }
+  .verdict.wrong { background: var(--accent-soft); border: 1px solid var(--accent-soft-border); }
+  .verdict .head { font-weight: 600; margin-bottom: 4px; }
+  .verdict .fr { font-family: var(--serif); font-size: 19px; font-weight: 600; }
+  .verdict .alt { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+
+  .speak-btn {
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink-faint);
+    border-radius: 5px; padding: 2px 5px; margin-left: 8px; line-height: 0;
+    cursor: pointer; vertical-align: middle;
+  }
+  .speak-btn:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  .speak-btn svg { display: block; }
+
+  .muted { color: var(--ink-faint); font-size: 13px; }
+
+  .final-score { font-family: var(--serif); font-size: 40px; font-weight: 700; line-height: 1; }
+  .final-sub { color: var(--ink-soft); margin-top: 6px; }
+
+  ul.missed { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  ul.missed li {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 14px; padding: 7px 10px;
+    background: var(--surface-alt); border-radius: 6px;
+  }
+  ul.missed .q { color: var(--ink-soft); }
+  ul.missed .a { font-weight: 600; text-align: right; }
+
+  .err { background: var(--accent-soft); border: 1px solid var(--accent-soft-border); color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Back to the roadmap</a>
+  <h1 id="title">Practice</h1>
+  <p class="dek" id="dek">Active recall against the material on the roadmap. Type the answer, or press Enter to skip and reveal it.</p>
+  <div id="stage"></div>
+</div>
+
+<script>
+(function () {
+  var stage = document.getElementById("stage");
+  var titleEl = document.getElementById("title");
+  var dekEl = document.getElementById("dek");
+  var SCORE_KEY = "nclc5-quiz-scores";
+
+  var SPEAKER = '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">' +
+    '<path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/>' +
+    '<path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+
+  /* ---------- French speech, same ranking as the roadmap page ---------- */
+  var synth = window.speechSynthesis;
+  var voice = null;
+  function score(v) {
+    var s = 0;
+    if (/ca/i.test(v.lang)) s += 4;
+    else if (/fr[-_]fr/i.test(v.lang)) s += 2;
+    if (v.localService) s += 1;
+    return s;
+  }
+  function pickVoice() {
+    if (!synth) return;
+    var fr = (synth.getVoices() || []).filter(function (v) { return /^fr\b|^fr[-_]/i.test(v.lang || ""); });
+    voice = fr.length ? fr.slice().sort(function (a, b) { return score(b) - score(a); })[0] : null;
+  }
+  if (synth) {
+    pickVoice();
+    if ("onvoiceschanged" in synth) synth.addEventListener("voiceschanged", pickVoice);
+    [200, 600, 1500].forEach(function (ms) { setTimeout(pickVoice, ms); });
+  }
+  function speak(text) {
+    if (!synth || !window.SpeechSynthesisUtterance) return;
+    if (!voice) pickVoice();
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(clean(text));
+    u.lang = voice ? voice.lang : "fr-CA";
+    if (voice) u.voice = voice;
+    u.rate = 0.92;
+    synth.speak(u);
+  }
+  function clean(t) {
+    return String(t).replace(/\((?:e|s|es)\)/gi, "").replace(/[()]/g, " ")
+      .replace(/→|—|–/g, " ").replace(/…|\.\.\./g, " ")
+      .replace(/\s*\/\s*/g, ", ").replace(/\s+/g, " ").trim();
+  }
+
+  /* ---------- answer matching ---------- */
+  function deaccent(s) {
+    return s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s;
+  }
+  function norm(s) {
+    s = deaccent(String(s).toLowerCase());
+    s = s.replace(/\([^)]*\)/g, " ");                 /* drop parenthetical hints */
+    s = s.replace(/[.,!?;:"'’]/g, " ");
+    s = s.replace(/\b(le|la|les|l|un|une|des|du|de|d)\b/g, " ");   /* articles are noise here */
+    return s.replace(/\s+/g, " ").trim();
+  }
+  /* An entry may offer several acceptable forms separated by "/". */
+  function variants(answer) {
+    return String(answer).split("/").map(norm).filter(Boolean);
+  }
+  function isCorrect(given, answer) {
+    var g = norm(given);
+    if (!g) return false;
+    var vs = variants(answer);
+    for (var i = 0; i < vs.length; i++) if (vs[i] === g) return true;
+    return false;
+  }
+
+  /* ---------- load the roadmap and build the question sets ---------- */
+  function text(el) { return (el.textContent || "").replace(/\s+/g, " ").trim(); }
+
+  function buildSets(doc) {
+    var sets = [];
+
+    /* Vocabulary: French column 1/3, English gloss in 2/4. */
+    Array.prototype.forEach.call(doc.querySelectorAll('[data-quiz="vocab"]'), function (card) {
+      var items = [];
+      Array.prototype.forEach.call(card.querySelectorAll("tbody tr"), function (row) {
+        var c = row.children;
+        for (var i = 0; i + 1 < c.length; i += 2) {
+          var fr = text(c[i]), en = text(c[i + 1]);
+          if (fr && en && fr !== "—") items.push({ fr: fr, en: en });
+        }
+      });
+      if (items.length) {
+        sets.push({
+          id: "vocab-" + card.getAttribute("data-quiz-id"),
+          kind: "vocab",
+          name: card.getAttribute("data-quiz-name").replace(/&amp;/g, "&"),
+          group: "Vocabulary",
+          items: items
+        });
+      }
+    });
+
+    /* Conjugation: "verb — person" prompts drawn from the roadmap tables. */
+    var conj = [];
+    Array.prototype.forEach.call(doc.querySelectorAll('[data-quiz="conj"]'), function (table) {
+      var heads = Array.prototype.map.call(table.querySelectorAll("thead th"), text);
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (row) {
+        var cells = row.children;
+        var person = text(cells[0]);
+        for (var i = 1; i < cells.length && i < heads.length; i++) {
+          var verb = heads[i];
+          if (!verb || verb === "Ending" || verb.charAt(0) === "+") continue;
+          var form = text(cells[i]);
+          if (form && form !== "—") conj.push({ fr: form, en: verb + " — " + person });
+        }
+      });
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll('[data-quiz="conj-row"]'), function (table) {
+      var heads = Array.prototype.map.call(table.querySelectorAll("thead th"), text);
+      var verb = table.getAttribute("data-quiz-verb") || "";
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (row) {
+        var cells = row.children;
+        for (var i = 0; i < cells.length && i < heads.length; i++) {
+          var form = text(cells[i]);
+          if (form && form !== "—") conj.push({ fr: form, en: verb + " — " + heads[i] });
+        }
+      });
+    });
+    if (conj.length) {
+      sets.push({ id: "conj", kind: "conj", name: "Verb conjugations", group: "Grammar", items: conj });
+    }
+
+    /* An everything-at-once vocabulary set. */
+    var allVocab = [];
+    sets.forEach(function (s) { if (s.kind === "vocab") allVocab = allVocab.concat(s.items); });
+    if (allVocab.length) {
+      sets.push({ id: "vocab-all", kind: "vocab", name: "All vocabulary", group: "Vocabulary", items: allVocab });
+    }
+    return sets;
+  }
+
+  /* ---------- stored scores ---------- */
+  function readScores() {
+    try { return JSON.parse(localStorage.getItem(SCORE_KEY) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function writeScore(id, correct, total) {
+    try {
+      var all = readScores();
+      all[id] = { correct: correct, total: total, at: Date.now() };
+      localStorage.setItem(SCORE_KEY, JSON.stringify(all));
+    } catch (e) {}
+  }
+
+  /* ---------- views ---------- */
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function showPicker(sets) {
+    titleEl.textContent = "Practice";
+    dekEl.textContent = "Active recall against the material on the roadmap. Pick a set to drill.";
+    var scores = readScores();
+    var html = "";
+    ["Vocabulary", "Grammar"].forEach(function (group) {
+      var inGroup = sets.filter(function (s) { return s.group === group; });
+      if (!inGroup.length) return;
+      html += "<h2>" + group + "</h2><div class='set-grid'>";
+      inGroup.forEach(function (s) {
+        var sc = scores[s.id];
+        var line = sc ? "<span class='score'>last " + sc.correct + "/" + sc.total + "</span>" : "<span class='m'>not yet tried</span>";
+        html += "<a class='set-btn' href='?set=" + encodeURIComponent(s.id) + "'>" +
+                "<span class='n'>" + s.name + "</span>" +
+                "<span class='m'>" + s.items.length + " items</span>" + line + "</a>";
+      });
+      html += "</div>";
+    });
+    stage.innerHTML = html;
+  }
+
+  function runQuiz(set) {
+    titleEl.textContent = set.name;
+    dekEl.textContent = set.kind === "conj"
+      ? "Give the conjugated form. Accents are optional."
+      : "Give the French. Accents are optional, and articles are ignored.";
+
+    var queue = shuffle(set.items);
+    var i = 0, correct = 0;
+    var missed = [];
+
+    stage.innerHTML =
+      "<div class='bar-row'><span id='count'></span><div class='track'><div class='fill' id='fill'></div></div><span id='tally'></span></div>" +
+      "<div class='card'>" +
+        "<div class='prompt-label' id='plabel'></div>" +
+        "<p class='prompt' id='prompt'></p>" +
+        "<input class='answer-in' id='ans' autocomplete='off' autocapitalize='off' spellcheck='false' placeholder='Your answer…'>" +
+        "<div class='row'>" +
+          "<button class='btn primary' id='check'>Check</button>" +
+          "<button class='btn' id='reveal'>Show answer</button>" +
+        "</div>" +
+        "<div id='verdict'></div>" +
+      "</div>";
+
+    var ans = document.getElementById("ans");
+    var checkBtn = document.getElementById("check");
+    var revealBtn = document.getElementById("reveal");
+    var verdict = document.getElementById("verdict");
+    var answered = false;
+
+    function render() {
+      var item = queue[i];
+      document.getElementById("count").textContent = (i + 1) + " / " + queue.length;
+      document.getElementById("tally").textContent = correct + " right";
+      document.getElementById("fill").style.width = (i / queue.length * 100) + "%";
+      document.getElementById("plabel").textContent = set.kind === "conj" ? "Conjugate" : "In French";
+      document.getElementById("prompt").textContent = item.en;
+      verdict.innerHTML = "";
+      ans.value = "";
+      ans.disabled = false;
+      answered = false;
+      checkBtn.textContent = "Check";
+      revealBtn.hidden = false;
+      ans.focus();
+    }
+
+    function settle(wasRight) {
+      var item = queue[i];
+      answered = true;
+      ans.disabled = true;
+      revealBtn.hidden = true;
+      checkBtn.textContent = (i + 1 >= queue.length) ? "See results" : "Next";
+      if (wasRight) correct++; else missed.push(item);
+      verdict.className = "";
+      verdict.innerHTML =
+        "<div class='verdict " + (wasRight ? "right" : "wrong") + "'>" +
+          "<div class='head'>" + (wasRight ? "Correct" : "Not quite") + "</div>" +
+          "<span class='fr'>" + item.fr + "</span>" +
+          "<button class='speak-btn' id='hear' title='Hear it'>" + SPEAKER + "</button>" +
+          (wasRight ? "" : "<div class='alt'>" + item.en + "</div>") +
+        "</div>";
+      var hear = document.getElementById("hear");
+      if (hear) hear.addEventListener("click", function () { speak(item.fr); });
+      speak(item.fr);
+      document.getElementById("tally").textContent = correct + " right";
+      checkBtn.focus();
+    }
+
+    function advance() {
+      i++;
+      if (i >= queue.length) return finish();
+      render();
+    }
+
+    function finish() {
+      writeScore(set.id, correct, queue.length);
+      var pct = Math.round(correct / queue.length * 100);
+      var html =
+        "<div class='card'>" +
+          "<div class='final-score'>" + correct + " / " + queue.length + "</div>" +
+          "<div class='final-sub'>" + pct + "% on " + set.name + "</div>" +
+          "<div class='row'>" +
+            (missed.length ? "<button class='btn primary' id='again'>Practise the " + missed.length + " missed</button>" : "") +
+            "<button class='btn' id='restart'>Restart set</button>" +
+            "<a class='btn' href='quiz.html'>Other sets</a>" +
+            "<a class='btn' href='index.html'>Back to roadmap</a>" +
+          "</div>";
+      if (missed.length) {
+        html += "<ul class='missed'>";
+        missed.forEach(function (m) {
+          html += "<li><span class='q'>" + m.en + "</span><span class='a'>" + m.fr + "</span></li>";
+        });
+        html += "</ul>";
+      }
+      html += "</div>";
+      stage.innerHTML = html;
+      var again = document.getElementById("again");
+      if (again) again.addEventListener("click", function () {
+        runQuiz({ id: set.id, kind: set.kind, name: set.name + " (missed)", group: set.group, items: missed });
+      });
+      document.getElementById("restart").addEventListener("click", function () { runQuiz(set); });
+    }
+
+    checkBtn.addEventListener("click", function () {
+      if (answered) return advance();
+      settle(isCorrect(ans.value, queue[i].fr));
+    });
+    revealBtn.addEventListener("click", function () { if (!answered) settle(false); });
+    ans.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); checkBtn.click(); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && answered && document.activeElement !== ans) checkBtn.click();
+    });
+
+    render();
+  }
+
+  /* ---------- boot ---------- */
+  stage.innerHTML = "<div class='card muted'>Loading the roadmap material…</div>";
+
+  fetch("index.html", { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      var sets = buildSets(doc);
+      if (!sets.length) throw new Error("no sets");
+      var want = new URLSearchParams(location.search).get("set");
+      var chosen = want && sets.filter(function (s) { return s.id === want; })[0];
+      if (chosen) runQuiz(chosen); else showPicker(sets);
+    })
+    .catch(function () {
+      stage.innerHTML = "<div class='card err'>Couldn't load the roadmap content this quiz is built from. " +
+        "Open <a href='index.html'>the roadmap</a> and try again — this page needs to be served over http, not opened as a local file.</div>";
+    });
+})();
+</script>
+</body></html>
