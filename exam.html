@@ -1,0 +1,543 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NCLC 5 Mock Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eff1ec; --surface: #ffffff; --surface-alt: #e6e9e1;
+    --ink: #1c2521; --ink-soft: #52594e; --ink-faint: #838c7d; --border: #d6dbcf;
+    --accent: #7a1f2b; --accent-ink: #ffffff; --accent-soft: #f3e3e1; --accent-soft-border: #e3c3bf;
+    --teal: #1f5c52; --teal-ink: #ffffff; --teal-soft: #dfeae5; --teal-soft-border: #bcd7cd;
+    --shadow: 0 1px 2px rgba(28,37,33,0.06), 0 6px 20px -8px rgba(28,37,33,0.12);
+    --radius: 10px;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14201b; --surface: #1b2621; --surface-alt: #223028;
+      --ink: #e9ece5; --ink-soft: #aab6a5; --ink-faint: #7c8a78; --border: #33413a;
+      --accent: #e8a1a8; --accent-ink: #251316; --accent-soft: #33201f; --accent-soft-border: #4a2d2c;
+      --teal: #7fc9b8; --teal-ink: #10241f; --teal-soft: #1b332d; --teal-soft-border: #2c4a41;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14201b; --surface: #1b2621; --surface-alt: #223028;
+    --ink: #e9ece5; --ink-soft: #aab6a5; --ink-faint: #7c8a78; --border: #33413a;
+    --accent: #e8a1a8; --accent-ink: #251316; --accent-soft: #33201f; --accent-soft-border: #4a2d2c;
+    --teal: #7fc9b8; --teal-ink: #10241f; --teal-soft: #1b332d; --teal-soft-border: #2c4a41;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 40px 20px 90px; }
+
+  a.back { font-family: var(--mono); font-size: 12.5px; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.03em; }
+  a.back:hover { color: var(--accent); }
+
+  h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(26px,4vw,34px); line-height: 1.15; margin: 12px 0 6px; letter-spacing: -0.01em; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 20px; margin: 26px 0 10px; }
+  .dek { color: var(--ink-soft); font-size: 15.5px; margin: 0 0 24px; max-width: 62ch; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; }
+
+  .sec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; }
+  .sec-btn {
+    display: flex; flex-direction: column; gap: 3px; text-align: left;
+    font-family: var(--sans); background: var(--surface); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 9px; box-shadow: var(--shadow);
+    padding: 13px 15px; cursor: pointer; text-decoration: none;
+  }
+  .sec-btn:hover { border-color: var(--accent-soft-border); background: var(--accent-soft); }
+  .sec-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sec-btn .n { font-weight: 600; font-size: 15px; }
+  .sec-btn .m { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+  .sec-btn .score { font-family: var(--mono); font-size: 11.5px; color: var(--teal); }
+
+  .exam-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); margin-bottom: 14px;
+  }
+  .track { flex: 1; min-width: 90px; height: 6px; background: var(--surface-alt); border-radius: 4px; overflow: hidden; }
+  .fill { height: 100%; background: var(--teal); width: 0%; transition: width 0.2s ease; }
+  .clock { font-weight: 600; color: var(--ink-soft); }
+  .clock.low { color: var(--accent); }
+
+  .doc {
+    background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px; white-space: pre-wrap; font-size: 15px; line-height: 1.5; margin-bottom: 16px;
+  }
+
+  .qtext { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.3; margin: 0 0 14px; }
+
+  ul.opts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  ul.opts button {
+    width: 100%; text-align: left; font-family: var(--sans); font-size: 15px;
+    color: var(--ink); background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 13px; cursor: pointer;
+  }
+  ul.opts button:hover { border-color: var(--accent-soft-border); background: var(--accent-soft); }
+  ul.opts button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  ul.opts button[disabled] { cursor: default; }
+  ul.opts button.right { background: var(--teal-soft); border-color: var(--teal-soft-border); }
+  ul.opts button.wrong { background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  ul.opts .tag { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-left: 8px; }
+
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; align-items: center; }
+
+  .btn {
+    font-family: var(--sans); font-size: 13.5px; font-weight: 500;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink-soft);
+    border-radius: 7px; padding: 8px 15px; cursor: pointer; text-decoration: none;
+  }
+  .btn:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn.primary:hover { opacity: 0.92; background: var(--accent); color: var(--accent-ink); }
+  .btn[disabled] { opacity: 0.45; cursor: default; }
+
+  .play {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: var(--teal-ink); border: 1px solid var(--teal);
+    font-size: 14.5px; font-weight: 600; border-radius: 8px; padding: 10px 16px; cursor: pointer;
+    font-family: var(--sans);
+  }
+  .play:hover { opacity: 0.92; }
+  .play[disabled] { opacity: 0.45; cursor: default; }
+  .plays-left { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+
+  .why { margin-top: 12px; font-size: 14px; color: var(--ink-soft); border-left: 2px solid var(--teal-soft-border); padding-left: 12px; }
+  .transcript { margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
+  .transcript b { color: var(--ink); }
+
+  .final-score { font-family: var(--serif); font-size: 42px; font-weight: 700; line-height: 1; }
+  .final-sub { color: var(--ink-soft); margin-top: 6px; }
+  .band { margin-top: 14px; border-radius: 8px; padding: 12px 14px; font-size: 15px; background: var(--teal-soft); border: 1px solid var(--teal-soft-border); }
+  .band.low { background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  .band b { display: block; margin-bottom: 3px; }
+
+  .review { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .review-item { background: var(--surface-alt); border-radius: 8px; padding: 11px 13px; font-size: 14px; }
+  .review-item .rq { font-weight: 600; margin-bottom: 4px; }
+  .review-item .ra { color: var(--ink-soft); }
+
+  textarea.write {
+    width: 100%; min-height: 220px; resize: vertical;
+    font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--ink);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 13px;
+  }
+  textarea.write:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  ul.rubric { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  ul.rubric li { display: flex; gap: 9px; font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
+  ul.rubric input { margin-top: 3px; flex: none; }
+
+  .muted { color: var(--ink-faint); font-size: 13.5px; }
+  .warn { background: var(--accent-soft); border: 1px solid var(--accent-soft-border); border-radius: 8px; padding: 12px 14px; font-size: 14px; }
+  .wordcount { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Back to the roadmap</a>
+  <h1 id="title">Mock exam</h1>
+  <p class="dek" id="dek">Exam-condition practice under the clock, in the format of the real TCF and TEF sections.</p>
+  <div id="stage"></div>
+</div>
+
+<script src="exam-data.js"></script>
+<script>
+(function () {
+  var DATA = window.NCLC_EXAM;
+  var stage = document.getElementById("stage");
+  var titleEl = document.getElementById("title");
+  var dekEl = document.getElementById("dek");
+  var SCORE_KEY = "nclc5-exam-scores";
+
+  if (!DATA) {
+    stage.innerHTML = "<div class='card warn'>Couldn't load the exam questions (exam-data.js). Reload the page, or open this from the site rather than as a local file.</div>";
+    return;
+  }
+
+  /* ---------- French speech, ranked the same way as the roadmap ---------- */
+  var synth = window.speechSynthesis;
+  var voice = null;
+  function vscore(v) {
+    var s = 0;
+    if (/ca/i.test(v.lang)) s += 4; else if (/fr[-_]fr/i.test(v.lang)) s += 2;
+    if (v.localService) s += 1;
+    return s;
+  }
+  function pickVoice() {
+    if (!synth) return;
+    var fr = (synth.getVoices() || []).filter(function (v) { return /^fr\b|^fr[-_]/i.test(v.lang || ""); });
+    voice = fr.length ? fr.slice().sort(function (a, b) { return vscore(b) - vscore(a); })[0] : null;
+  }
+  if (synth) {
+    pickVoice();
+    if ("onvoiceschanged" in synth) synth.addEventListener("voiceschanged", pickVoice);
+    [200, 600, 1500].forEach(function (ms) { setTimeout(pickVoice, ms); });
+  }
+  var speechOk = !!(synth && window.SpeechSynthesisUtterance);
+  function say(text, onend) {
+    if (!speechOk) { if (onend) onend(); return; }
+    if (!voice) pickVoice();
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = voice ? voice.lang : "fr-CA";
+    if (voice) u.voice = voice;
+    u.rate = 0.95;
+    u.onend = u.onerror = function () { if (onend) onend(); };
+    synth.speak(u);
+  }
+
+  /* ---------- stored results ---------- */
+  function readScores() {
+    try { return JSON.parse(localStorage.getItem(SCORE_KEY) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function saveScore(id, correct, total) {
+    try {
+      var all = readScores();
+      all[id] = { correct: correct, total: total, at: Date.now() };
+      localStorage.setItem(SCORE_KEY, JSON.stringify(all));
+    } catch (e) {}
+  }
+
+  /* An indicative reading only — this is not an official score. */
+  function bandFor(pct) {
+    if (pct >= 80) return { cls: "", label: "At or above the NCLC 5 range", note: "On this sample you are answering comfortably above the level. Keep the timing pressure realistic." };
+    if (pct >= 65) return { cls: "", label: "Around the NCLC 5 range", note: "This is roughly the territory NCLC 5 sits in. Consistency across full-length sections is what to work on next." };
+    if (pct >= 50) return { cls: "low", label: "Approaching NCLC 5", note: "The comprehension is partly there. Review the items you missed and the vocabulary theme each one came from." };
+    return { cls: "low", label: "Below the NCLC 5 range on this sample", note: "Work through the roadmap's vocabulary banks and grammar stages before testing again." };
+  }
+
+  function fmt(s) {
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* ---------------- section picker ---------------- */
+  function showPicker() {
+    titleEl.textContent = "Mock exam";
+    dekEl.textContent = "Exam-condition practice under the clock, in the format of the real TCF and TEF sections. Pick a section to sit.";
+    var s = readScores();
+    function line(id, meta) {
+      var sc = s[id];
+      return sc ? "<span class='score'>last " + sc.correct + "/" + sc.total + "</span>" : "<span class='m'>" + meta + "</span>";
+    }
+    stage.innerHTML =
+      "<div class='sec-grid'>" +
+        "<a class='sec-btn' href='?s=listening'><span class='n'>Compréhension orale</span><span class='m'>" +
+          DATA.listening.length + " questions &middot; 12 min</span>" + line("listening", "audio, 2 plays each") + "</a>" +
+        "<a class='sec-btn' href='?s=reading'><span class='n'>Compréhension écrite</span><span class='m'>" +
+          DATA.reading.length + " questions &middot; 15 min</span>" + line("reading", "documents authentiques") + "</a>" +
+        "<a class='sec-btn' href='?s=writing'><span class='n'>Expression écrite</span><span class='m'>" +
+          DATA.writing.length + " tasks &middot; timed</span><span class='m'>self-marked rubric</span></a>" +
+        "<a class='sec-btn' href='?s=speaking'><span class='n'>Expression orale</span><span class='m'>" +
+          DATA.speaking.length + " tasks &middot; timed</span><span class='m'>self-marked rubric</span></a>" +
+      "</div>" +
+      "<div class='card muted' style='margin-top:18px'>The two comprehension sections are marked automatically. Writing and speaking cannot be graded here — they give you the real prompts, the real clock, and a rubric to mark yourself against.</div>" +
+      (speechOk ? "" : "<div class='card warn' style='margin-top:12px'>This browser has no speech synthesis, so the listening section will show transcripts instead of playing audio.</div>");
+  }
+
+  /* ---------------- MCQ sections ---------------- */
+  function runMCQ(kind) {
+    var isListening = kind === "listening";
+    var items = shuffle(DATA[kind]);
+    var totalSeconds = isListening ? 12 * 60 : 15 * 60;
+    var i = 0, correct = 0, answered = false, plays = 0, wrong = [];
+    var left = totalSeconds, ticker = null;
+
+    titleEl.textContent = isListening ? "Compréhension orale" : "Compréhension écrite";
+    dekEl.textContent = isListening
+      ? "Each recording plays at most twice, as in the real test. Answer from what you hear — the transcript appears only afterwards."
+      : "Read each document and choose the best answer. Pace yourself: the real section allows about 90 seconds per question.";
+
+    stage.innerHTML =
+      "<div class='exam-bar'><span id='count'></span><div class='track'><div class='fill' id='fill'></div></div>" +
+      "<span class='clock' id='clock'></span></div><div class='card' id='qcard'></div>";
+
+    var clockEl = document.getElementById("clock");
+    function tick() {
+      left--;
+      clockEl.textContent = fmt(Math.max(0, left));
+      clockEl.className = "clock" + (left <= 60 ? " low" : "");
+      if (left <= 0) { clearInterval(ticker); finish(true); }
+    }
+    clockEl.textContent = fmt(left);
+    ticker = setInterval(tick, 1000);
+
+    function render() {
+      var item = items[i];
+      answered = false;
+      plays = 0;
+      document.getElementById("count").textContent = (i + 1) + " / " + items.length;
+      document.getElementById("fill").style.width = (i / items.length * 100) + "%";
+
+      var html = "";
+      if (isListening) {
+        html += "<div class='row' style='margin-top:0'>" +
+                  "<button class='play' id='play'>&#9654;&nbsp; Play recording</button>" +
+                  "<span class='plays-left' id='pleft'></span>" +
+                "</div>";
+        if (!speechOk) html += "<div class='doc' style='margin-top:14px'>" + esc(item.text) + "</div>";
+        html += "<p class='qtext' style='margin-top:18px'>" + esc(item.q) + "</p>";
+      } else {
+        html += "<div class='doc'>" + esc(item.text) + "</div><p class='qtext'>" + esc(item.q) + "</p>";
+      }
+      html += "<ul class='opts' id='opts'></ul><div id='after'></div>";
+      document.getElementById("qcard").innerHTML = html;
+
+      var opts = document.getElementById("opts");
+      item.options.forEach(function (opt, idx) {
+        var li = document.createElement("li");
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = opt;
+        b.addEventListener("click", function () { choose(idx); });
+        li.appendChild(b);
+        opts.appendChild(li);
+      });
+
+      if (isListening) {
+        var playBtn = document.getElementById("play");
+        var pleft = document.getElementById("pleft");
+        function updatePlays() {
+          pleft.textContent = speechOk ? (2 - plays) + " play" + (2 - plays === 1 ? "" : "s") + " left" : "transcript shown";
+          playBtn.disabled = !speechOk || plays >= 2;
+        }
+        updatePlays();
+        playBtn.addEventListener("click", function () {
+          if (plays >= 2) return;
+          plays++;
+          playBtn.disabled = true;
+          pleft.textContent = "playing…";
+          say(item.text, function () { updatePlays(); });
+        });
+      }
+    }
+
+    function choose(idx) {
+      if (answered) return;
+      answered = true;
+      var item = items[i];
+      var buttons = document.querySelectorAll("#opts button");
+      Array.prototype.forEach.call(buttons, function (b, n) {
+        b.disabled = true;
+        if (n === item.answer) { b.className = "right"; b.innerHTML = esc(b.textContent) + "<span class='tag'>correct</span>"; }
+        else if (n === idx) { b.className = "wrong"; b.innerHTML = esc(b.textContent) + "<span class='tag'>your answer</span>"; }
+      });
+      if (idx === item.answer) correct++; else wrong.push(item);
+
+      var after = document.getElementById("after");
+      after.innerHTML =
+        "<div class='why'>" + esc(item.why) + "</div>" +
+        (isListening ? "<div class='transcript'><b>Transcription :</b> " + esc(item.text) + "</div>" : "") +
+        "<div class='row'><button class='btn primary' id='next'>" +
+          (i + 1 >= items.length ? "See results" : "Next question") + "</button>" +
+          (isListening && speechOk ? "<button class='btn' id='replay'>Hear it again</button>" : "") +
+        "</div>";
+      document.getElementById("next").addEventListener("click", next);
+      var rp = document.getElementById("replay");
+      if (rp) rp.addEventListener("click", function () { say(item.text); });
+      document.getElementById("next").focus();
+    }
+
+    function next() {
+      i++;
+      if (i >= items.length) return finish(false);
+      render();
+    }
+
+    function finish(ranOut) {
+      clearInterval(ticker);
+      if (synth) synth.cancel();
+      var attempted = ranOut ? i : items.length;
+      saveScore(kind, correct, items.length);
+      var pct = Math.round(correct / items.length * 100);
+      var band = bandFor(pct);
+      var html = "<div class='card'>" +
+        (ranOut ? "<div class='warn' style='margin-bottom:14px'>Time ran out after " + attempted + " of " + items.length + " questions. In the real test the section closes the same way.</div>" : "") +
+        "<div class='final-score'>" + correct + " / " + items.length + "</div>" +
+        "<div class='final-sub'>" + pct + "% &middot; " + (isListening ? "Compréhension orale" : "Compréhension écrite") + "</div>" +
+        "<div class='band " + band.cls + "'><b>" + band.label + "</b>" + band.note +
+        "<div class='muted' style='margin-top:8px'>Indicative only. This is a short practice sample, not an official TCF or TEF score.</div></div>";
+      if (wrong.length) {
+        html += "<h2>What to review</h2><div class='review'>";
+        wrong.forEach(function (w) {
+          html += "<div class='review-item'><div class='rq'>" + esc(w.q) + "</div>" +
+                  "<div class='ra'>" + esc(w.options[w.answer]) + " — " + esc(w.why) + "</div></div>";
+        });
+        html += "</div>";
+      }
+      html += "<div class='row'><button class='btn primary' id='again'>Sit it again</button>" +
+              "<a class='btn' href='exam.html'>Other sections</a>" +
+              "<a class='btn' href='index.html'>Back to roadmap</a></div></div>";
+      stage.innerHTML = html;
+      document.getElementById("again").addEventListener("click", function () { runMCQ(kind); });
+    }
+
+    render();
+  }
+
+  /* ---------------- writing ---------------- */
+  function runWriting() {
+    titleEl.textContent = "Expression écrite";
+    dekEl.textContent = "Write under the clock, then mark yourself against the rubric. Nothing here is graded automatically — the rubric is what the examiner is looking for.";
+    var t = 0;
+    function renderTask() {
+      var task = DATA.writing[t];
+      var left = task.minutes * 60, ticker = null;
+      stage.innerHTML =
+        "<div class='exam-bar'><span>" + (t + 1) + " / " + DATA.writing.length + "</span>" +
+        "<div class='track'><div class='fill' style='width:" + (t / DATA.writing.length * 100) + "%'></div></div>" +
+        "<span class='clock' id='clock'>" + fmt(left) + "</span></div>" +
+        "<div class='card'><h2 style='margin-top:0'>" + esc(task.title) + "</h2>" +
+        "<div class='doc'>" + esc(task.prompt) + "</div>" +
+        "<div class='muted' style='margin-bottom:8px'>" + esc(task.words) + " &middot; " + task.minutes + " minutes</div>" +
+        "<textarea class='write' id='essay' placeholder='Écrivez votre réponse ici…'></textarea>" +
+        "<div class='row'><span class='wordcount' id='wc'>0 mots</span>" +
+        "<button class='btn' id='start'>Start the clock</button>" +
+        "<button class='btn primary' id='done'>Mark against the rubric</button></div>" +
+        "<div id='marking'></div></div>";
+
+      var essay = document.getElementById("essay");
+      var wc = document.getElementById("wc");
+      essay.addEventListener("input", function () {
+        var n = essay.value.trim() ? essay.value.trim().split(/\s+/).length : 0;
+        wc.textContent = n + " mot" + (n === 1 ? "" : "s");
+      });
+
+      var clockEl = document.getElementById("clock");
+      document.getElementById("start").addEventListener("click", function () {
+        if (ticker) return;
+        this.disabled = true;
+        ticker = setInterval(function () {
+          left--;
+          clockEl.textContent = fmt(Math.max(0, left));
+          clockEl.className = "clock" + (left <= 120 ? " low" : "");
+          if (left <= 0) clearInterval(ticker);
+        }, 1000);
+        essay.focus();
+      });
+
+      document.getElementById("done").addEventListener("click", function () {
+        if (ticker) clearInterval(ticker);
+        var m = document.getElementById("marking");
+        var html = "<h2>Mark your own answer</h2><ul class='rubric'>";
+        task.rubric.forEach(function (r, n) {
+          html += "<li><input type='checkbox' id='r" + n + "'><label for='r" + n + "'>" + esc(r) + "</label></li>";
+        });
+        html += "</ul><div class='row'>" +
+          (t + 1 < DATA.writing.length ? "<button class='btn primary' id='nextTask'>Next task</button>" : "<a class='btn primary' href='exam.html'>Other sections</a>") +
+          "<a class='btn' href='index.html'>Back to roadmap</a></div>";
+        m.innerHTML = html;
+        var nt = document.getElementById("nextTask");
+        if (nt) nt.addEventListener("click", function () { t++; renderTask(); });
+        m.scrollIntoView({ block: "nearest" });
+      });
+    }
+    renderTask();
+  }
+
+  /* ---------------- speaking ---------------- */
+  function runSpeaking() {
+    titleEl.textContent = "Expression orale";
+    dekEl.textContent = "Prepare, then speak aloud for the full time — record yourself if you can. Mark yourself against the rubric afterwards.";
+    var t = 0;
+    function renderTask() {
+      var task = DATA.speaking[t];
+      var phase = "idle", left = task.prepSeconds, ticker = null;
+      stage.innerHTML =
+        "<div class='exam-bar'><span>" + (t + 1) + " / " + DATA.speaking.length + "</span>" +
+        "<div class='track'><div class='fill' id='fill' style='width:0%'></div></div>" +
+        "<span class='clock' id='clock'>" + fmt(left) + "</span></div>" +
+        "<div class='card'><h2 style='margin-top:0'>" + esc(task.title) + "</h2>" +
+        "<div class='doc'>" + esc(task.prompt) + "</div>" +
+        "<div class='muted' id='phase'>" + task.prepSeconds + "s to prepare, then " + Math.round(task.speakSeconds / 60) + " minutes speaking.</div>" +
+        "<div class='row'><button class='btn primary' id='go'>Start preparation</button>" +
+        "<button class='btn' id='skip' disabled>Skip to speaking</button></div>" +
+        "<div id='marking'></div></div>";
+
+      var clockEl = document.getElementById("clock");
+      var phaseEl = document.getElementById("phase");
+      var fillEl = document.getElementById("fill");
+      var goBtn = document.getElementById("go");
+      var skipBtn = document.getElementById("skip");
+
+      function startPhase(which) {
+        phase = which;
+        left = which === "prep" ? task.prepSeconds : task.speakSeconds;
+        var span = left;
+        phaseEl.textContent = which === "prep"
+          ? "Preparation — note your ideas, don't write full sentences."
+          : "Speak now, aloud, until the clock runs out.";
+        skipBtn.disabled = which !== "prep";
+        if (ticker) clearInterval(ticker);
+        ticker = setInterval(function () {
+          left--;
+          clockEl.textContent = fmt(Math.max(0, left));
+          clockEl.className = "clock" + (left <= 30 ? " low" : "");
+          fillEl.style.width = ((span - left) / span * 100) + "%";
+          if (left <= 0) {
+            clearInterval(ticker);
+            if (phase === "prep") startPhase("speak");
+            else { phaseEl.textContent = "Time. Now mark yourself against the rubric."; showRubric(); }
+          }
+        }, 1000);
+      }
+
+      goBtn.addEventListener("click", function () { goBtn.disabled = true; startPhase("prep"); });
+      skipBtn.addEventListener("click", function () { startPhase("speak"); });
+
+      function showRubric() {
+        skipBtn.disabled = true;
+        var m = document.getElementById("marking");
+        var html = "<h2>Mark your own answer</h2><ul class='rubric'>";
+        task.rubric.forEach(function (r, n) {
+          html += "<li><input type='checkbox' id='s" + n + "'><label for='s" + n + "'>" + esc(r) + "</label></li>";
+        });
+        html += "</ul><div class='row'>" +
+          (t + 1 < DATA.speaking.length ? "<button class='btn primary' id='nextTask'>Next task</button>" : "<a class='btn primary' href='exam.html'>Other sections</a>") +
+          "<a class='btn' href='index.html'>Back to roadmap</a></div>";
+        m.innerHTML = html;
+        var nt = document.getElementById("nextTask");
+        if (nt) nt.addEventListener("click", function () { t++; renderTask(); });
+      }
+    }
+    renderTask();
+  }
+
+  /* ---------------- boot ---------------- */
+  var want = new URLSearchParams(location.search).get("s");
+  if (want === "listening" || want === "reading") runMCQ(want);
+  else if (want === "writing") runWriting();
+  else if (want === "speaking") runSpeaking();
+  else showPicker();
+})();
+</script>
+</body></html>

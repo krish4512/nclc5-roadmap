@@ -1094,7 +1094,10 @@
     <span class="eyebrow">Français &middot; Canadian immigration language test</span>
     <h1>NCLC 5 Roadmap</h1>
     <p class="dek">Everything to cover to hit <strong>NCLC / CLB 5</strong> (CEFR B1) on either <strong>TCF Canada</strong> or <strong>TEF Canada</strong> &mdash; the score bands you're aiming for, the exam format, and a checklist of grammar, vocabulary and skills by section. Check items off as you go; your progress is saved on this page.</p>
-    <div class="section-actions" style="margin:0;"><a class="practice-link" href="quiz.html">Open practice mode &rarr;</a></div>
+    <div class="section-actions" style="margin:0;">
+      <a class="practice-link" href="quiz.html">Practice drills &rarr;</a>
+      <a class="practice-link" href="exam.html">Mock exam &rarr;</a>
+    </div>
   </header>
 
   <section class="block">
@@ -1882,6 +1885,13 @@
     <h2>Skill-by-skill checklist</h2>
     <p class="section-intro">What examiners are actually scoring in each section. Tick items off as you can do them comfortably under time pressure.</p>
 
+    <div class="section-actions">
+      <a class="practice-link" href="exam.html?s=listening">Listening mock &rarr;</a>
+      <a class="practice-link" href="exam.html?s=reading">Reading mock &rarr;</a>
+      <a class="practice-link" href="exam.html?s=writing">Writing tasks &rarr;</a>
+      <a class="practice-link" href="exam.html?s=speaking">Speaking tasks &rarr;</a>
+    </div>
+
     <div class="progress-bar-wrap" data-progress style="margin-bottom:16px;">
       <span class="progress-label">0 / 0 done</span>
       <div class="progress-track"><div class="progress-fill"></div></div>
@@ -2064,7 +2074,7 @@
   updateProgress();
 
   /* ---- backup / restore, since localStorage is per-browser ---- */
-  var KEYS = ["nclc5-roadmap-checks", "nclc5-quiz-scores", "nclc5-roadmap-voice",
+  var KEYS = ["nclc5-roadmap-checks", "nclc5-quiz-scores", "nclc5-exam-scores", "nclc5-roadmap-voice",
               "nclc5-roadmap-slow-speech", "nclc5-roadmap-tr-open-en", "nclc5-roadmap-tr-open-fr"];
   var msg = document.getElementById("data-msg");
   function say(text) {
