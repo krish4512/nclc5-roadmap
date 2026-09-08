@@ -2067,8 +2067,15 @@
     picker = document.createElement("select");
     picker.className = "speak-voice";
     picker.setAttribute("aria-label", "French voice");
+    /* Chrome restores a select's previous option across reloads and fires
+       change for it. Without these guards that restored value gets saved
+       as a deliberate choice, so a stale voice resurrects itself forever. */
+    picker.setAttribute("autocomplete", "off");
+    var touched = false;
+    picker.addEventListener("pointerdown", function () { touched = true; });
+    picker.addEventListener("keydown", function () { touched = true; });
     picker.addEventListener("change", function () {
-      if (syncing) return;
+      if (syncing || !touched) { syncPicker(); return; }
       savedVoice = picker.value || null;   /* "" is Auto: fall back to ranking */
       try {
         if (savedVoice) localStorage.setItem(VOICE_KEY, savedVoice);
@@ -2090,6 +2097,7 @@
     label.className = "speak-toggle";
     var cb = document.createElement("input");
     cb.type = "checkbox";
+    cb.setAttribute("autocomplete", "off");
     cb.checked = slow;
     cb.addEventListener("change", function () {
       slow = cb.checked;
