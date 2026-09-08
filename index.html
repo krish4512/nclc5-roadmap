@@ -587,6 +587,149 @@
     outline-offset: 2px;
   }
 
+  /* floating translator */
+  .tr-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 330px;
+    max-width: calc(100vw - 24px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10), 0 16px 40px -12px rgba(0,0,0,0.30);
+    z-index: 60;
+    overflow: hidden;
+  }
+
+  .tr-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px 9px 12px;
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tr-panel.min .tr-head { border-bottom: none; }
+  .tr-panel.min .tr-body { display: none; }
+
+  .tr-title { font-weight: 600; font-size: 13.5px; }
+
+  .tr-dir {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    background: var(--teal-soft);
+    border: 1px solid var(--teal-soft-border);
+    border-radius: 5px;
+    padding: 1px 6px;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .tr-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-soft);
+    border-radius: 5px;
+    width: 22px;
+    height: 22px;
+    flex: none;
+    line-height: 1;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .tr-toggle:hover { color: var(--accent); border-color: var(--accent-soft-border); }
+
+  .tr-body {
+    padding: 10px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tr-in {
+    width: 100%;
+    resize: vertical;
+    min-height: 62px;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 8px 9px;
+  }
+
+  .tr-out {
+    min-height: 46px;
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: var(--teal-soft);
+    border: 1px solid var(--teal-soft-border);
+    border-radius: 7px;
+    padding: 8px 9px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .tr-out.empty { color: var(--ink-faint); }
+
+  .tr-out.err {
+    background: var(--accent-soft);
+    border-color: var(--accent-soft-border);
+    color: var(--accent);
+  }
+
+  .tr-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .tr-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: var(--sans);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 9px;
+    cursor: pointer;
+  }
+
+  .tr-btn:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--accent-soft-border);
+  }
+
+  .tr-btn.speaking {
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .tr-in:focus-visible,
+  .tr-btn:focus-visible,
+  .tr-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .tr-note { font-size: 11px; color: var(--ink-faint); line-height: 1.35; }
+
+  @media (max-width: 640px) {
+    .tr-panel { left: 12px; right: 12px; bottom: 12px; width: auto; }
+    .tr-in { min-height: 52px; }
+  }
+
+  @media print { .tr-panel { display: none; } }
+
   .pronun-key {
     display: flex;
     align-items: center;
@@ -1698,6 +1841,25 @@
 
 </div>
 
+<div class="tr-panel" id="tr-panel" role="region" aria-label="English and French translator">
+  <div class="tr-head">
+    <span class="tr-title">Translate</span>
+    <span class="tr-dir" id="tr-dir">auto</span>
+    <button type="button" class="tr-toggle" id="tr-toggle" aria-expanded="true" aria-controls="tr-body" title="Minimise">&minus;</button>
+  </div>
+  <div class="tr-body" id="tr-body">
+    <textarea id="tr-in" class="tr-in" rows="3" spellcheck="false" placeholder="Type English or French&hellip;" aria-label="Text to translate"></textarea>
+    <div class="tr-out empty" id="tr-out" aria-live="polite">Translation appears here.</div>
+    <div class="tr-actions">
+      <button type="button" class="tr-btn" id="tr-speak">Hear French</button>
+      <button type="button" class="tr-btn" id="tr-copy">Copy</button>
+      <button type="button" class="tr-btn" id="tr-retry" hidden>Retry</button>
+      <button type="button" class="tr-btn" id="tr-clear">Clear</button>
+    </div>
+    <div class="tr-note">Detects the language and translates to the other. Text you type is sent to Google Translate.</div>
+  </div>
+</div>
+
 <script>
 (function () {
   var STORAGE_KEY = "nclc5-roadmap-checks";
@@ -1838,14 +2000,16 @@
     u.lang = voice ? voice.lang : "fr-CA";
     if (voice) u.voice = voice;
     u.rate = slow ? 0.7 : 0.92;
-    btn.classList.add("speaking");
-    active = btn;
+    if (btn) { btn.classList.add("speaking"); active = btn; }
     u.onend = u.onerror = function () {
-      btn.classList.remove("speaking");
+      if (btn) btn.classList.remove("speaking");
       if (active === btn) active = null;
     };
     synth.speak(u);
   }
+
+  /* Shared with the translator panel further down the page. */
+  window.nclcSpeakFrench = function (text, btn) { speak(text, btn || null); };
 
   function makeBtn(text) {
     var b = document.createElement("button");
@@ -1949,6 +2113,172 @@
   }
   if ("onvoiceschanged" in synth) synth.addEventListener("voiceschanged", refresh);
   [200, 600, 1500].forEach(function (ms) { setTimeout(refresh, ms); });
+})();
+</script>
+
+<script>
+(function () {
+  var panel = document.getElementById("tr-panel");
+  if (!panel) return;
+  var input = document.getElementById("tr-in");
+  var outEl = document.getElementById("tr-out");
+  var dirEl = document.getElementById("tr-dir");
+  var speakBtn = document.getElementById("tr-speak");
+  var copyBtn = document.getElementById("tr-copy");
+  var clearBtn = document.getElementById("tr-clear");
+  var retryBtn = document.getElementById("tr-retry");
+  var toggle = document.getElementById("tr-toggle");
+
+  var MIN_KEY = "nclc5-roadmap-tr-min";
+  function setMin(min) {
+    panel.classList.toggle("min", min);
+    toggle.innerHTML = min ? "+" : "&minus;";
+    toggle.title = min ? "Expand" : "Minimise";
+    toggle.setAttribute("aria-expanded", min ? "false" : "true");
+  }
+  try { if (localStorage.getItem(MIN_KEY) === "1") setMin(true); } catch (e) {}
+
+  toggle.addEventListener("click", function () {
+    var min = !panel.classList.contains("min");
+    setMin(min);
+    try { localStorage.setItem(MIN_KEY, min ? "1" : "0"); } catch (e) {}
+  });
+
+  /* Guess the direction locally so the first request is usually right; the
+     service's own detection corrects us below when the guess is wrong. */
+  var FR_ACCENT = /[àâçéèêëîïôûùüœ]/i;
+  var FR_WORDS = /\b(je|tu|il|elle|nous|vous|ils|elles|le|la|les|un|une|des|du|de|et|est|sont|ne|pas|que|qui|pour|avec|dans|sur|plus|tout|tres|etre|avoir|faire|suis|ce|cette|mon|ma|mes|son|sa|ses|au|aux|ou|si|bonjour|merci)\b/gi;
+  var EN_WORDS = /\b(the|is|are|and|to|of|a|an|in|on|for|with|that|this|it|you|i|we|they|have|has|do|does|not|but|from|at|by|be|was|were|will|would|can|could|my|your|please|hello)\b/gi;
+
+  function looksFrench(t) {
+    if (FR_ACCENT.test(t)) return true;
+    return (t.match(FR_WORDS) || []).length > (t.match(EN_WORDS) || []).length;
+  }
+
+  /* Both services can stall rather than refuse, which would leave the panel
+     stuck on "Translating…" forever, so every request is raced against a
+     timeout and always settles. */
+  function fetchJson(url, ms) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer;
+    var timed = new Promise(function (_, reject) {
+      timer = setTimeout(function () {
+        if (ctrl) ctrl.abort();
+        reject(new Error("timeout"));
+      }, ms || 5000);
+    });
+    var req = fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); });
+    return Promise.race([req, timed]).then(
+      function (v) { clearTimeout(timer); return v; },
+      function (e) { clearTimeout(timer); throw e; }
+    );
+  }
+
+  function viaGoogle(q, tl) {
+    return fetchJson("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&dt=t&tl=" +
+                     tl + "&q=" + encodeURIComponent(q))
+      .then(function (j) {
+        if (!j || !j[0]) throw new Error("bad payload");
+        return { text: j[0].map(function (x) { return x[0]; }).join(""), detected: j[2] };
+      });
+  }
+
+  function viaMyMemory(q, tl) {
+    return fetchJson("https://api.mymemory.translated.net/get?langpair=" +
+                     (tl === "fr" ? "en|fr" : "fr|en") + "&q=" + encodeURIComponent(q))
+      .then(function (j) {
+        if (!j.responseData || !j.responseData.translatedText) throw new Error("no result");
+        return { text: j.responseData.translatedText, detected: null };
+      });
+  }
+
+  var seq = 0;          /* drop responses that a newer keystroke has superseded */
+  var frenchText = "";
+
+  function show(msg, cls) {
+    outEl.textContent = msg;
+    outEl.className = "tr-out" + (cls ? " " + cls : "");
+  }
+
+  function run() {
+    var q = input.value.trim();
+    var mine = ++seq;
+    if (!q) {
+      show("Translation appears here.", "empty");
+      dirEl.textContent = "auto";
+      retryBtn.hidden = true;
+      frenchText = "";
+      return;
+    }
+
+    var toFrench = !looksFrench(q);
+    show("Translating…", "empty");
+    retryBtn.hidden = true;
+    dirEl.textContent = toFrench ? "EN → FR" : "FR → EN";
+
+    viaGoogle(q, toFrench ? "fr" : "en")
+      .then(function (res) {
+        /* Detected source == the language we asked for means we guessed
+           backwards, so translate the other way instead. */
+        if (res.detected === (toFrench ? "fr" : "en")) {
+          toFrench = !toFrench;
+          return viaGoogle(q, toFrench ? "fr" : "en");
+        }
+        return res;
+      })
+      .catch(function () { return viaMyMemory(q, toFrench ? "fr" : "en"); })
+      .then(function (res) {
+        if (mine !== seq) return;
+        show(res.text);
+        dirEl.textContent = toFrench ? "EN → FR" : "FR → EN";
+        frenchText = toFrench ? res.text : q;
+      })
+      .catch(function () {
+        if (mine !== seq) return;
+        show("Couldn't reach the translation service. It may be busy — press Retry.", "err");
+        retryBtn.hidden = false;
+        frenchText = "";
+      });
+  }
+
+  var timer = null;
+  input.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(run, 500);
+  });
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      clearTimeout(timer);
+      run();
+    }
+  });
+
+  if (!window.nclcSpeakFrench) speakBtn.hidden = true;
+  speakBtn.addEventListener("click", function () {
+    if (frenchText && window.nclcSpeakFrench) window.nclcSpeakFrench(frenchText, speakBtn);
+  });
+
+  copyBtn.addEventListener("click", function () {
+    if (outEl.classList.contains("empty") || outEl.classList.contains("err")) return;
+    var text = outEl.textContent;
+    var done = function () {
+      copyBtn.textContent = "Copied";
+      setTimeout(function () { copyBtn.textContent = "Copy"; }, 1200);
+    };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done);
+    else done();
+  });
+
+  retryBtn.addEventListener("click", function () { clearTimeout(timer); run(); });
+
+  clearBtn.addEventListener("click", function () {
+    input.value = "";
+    clearTimeout(timer);
+    run();
+    input.focus();
+  });
 })();
 </script>
 
