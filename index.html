@@ -1760,14 +1760,26 @@
   var voice = null;
   var frVoices = [];
   var picker = null;
+  /* Canadian French first (this is a Canadian exam), and prefer a voice
+     installed on the device: network voices such as "Google français" can
+     fall back to the default English voice when they fail to load. */
+  function score(v) {
+    var s = 0;
+    if (/ca/i.test(v.lang)) s += 4;
+    else if (/fr[-_]fr/i.test(v.lang)) s += 2;
+    if (v.localService) s += 1;
+    return s;
+  }
+
   function pickVoice() {
     var all = synth.getVoices() || [];
     frVoices = all.filter(function (v) { return /^fr\b|^fr[-_]/i.test(v.lang || ""); });
     if (!frVoices.length) { voice = null; return; }
-    voice = (savedVoice && frVoices.filter(function (v) { return v.name === savedVoice; })[0]) ||
-            frVoices.filter(function (v) { return /ca/i.test(v.lang); })[0] ||
-            frVoices.filter(function (v) { return /fr[-_]fr/i.test(v.lang); })[0] ||
-            frVoices[0];
+    var chosen = savedVoice && frVoices.filter(function (v) { return v.name === savedVoice; })[0];
+    if (!chosen) {
+      chosen = frVoices.slice().sort(function (a, b) { return score(b) - score(a); })[0];
+    }
+    voice = chosen;
   }
   pickVoice();
 
@@ -1803,10 +1815,12 @@
   function speak(text, btn) {
     var say = clean(text);
     if (!say) return;
-    /* Browsers populate the voice list asynchronously, so resolve late as
-       well as early: with no explicit voice set, Safari ignores lang and
-       reads French aloud in the default English voice. */
-    if (!voice) { pickVoice(); syncPicker(); }
+    /* Browsers populate the voice list asynchronously — Chrome in particular
+       keeps adding voices after load — so resolve late as well as early.
+       Until the reader picks a voice by hand, re-resolve every time so the
+       preference is applied against the complete list. With no explicit
+       voice set, Safari ignores lang and reads French in an English voice. */
+    if (!voice || !savedVoice) { pickVoice(); syncPicker(); }
     synth.cancel();
     if (active) active.classList.remove("speaking");
     var u = new SpeechSynthesisUtterance(say);
