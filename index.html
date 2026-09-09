@@ -1202,7 +1202,7 @@
               <summary>Present tense &mdash; regular -er / -ir / -re verbs<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Three verb families, three fixed endings. Learn the pattern once and it applies to hundreds of verbs.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj" data-speak-prefix="row">
                   <caption>parle<u class="mute">r</u> (-er), finir (-ir), vendr<u class="mute">e</u> (-re)</caption>
                   <thead><tr><th>Person</th><th>parle<u class="mute">r</u></th><th>finir</th><th>vendr<u class="mute">e</u></th></tr></thead>
                   <tbody>
@@ -1222,7 +1222,7 @@
               <summary>Present tense &mdash; key irregulars<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">These seven verbs show up in roughly half of everyday sentences &mdash; memorize them before anything else on this list.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj" data-speak-prefix="row">
                   <caption>&ecirc;tr<u class="mute">e</u>, avoir, alle<u class="mute">r</u>, fair<u class="mute">e</u>, pouvoir, vouloir, devoir</caption>
                   <thead><tr><th>Person</th><th>&ecirc;tre</th><th>avoir</th><th>aller</th><th>faire</th><th>pouvoir</th><th>vouloir</th><th>devoir</th></tr></thead>
                   <tbody>
@@ -1305,7 +1305,7 @@
               <summary>Futur proche (aller + infinitive)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">The easiest future tense in French: present-tense <code>aller</code> plus any infinitive, no exceptions.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-speak-prefix="row">
                   <caption>alle<u class="mute">r</u> + infinitive</caption>
                   <thead><tr><th>Person</th><th>aller</th><th>+ infinitive</th></tr></thead>
                   <tbody>
@@ -1438,7 +1438,7 @@
               <summary>Imparfait &mdash; formation and uses<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Take the <em>nous</em>-form of the present tense, drop <code>-ons</code>, and add the imparfait endings. It works for every verb except one.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="1,3,4" data-quiz="conj">
+                <div class="table-scroll"><table class="conj-table" data-speak="1,3,4" data-quiz="conj" data-speak-prefix="row">
                   <caption>parle<u class="mute">r</u> (regular) vs. &ecirc;tr<u class="mute">e</u> (the one exception)</caption>
                   <thead><tr><th>Person</th><th>Ending</th><th>parler</th><th>&ecirc;tre</th></tr></thead>
                   <tbody>
@@ -1520,7 +1520,7 @@
               <summary>Futur simple<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Endings are the present tense of <code>avoir</code> attached to the infinitive &mdash; if you know that, this tense is nearly free. A handful of verbs change their stem.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj-row" data-quiz-verb="parler (futur simple)">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj-row" data-quiz-verb="parler (futur simple)" data-speak-prefix="col">
                   <caption>parle<u class="mute">r</u> (regular)</caption>
                   <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
                   <tbody>
@@ -1545,7 +1545,7 @@
               <summary>Conditionnel pr&eacute;sent &mdash; polite requests (je voudrais...)<span class="open-hint">tap for tables</span><span class="chevron">&#9656;</span></summary>
               <div class="topic-guide">
                 <p class="topic-explain">Conditionnel = the same stem as futur simple + the imparfait endings. If you've learned both of those, this one is essentially free.</p>
-                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj-row" data-quiz-verb="vouloir (conditionnel)">
+                <div class="table-scroll"><table class="conj-table" data-speak="all" data-quiz="conj-row" data-quiz-verb="vouloir (conditionnel)" data-speak-prefix="col">
                   <caption>vouloir (stem voudr-)</caption>
                   <thead><tr><th>je</th><th>tu</th><th>il / elle</th><th>nous</th><th>vous</th><th>ils / elles</th></tr></thead>
                   <tbody>
@@ -2258,23 +2258,52 @@
     return b;
   }
 
-  function attach(el) {
-    var text = el.textContent;
+  function attach(el, sayText) {
+    var text = sayText === undefined ? el.textContent : sayText;
     if (!clean(text)) return 0;
     el.appendChild(document.createTextNode(" "));
     el.appendChild(makeBtn(text));
     return 1;
   }
 
+  /* A conjugated form is only useful aloud with its subject pronoun, so a
+     cell reading "parle" is spoken as "je parle". Where a pronoun cell
+     offers two ("il / elle"), the first carries the pronunciation. */
+  function withPerson(personRaw, formRaw) {
+    var person = clean(personRaw).split(",")[0].trim();
+    var form = clean(formRaw);
+    if (!person || !form) return form;
+    if (/^je$/i.test(person) && /^[aeiouyâàéèêëîïôûùüh]/i.test(form)) return "j'" + form;
+    return person + " " + form;
+  }
+
+  /* Endings ("-ais") and infinitive columns are not forms to pair with a
+     pronoun, so they keep their own text. */
+  function bareColumn(head) {
+    var h = clean(head || "");
+    return !h || h === "Ending" || h.charAt(0) === "+";
+  }
+
   var count = 0;
 
-  /* data-speak names the 1-indexed columns holding French, or "all". */
+  /* data-speak names the 1-indexed columns holding French, or "all".
+     data-speak-prefix says where the subject pronoun lives: "row" for
+     tables with a Person column, "col" for tables whose header row is the
+     pronouns. */
   Array.prototype.forEach.call(document.querySelectorAll("table.conj-table[data-speak]"), function (table) {
     var spec = (table.getAttribute("data-speak") || "").trim();
     var cols = spec === "all" ? null : spec.split(",").map(function (n) { return n.trim(); });
+    var prefix = table.getAttribute("data-speak-prefix");
+    var heads = Array.prototype.map.call(table.querySelectorAll("thead th"), function (th) { return th.textContent; });
+
     Array.prototype.forEach.call(table.querySelectorAll("tbody tr"), function (row) {
+      var rowLabel = row.children[0] ? row.children[0].textContent : "";
       Array.prototype.forEach.call(row.children, function (cell, i) {
-        if (!cols || cols.indexOf(String(i + 1)) !== -1) count += attach(cell);
+        if (cols && cols.indexOf(String(i + 1)) === -1) return;
+        var say;
+        if (prefix === "row" && i > 0 && !bareColumn(heads[i])) say = withPerson(rowLabel, cell.textContent);
+        else if (prefix === "col" && !bareColumn(heads[i])) say = withPerson(heads[i], cell.textContent);
+        count += attach(cell, say);
       });
     });
   });

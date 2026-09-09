@@ -275,6 +275,16 @@
   /* ---------- load the roadmap and build the question sets ---------- */
   function text(el) { return (el.textContent || "").replace(/\s+/g, " ").trim(); }
 
+  /* A conjugated form read aloud on its own is close to useless, so pair it
+     with its subject pronoun: "parle" is spoken as "je parle". */
+  function withPerson(personRaw, formRaw) {
+    var person = clean(personRaw).split(",")[0].trim();
+    var form = clean(formRaw);
+    if (!person || !form) return form;
+    if (/^je$/i.test(person) && /^[aeiouyâàéèêëîïôûùüh]/i.test(form)) return "j'" + form;
+    return person + " " + form;
+  }
+
   function buildSets(doc) {
     var sets = [];
 
@@ -310,7 +320,7 @@
           var verb = heads[i];
           if (!verb || verb === "Ending" || verb.charAt(0) === "+") continue;
           var form = text(cells[i]);
-          if (form && form !== "—") conj.push({ fr: form, en: verb + " — " + person });
+          if (form && form !== "—") conj.push({ fr: form, en: verb + " — " + person, say: withPerson(person, form) });
         }
       });
     });
@@ -321,7 +331,7 @@
         var cells = row.children;
         for (var i = 0; i < cells.length && i < heads.length; i++) {
           var form = text(cells[i]);
-          if (form && form !== "—") conj.push({ fr: form, en: verb + " — " + heads[i] });
+          if (form && form !== "—") conj.push({ fr: form, en: verb + " — " + heads[i], say: withPerson(heads[i], form) });
         }
       });
     });
@@ -442,8 +452,9 @@
           (wasRight ? "" : "<div class='alt'>" + item.en + "</div>") +
         "</div>";
       var hear = document.getElementById("hear");
-      if (hear) hear.addEventListener("click", function () { speak(item.fr); });
-      speak(item.fr);
+      var aloud = item.say || item.fr;
+      if (hear) hear.addEventListener("click", function () { speak(aloud); });
+      speak(aloud);
       document.getElementById("tally").textContent = correct + " right";
       checkBtn.focus();
     }
