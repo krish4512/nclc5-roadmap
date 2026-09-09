@@ -740,6 +740,21 @@
 
   .tr-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 
+  .tr-mic { display: inline-flex; align-items: center; gap: 5px; }
+  .tr-mic svg { display: block; }
+
+  .tr-mic.rec {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+    animation: tr-pulse 1.3s ease-in-out infinite;
+  }
+
+  @keyframes tr-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(122,31,43,0.45); }
+    50% { box-shadow: 0 0 0 5px rgba(122,31,43,0); }
+  }
+
   .tr-btn {
     appearance: none;
     -webkit-appearance: none;
@@ -773,6 +788,15 @@
   }
 
   .tr-note { font-size: 11px; color: var(--ink-faint); line-height: 1.35; }
+
+  .tr-approx {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--teal-soft-border);
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--accent);
+  }
 
   @media (max-width: 640px) {
     .tr-dock { left: 10px; right: 10px; bottom: 10px; }
@@ -1977,7 +2001,7 @@
 
 <div class="tr-dock" id="tr-dock">
 
-  <div class="tr-panel collapsed" data-from="en" data-to="fr" data-french="out" role="region" aria-label="English to French translator">
+  <div class="tr-panel collapsed" data-from="en" data-to="fr" data-french="out" data-mic-lang="en-CA" role="region" aria-label="English to French translator">
     <button type="button" class="tr-bubble" aria-expanded="false" title="English to French">
       <span>EN</span><span class="tr-ar">&darr;</span><span>FR</span>
     </button>
@@ -1990,17 +2014,18 @@
         <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Type English&hellip;" aria-label="English text"></textarea>
         <div class="tr-out empty" aria-live="polite">French appears here.</div>
         <div class="tr-actions">
+          <button type="button" class="tr-btn tr-mic" hidden><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 1.6a2 2 0 0 0-2 2v4.2a2 2 0 1 0 4 0V3.6a2 2 0 0 0-2-2z"/><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M3.6 7.4a4.4 4.4 0 0 0 8.8 0M8 12.2v2.2"/></svg><span class="tr-mic-label">Speak</span></button>
           <button type="button" class="tr-btn tr-speak">Hear French</button>
           <button type="button" class="tr-btn tr-copy">Copy</button>
           <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
           <button type="button" class="tr-btn tr-clear">Clear</button>
         </div>
-        <div class="tr-note">Text you type is sent to Google Translate.</div>
+        <div class="tr-note">What you type or say is sent to Google for translation and dictation.</div>
       </div>
     </div>
   </div>
 
-  <div class="tr-panel collapsed" data-from="fr" data-to="en" data-french="in" role="region" aria-label="French to English translator">
+  <div class="tr-panel collapsed" data-from="fr" data-to="en" data-french="in" data-mic-lang="fr-CA" role="region" aria-label="French to English translator">
     <button type="button" class="tr-bubble" aria-expanded="false" title="French to English">
       <span>FR</span><span class="tr-ar">&darr;</span><span>EN</span>
     </button>
@@ -2013,12 +2038,13 @@
         <textarea class="tr-in" rows="2" spellcheck="false" autocomplete="off" placeholder="Tapez en fran&ccedil;ais&hellip;" aria-label="French text"></textarea>
         <div class="tr-out empty" aria-live="polite">English appears here.</div>
         <div class="tr-actions">
+          <button type="button" class="tr-btn tr-mic" hidden><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 1.6a2 2 0 0 0-2 2v4.2a2 2 0 1 0 4 0V3.6a2 2 0 0 0-2-2z"/><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M3.6 7.4a4.4 4.4 0 0 0 8.8 0M8 12.2v2.2"/></svg><span class="tr-mic-label">Speak</span></button>
           <button type="button" class="tr-btn tr-speak">Hear French</button>
           <button type="button" class="tr-btn tr-copy">Copy</button>
           <button type="button" class="tr-btn tr-retry" hidden>Retry</button>
           <button type="button" class="tr-btn tr-clear">Clear</button>
         </div>
-        <div class="tr-note">Text you type is sent to Google Translate.</div>
+        <div class="tr-note">What you type or say is sent to Google for translation and dictation.</div>
       </div>
     </div>
   </div>
@@ -2416,19 +2442,35 @@
      detected source is what previously let French input come back as French. */
   function viaGoogle(q, from, to) {
     return fetchJson("https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&sl=" +
-                     from + "&tl=" + to + "&q=" + encodeURIComponent(q))
+                     from + "&tl=" + to + "&q=" + encodeURIComponent(q), 4000)
       .then(function (j) {
         if (!j || !j[0]) throw new Error("bad payload");
-        return j[0].map(function (x) { return x[0]; }).join("");
+        return { text: j[0].map(function (x) { return x[0]; }).join(""), approx: false };
+      });
+  }
+
+  /* A keyless proxy in front of the same engine. The direct endpoint above
+     blocks callers without warning, and this keeps real machine translation
+     available when it does. */
+  function viaLingva(q, from, to) {
+    return fetchJson("https://lingva.ml/api/v1/" + from + "/" + to + "/" + encodeURIComponent(q), 8000)
+      .then(function (j) {
+        if (!j || typeof j.translation !== "string" || !j.translation.trim()) throw new Error("no result");
+        return { text: j.translation, approx: false };
       });
   }
 
   function viaMyMemory(q, from, to) {
     return fetchJson("https://api.mymemory.translated.net/get?langpair=" + from + "|" + to +
-                     "&q=" + encodeURIComponent(q))
+                     "&q=" + encodeURIComponent(q), 5000)
       .then(function (j) {
-        if (!j.responseData || !j.responseData.translatedText) throw new Error("no result");
-        return j.responseData.translatedText;
+        var d = j && j.responseData;
+        if (!d || !d.translatedText) throw new Error("no result");
+        /* This service answers from a translation memory, not an engine: a
+           near-miss sentence comes back with a high score and the wrong
+           words — "nearest pharmacy" returned "nearest hospital" at 0.96.
+           Anything short of an exact hit is labelled, never shown clean. */
+        return { text: d.translatedText, approx: !(Number(d.match) >= 0.999) };
       });
   }
 
@@ -2444,6 +2486,7 @@
     var copyBtn = panel.querySelector(".tr-copy");
     var retryBtn = panel.querySelector(".tr-retry");
     var clearBtn = panel.querySelector(".tr-clear");
+    var micBtn = panel.querySelector(".tr-mic");
     var placeholder = outEl.textContent;
 
     /* Each panel is a bubble until opened, and remembers which it was. */
@@ -2474,9 +2517,15 @@
     var seq = 0;                 /* drop replies a newer keystroke superseded */
     var frenchText = "";
 
-    function show(msg, cls) {
+    function show(msg, cls, approx) {
       outEl.textContent = msg;
       outEl.className = "tr-out" + (cls ? " " + cls : "");
+      if (approx) {
+        var note = document.createElement("div");
+        note.className = "tr-approx";
+        note.textContent = "Approximate match from a translation memory — check this one before using it.";
+        outEl.appendChild(note);
+      }
     }
 
     function run() {
@@ -2493,12 +2542,15 @@
          if the translation request fails. */
       if (!frenchIsOutput) frenchText = q;
 
+      /* Real machine translation first, twice over; the translation memory
+         is only a last resort and says so when it is guessing. */
       viaGoogle(q, from, to)
+        .catch(function () { return viaLingva(q, from, to); })
         .catch(function () { return viaMyMemory(q, from, to); })
-        .then(function (text) {
+        .then(function (res) {
           if (mine !== seq) return;
-          show(text);
-          if (frenchIsOutput) frenchText = text;
+          show(res.text, "", res.approx);
+          if (frenchIsOutput) frenchText = res.text;
         })
         .catch(function () {
           if (mine !== seq) return;
@@ -2544,6 +2596,77 @@
       clearTimeout(timer);
       run();
       input.focus();
+    });
+
+    /* ---- dictation ---------------------------------------------------
+       Each box has a fixed language, so recognition can be told outright
+       what it is listening for rather than guessing. Left hidden where the
+       browser has no speech recognition (Firefox), so nothing dead shows. */
+    var Recog = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Recog || !micBtn) return;
+
+    var micLabel = micBtn.querySelector(".tr-mic-label");
+    var recog = null;
+    var listening = false;
+    var beforeSpeech = "";
+
+    function setListening(on, label) {
+      listening = on;
+      micBtn.classList.toggle("rec", on);
+      micLabel.textContent = label || (on ? "Listening…" : "Speak");
+      micBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    setListening(false);
+    micBtn.hidden = false;
+
+    function stop() {
+      if (recog) { try { recog.stop(); } catch (e) {} }
+    }
+
+    function start() {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();  /* don't dictate our own playback */
+      recog = new Recog();
+      recog.lang = panel.getAttribute("data-mic-lang") || "en-CA";
+      recog.continuous = false;
+      recog.interimResults = true;
+      recog.maxAlternatives = 1;
+
+      beforeSpeech = input.value.trim();
+
+      recog.onresult = function (ev) {
+        var said = "";
+        for (var i = ev.resultIndex; i < ev.results.length; i++) said += ev.results[i][0].transcript;
+        said = said.trim();
+        if (!said) return;
+        input.value = beforeSpeech ? beforeSpeech + " " + said : said;
+        var last = ev.results[ev.results.length - 1];
+        if (last && last.isFinal) {
+          clearTimeout(timer);
+          run();
+        }
+      };
+
+      recog.onerror = function (ev) {
+        var why = ev && ev.error;
+        setListening(false,
+          why === "not-allowed" || why === "service-not-allowed" ? "Mic blocked" :
+          why === "no-speech" ? "Didn't catch that" : "Mic error");
+        setTimeout(function () { if (!listening) setListening(false); }, 2500);
+      };
+
+      recog.onend = function () { if (listening) setListening(false); };
+
+      try {
+        recog.start();
+        setListening(true);
+      } catch (e) {
+        setListening(false, "Mic error");
+      }
+    }
+
+    micBtn.addEventListener("click", function () {
+      if (listening) { stop(); setListening(false); }
+      else start();
     });
   }
 
