@@ -303,7 +303,7 @@
           id: "vocab-" + card.getAttribute("data-quiz-id"),
           kind: "vocab",
           name: card.getAttribute("data-quiz-name").replace(/&amp;/g, "&"),
-          group: "Vocabulary",
+          group: card.getAttribute("data-quiz-group") || "Vocabulary",
           items: items
         });
       }
@@ -340,11 +340,13 @@
     }
 
     /* An everything-at-once vocabulary set. */
-    var allVocab = [];
-    sets.forEach(function (s) { if (s.kind === "vocab") allVocab = allVocab.concat(s.items); });
-    if (allVocab.length) {
-      sets.push({ id: "vocab-all", kind: "vocab", name: "All vocabulary", group: "Vocabulary", items: allVocab });
-    }
+    /* Everything-at-once sets, one per group, so verbs don't get folded into
+       the vocabulary total. */
+    [["Vocabulary", "vocab-all", "All vocabulary"], ["Verbs", "verbs-all", "All verbs"]].forEach(function (g) {
+      var items = [];
+      sets.forEach(function (s) { if (s.kind === "vocab" && s.group === g[0]) items = items.concat(s.items); });
+      if (items.length) sets.push({ id: g[1], kind: "vocab", name: g[2], group: g[0], items: items });
+    });
     return sets;
   }
 
@@ -375,7 +377,7 @@
     dekEl.textContent = "Active recall against the material on the roadmap. Pick a set to drill.";
     var scores = readScores();
     var html = "";
-    ["Vocabulary", "Grammar"].forEach(function (group) {
+    ["Vocabulary", "Verbs", "Grammar"].forEach(function (group) {
       var inGroup = sets.filter(function (s) { return s.group === group; });
       if (!inGroup.length) return;
       html += "<h2>" + group + "</h2><div class='set-grid'>";
