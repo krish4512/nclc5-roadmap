@@ -168,14 +168,18 @@
       pending = true;
       requestAnimationFrame(function () { pending = false; scanReveal(document); });
     }).observe(document.body, { childList: true, subtree: true });
-    /* safety net: anything still hidden after 2.5s (e.g. an observer that
-       never fired) is shown */
-    setTimeout(function () {
+    /* catch-up: a fast scroll or an anchor jump can carry elements past the
+       viewport between observer callbacks. Once scrolling settles, anything
+       above the bottom of the screen is shown; the 2.5s timer covers an
+       observer that never fires at all. */
+    function sweep() {
       Array.prototype.forEach.call(document.querySelectorAll(".reveal:not(.in), .reveal-scale:not(.in)"), function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in");
+        if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add("in"); io.unobserve(el); }
       });
-    }, 2500);
+    }
+    var settle = null;
+    window.addEventListener("scroll", function () { clearTimeout(settle); settle = setTimeout(sweep, 150); }, { passive: true });
+    setTimeout(sweep, 2500);
   }
 
   /* ---------- config-driven text ---------- */
