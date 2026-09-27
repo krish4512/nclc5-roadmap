@@ -2,6 +2,7 @@
 <!-- Replace https://www.example.com with your domain (see README.md). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.example.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.example.com/learn.html</loc><priority>0.9</priority></url>
   <url><loc>https://www.example.com/roadmap.html</loc><priority>0.9</priority></url>
   <url><loc>https://www.example.com/quiz.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.example.com/exam.html</loc><priority>0.8</priority></url>

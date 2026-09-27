@@ -1179,6 +1179,7 @@
   <div class="container">
     <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="learn.html">Learn</a>
       <a href="roadmap.html" aria-current="page">Roadmap</a>
       <a href="quiz.html">Practice</a>
       <a href="exam.html">Mock exam</a>
@@ -1204,7 +1205,8 @@
         <h1>Your NCLC 5 study roadmap</h1>
         <p class="dek">Everything to cover to hit <strong>NCLC / CLB 5</strong> (CEFR B1) on either <strong>TCF Canada</strong> or <strong>TEF Canada</strong> &mdash; the score bands you're aiming for, the exam format, and a checklist of grammar, vocabulary and skills by section. Check items off as you go; your progress is saved in this browser.</p>
         <div class="section-actions" style="margin:0;">
-          <a class="btn btn-primary" href="quiz.html">Practice drills &rarr;</a>
+          <a class="btn btn-primary" href="learn.html">Start the course &rarr;</a>
+          <a class="btn" href="quiz.html">Practice drills</a>
           <a class="btn" href="exam.html">Take a mock exam</a>
         </div>
       </div>
@@ -1304,7 +1306,7 @@
 
   <section class="block" id="order">
     <h2><span class="sec-num">3</span>Grammar learning order</h2>
-    <p class="section-intro">The same 21 structures below, but sequenced &mdash; each stage leans on the one above it. Work top to bottom; inside a stage, order doesn't matter. Tap any item to open its conjugation table, a tip for learning it fast, and an example sentence.</p>
+    <p class="section-intro">The same 21 structures below, but sequenced &mdash; each stage leans on the one above it. Work top to bottom; inside a stage, order doesn't matter. Tap any item to open its conjugation table, a tip for learning it fast, and an example sentence. Want the full explanations, pronunciation, common mistakes and speaking drills for each one? They're in the <a href="learn.html">step-by-step French course</a>.</p>
 
     <div class="pronun-key"><span class="sample">parl<u class="mute">e</u></span> &mdash; underlined letters in the tables are silent. Say the word without them.</div>
 
@@ -2389,6 +2391,7 @@
       <div>
         <h4>Study</h4>
         <ul>
+          <li><a href="learn.html">French course</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
           <li><a href="quiz.html">Practice drills</a></li>
           <li><a href="exam.html">Mock exam</a></li>
@@ -2552,7 +2555,8 @@
   /* ---- backup / restore, since localStorage is per-browser ---- */
   var KEYS = ["nclc5-roadmap-checks", "nclc5-quiz-scores", "nclc5-exam-scores", "nclc5-roadmap-voice",
               "nclc5-roadmap-slow-speech", "nclc5-roadmap-tr-open-en", "nclc5-roadmap-tr-open-fr",
-              "nclc5-quiz-items", "nclc5-quiz-prefs", "nclc5-exam-drafts", "nclc5-exam-history", "nclc5-theme"];
+              "nclc5-quiz-items", "nclc5-quiz-prefs", "nclc5-exam-drafts", "nclc5-exam-history", "nclc5-theme",
+              "nclc5-course"];
   var msg = document.getElementById("data-msg");
   function say(text) {
     if (!msg) return;
