@@ -22,6 +22,7 @@
 <script src="assets/course-2.js"></script>
 <script src="assets/course-3.js"></script>
 <script src="assets/course-4.js"></script>
+<script src="assets/course-5.js"></script>
 <style>
   .learn { max-width: 1180px; margin: 0 auto; padding: 28px 24px 24px; display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 36px; align-items: start; }
   @media (max-width: 960px) { .learn { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
@@ -207,6 +208,27 @@
   .sources ol { padding-left: 20px; margin: 6px 0 0; }
   .sources li { margin: 4px 0; }
   .practice-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* ---------- answer builder ---------- */
+  .builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+  @media (max-width: 1100px) { .builder { grid-template-columns: minmax(0, 1fr); } }
+  .b-form { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+  .b-group h4 { margin: 4px 0 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); }
+  .b-field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 4px; }
+  .b-field .pre { font-family: var(--serif); font-style: italic; color: var(--ink-faint); font-weight: 400; }
+  .b-field textarea { width: 100%; min-height: 44px; resize: vertical; font-family: var(--serif); font-size: 15px; line-height: 1.45; color: var(--ink); background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 8px 10px; }
+  .b-field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .b-preview { position: sticky; top: calc(var(--header-h) + 16px); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; }
+  @media (max-width: 1100px) { .b-preview { position: static; max-height: none; } }
+  .b-part { margin-bottom: 12px; }
+  .b-part h5 { margin: 0 0 4px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .b-part p { margin: 0; font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+  .b-part .slot { background: var(--teal-soft); color: var(--ink); border-radius: 4px; padding: 0 3px; }
+  .b-part .gap { color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 0 4px; font-family: var(--mono); font-size: 13px; }
+  .b-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .b-clock { font-family: var(--mono); font-weight: 600; font-size: 15px; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); }
+  .b-clock.low { color: var(--accent); border-color: var(--accent-soft-border); background: var(--accent-soft); }
+  .b-meta { font-size: 12.5px; color: var(--ink-faint); }
 </style>
 </head>
 <body>
@@ -436,6 +458,7 @@
     if (m.mistakes) chips.push(["mistakes", "Common mistakes"]);
     if (m.speak) chips.push(["speak", "Speak it"]);
     if (m.vocab) chips.push(["vocab", "Vocabulary"]);
+    if (m.builder) chips.push(["builder", "Answer builder"]);
     if (m.quiz) chips.push(["check", "Check yourself"]);
 
     var h = "<div class='mod-head'><span class='eyebrow'>Module " + m.num + " · " + esc(levelName) + "</span>" +
@@ -498,6 +521,17 @@
         "</div></section>";
     }
 
+    if (m.builder) {
+      h += "<section class='block' id='sec-builder'><h2><span class='ic'>⚒</span>" + esc(m.builder.title || "Answer builder") + "</h2>" +
+        (m.builder.intro ? "<div class='why' style='margin-bottom:14px'>" + m.builder.intro + "</div>" : "") +
+        "<div class='builder'><div class='b-form' id='b-form'></div><div class='b-preview'>" +
+        "<div class='b-bar'><button type='button' class='btn btn-primary btn-sm' id='b-timer'>▶ Start " + Math.floor((m.builder.seconds || 270) / 60) + ":" + ("0" + (m.builder.seconds || 270) % 60).slice(-2) + " timer</button>" +
+        "<span class='b-clock' id='b-clock'>" + Math.floor((m.builder.seconds || 270) / 60) + ":" + ("0" + (m.builder.seconds || 270) % 60).slice(-2) + "</span>" +
+        (canSpeak() ? "<button type='button' class='btn btn-sm' id='b-read'>Read it to me</button>" : "") +
+        "<button type='button' class='btn btn-sm' id='b-example'>Fill with the example</button><button type='button' class='btn btn-ghost btn-sm' id='b-clear'>Clear</button></div>" +
+        "<div class='b-meta' id='b-meta'></div><div id='b-out'></div></div></div></section>";
+    }
+
     if (m.quiz) {
       h += "<section class='block' id='sec-check'><h2><span class='ic'>" + ICONS.check + "</span>Check yourself</h2>" +
         "<p class='muted' style='margin:0'>Answer before you look back at the lessons — the effort of recalling is what makes it stick.</p><div id='quiz'></div><div class='quiz-score' id='qscore'></div></section>";
@@ -550,6 +584,7 @@
 
     if (m.quiz) buildQuiz(m);
     if (m.speak && canSpeak()) wireShadow(m);
+    if (m.builder) wireBuilder(m);
   }
 
   function buildQuiz(m) {
@@ -630,6 +665,89 @@
     });
   }
 
+  /* ---------- answer builder ----------
+     Fields fill the {slots} of the template parts; the assembled answer is
+     saved per module so learners can come back to their own versions. */
+  var BUILD_KEY = "nclc5-builder";
+  var stopBuilderTimer = null;
+  function wireBuilder(m) {
+    var B = m.builder;
+    var store = {};
+    try { store = JSON.parse(localStorage.getItem(BUILD_KEY) || "{}") || {}; } catch (e) { store = {}; }
+    var vals = store[m.id] || {};
+    var form = document.getElementById("b-form"), out = document.getElementById("b-out"), meta = document.getElementById("b-meta");
+    var html = "";
+    B.groups.forEach(function (g) {
+      html += "<div class='b-group'><h4>" + esc(g.title) + "</h4>";
+      g.fields.forEach(function (f) {
+        html += "<div class='b-field'><label for='bf-" + f.id + "'>" + esc(f.label) + (f.pre ? " <span class='pre'>" + esc(f.pre) + "</span>" : "") + "</label>" +
+          "<textarea id='bf-" + f.id + "' data-f='" + f.id + "' rows='2' lang='fr' spellcheck='true' placeholder='" + esc(f.ph || "") + "'></textarea></div>";
+      });
+      html += "</div>";
+    });
+    form.innerHTML = html;
+    form.querySelectorAll("textarea").forEach(function (t) { t.value = vals[t.getAttribute("data-f")] || ""; });
+
+    function clean(v) { return String(v || "").trim().replace(/[.\s]+$/, ""); }
+    function assemble(asText) {
+      return B.parts.map(function (part) {
+        var body = part.text.replace(/\{(\w+)\}/g, function (_, id) {
+          var v = clean(vals[id]);
+          if (asText) return v || "…";
+          return v ? "<span class='slot'>" + esc(v) + "</span>" : "<span class='gap'>" + esc(id) + "</span>";
+        });
+        return asText ? body : "<div class='b-part'><h5>" + esc(part.title) + "</h5><p>" + body + "</p></div>";
+      }).join(asText ? " " : "");
+    }
+    function render() {
+      out.innerHTML = assemble(false);
+      var text = assemble(true);
+      var words = text.split(/\s+/).filter(Boolean).length;
+      var filled = B.groups.reduce(function (n, g) { return n + g.fields.filter(function (f) { return clean(vals[f.id]); }).length; }, 0);
+      var total = B.groups.reduce(function (n, g) { return n + g.fields.length; }, 0);
+      meta.textContent = filled + " of " + total + " blanks filled · about " + words + " words ≈ " + Math.max(1, Math.round(words / 110 * 60 / 10) * 10) + " seconds at a steady B1 pace";
+    }
+    var saveT = null;
+    form.addEventListener("input", function (e) {
+      var t = e.target.closest("textarea"); if (!t) return;
+      vals[t.getAttribute("data-f")] = t.value;
+      render();
+      clearTimeout(saveT);
+      saveT = setTimeout(function () { store[m.id] = vals; try { localStorage.setItem(BUILD_KEY, JSON.stringify(store)); } catch (err) {} }, 400);
+    });
+    document.getElementById("b-example").addEventListener("click", function () {
+      var has = B.groups.some(function (g) { return g.fields.some(function (f) { return clean(vals[f.id]); }); });
+      if (has && !confirm("Replace your answers with the example?")) return;
+      vals = JSON.parse(JSON.stringify(B.example));
+      form.querySelectorAll("textarea").forEach(function (t) { t.value = vals[t.getAttribute("data-f")] || ""; });
+      store[m.id] = vals; try { localStorage.setItem(BUILD_KEY, JSON.stringify(store)); } catch (err) {}
+      render();
+    });
+    document.getElementById("b-clear").addEventListener("click", function () {
+      if (!confirm("Clear all your answers?")) return;
+      vals = {}; form.querySelectorAll("textarea").forEach(function (t) { t.value = ""; });
+      store[m.id] = vals; try { localStorage.setItem(BUILD_KEY, JSON.stringify(store)); } catch (err) {}
+      render();
+    });
+    var rd = document.getElementById("b-read");
+    if (rd) rd.addEventListener("click", function () { say(assemble(true).replace(/…/g, ""), rd); });
+
+    var total = B.seconds || 270, left = total, tick = null, clock = document.getElementById("b-clock"), tb = document.getElementById("b-timer");
+    function fmt(n) { return Math.floor(n / 60) + ":" + ("0" + n % 60).slice(-2); }
+    function stopT() { clearInterval(tick); tick = null; tb.textContent = "▶ Start " + fmt(total) + " timer"; }
+    stopBuilderTimer = stopT;
+    tb.addEventListener("click", function () {
+      if (tick) { stopT(); left = total; clock.textContent = fmt(left); clock.classList.remove("low"); return; }
+      left = total; clock.textContent = fmt(left);
+      tb.textContent = "■ Stop";
+      tick = setInterval(function () {
+        left--; clock.textContent = fmt(Math.max(0, left)); clock.classList.toggle("low", left <= 30);
+        if (left <= 0) { stopT(); if (window.NCLC) window.NCLC.toast("Time! How much of your structure did you get through?"); }
+      }, 1000);
+    });
+    render();
+  }
+
   /* delegated clicks for every speak button */
   view.addEventListener("click", function (e) {
     var b = e.target.closest("[data-say]");
@@ -641,6 +759,7 @@
   /* ---------- routing ---------- */
   function route() {
     shadowRun++;
+    if (stopBuilderTimer) { stopBuilderTimer(); stopBuilderTimer = null; }
     if (Speech) Speech.stop();
     var h = decodeURIComponent(location.hash.replace(/^#/, ""));
     var parts = h.split("/");
