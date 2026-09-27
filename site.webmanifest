@@ -3,7 +3,7 @@
   "short_name": "NCLC 5",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#f1f2ed",
-  "theme_color": "#7a1f2b",
+  "background_color": "#ffffff",
+  "theme_color": "#2451d6",
   "icons": [{ "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }
