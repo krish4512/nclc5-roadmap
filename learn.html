@@ -25,6 +25,7 @@
 <script src="assets/course-4.js"></script>
 <script src="assets/course-t2.js"></script>
 <script src="assets/course-5.js"></script>
+<script src="assets/course-en.js"></script>
 <style>
   /* ---------- colour system ----------
      Every level and every section type has its own hue. An element opts in
@@ -352,6 +353,28 @@
   .sources li { margin: 4px 0; }
   .practice-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
+  /* ---------- English translations ---------- */
+  .gl { font-weight: 400; font-size: 0.9em; color: var(--ink-soft); }
+  .gl::before { content: " ("; } .gl::after { content: ")"; }
+  .gl-b { display: block; font-weight: 400; font-size: 13px; line-height: 1.4; color: var(--ink-soft); margin-top: 2px; white-space: normal; text-decoration: none; letter-spacing: 0; }
+  .lesson td .gl-b { font-size: 12.5px; color: var(--ink-faint); }
+  .lesson td.say-cell .gl-b { min-width: 9em; }
+  .mistakes .r .gl-b { color: var(--ink-soft); margin-left: 26px; }
+  @media (max-width: 640px) { .mistakes .r .gl-b { margin-left: 26px; } }
+  .pairs .pw { display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.25; }
+  .pairs .pw .gl-b { font-family: var(--sans); font-size: 12px; font-weight: 500; margin-top: 1px; }
+  .pairs button.on .gl-b { color: var(--bg); opacity: 0.85; }
+  .quiz-q .expl .gl-b.ans { margin-top: 6px; color: var(--ink); }
+  .b-part .gl-b { font-size: 13.5px; line-height: 1.55; margin-top: 6px; color: var(--ink-faint); }
+  .b-part .gl-b i { font-style: normal; color: var(--ink-soft); }
+  .gl-long { margin-top: 8px; font-size: 14px; line-height: 1.55; }
+  .no-en .gl, .no-en .gl-b { display: none; }
+  .en-toggle { cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; }
+  .en-toggle .sw { width: 26px; height: 15px; border-radius: 999px; background: var(--border-strong); position: relative; transition: background 0.2s ease; flex: none; }
+  .en-toggle .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; border-radius: 50%; background: #fff; transition: transform 0.25s var(--ease); }
+  .en-toggle[aria-pressed="true"] .sw { background: var(--c); }
+  .en-toggle[aria-pressed="true"] .sw::after { transform: translateX(11px); }
+
   /* ---------- answer builder ---------- */
   .builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
   @media (max-width: 1100px) { .builder { grid-template-columns: minmax(0, 1fr); } }
@@ -562,6 +585,39 @@
   function strip(html) { var d = document.createElement("div"); d.innerHTML = html; return d.textContent || ""; }
   function canSpeak() { return !!(Speech && Speech.available()); }
 
+  /* ---------- English translations ---------- */
+  var EN = window.COURSE_EN || { map: {}, scoped: {} };
+  var EN_KEY = "nclc5-en";
+  var curMod = "";
+  function norm(t) { return String(t || "").replace(/\s+/g, " ").trim(); }
+  function en(text) {
+    var k = norm(strip(text));
+    if (!k) return "";
+    return EN.scoped[curMod + "|" + k] || EN.map[k] || "";
+  }
+  function glB(text) { var e = en(text); return e ? "<span class='gl-b' lang='en'>" + esc(e) + "</span>" : ""; }
+  function showEn() { try { return localStorage.getItem(EN_KEY) !== "off"; } catch (e) { return true; } }
+  /* adds an English gloss after every French phrase that isn't already
+     explained right after it in the text */
+  var GLOSSED = /^\s*(\(|=|:\s*"|,? meaning| means)/;
+  function glossFr(root) {
+    root.querySelectorAll(".fr").forEach(function (el) {
+      if (el.getAttribute("data-gl") || el.closest(".gl, .gl-b, .quiz-q .opts")) return;
+      el.setAttribute("data-gl", "1");
+      var e = en(el.textContent);
+      if (!e) return;
+      var after = "", n = el.nextSibling;
+      while (n && after.length < 30) {
+        if (!(n.nodeType === 1 && n.classList.contains("ipa"))) after += n.textContent;
+        n = n.nextSibling;
+      }
+      if (GLOSSED.test(after)) return;
+      var g = document.createElement("span");
+      g.className = e.length > 90 ? "gl-b gl-long" : "gl"; g.lang = "en"; g.textContent = e;
+      el.parentNode.insertBefore(g, el.nextSibling);
+    });
+  }
+
   /* ---------- progress ---------- */
   var prog = {};
   try { prog = JSON.parse(localStorage.getItem(PROG_KEY) || "{}") || {}; } catch (e) { prog = {}; }
@@ -686,7 +742,8 @@
       h += "<tr>";
       r.forEach(function (c, i) {
         var s = sayCols.indexOf(i) !== -1 && c && c !== "—";
-        h += "<td" + (s ? " class='say-cell'" : "") + ">" + c + (s ? sayBtn(t.pron && i > 0 ? withPerson(strip(r[0]), strip(c)) : c) : "") + "</td>";
+        var said = t.pron && i > 0 ? withPerson(strip(r[0]), strip(c)) : c;
+        h += "<td" + (s ? " class='say-cell'" : "") + ">" + c + (s ? sayBtn(said) : "") + (c && c !== "—" && (i > 0 || !t.pron) ? glB(said) : "") + "</td>";
       });
       h += "</tr>";
     });
@@ -700,6 +757,7 @@
   }
 
   function renderModule(m) {
+    curMod = m.id;
     document.title = m.title + " · Learn French to NCLC 5";
     var idx = M.indexOf(m);
     var prev = M[idx - 1], next = M[idx + 1];
@@ -717,7 +775,8 @@
       "<span class='lvl'><i>" + esc(L.tag) + "</i>Module " + m.num + " · " + esc(L.name) + "</span>" +
       "<h1>" + esc(m.title) + "</h1><p class='subtitle'>" + esc(m.subtitle) + "</p>" +
       "<div class='meta'><span class='pill'>⏱ " + esc(m.hours) + "</span><span class='pill'>" + m.lessons.length + " lessons</span>" +
-      (m.quiz ? "<span class='pill'>" + m.quiz.length + "-question check</span>" : "") + (isDone(m.id) ? "<span class='pill done'>✓ Completed</span>" : "") + "</div></div>" +
+      (m.quiz ? "<span class='pill'>" + m.quiz.length + "-question check</span>" : "") + (isDone(m.id) ? "<span class='pill done'>✓ Completed</span>" : "") +
+      "<button type='button' class='pill en-toggle' id='en-toggle' aria-pressed='" + (showEn() ? "true" : "false") + "' title='Show or hide English translations'><span class='sw' aria-hidden='true'></span><span>" + (showEn() ? "English on" : "English off") + "</span></button></div></div>" +
       "<nav class='toc-bar' id='toc' aria-label='Sections in this module'>" + chips.map(function (c) {
         var s = SEC[c[0]];
         return "<a class='" + hue(c[2] || s[0]) + "' data-sec='" + c[0] + "' href='#" + m.id + "/" + c[0] + "'>" + (c[1] || s[1]) + "</a>";
@@ -746,7 +805,7 @@
         (m.sounds.intro ? "<div class='why'>" + m.sounds.intro + "</div>" : "");
       m.sounds.points.forEach(function (p) {
         h += "<div class='sound-card'><h3>" + p.title + "</h3><div class='body'>" + p.body + "</div>" +
-          (p.say && canSpeak() ? "<div class='pairs'>" + p.say.map(function (s) { return "<button type='button' data-say='" + esc(strip(s)) + "'>" + SPK + s + "</button>"; }).join("") + "</div>" : "") +
+          (p.say && canSpeak() ? "<div class='pairs'>" + p.say.map(function (s) { return "<button type='button' data-say='" + esc(strip(s)) + "'>" + SPK + "<span class='pw'><span>" + s + "</span>" + glB(s) + "</span></button>"; }).join("") + "</div>" : "") +
           "</div>";
       });
       h += "</section>";
@@ -755,7 +814,7 @@
     if (m.mistakes) {
       h += secHead("mistakes", "Mistakes English speakers make", "Examiners notice these first. Learn the right version now so it becomes automatic.") +
         "<table class='mistakes'><thead><tr><th>Not this</th><th>But this</th><th>Why</th></tr></thead><tbody>" +
-        m.mistakes.map(function (x) { return "<tr><td class='w'>" + x[0] + "</td><td class='r'>" + x[1] + "</td><td class='y'>" + x[2] + "</td></tr>"; }).join("") +
+        m.mistakes.map(function (x) { return "<tr><td class='w'>" + x[0] + "</td><td class='r'>" + x[1] + glB(x[1]) + "</td><td class='y'>" + x[2] + "</td></tr>"; }).join("") +
         "</tbody></table></section>";
     }
 
@@ -815,8 +874,18 @@
       "</nav>";
 
     view.innerHTML = h;
+    view.classList.toggle("no-en", !showEn());
     renderSide(m.id);
     wireModule(m);
+    glossFr(view);
+    var tg = document.getElementById("en-toggle");
+    if (tg) tg.addEventListener("click", function () {
+      var on = view.classList.contains("no-en");
+      try { localStorage.setItem(EN_KEY, on ? "on" : "off"); } catch (e) {}
+      view.classList.toggle("no-en", !on);
+      tg.setAttribute("aria-pressed", on ? "true" : "false");
+      tg.lastChild.textContent = on ? "English on" : "English off";
+    });
   }
 
   /* section bar: smooth-scroll without re-rendering, and highlight the
@@ -900,7 +969,9 @@
             if (order[n] === q.a) x.classList.add("right");
             else if (x === b) x.classList.add("wrong");
           });
-          var ex = d.querySelector(".expl"); ex.hidden = false; ex.innerHTML = (oi === q.a ? "<b>Correct.</b> " : "<b>Not quite.</b> ") + q.why;
+          var ex = d.querySelector(".expl"); ex.hidden = false; ex.innerHTML = (oi === q.a ? "<b>Correct.</b> " : "<b>Not quite.</b> ") + q.why +
+            (en(q.o[q.a]) ? "<span class='gl-b ans' lang='en'>" + esc(strip(q.o[q.a])) + " = " + esc(en(q.o[q.a])) + "</span>" : "");
+          glossFr(ex);
           if (answered === m.quiz.length) {
             var pct = Math.round(right / m.quiz.length * 100);
             document.getElementById("qscore").textContent = "Score: " + right + " / " + m.quiz.length + " (" + pct + "%) — " +
@@ -985,7 +1056,10 @@
           if (asText) return v || "…";
           return v ? "<span class='slot'>" + esc(v) + "</span>" : "<span class='gap'>" + esc(id) + "</span>";
         });
-        return asText ? body : "<div class='b-part'><h5>" + esc(part.title) + "</h5><p>" + body + "</p></div>";
+        if (asText) return body;
+        var tr = en(part.text);
+        if (tr) tr = esc(tr).replace(/\{(\w+)\}/g, function (_, id) { var v = clean(vals[id]); return v ? "<i>" + esc(v) + "</i>" : "…"; });
+        return "<div class='b-part'><h5>" + esc(part.title) + "</h5><p>" + body + "</p>" + (tr ? "<p class='gl-b' lang='en'>" + tr + "</p>" : "") + "</div>";
       }).join(asText ? " " : "");
     }
     function render() {
