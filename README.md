@@ -68,8 +68,10 @@ Any static host works: Netlify, Vercel, Cloudflare Pages, GitHub Pages or an S3 
   build command and the root folder as the output directory.
 - The site must be served over **http(s)**. Opening the files directly (`file://`) won't work,
   because the practice page loads the roadmap with `fetch`.
-- `404.html` uses `<base href="/">` so it works at any URL depth. If you host in a sub-folder
-  (for example `username.github.io/french/`), change it to that folder.
+- `404.html` sets `<base href="/nclc5-roadmap/">` so it works at any URL depth on GitHub Pages
+  (`krish4512.github.io/nclc5-roadmap/`). When you move to your own domain, change it to `/`.
+- **GitHub Pages:** the site is published from the `main` branch root. Every push to `main`
+  redeploys it within a minute or two. `.nojekyll` tells Pages to serve the files as-is.
 
 To preview locally:
 
