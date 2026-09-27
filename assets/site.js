@@ -74,6 +74,110 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(null); });
   }
 
+  /* ---------- motion ----------
+     Content blocks fade up as they enter the viewport; siblings stagger.
+     Works for content pages render later (course, drills, exam) through a
+     MutationObserver. Everything stays visible if motion is reduced or
+     IntersectionObserver is missing. */
+  var REVEAL = [
+    ".page-hero > *", ".section-title", ".section-lead", ".section .eyebrow",
+    ".card", ".feature", ".step", ".stats > div", ".price-card", ".faq details",
+    ".related h2", ".related-card", ".mod-card", ".lesson", ".sound-card", ".set-card", ".sec-card",
+    ".principle", ".score-card", ".skill-card", ".format-table-wrap", ".howto-box", ".plain-card",
+    ".stat", ".vocab-item", ".quiz-q", ".toc", ".prose > h2", ".contact-card", ".level-head",
+    ".roadmap-stage", ".closing-grid .note", ".sources-card", ".weak-card", ".block > h2", "[data-reveal]"
+  ].join(",");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var io = null;
+
+  function countUp(el) {
+    var target = parseFloat(el.getAttribute("data-count"));
+    if (isNaN(target) || el._counted) return;
+    el._counted = true;
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (reduceMotion) { el.textContent = target + suffix; return; }
+    var start = null, dur = 1400;
+    function step(t) {
+      if (!start) start = t;
+      var k = Math.min(1, (t - start) / dur);
+      var eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function scanReveal(root) {
+    if (!io) return;
+    var els = (root || document).querySelectorAll(REVEAL);
+    var perParent = new Map();
+    Array.prototype.forEach.call(els, function (el) {
+      if (el._revealed || el.closest(".site-header, .site-footer, .dd, .tr-dock")) return;
+      el._revealed = true;
+      if (!el.classList.contains("reveal-scale")) el.classList.add("reveal");
+      var parent = el.parentNode;
+      var n = perParent.get(parent) || 0;
+      perParent.set(parent, n + 1);
+      el.style.setProperty("--reveal-delay", Math.min(n, 6) * 0.07 + "s");
+      io.observe(el);
+    });
+    Array.prototype.forEach.call((root || document).querySelectorAll("[data-count]"), function (el) {
+      if (!el._countObserved) { el._countObserved = true; io.observe(el); }
+    });
+  }
+
+  function wireMotion() {
+    var root = document.documentElement;
+    var header = document.querySelector(".site-header");
+    var bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY || window.pageYOffset;
+        if (header) header.classList.toggle("scrolled", y > 8);
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0) + ")";
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      root.classList.remove("js-motion");
+      Array.prototype.forEach.call(document.querySelectorAll("[data-count]"), countUp);
+      return;
+    }
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("in");
+        if (en.target.hasAttribute("data-count")) countUp(en.target);
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    scanReveal(document);
+    var pending = false;
+    new MutationObserver(function () {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function () { pending = false; scanReveal(document); });
+    }).observe(document.body, { childList: true, subtree: true });
+    /* safety net: anything still hidden after 2.5s (e.g. an observer that
+       never fired) is shown */
+    setTimeout(function () {
+      Array.prototype.forEach.call(document.querySelectorAll(".reveal:not(.in), .reveal-scale:not(.in)"), function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in");
+      });
+    }, 2500);
+  }
+
   /* ---------- config-driven text ---------- */
   function mailto(subject) {
     return "mailto:" + (SITE.email || "") + (subject ? "?subject=" + encodeURIComponent(subject) : "");
@@ -172,7 +276,7 @@
 
   window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto };
 
-  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); }
+  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();

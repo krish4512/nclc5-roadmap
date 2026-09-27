@@ -4,123 +4,210 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NCLC 5 Roadmap · Pass the French for TCF &amp; TEF Canada</title>
-<meta name="description" content="A structured plan to reach NCLC / CLB 5 (CEFR B1) in French for Canadian immigration: a sequenced grammar and vocabulary roadmap, interactive drills, and timed TCF Canada and TEF Canada mock exams.">
+<meta name="description" content="A structured plan to reach NCLC / CLB 5 (CEFR B1) in French for Canadian immigration: a research-based course, interactive drills, and timed TCF Canada and TEF Canada mock exams.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NCLC 5 Roadmap · Pass the French for TCF & TEF Canada">
-<meta property="og:description" content="A sequenced study plan, interactive drills and timed mock exams for reaching NCLC 5 in French.">
+<meta property="og:description" content="A research-based French course, interactive drills and timed mock exams for reaching NCLC 5.">
 <!-- partial:head -->
-<meta name="theme-color" content="#7a1f2b">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)document.documentElement.classList.add("js-motion");</script>
 <script src="assets/config.js"></script>
 <script src="assets/site.js"></script>
 <!-- /partial:head -->
 <style>
-  .hero { padding: 64px 0 56px; position: relative; overflow: hidden; }
-  .hero::before {
-    content: ""; position: absolute; inset: -40% -10% auto auto; width: 720px; height: 720px; border-radius: 50%;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--teal) 16%, transparent), transparent);
-    pointer-events: none;
-  }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; position: relative; }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; } .hero { padding: 40px 0; } }
+  /* ---------------- hero ---------------- */
+  .hero { position: relative; padding: 96px 0 0; overflow: hidden; text-align: center; isolation: isolate; }
+  @media (max-width: 700px) { .hero { padding-top: 64px; } }
+  .aurora { position: absolute; inset: -20% -10% auto; height: 900px; z-index: -1; pointer-events: none; filter: blur(70px); opacity: 0.55; }
+  .aurora i { position: absolute; border-radius: 50%; animation: drift 18s ease-in-out infinite alternate; }
+  .aurora i:nth-child(1) { width: 520px; height: 520px; left: 12%; top: 8%; background: #8fb0ff; }
+  .aurora i:nth-child(2) { width: 460px; height: 460px; right: 10%; top: 0; background: #c9b8ff; animation-delay: -6s; }
+  .aurora i:nth-child(3) { width: 380px; height: 380px; left: 42%; top: 30%; background: #ffc6e3; animation-delay: -12s; opacity: 0.7; }
+  :root[data-theme="dark"] .aurora { opacity: 0.35; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .aurora { opacity: 0.35; } }
+  @keyframes drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 30px) scale(1.12); } }
+
+  .hero .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft);
+    background: var(--surface-raised); border: 1px solid var(--border); padding: 6px 14px 6px 8px; border-radius: 999px;
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); text-decoration: none; }
+  .hero .kicker:hover { color: var(--ink); }
+  .hero .kicker b { background: var(--brand-gradient); color: #fff; font-size: 11.5px; padding: 2px 8px; border-radius: 999px; }
   .hero h1 {
-    font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em;
-    font-size: clamp(36px, 5.6vw, 60px); line-height: 1.04; margin: 16px 0 18px; text-wrap: balance;
+    font-family: var(--serif); font-weight: 800; letter-spacing: -0.05em; line-height: 0.98;
+    font-size: clamp(48px, 9vw, 112px); margin: 26px auto 22px; max-width: 12ch;
   }
-  .hero h1 em { font-style: italic; color: var(--accent); }
-  .hero .lead { font-size: clamp(17px, 1.9vw, 19.5px); color: var(--ink-soft); max-width: 54ch; margin: 0 0 28px; }
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .trust { display: flex; gap: 8px 18px; flex-wrap: wrap; margin-top: 26px; font-size: 14px; color: var(--ink-soft); }
-  .trust span { display: inline-flex; align-items: center; gap: 7px; }
-  .trust svg { width: 16px; height: 16px; color: var(--teal); flex: none; }
+  .hero h1 .it { font-family: var(--italic); font-weight: 400; font-style: italic; letter-spacing: -0.02em; padding-right: 0.06em; }
+  .hero .lead { font-size: clamp(18px, 2vw, 23px); line-height: 1.45; color: var(--ink-soft); max-width: 40ch; margin: 0 auto 34px; letter-spacing: -0.015em; }
+  .cta-row { display: flex; gap: 22px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .link-arrow { font-weight: 600; font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .link-arrow::after { content: "›"; font-size: 20px; line-height: 1; transition: transform 0.3s var(--ease); }
+  .link-arrow:hover::after { transform: translateX(4px); }
 
-  /* product preview */
-  .preview { position: relative; min-height: 400px; }
-  .pv-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lg);
-    padding: 20px 22px;
+  /* entrance: words rise in on load */
+  .rise { display: inline-block; opacity: 0; transform: translateY(0.45em); animation: rise 1s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 90ms + 120ms); }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .fade-late { opacity: 0; animation: rise 1s var(--ease) forwards; animation-delay: 0.6s; }
+  .fade-later { opacity: 0; animation: rise 1s var(--ease) forwards; animation-delay: 0.8s; }
+  @media (prefers-reduced-motion: reduce) { .rise, .fade-late, .fade-later { opacity: 1; transform: none; animation: none; } }
+
+  /* product window */
+  .stage-wrap { margin-top: 64px; padding: 0 20px; }
+  .window {
+    --s: 0.88;
+    max-width: 980px; margin: 0 auto; border-radius: 24px; overflow: hidden; text-align: left;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: 0 50px 100px -30px rgba(15, 23, 60, 0.35), 0 20px 40px -20px rgba(0, 0, 0, 0.15);
+    transform: scale(var(--s)); transform-origin: 50% 0; will-change: transform;
   }
-  .pv-main { position: relative; z-index: 2; max-width: 400px; margin-left: auto; }
-  .pv-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
-  .pv-q { font-family: var(--serif); font-weight: 700; font-size: 25px; margin: 6px 0 14px; }
-  .pv-opt { display: flex; gap: 10px; align-items: center; border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 12px; margin-top: 8px; font-size: 15px; }
-  .pv-opt b { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; font-family: var(--mono); font-size: 11px; background: var(--surface-alt); color: var(--ink-soft); }
-  .pv-opt.ok { border-color: var(--teal); background: var(--teal-soft); }
-  .pv-opt.ok b { background: var(--teal); color: var(--teal-ink); }
-  .pv-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .pv-streak { font-family: var(--mono); font-size: 12px; font-weight: 600; background: var(--gold-soft); color: var(--gold); padding: 3px 9px; border-radius: 999px; }
-  .pv-float {
-    position: absolute; z-index: 3; display: flex; gap: 12px; align-items: center;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 12px 16px;
+  .window-bar { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid var(--border); background: var(--surface-alt); }
+  .window-bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--border-strong); }
+  .window-bar span { margin-left: 12px; font-size: 12.5px; color: var(--ink-faint); }
+  .window-body { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 420px; }
+  @media (max-width: 760px) { .window-body { grid-template-columns: minmax(0, 1fr); min-height: 0; } .w-side { display: none; } }
+  .w-side { border-right: 1px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-soft); }
+  .w-side .lv { font-size: 11px; font-weight: 600; color: var(--ink-faint); margin: 12px 8px 4px; }
+  .w-side .it { padding: 7px 8px; border-radius: 9px; display: flex; gap: 8px; align-items: center; }
+  .w-side .it.on { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  .w-side .it .d { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex: none; }
+  .w-side .it .d.ok { background: var(--accent); border-color: var(--accent); }
+  .w-main { padding: 28px 32px; display: flex; flex-direction: column; gap: 16px; }
+  @media (max-width: 560px) { .w-main { padding: 22px 18px; } }
+  .w-main .tag { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .w-q { font-family: var(--italic); font-style: italic; font-size: clamp(26px, 3.2vw, 38px); color: var(--ink); line-height: 1.15; }
+  .w-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .w-opts div { border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+  .w-opts div b { width: 24px; height: 24px; border-radius: 7px; background: var(--surface-alt); display: grid; place-items: center; font-size: 12px; color: var(--ink-soft); flex: none; }
+  .w-opts div.ok { border-color: var(--good); background: var(--good-soft); }
+  .w-opts div.ok b { background: var(--good); color: var(--good-ink); }
+  .w-foot { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: auto; }
+  .w-foot .streak { font-size: 12.5px; font-weight: 600; color: var(--gold); background: var(--gold-soft); padding: 4px 10px; border-radius: 999px; }
+  .w-foot .bar { flex: 1; min-width: 120px; height: 6px; border-radius: 6px; background: var(--surface-alt); overflow: hidden; }
+  .w-foot .bar i { display: block; height: 100%; width: 62%; background: var(--brand-gradient); border-radius: 6px; }
+
+  /* ---------------- marquee ---------------- */
+  .marquee { padding: 88px 0 24px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .marquee-track { display: flex; gap: 56px; width: max-content; animation: marquee 50s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee span { font-family: var(--italic); font-style: italic; font-size: clamp(28px, 4vw, 46px); color: var(--ink-faint); white-space: nowrap; }
+  .marquee span:nth-child(3n+1) { color: var(--ink); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ---------------- word-light statement ---------------- */
+  .statement { padding: 120px 0 100px; }
+  .statement p {
+    font-family: var(--serif); font-weight: 700; letter-spacing: -0.04em; line-height: 1.12;
+    font-size: clamp(32px, 5vw, 62px); margin: 0; max-width: 21ch;
   }
-  .pv-ring { left: 0; bottom: 24px; }
-  .pv-ring svg { width: 54px; height: 54px; transform: rotate(-90deg); }
-  .pv-ring circle { fill: none; stroke-width: 7; }
-  .pv-ring .t { font-weight: 600; font-size: 14px; }
-  .pv-ring .s { font-size: 12.5px; color: var(--ink-soft); }
-  .pv-coach { right: -8px; top: -18px; font-size: 13px; }
-  .pv-coach i { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); display: inline-block; }
-  @media (max-width: 900px) { .pv-main { margin: 0 auto; } .pv-ring { left: 4px; bottom: -8px; } .pv-coach { right: 4px; } .preview { min-height: 0; padding: 26px 0 40px; } }
-  @media (prefers-reduced-motion: no-preference) {
-    .pv-float { animation: floaty 6s ease-in-out infinite; }
-    .pv-coach { animation-delay: -3s; }
+  .statement .w { opacity: 0.14; transition: opacity 0.4s ease; }
+  .statement .w.on { opacity: 1; }
+  .statement .w.grad { background: var(--brand-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  .no-motion .statement .w { opacity: 1; }
+
+  /* ---------------- pinned scrollytelling ---------------- */
+  .story { position: relative; height: 320vh; }
+  .story-pin { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); display: flex; align-items: center; overflow: hidden; }
+  .story-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; width: 100%; }
+  @media (max-width: 860px) { .story-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+  .story-copy { position: relative; }
+  .story-steps { position: relative; min-height: 400px; }
+  .story-step { position: absolute; inset: 0; opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); pointer-events: none; }
+  .story-step.on { opacity: 1; transform: none; pointer-events: auto; }
+  .story-step .num { font-size: 14px; font-weight: 600; color: var(--accent); }
+  .story-step h2 { font-family: var(--serif); font-weight: 800; letter-spacing: -0.045em; line-height: 1; font-size: clamp(40px, 6.6vw, 84px); margin: 10px 0 18px; }
+  .story-step p { font-size: clamp(16px, 1.7vw, 20px); color: var(--ink-soft); line-height: 1.5; max-width: 36ch; margin: 0 0 20px; }
+  .story-dots { display: flex; gap: 8px; margin-bottom: 26px; }
+  .story-dots i { width: 28px; height: 4px; border-radius: 4px; background: var(--border); transition: background 0.4s ease, width 0.4s var(--ease); }
+  .story-dots i.on { background: var(--ink); width: 44px; }
+  .story-visual { position: relative; height: min(460px, 52vh); }
+  @media (max-width: 860px) { .story-visual { height: 270px; } .story-steps { min-height: 300px; } .story-dots { margin-bottom: 14px; } }
+  @media (max-width: 860px) and (max-height: 760px) { .story-step p { display: none; } .story-steps { min-height: 190px; } }
+  .panel {
+    position: absolute; inset: 0; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 14px;
+    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+    opacity: 0; transform: translateY(30px) scale(0.96); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
   }
-  @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .panel.on { opacity: 1; transform: none; }
+  .panel .p-tag { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .panel .p-big { font-family: var(--italic); font-style: italic; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.15; }
+  .panel .p-row { display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 14px; background: var(--surface-alt); font-size: 14.5px; }
+  .panel .p-row b { flex: 1; font-weight: 500; }
+  .panel .p-row em { font-style: normal; font-size: 12px; font-weight: 600; color: var(--accent); }
+  .panel .ring { width: 150px; height: 150px; position: relative; margin: 0 auto; }
+  .panel .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .panel .ring circle { fill: none; stroke-width: 12; }
+  .panel .ring .t { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-weight: 800; font-size: 38px; letter-spacing: -0.04em; }
+  .panel.dark { background: #0b0b0d; color: #f5f5f7; border-color: #232326; }
+  .panel.dark .p-row { background: #1a1a1d; }
+  .panel.dark .p-tag, .panel.dark .p-row em { color: #8fb0ff; }
+  @media (max-width: 860px) { .panel { padding: 20px; gap: 10px; } .panel .ring { width: 110px; height: 110px; } .panel .ring .t { font-size: 28px; } }
+  .no-motion .story { height: auto; }
+  .no-motion .story-pin { position: static; height: auto; padding: 60px 0; }
+  .no-motion .story-step { position: static; opacity: 1; transform: none; margin-bottom: 40px; }
+  .no-motion .story-visual, .no-motion .story-dots { display: none; }
+  .no-motion .story-steps { min-height: 0; }
 
-  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .stats div { background: var(--surface); padding: 20px 22px; }
-  .stats b { display: block; font-family: var(--serif); font-size: 32px; line-height: 1.1; letter-spacing: -0.01em; }
-  .stats span { font-size: 14px; color: var(--ink-soft); }
+  /* ---------------- counters ---------------- */
+  .numbers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+  @media (max-width: 760px) { .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; } }
+  .numbers div b { display: block; font-family: var(--serif); font-weight: 800; letter-spacing: -0.05em; font-size: clamp(52px, 7vw, 84px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .numbers div span { display: block; margin-top: 10px; font-size: 15px; color: var(--ink-soft); max-width: 22ch; }
 
-  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; counter-reset: step; }
-  @media (max-width: 860px) { .steps { grid-template-columns: minmax(0, 1fr); } }
-  .step { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm); }
-  .step::before {
-    counter-increment: step; content: counter(step);
-    width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px;
-    background: var(--accent); color: var(--accent-ink); font-family: var(--mono); font-weight: 600;
-  }
-  .step h3 { margin: 0 0 6px; font-size: 18px; }
-  .step p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15px; }
-  .step a { font-weight: 600; font-size: 14.5px; text-decoration: none; }
+  /* ---------------- bento ---------------- */
+  .bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: minmax(230px, auto); gap: 16px; }
+  .tile { position: relative; overflow: hidden; border-radius: 28px; padding: 30px; background: var(--surface-alt); display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--ink); transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+  a.tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); color: var(--ink); }
+  .tile h3 { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; margin: 0; }
+  .tile p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 38ch; }
+  .tile .k { font-size: 12.5px; font-weight: 600; color: var(--accent); }
+  .t-a { grid-column: span 4; grid-row: span 2; background: #0b0b0d; color: #f5f5f7; border: 1px solid #232326; }
+  a.t-a:hover { color: #f5f5f7; }
+  .t-a p { color: #a1a1a6; }
+  .t-a .k { color: #8fb0ff; }
+  .t-b { grid-column: span 2; grid-row: span 2; }
+  .t-c, .t-d, .t-e { grid-column: span 2; }
+  .t-f { grid-column: span 3; }
+  .t-g { grid-column: span 3; background: var(--brand-gradient); color: #fff; }
+  a.t-g:hover { color: #fff; }
+  .t-g p, .t-g .k { color: rgba(255, 255, 255, 0.88); }
+  @media (max-width: 900px) { .t-a, .t-b, .t-c, .t-d, .t-e, .t-f, .t-g { grid-column: span 6; grid-row: auto; } }
+  .wave { display: flex; align-items: flex-end; gap: 5px; height: 90px; margin-top: auto; }
+  .wave i { flex: 1; border-radius: 4px; background: linear-gradient(to top, #2451d6, #a58cff); animation: wave 1.6s ease-in-out infinite; }
+  @keyframes wave { 0%, 100% { height: 18%; } 50% { height: 100%; } }
+  .phrase-stack { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+  .phrase-stack div { font-family: var(--italic); font-style: italic; font-size: clamp(18px, 2vw, 22px); padding: 10px 16px; border-radius: 14px; background: #1a1a1d; }
+  .phrase-stack div:nth-child(2) { margin-left: 24px; opacity: 0.8; }
+  .phrase-stack div:nth-child(3) { margin-left: 48px; opacity: 0.6; }
+  .t-b .chips { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+  .t-b .chips span { font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); }
+  .t-b .chips span.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .big-num { font-family: var(--serif); font-weight: 800; letter-spacing: -0.05em; font-size: 72px; line-height: 1; margin-top: auto; }
 
-  .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-  @media (max-width: 900px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 600px) { .features { grid-template-columns: minmax(0, 1fr); } }
-  .feature { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 10px; }
-  .feature .ic { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal); }
-  .feature .ic svg { width: 21px; height: 21px; }
-  .feature .ic.a { background: var(--accent-soft); color: var(--accent); }
-  .feature .ic.g { background: var(--gold-soft); color: var(--gold); }
-  .feature h3 { margin: 0; font-size: 16.5px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .feature p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+  /* ---------------- bands ---------------- */
+  .bands { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+  @media (max-width: 860px) { .bands { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+  table.mini { width: 100%; border-collapse: collapse; font-size: 15px; }
+  table.mini th, table.mini td { padding: 15px 4px; text-align: left; border-bottom: 1px solid var(--border); }
+  table.mini th { font-size: 12.5px; color: var(--ink-faint); font-weight: 600; }
+  table.mini td.num { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
 
-  .bands { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
-  @media (max-width: 860px) { .bands { grid-template-columns: minmax(0, 1fr); } }
-  table.mini { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  table.mini th, table.mini td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--border); }
-  table.mini th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); font-weight: 600; background: var(--surface-alt); }
-  table.mini td.num { font-family: var(--mono); font-weight: 600; text-align: right; }
-  table.mini tr:last-child td { border-bottom: none; }
-
-  .cta-band {
-    background: var(--accent); color: var(--accent-ink); border-radius: 20px; padding: 44px 40px;
-    display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap;
-  }
-  .cta-band h2 { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 6px; letter-spacing: -0.01em; }
-  .cta-band p { margin: 0; opacity: 0.9; max-width: 52ch; }
-  .cta-band .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); }
-  .cta-band .btn:hover { background: var(--accent-ink); color: var(--accent); opacity: 0.92; }
-  .cta-band .btn-outline { background: transparent; color: var(--accent-ink); border-color: color-mix(in srgb, var(--accent-ink) 60%, transparent); }
-  .cta-band .btn-outline:hover { background: color-mix(in srgb, var(--accent-ink) 12%, transparent); color: var(--accent-ink); }
-  @media (max-width: 560px) { .cta-band { padding: 32px 22px; } }
+  /* ---------------- final CTA ---------------- */
+  .finale { position: relative; overflow: hidden; border-radius: 36px; margin: 0 20px; padding: 120px 28px; text-align: center; background: #000; color: #f5f5f7; isolation: isolate; }
+  .finale::before { content: ""; position: absolute; width: 900px; height: 900px; left: 50%; top: 50%; transform: translate(-50%, -30%); z-index: -1;
+    background: radial-gradient(closest-side, rgba(108, 71, 228, 0.55), rgba(36, 81, 214, 0.25) 45%, transparent 70%); animation: glow 8s ease-in-out infinite alternate; }
+  @keyframes glow { to { transform: translate(-50%, -38%) scale(1.15); } }
+  .finale h2 { font-family: var(--serif); font-weight: 800; letter-spacing: -0.05em; line-height: 1; font-size: clamp(44px, 7.5vw, 96px); margin: 0 auto 20px; max-width: 13ch; }
+  .finale p { font-size: clamp(17px, 1.8vw, 21px); color: #a1a1a6; max-width: 44ch; margin: 0 auto 36px; }
+  .finale .btn-primary { background: #f5f5f7; color: #000; border-color: #f5f5f7; }
+  .finale .btn-primary:hover { background: #fff; color: #000; }
+  .finale .link-arrow { color: #8fb0ff; }
+  @media (max-width: 560px) { .finale { margin: 0 12px; padding: 80px 20px; border-radius: 28px; } }
 </style>
 </head>
 <body>
@@ -191,114 +278,168 @@
 <main id="main">
 
 <section class="hero">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="container">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow">TCF Canada · TEF Canada · CLB 5</span>
-        <h1>Reach <em>NCLC 5</em> in French with a plan, not guesswork.</h1>
-        <p class="lead">A sequenced roadmap of exactly the grammar, vocabulary and exam skills B1 requires — plus drills that make them automatic and timed mock exams that show you when you're ready.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="learn.html">Start the free course</a>
-          <a class="btn btn-lg" href="pricing.html">See Pro plans</a>
-        </div>
-        <div class="trust">
-          <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>No account needed to start</span>
-          <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Canadian French audio</span>
-          <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Works on phone and desktop</span>
-        </div>
-      </div>
+    <a class="kicker fade-late" href="learn.html#tcf-t2"><b>New</b> TCF speaking kits for tasks 2 &amp; 3 ›</a>
+    <h1 aria-label="Your French, exam-ready.">
+      <span class="rise" style="--i:0" aria-hidden="true">Your</span> <span class="rise" style="--i:1" aria-hidden="true">French,</span><br>
+      <span class="rise it gradient-text" style="--i:2" aria-hidden="true">exam-ready.</span>
+    </h1>
+    <p class="lead fade-late">The complete path to NCLC&nbsp;5 on the TCF&nbsp;Canada and TEF&nbsp;Canada. Learn it in the right order. Drill it until it's automatic. Prove it under the clock.</p>
+    <div class="cta-row fade-later">
+      <a class="btn btn-primary btn-lg" href="learn.html">Start learning free</a>
+      <a class="link-arrow" href="#story">See how it works</a>
+    </div>
+  </div>
 
-      <div class="preview" aria-hidden="true">
-        <div class="pv-card pv-main">
-          <div class="pv-top"><span class="pv-label">Conjugate · 7 / 20</span><span class="pv-streak">streak 6</span></div>
-          <div class="pv-q">pouvoir · présent — nous</div>
-          <div class="pv-opt"><b>1</b>peuvent</div>
-          <div class="pv-opt ok"><b>2</b>pouvons</div>
-          <div class="pv-opt"><b>3</b>pouvez</div>
-          <div class="pv-opt"><b>4</b>peut</div>
+  <div class="stage-wrap" aria-hidden="true">
+    <div class="window" id="window">
+      <div class="window-bar"><i></i><i></i><i></i><span>Practice · Verb conjugations</span></div>
+      <div class="window-body">
+        <div class="w-side">
+          <div class="lv">A2 · Everyday French</div>
+          <div class="it"><span class="d ok"></span>Reflexive verbs</div>
+          <div class="it"><span class="d ok"></span>Passé composé</div>
+          <div class="it on"><span class="d"></span>Imparfait</div>
+          <div class="it"><span class="d"></span>Object pronouns</div>
+          <div class="lv">B1 · Independent</div>
+          <div class="it"><span class="d"></span>The conditional</div>
+          <div class="it"><span class="d"></span>The subjunctive</div>
         </div>
-        <div class="pv-float pv-ring">
-          <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" stroke="var(--surface-alt)"/><circle cx="30" cy="30" r="24" stroke="var(--teal)" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="45"/></svg>
-          <div><div class="t">Reading · 70%</div><div class="s">Around the NCLC 5 range</div></div>
+        <div class="w-main">
+          <span class="tag">Conjugate · 7 of 20</span>
+          <div class="w-q">être · imparfait — nous</div>
+          <div class="w-opts">
+            <div><b>1</b>sommes</div>
+            <div class="ok"><b>2</b>étions</div>
+            <div><b>3</b>serions</div>
+            <div><b>4</b>étiez</div>
+          </div>
+          <div class="w-foot"><span class="streak">Streak · 6</span><span class="bar"><i></i></span></div>
         </div>
-        <div class="pv-float pv-coach"><i></i>Contrast connector: <b>cependant</b></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:8px">
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Je voudrais un café.</span><span>Il faut que je parte.</span><span>Si j'avais su…</span><span>À mon avis, c'est l'avenir.</span><span>Ça fait trois ans que j'habite ici.</span><span>Pourriez-vous répéter ?</span><span>Je viens d'arriver.</span><span>En fin de compte…</span>
+    <span>Je voudrais un café.</span><span>Il faut que je parte.</span><span>Si j'avais su…</span><span>À mon avis, c'est l'avenir.</span><span>Ça fait trois ans que j'habite ici.</span><span>Pourriez-vous répéter ?</span><span>Je viens d'arriver.</span><span>En fin de compte…</span>
+  </div>
+</div>
+
+<section class="statement">
   <div class="container">
-    <div class="stats">
-      <div><b>19</b><span>research-based modules, from first sounds to B1</span></div>
-      <div><b>300+</b><span>drill items with audio</span></div>
-      <div><b>40</b><span>timed comprehension questions</span></div>
-      <div><b>6</b><span>writing &amp; speaking tasks with rubrics</span></div>
+    <p id="statement">Most learners stall because they study everything at once. B1 takes around four hundred focused hours — spent in the right order, tested constantly, and spoken out loud from day one.</p>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-pin">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-copy">
+          <div class="story-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+          <div class="story-steps">
+          <div class="story-step on">
+            <span class="num">01 — Learn</span>
+            <h2>Learn it<br>in order.</h2>
+            <p>Twenty-one modules, from the sound system to the subjunctive. Every one explains the grammar properly, shows you how to say it, and flags the mistakes English speakers make.</p>
+            <a class="link-arrow" href="learn.html">Open the course</a>
+          </div>
+          <div class="story-step">
+            <span class="num">02 — Drill</span>
+            <h2>Drill it until<br>it's automatic.</h2>
+            <p>Type, multiple choice, flashcards or dictation. Streaks keep you going; a review queue brings back exactly what you keep missing.</p>
+            <a class="link-arrow" href="quiz.html">Try a drill</a>
+          </div>
+          <div class="story-step">
+            <span class="num">03 — Prove</span>
+            <h2>Prove it<br>under the clock.</h2>
+            <p>Timed listening and reading marked instantly, plus writing and speaking tasks with a live coach, timers and recording.</p>
+            <a class="link-arrow" href="exam.html">See the mock exam</a>
+          </div>
+          </div>
+        </div>
+        <div class="story-visual" aria-hidden="true">
+          <div class="panel on">
+            <span class="p-tag">Module 10 · A2</span>
+            <div class="p-big">Je regardais la télé quand le téléphone a sonné.</div>
+            <div class="p-row"><b>Imparfait — the background</b><em>regardais</em></div>
+            <div class="p-row"><b>Passé composé — the event</b><em>a sonné</em></div>
+          </div>
+          <div class="panel dark">
+            <span class="p-tag">Listen &amp; type · streak 12</span>
+            <div class="p-big">« Nous nous sommes rencontrés à Montréal. »</div>
+            <div class="p-row"><b>nous nous sommes rencontrés</b><em>Correct</em></div>
+            <div class="p-row"><b>Accents forgiven, but pointed out</b><em>✓</em></div>
+          </div>
+          <div class="panel">
+            <span class="p-tag">Compréhension écrite · exam mode</span>
+            <div class="ring"><svg viewBox="0 0 150 150"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2451d6"/><stop offset="1" stop-color="#c2419a"/></linearGradient></defs><circle cx="75" cy="75" r="62" stroke="var(--surface-alt)"/><circle cx="75" cy="75" r="62" stroke="url(#rg)" stroke-linecap="round" stroke-dasharray="389.6" stroke-dashoffset="78"/></svg><span class="t">80%</span></div>
+            <div class="p-row"><b>At or above the NCLC 5 range</b><em>16 / 20</em></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <span class="eyebrow">How it works</span>
-    <h2 class="section-title">Three steps from A2 to exam-ready</h2>
-    <p class="section-lead">Most learners stall because they study everything at once. This breaks B1 into an order you can follow and a way to prove each piece is solid.</p>
-    <div class="steps">
-      <div class="step">
-        <h3>Learn it in the right order</h3>
-        <p>A 19-module course built on memory and language-learning research: grammar explained properly, pronunciation, common mistakes, speaking drills and a check at the end of every module.</p>
-        <a href="learn.html">Open the course &rarr;</a>
-      </div>
-      <div class="step">
-        <h3>Drill until it's automatic</h3>
-        <p>Type, multiple choice, flashcards or listening — with streaks, accent keys, and a review queue of the items you keep missing.</p>
-        <a href="quiz.html">Try a drill &rarr;</a>
-      </div>
-      <div class="step">
-        <h3>Sit timed mock exams</h3>
-        <p>Listening and reading under the clock, marked instantly, plus writing and speaking tasks with a live coach and self-marking rubric.</p>
-        <a href="exam.html">See the mock exam &rarr;</a>
-      </div>
+    <div class="numbers">
+      <div data-reveal><b data-count="21">21</b><span>research-based modules, sound system to B1</span></div>
+      <div data-reveal><b data-count="300" data-suffix="+">300+</b><span>drill items, every one with audio</span></div>
+      <div data-reveal><b data-count="40">40</b><span>timed comprehension questions</span></div>
+      <div data-reveal><b data-count="6">6</b><span>writing and speaking tasks with rubrics</span></div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" style="padding-top:40px">
   <div class="container">
-    <span class="eyebrow">What's inside</span>
-    <h2 class="section-title">Built around how the exams are actually scored</h2>
-    <p class="section-lead">Every feature maps to something an examiner listens or reads for.</p>
-    <div class="features">
-      <div class="feature">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6h16M4 12h10M4 18h13"/></svg></span>
-        <h3>A complete French course</h3>
-        <p>Nineteen modules from the sound system to the subjunctive, each with lessons, pronunciation, typical English-speaker mistakes, shadowing drills and a self-check.</p>
-      </div>
-      <div class="feature">
-        <span class="ic g"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M8 9h6M8 13h4"/></svg></span>
-        <h3>Ten vocabulary banks</h3>
-        <p>Work, housing, health, transport, opinions and more — the narrow set of situations both exams draw prompts from.</p>
-      </div>
-      <div class="feature">
-        <span class="ic a"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
-        <h3>Drills in four modes</h3>
-        <p>Typing with forgiving accent checks, multiple choice, flip cards, and listen-and-type dictation.</p>
-      </div>
-      <div class="feature">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7.5V12l3 2"/></svg></span>
-        <h3>Timed comprehension <span class="pill accent">Pro</span></h3>
-        <p>Listening that plays each recording at most twice, and reading with authentic-style notices — in exam or practice mode.</p>
-      </div>
-      <div class="feature">
-        <span class="ic a"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 20l1-5L15.5 4.5a2.1 2.1 0 0 1 3 3L8 18z"/></svg></span>
-        <h3>Writing coach <span class="pill accent">Pro</span></h3>
-        <p>Live word count, connector and tense tracking while you write, then a rubric and a model answer to compare against.</p>
-      </div>
-      <div class="feature">
-        <span class="ic g"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span>
-        <h3>Speaking recorder <span class="pill accent">Pro</span></h3>
-        <p>Preparation and speaking timers in the real format, with a recording you can play back and keep.</p>
-      </div>
+    <span class="eyebrow">Everything you need</span>
+    <h2 class="section-title">Built around how<br>the exams are scored.</h2>
+    <p class="section-lead">Every feature maps to something an examiner listens or reads for — nothing more, nothing less.</p>
+    <div class="bento">
+      <a class="tile t-a" href="learn.html#tcf-t3" data-reveal>
+        <span class="k">Speaking kits</span>
+        <h3>Walk into tasks 2 and 3 with a plan.</h3>
+        <p>Openings, a ten-question sequence, reactions and a five-part opinion template — plus builders that assemble your full answer as you type.</p>
+        <div class="phrase-stack" aria-hidden="true"><div>Alors, le sujet sur lequel je vais m'exprimer…</div><div>Ce premier point m'amène au second…</div><div>Pour conclure, je dirais que…</div></div>
+      </a>
+      <a class="tile t-b" href="learn.html" data-reveal>
+        <span class="k">The course</span>
+        <h3>A1 to B1, in the order that works.</h3>
+        <p>Retrieval, spacing and interleaving are built into every module.</p>
+        <div class="chips" aria-hidden="true"><span class="on">Sons</span><span class="on">Présent</span><span class="on">Passé composé</span><span>Imparfait</span><span>Pronoms</span><span>Conditionnel</span><span>Subjonctif</span></div>
+      </a>
+      <a class="tile t-c" href="learn.html#sounds" data-reveal>
+        <span class="k">Pronunciation</span>
+        <h3>Hear every word.</h3>
+        <div class="wave" aria-hidden="true"><i style="animation-delay:-.1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.15s"></i><i style="animation-delay:-.9s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-.7s"></i></div>
+      </a>
+      <a class="tile t-d" href="exam.html?s=writing" data-reveal>
+        <span class="k">Writing coach</span>
+        <h3>Feedback as you type.</h3>
+        <p>Word count, connectors and tenses, tracked live.</p>
+      </a>
+      <a class="tile t-e" href="quiz.html" data-reveal>
+        <span class="k">Drills</span>
+        <h3>Four ways to practise.</h3>
+        <span class="big-num gradient-text">4</span>
+      </a>
+      <a class="tile t-f" href="exam.html?s=speaking" data-reveal>
+        <span class="k">Speaking mock</span>
+        <h3>Record yourself. Listen back. Improve.</h3>
+        <p>Real preparation and speaking timers, with a recording that never leaves your device.</p>
+      </a>
+      <a class="tile t-g" href="roadmap.html" data-reveal>
+        <span class="k">The roadmap</span>
+        <h3>Know exactly where you stand.</h3>
+        <p>Score bands, exam formats and a checklist for every skill — with your progress saved as you go.</p>
+      </a>
     </div>
   </div>
 </section>
@@ -308,11 +449,11 @@
     <div class="bands">
       <div>
         <span class="eyebrow">Know your target</span>
-        <h2 class="section-title">What NCLC 5 means on each test</h2>
-        <p class="section-lead" style="margin-bottom:20px">NCLC 5 is CEFR B1 — but TCF and TEF each score on their own scale. These are the published conversion bands; the roadmap has the full breakdown and the exam format for both.</p>
-        <a class="btn" href="roadmap.html#scores">Full score breakdown &rarr;</a>
+        <h2 class="section-title">What NCLC&nbsp;5 means on each test.</h2>
+        <p class="section-lead" style="margin-bottom:24px">NCLC 5 is CEFR B1 — but the TCF and TEF each score on their own scale. The roadmap has the full breakdown and both exam formats.</p>
+        <a class="link-arrow" href="roadmap.html#scores">Full score breakdown</a>
       </div>
-      <table class="mini">
+      <table class="mini" data-reveal>
         <thead><tr><th>Section</th><th style="text-align:right">TCF Canada</th><th style="text-align:right">TEF Canada</th></tr></thead>
         <tbody>
           <tr><td>Reading</td><td class="num">375–405</td><td class="num">151–180</td></tr>
@@ -328,15 +469,15 @@
 <section class="section">
   <div class="container narrow">
     <span class="eyebrow">Questions</span>
-    <h2 class="section-title">Before you start</h2>
-    <div class="faq" style="margin-top:22px">
+    <h2 class="section-title">Before you start.</h2>
+    <div class="faq" style="margin-top:28px">
       <details>
         <summary>Is this for the TCF Canada or the TEF Canada?</summary>
         <div><p>Both. The grammar and vocabulary needed for NCLC 5 are the same; where the two exams differ — scoring scales, number of tasks, timing — the roadmap shows each one side by side.</p></div>
       </details>
       <details>
         <summary>What level do I need to start at?</summary>
-        <div><p>The roadmap starts at the present tense, so a motivated beginner can follow it. It's most efficient if you're around A1–A2 and need a structured path to B1.</p></div>
+        <div><p>The course starts at the sound system and the present tense, so a motivated beginner can follow it. It's most efficient if you're around A1–A2 and need a structured path to B1.</p></div>
       </details>
       <details>
         <summary>Does it guarantee a score?</summary>
@@ -347,21 +488,17 @@
         <div><p>In your browser, on your device. Nothing you tick or type is sent to us. You can export a backup file from the roadmap page and import it on another device.</p></div>
       </details>
     </div>
-    <p style="margin-top:18px"><a href="contact.html">More answers on the FAQ page &rarr;</a></p>
+    <p style="margin-top:22px"><a class="link-arrow" href="contact.html">More answers</a></p>
   </div>
 </section>
 
-<section class="section" style="padding-top:16px">
-  <div class="container">
-    <div class="cta-band">
-      <div>
-        <h2>Start today — the roadmap is free.</h2>
-        <p>Upgrade to Pro when you're ready for full timed mock exams, the writing coach and speaking practice.</p>
-      </div>
-      <div class="cta-row">
-        <a class="btn btn-lg" href="roadmap.html">Open the roadmap</a>
-        <a class="btn btn-lg btn-outline" href="pricing.html">View pricing</a>
-      </div>
+<section class="section" style="padding-bottom:0">
+  <div class="finale" data-reveal>
+    <h2>Start today.<br>It's free.</h2>
+    <p>The course, the roadmap and the drills are free. Upgrade to Pro when you're ready for full mock exams, the writing coach and speaking practice.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="learn.html">Start learning</a>
+      <a class="link-arrow" href="pricing.html">View pricing</a>
     </div>
   </div>
 </section>
@@ -419,5 +556,75 @@
   </div>
 </footer>
 <!-- /partial:footer -->
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) document.documentElement.classList.add("no-motion");
+
+  /* statement: wrap each word so it can light up as you scroll */
+  var st = document.getElementById("statement");
+  var wordEls = [];
+  if (st) {
+    st.innerHTML = st.textContent.trim().split(/\s+/).map(function (w) {
+      return "<span class='w" + (/^(order,|constantly,|loud)$/.test(w) ? " grad" : "") + "'>" + w + "</span>";
+    }).join(" ");
+    wordEls = st.querySelectorAll(".w");
+  }
+
+  var win = document.getElementById("window");
+  var story = document.getElementById("story");
+  var steps = story ? story.querySelectorAll(".story-step") : [];
+  var panels = story ? story.querySelectorAll(".panel") : [];
+  var dots = story ? story.querySelectorAll(".story-dots i") : [];
+  var current = 0;
+
+  function setStep(n) {
+    if (n === current) return;
+    current = n;
+    Array.prototype.forEach.call(steps, function (s, i) { s.classList.toggle("on", i === n); });
+    Array.prototype.forEach.call(panels, function (p, i) { p.classList.toggle("on", i === n); });
+    Array.prototype.forEach.call(dots, function (d, i) { d.classList.toggle("on", i === n); });
+  }
+
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+
+    /* product window grows from 88% to 100% as it scrolls into view */
+    if (win) {
+      var r = win.getBoundingClientRect();
+      var k = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
+      win.style.setProperty("--s", (0.88 + 0.12 * k).toFixed(4));
+    }
+
+    /* statement words light up as the paragraph crosses the viewport */
+    if (wordEls.length) {
+      var sr = st.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, (vh * 0.85 - sr.top) / (sr.height + vh * 0.3)));
+      var lit = Math.round(p * wordEls.length);
+      for (var i = 0; i < wordEls.length; i++) wordEls[i].classList.toggle("on", i < lit);
+    }
+
+    /* pinned story: choose the step from progress through the tall section */
+    if (story && steps.length) {
+      var total = story.offsetHeight - vh;
+      var prog = total > 0 ? Math.min(0.999, Math.max(0, -story.getBoundingClientRect().top / total)) : 0;
+      setStep(Math.floor(prog * steps.length));
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+
+  if (reduce) {
+    Array.prototype.forEach.call(wordEls, function (w) { w.classList.add("on"); });
+    if (win) win.style.setProperty("--s", "1");
+  } else {
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    frame();
+  }
+})();
+</script>
 </body>
 </html>
