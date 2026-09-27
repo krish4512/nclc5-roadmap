@@ -1,162 +1,307 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NCLC 5 Mock Exam</title>
+<title>TCF &amp; TEF Canada Mock Exam · NCLC 5</title>
+<meta name="description" content="Timed mock exam in the TCF Canada and TEF Canada format: listening and reading comprehension with instant marking, plus writing and speaking tasks with a live coach and rubric.">
+<!-- partial:head -->
+<meta name="theme-color" content="#7a1f2b">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<!-- /partial:head -->
+<script src="assets/speech.js"></script>
 <style>
-  :root {
-    --bg: #eff1ec; --surface: #ffffff; --surface-alt: #e6e9e1;
-    --ink: #1c2521; --ink-soft: #52594e; --ink-faint: #838c7d; --border: #d6dbcf;
-    --accent: #7a1f2b; --accent-ink: #ffffff; --accent-soft: #f3e3e1; --accent-soft-border: #e3c3bf;
-    --teal: #1f5c52; --teal-ink: #ffffff; --teal-soft: #dfeae5; --teal-soft-border: #bcd7cd;
-    --shadow: 0 1px 2px rgba(28,37,33,0.06), 0 6px 20px -8px rgba(28,37,33,0.12);
-    --radius: 10px;
-    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
-    --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-    --mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  .wrap { max-width: 860px; margin: 0 auto; padding: 36px 24px 24px; }
+  @media (max-width: 560px) { .wrap { padding: 24px 16px 16px; } }
+
+  .crumbs { font-size: 13.5px; color: var(--ink-faint); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); }
+  h1.title { font-family: var(--serif); font-weight: 700; letter-spacing: -0.015em; font-size: clamp(28px, 4.2vw, 38px); line-height: 1.12; margin: 10px 0 8px; }
+  .dek { color: var(--ink-soft); font-size: 16.5px; margin: 0 0 28px; max-width: 64ch; }
+  h2.sub { font-family: var(--serif); font-weight: 700; font-size: 21px; margin: 28px 0 12px; }
+
+  /* ---------- picker ---------- */
+  .sec-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 640px) { .sec-grid { grid-template-columns: minmax(0, 1fr); } }
+  .sec-card {
+    display: flex; flex-direction: column; gap: 12px; position: relative;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 20px 20px 18px; color: var(--ink); text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #14201b; --surface: #1b2621; --surface-alt: #223028;
-      --ink: #e9ece5; --ink-soft: #aab6a5; --ink-faint: #7c8a78; --border: #33413a;
-      --accent: #e8a1a8; --accent-ink: #251316; --accent-soft: #33201f; --accent-soft-border: #4a2d2c;
-      --teal: #7fc9b8; --teal-ink: #10241f; --teal-soft: #1b332d; --teal-soft-border: #2c4a41;
-      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
-    }
+  .sec-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--accent-soft-border); color: var(--ink); }
+  .sec-top { display: flex; gap: 14px; align-items: center; }
+  .sec-icon { width: 44px; height: 44px; border-radius: 12px; flex: none; display: grid; place-items: center; }
+  .sec-icon svg { width: 22px; height: 22px; }
+  .sec-icon.i-co { background: var(--teal-soft); color: var(--teal); }
+  .sec-icon.i-ce { background: var(--gold-soft); color: var(--gold); }
+  .sec-icon.i-ee { background: var(--accent-soft); color: var(--accent); }
+  .sec-icon.i-eo { background: var(--surface-alt); color: var(--ink); }
+  .sec-card .n { font-weight: 700; font-size: 17px; line-height: 1.2; }
+  .sec-card .code { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+  .sec-card p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+  .sec-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; align-items: center; }
+  .spark { display: flex; align-items: flex-end; gap: 3px; height: 26px; margin-left: auto; }
+  .spark i { width: 7px; border-radius: 2px; background: var(--teal); opacity: 0.8; }
+  .spark i.low { background: var(--accent); }
+
+  /* ---------- intro / mode ---------- */
+  .intro { display: flex; flex-direction: column; gap: 20px; }
+  .seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  @media (max-width: 560px) { .seg { grid-template-columns: minmax(0, 1fr); } }
+  .seg button {
+    appearance: none; -webkit-appearance: none; text-align: left; cursor: pointer;
+    display: flex; flex-direction: column; gap: 3px;
+    font-family: var(--sans); color: var(--ink); background: var(--surface);
+    border: 1.5px solid var(--border); border-radius: 11px; padding: 13px 15px;
   }
-  :root[data-theme="dark"] {
-    --bg: #14201b; --surface: #1b2621; --surface-alt: #223028;
-    --ink: #e9ece5; --ink-soft: #aab6a5; --ink-faint: #7c8a78; --border: #33413a;
-    --accent: #e8a1a8; --accent-ink: #251316; --accent-soft: #33201f; --accent-soft-border: #4a2d2c;
-    --teal: #7fc9b8; --teal-ink: #10241f; --teal-soft: #1b332d; --teal-soft-border: #2c4a41;
-    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -10px rgba(0,0,0,0.5);
+  .seg button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+  .seg .t { font-weight: 600; font-size: 15px; }
+  .seg .d { font-size: 13px; color: var(--ink-soft); }
+  .facts { display: flex; gap: 10px; flex-wrap: wrap; }
+  .field-label { font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; display: block; }
+  .kbd { font-family: var(--mono); font-size: 11.5px; padding: 1px 6px; border-radius: 5px; border: 1px solid var(--border-strong); border-bottom-width: 2px; background: var(--surface); color: var(--ink-soft); }
+
+  /* ---------- MCQ run ---------- */
+  .exam-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .clock {
+    display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-weight: 600; font-size: 14px;
+    padding: 6px 11px; border-radius: 9px; background: var(--surface); border: 1px solid var(--border);
   }
-
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font-family: var(--sans); font-size: 16px; line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
+  .clock svg { width: 15px; height: 15px; }
+  .clock.low { color: var(--accent); border-color: var(--accent-soft-border); background: var(--accent-soft); animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0.6; } }
+  .navdots { display: flex; gap: 5px; flex-wrap: wrap; flex: 1; }
+  .navdots button {
+    appearance: none; -webkit-appearance: none; width: 26px; height: 26px; border-radius: 7px; cursor: pointer; padding: 0;
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    background: var(--surface); border: 1px solid var(--border); color: var(--ink-faint);
   }
-  @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
+  .navdots button.done { background: var(--surface-alt); color: var(--ink); border-color: var(--border-strong); }
+  .navdots button.ok { background: var(--teal-soft); color: var(--teal); border-color: var(--teal-soft-border); }
+  .navdots button.ko { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft-border); }
+  .navdots button.cur { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .navdots button[disabled] { cursor: default; }
 
-  .wrap { max-width: 700px; margin: 0 auto; padding: 40px 20px 90px; }
-
-  a.back { font-family: var(--mono); font-size: 12.5px; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.03em; }
-  a.back:hover { color: var(--accent); }
-
-  h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(26px,4vw,34px); line-height: 1.15; margin: 12px 0 6px; letter-spacing: -0.01em; }
-  h2 { font-family: var(--serif); font-weight: 600; font-size: 20px; margin: 26px 0 10px; }
-  .dek { color: var(--ink-soft); font-size: 15.5px; margin: 0 0 24px; max-width: 62ch; }
-
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; }
-
-  .sec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; }
-  .sec-btn {
-    display: flex; flex-direction: column; gap: 3px; text-align: left;
-    font-family: var(--sans); background: var(--surface); color: var(--ink);
-    border: 1px solid var(--border); border-radius: 9px; box-shadow: var(--shadow);
-    padding: 13px 15px; cursor: pointer; text-decoration: none;
-  }
-  .sec-btn:hover { border-color: var(--accent-soft-border); background: var(--accent-soft); }
-  .sec-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .sec-btn .n { font-weight: 600; font-size: 15px; }
-  .sec-btn .m { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
-  .sec-btn .score { font-family: var(--mono); font-size: 11.5px; color: var(--teal); }
-
-  .exam-bar {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); margin-bottom: 14px;
-  }
-  .track { flex: 1; min-width: 90px; height: 6px; background: var(--surface-alt); border-radius: 4px; overflow: hidden; }
-  .fill { height: 100%; background: var(--teal); width: 0%; transition: width 0.2s ease; }
-  .clock { font-weight: 600; color: var(--ink-soft); }
-  .clock.low { color: var(--accent); }
-
+  .qcard { padding: 24px 26px 22px; }
+  @media (max-width: 560px) { .qcard { padding: 18px 16px; } }
+  .qnum { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
   .doc {
-    background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px;
-    padding: 14px 16px; white-space: pre-wrap; font-size: 15px; line-height: 1.5; margin-bottom: 16px;
+    background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--gold);
+    border-radius: 10px; padding: 16px 18px; white-space: pre-wrap; font-size: 15.5px; line-height: 1.6; margin-bottom: 18px;
+    font-family: var(--serif);
   }
+  .qtext { font-family: var(--serif); font-size: 21px; font-weight: 700; line-height: 1.3; margin: 0 0 16px; }
 
-  .qtext { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.3; margin: 0 0 14px; }
+  .player { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 12px; background: var(--teal-soft); border: 1px solid var(--teal-soft-border); margin-bottom: 18px; }
+  .play-btn {
+    width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer; flex: none;
+    background: var(--teal); color: var(--teal-ink); display: grid; place-items: center;
+  }
+  .play-btn svg { width: 22px; height: 22px; }
+  .play-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .play-btn.playing { animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--teal) 45%, transparent); } 50% { box-shadow: 0 0 0 12px transparent; } }
+  .bars { display: flex; gap: 3px; align-items: center; height: 26px; }
+  .bars i { width: 4px; height: 6px; border-radius: 2px; background: var(--teal); opacity: 0.5; }
+  .player.on .bars i { animation: eq 0.9s ease-in-out infinite; opacity: 0.9; }
+  .player.on .bars i:nth-child(2n) { animation-delay: 0.15s; }
+  .player.on .bars i:nth-child(3n) { animation-delay: 0.3s; }
+  @keyframes eq { 0%,100% { height: 6px; } 50% { height: 24px; } }
+  .plays-left { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-left: auto; }
 
-  ul.opts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  ul.opts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
   ul.opts button {
-    width: 100%; text-align: left; font-family: var(--sans); font-size: 15px;
-    color: var(--ink); background: var(--surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 13px; cursor: pointer;
+    width: 100%; text-align: left; display: flex; gap: 12px; align-items: center;
+    font-family: var(--sans); font-size: 15.5px; color: var(--ink); background: var(--surface);
+    border: 1.5px solid var(--border); border-radius: 11px; padding: 12px 14px; cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
   }
-  ul.opts button:hover { border-color: var(--accent-soft-border); background: var(--accent-soft); }
-  ul.opts button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  ul.opts button:hover:not([disabled]) { border-color: var(--accent-soft-border); background: var(--accent-soft); }
   ul.opts button[disabled] { cursor: default; }
-  ul.opts button.right { background: var(--teal-soft); border-color: var(--teal-soft-border); }
-  ul.opts button.wrong { background: var(--accent-soft); border-color: var(--accent-soft-border); }
-  ul.opts .tag { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-left: 8px; }
-
-  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; align-items: center; }
-
-  .btn {
-    font-family: var(--sans); font-size: 13.5px; font-weight: 500;
-    border: 1px solid var(--border); background: var(--surface); color: var(--ink-soft);
-    border-radius: 7px; padding: 8px 15px; cursor: pointer; text-decoration: none;
+  ul.opts .letter {
+    flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+    font-family: var(--mono); font-size: 12.5px; font-weight: 600; background: var(--surface-alt); color: var(--ink-soft);
   }
-  .btn:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-soft-border); }
-  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-  .btn.primary:hover { opacity: 0.92; background: var(--accent); color: var(--accent-ink); }
-  .btn[disabled] { opacity: 0.45; cursor: default; }
+  ul.opts button.sel { border-color: var(--ink); background: var(--surface-alt); }
+  ul.opts button.sel .letter { background: var(--ink); color: var(--bg); }
+  ul.opts button.right { border-color: var(--teal); background: var(--teal-soft); }
+  ul.opts button.right .letter { background: var(--teal); color: var(--teal-ink); }
+  ul.opts button.wrong { border-color: var(--accent); background: var(--accent-soft); }
+  ul.opts button.wrong .letter { background: var(--accent); color: var(--accent-ink); }
+  ul.opts .tag { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--ink-soft); white-space: nowrap; }
 
-  .play {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--teal); color: var(--teal-ink); border: 1px solid var(--teal);
-    font-size: 14.5px; font-weight: 600; border-radius: 8px; padding: 10px 16px; cursor: pointer;
-    font-family: var(--sans);
-  }
-  .play:hover { opacity: 0.92; }
-  .play[disabled] { opacity: 0.45; cursor: default; }
-  .plays-left { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
-
-  .why { margin-top: 12px; font-size: 14px; color: var(--ink-soft); border-left: 2px solid var(--teal-soft-border); padding-left: 12px; }
+  .why { margin-top: 16px; font-size: 14.5px; color: var(--ink); background: var(--bg); border-left: 3px solid var(--teal); border-radius: 0 10px 10px 0; padding: 10px 14px; }
   .transcript { margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
   .transcript b { color: var(--ink); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; align-items: center; }
+  .row .spacer { flex: 1; }
 
-  .final-score { font-family: var(--serif); font-size: 42px; font-weight: 700; line-height: 1; }
-  .final-sub { color: var(--ink-soft); margin-top: 6px; }
-  .band { margin-top: 14px; border-radius: 8px; padding: 12px 14px; font-size: 15px; background: var(--teal-soft); border: 1px solid var(--teal-soft-border); }
+  /* ---------- results ---------- */
+  .result-top { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .result-top > div:last-child { flex: 1; min-width: 240px; }
+  .ring { width: 128px; height: 128px; position: relative; flex: none; }
+  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 10; }
+  .ring .bg { stroke: var(--surface-alt); }
+  .ring .fg { stroke: var(--teal); stroke-linecap: round; transition: stroke-dashoffset 0.9s cubic-bezier(.2,.7,.2,1); }
+  .ring .fg.low { stroke: var(--accent); }
+  .ring .fg.mid { stroke: var(--gold); }
+  .ring .pct { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-weight: 700; font-size: 30px; }
+  .result-top h2 { font-family: var(--serif); font-size: 26px; margin: 0 0 6px; }
+  .band { margin-top: 18px; border-radius: 12px; padding: 14px 16px; font-size: 15px; background: var(--teal-soft); border: 1px solid var(--teal-soft-border); }
   .band.low { background: var(--accent-soft); border-color: var(--accent-soft-border); }
   .band b { display: block; margin-bottom: 3px; }
-
-  .review { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
-  .review-item { background: var(--surface-alt); border-radius: 8px; padding: 11px 13px; font-size: 14px; }
+  .review { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .review-item { background: var(--surface-alt); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; }
   .review-item .rq { font-weight: 600; margin-bottom: 4px; }
   .review-item .ra { color: var(--ink-soft); }
+  .review-item .ra b { color: var(--teal); }
+  .review-item .yours { color: var(--accent); font-size: 13.5px; margin-top: 3px; }
 
+  /* ---------- writing ---------- */
+  .task-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .task-head h2 { font-family: var(--serif); font-size: 22px; margin: 0; }
+  .write-grid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 18px; align-items: start; margin-top: 16px; }
+  @media (max-width: 820px) { .write-grid { grid-template-columns: minmax(0, 1fr); } }
   textarea.write {
-    width: 100%; min-height: 220px; resize: vertical;
-    font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--ink);
-    background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 13px;
+    width: 100%; min-height: 320px; resize: vertical; display: block;
+    font-family: var(--serif); font-size: 16.5px; line-height: 1.65; color: var(--ink);
+    background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px;
   }
-  textarea.write:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  textarea.write:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .coach { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 13.5px; position: sticky; top: calc(var(--header-h) + 12px); }
+  .coach h3 { margin: 0 0 10px; font-size: 13px; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .wc-num { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1; }
+  .wc-target { color: var(--ink-faint); font-size: 12.5px; }
+  .wc-track { position: relative; height: 8px; background: var(--surface-alt); border-radius: 5px; margin: 8px 0 14px; overflow: hidden; }
+  .wc-zone { position: absolute; top: 0; bottom: 0; background: var(--teal-soft-border); }
+  .wc-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--gold); border-radius: 5px; transition: width 0.2s ease, background 0.2s ease; }
+  .wc-fill.in { background: var(--teal); }
+  .wc-fill.over { background: var(--accent); }
+  .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .checks li { display: flex; gap: 8px; align-items: flex-start; color: var(--ink-faint); line-height: 1.35; }
+  .checks li::before {
+    content: ""; flex: none; width: 16px; height: 16px; margin-top: 1px; border-radius: 50%; border: 1.5px solid var(--border-strong);
+  }
+  .checks li.on { color: var(--ink); }
+  .checks li.on::before { border-color: var(--teal); background: var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.4l2.6 2.5L12 5.3' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 11px no-repeat; }
+  .checks .found { display: block; font-size: 12px; color: var(--teal); font-family: var(--mono); margin-top: 1px; }
+  .coach .saved { margin-top: 12px; font-size: 12px; color: var(--ink-faint); }
 
-  ul.rubric { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-  ul.rubric li { display: flex; gap: 9px; font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
-  ul.rubric input { margin-top: 3px; flex: none; }
+  ul.rubric { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  ul.rubric label { display: flex; gap: 11px; font-size: 14.5px; color: var(--ink); line-height: 1.45; padding: 9px 11px; border-radius: 9px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); }
+  ul.rubric label:hover { background: var(--surface-alt); }
+  ul.rubric input { margin-top: 3px; flex: none; width: 17px; height: 17px; accent-color: var(--teal); }
+  .self-score { font-family: var(--serif); font-weight: 700; font-size: 20px; margin-top: 12px; }
+  details.model { margin-top: 16px; background: var(--gold-soft); border-radius: 12px; padding: 0 16px; }
+  details.model summary { cursor: pointer; font-weight: 600; padding: 12px 0; }
+  details.model .model-text { white-space: pre-wrap; font-family: var(--serif); font-size: 15.5px; line-height: 1.65; padding-bottom: 14px; }
+
+  /* ---------- speaking ---------- */
+  .speak-stage { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; align-items: center; margin-top: 18px; }
+  @media (max-width: 640px) { .speak-stage { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } }
+  .big-timer { width: 190px; height: 190px; position: relative; }
+  .big-timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .big-timer circle { fill: none; stroke-width: 12; }
+  .big-timer .bg { stroke: var(--surface-alt); }
+  .big-timer .fg { stroke: var(--ink-faint); stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.3s ease; }
+  .big-timer.prep .fg { stroke: var(--gold); }
+  .big-timer.speak .fg { stroke: var(--accent); }
+  .big-timer .inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .big-timer .t { font-family: var(--mono); font-weight: 600; font-size: 34px; }
+  .big-timer .ph { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+  .phase-msg { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
+  .rec-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #d23; margin-right: 6px; animation: blink 1s steps(2) infinite; }
+  .rec-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+  audio { width: 100%; margin-top: 10px; }
+  .notes { width: 100%; min-height: 90px; resize: vertical; font-family: var(--sans); font-size: 14.5px; color: var(--ink); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-top: 12px; }
 
   .muted { color: var(--ink-faint); font-size: 13.5px; }
-  .warn { background: var(--accent-soft); border: 1px solid var(--accent-soft-border); border-radius: 8px; padding: 12px 14px; font-size: 14px; }
-  .wordcount { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+  .warn { background: var(--accent-soft); border: 1px solid var(--accent-soft-border); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
 </style>
 </head>
 <body>
+
+<!-- partial:header exam -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="roadmap.html">Roadmap</a>
+      <a href="quiz.html">Practice</a>
+      <a href="exam.html" aria-current="page">Mock exam</a>
+      <a href="pricing.html">Pricing</a>
+      <a class="nav-cta" href="pricing.html">Get Pro</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark theme"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 14.6A8.6 8.6 0 0 1 9.4 3.3a.7.7 0 0 0-.9-.9A10 10 0 1 0 21.6 15.5a.7.7 0 0 0-.9-.9z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /partial:header -->
+
+<main id="main">
 <div class="wrap">
-  <a class="back" href="index.html">&larr; Back to the roadmap</a>
-  <h1 id="title">Mock exam</h1>
-  <p class="dek" id="dek">Exam-condition practice under the clock, in the format of the real TCF and TEF sections.</p>
+  <div class="crumbs" id="crumbs"><a href="roadmap.html">Roadmap</a><span aria-hidden="true">/</span><span>Mock exam</span></div>
+  <h1 class="title" id="title">Mock exam</h1>
+  <p class="dek" id="dek">Exam-condition practice under the clock, in the format of the real TCF Canada and TEF Canada sections.</p>
   <div id="stage"></div>
 </div>
+</main>
+
+<!-- partial:footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <p>A structured French study plan, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+      </div>
+      <div>
+        <h4>Study</h4>
+        <ul>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="quiz.html">Practice drills</a></li>
+          <li><a href="exam.html">Mock exam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="#" data-portal>Manage subscription</a></li>
+          <li><a href="contact.html">Contact &amp; FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html#refunds">Refund policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
+      <p>&copy; <span data-year>2026</span> <span data-site="legalName">Your Business Name</span></p>
+    </div>
+  </div>
+</footer>
+<!-- /partial:footer -->
 
 <script src="exam-data.js"></script>
 <script>
@@ -165,55 +310,69 @@
   var stage = document.getElementById("stage");
   var titleEl = document.getElementById("title");
   var dekEl = document.getElementById("dek");
+  var crumbs = document.getElementById("crumbs");
+  var Speech = window.NCLCSpeech;
   var SCORE_KEY = "nclc5-exam-scores";
+  var HIST_KEY = "nclc5-exam-history";
+  var DRAFT_KEY = "nclc5-exam-drafts";
 
   if (!DATA) {
-    stage.innerHTML = "<div class='card warn'>Couldn't load the exam questions (exam-data.js). Reload the page, or open this from the site rather than as a local file.</div>";
+    stage.innerHTML = "<div class='card warn'>Couldn't load the exam questions. Reload the page — if you opened this file directly from your computer, serve it from a web server instead.</div>";
     return;
   }
 
-  /* ---------- French speech, ranked the same way as the roadmap ---------- */
-  var synth = window.speechSynthesis;
-  var voice = null;
-  function vscore(v) {
-    var s = 0;
-    if (/ca/i.test(v.lang)) s += 4; else if (/fr[-_]fr/i.test(v.lang)) s += 2;
-    if (v.localService) s += 1;
-    return s;
+  var ICON = {
+    ear: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 9a6 6 0 1 1 12 0c0 3-2 4-3 5.5S14 18 12.5 19.5 9 21 8 19"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-2 3"/></svg>',
+    doc: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 3h8l4 4v14H6z"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9 12h6M9 16h6M14 3v4h4"/></svg>',
+    pen: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 20l1-5L15.5 4.5a2.1 2.1 0 0 1 3 3L8 18z"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M13.5 6.5l3 3M4 20h16"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>',
+    clock: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.9l10.5-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>'
+  };
+
+  var SECTIONS = {
+    listening: { name: "Compréhension orale", code: "CO · Listening", icon: "ear", cls: "i-co", minutes: 18, blurb: "Short recordings — announcements, voicemails, conversations. Each one plays at most twice." },
+    reading: { name: "Compréhension écrite", code: "CE · Reading", icon: "doc", cls: "i-ce", minutes: 30, blurb: "Notices, ads, emails and short articles. About ninety seconds per question." },
+    writing: { name: "Expression écrite", code: "EE · Writing", icon: "pen", cls: "i-ee", blurb: "Timed tasks with a live coach that tracks length, connectors and tenses as you write." },
+    speaking: { name: "Expression orale", code: "EO · Speaking", icon: "mic", cls: "i-eo", blurb: "Preparation and speaking timers, with optional recording so you can listen back." }
+  };
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function fmt(s) { s = Math.max(0, s); var m = Math.floor(s / 60), r = s % 60; return m + ":" + (r < 10 ? "0" : "") + r; }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function readJSON(k, f) { try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v && typeof v === "object" ? v : f; } catch (e) { return f; } }
+  function writeJSON(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  var speechOk = !!(Speech && Speech.available());
+
+  var cleanup = [];
+  function reset() {
+    cleanup.forEach(function (fn) { try { fn(); } catch (e) {} });
+    cleanup = [];
+    if (Speech) Speech.stop();
   }
-  function pickVoice() {
-    if (!synth) return;
-    var fr = (synth.getVoices() || []).filter(function (v) { return /^fr\b|^fr[-_]/i.test(v.lang || ""); });
-    voice = fr.length ? fr.slice().sort(function (a, b) { return vscore(b) - vscore(a); })[0] : null;
+  function onKeys(fn) {
+    document.addEventListener("keydown", fn);
+    cleanup.push(function () { document.removeEventListener("keydown", fn); });
   }
-  if (synth) {
-    pickVoice();
-    if ("onvoiceschanged" in synth) synth.addEventListener("voiceschanged", pickVoice);
-    [200, 600, 1500].forEach(function (ms) { setTimeout(pickVoice, ms); });
+  function every(ms, fn) {
+    var id = setInterval(fn, ms);
+    cleanup.push(function () { clearInterval(id); });
+    return id;
   }
-  var speechOk = !!(synth && window.SpeechSynthesisUtterance);
-  function say(text, onend) {
-    if (!speechOk) { if (onend) onend(); return; }
-    if (!voice) pickVoice();
-    synth.cancel();
-    var u = new SpeechSynthesisUtterance(text);
-    u.lang = voice ? voice.lang : "fr-CA";
-    if (voice) u.voice = voice;
-    u.rate = 0.95;
-    u.onend = u.onerror = function () { if (onend) onend(); };
-    synth.speak(u);
+  function setCrumb(label) {
+    crumbs.innerHTML = "<a href='roadmap.html'>Roadmap</a><span aria-hidden='true'>/</span>" +
+      (label ? "<a href='exam.html'>Mock exam</a><span aria-hidden='true'>/</span><span>" + esc(label) + "</span>" : "<span>Mock exam</span>");
   }
 
-  /* ---------- stored results ---------- */
-  function readScores() {
-    try { return JSON.parse(localStorage.getItem(SCORE_KEY) || "{}") || {}; } catch (e) { return {}; }
-  }
   function saveScore(id, correct, total) {
-    try {
-      var all = readScores();
-      all[id] = { correct: correct, total: total, at: Date.now() };
-      localStorage.setItem(SCORE_KEY, JSON.stringify(all));
-    } catch (e) {}
+    var all = readJSON(SCORE_KEY, {});
+    all[id] = { correct: correct, total: total, at: Date.now() };
+    writeJSON(SCORE_KEY, all);
+    var h = readJSON(HIST_KEY, {});
+    var list = Array.isArray(h[id]) ? h[id] : [];
+    list.push({ pct: total ? Math.round(correct / total * 100) : 0, at: Date.now() });
+    h[id] = list.slice(-12);
+    writeJSON(HIST_KEY, h);
   }
 
   /* An indicative reading only — this is not an official score. */
@@ -224,333 +383,597 @@
     return { cls: "low", label: "Below the NCLC 5 range on this sample", note: "Work through the roadmap's vocabulary banks and grammar stages before testing again." };
   }
 
-  function fmt(s) {
-    var m = Math.floor(s / 60), r = s % 60;
-    return m + ":" + (r < 10 ? "0" : "") + r;
-  }
-  function esc(s) {
-    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-  function shuffle(a) {
-    a = a.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
-  }
-
-  /* ---------------- section picker ---------------- */
+  /* ================= picker ================= */
   function showPicker() {
+    reset();
+    setCrumb(null);
+    document.title = "TCF & TEF Canada Mock Exam · NCLC 5";
     titleEl.textContent = "Mock exam";
-    dekEl.textContent = "Exam-condition practice under the clock, in the format of the real TCF and TEF sections. Pick a section to sit.";
-    var s = readScores();
-    function line(id, meta) {
-      var sc = s[id];
-      return sc ? "<span class='score'>last " + sc.correct + "/" + sc.total + "</span>" : "<span class='m'>" + meta + "</span>";
-    }
-    stage.innerHTML =
-      "<div class='sec-grid'>" +
-        "<a class='sec-btn' href='?s=listening'><span class='n'>Compréhension orale</span><span class='m'>" +
-          DATA.listening.length + " questions &middot; 12 min</span>" + line("listening", "audio, 2 plays each") + "</a>" +
-        "<a class='sec-btn' href='?s=reading'><span class='n'>Compréhension écrite</span><span class='m'>" +
-          DATA.reading.length + " questions &middot; 15 min</span>" + line("reading", "documents authentiques") + "</a>" +
-        "<a class='sec-btn' href='?s=writing'><span class='n'>Expression écrite</span><span class='m'>" +
-          DATA.writing.length + " tasks &middot; timed</span><span class='m'>self-marked rubric</span></a>" +
-        "<a class='sec-btn' href='?s=speaking'><span class='n'>Expression orale</span><span class='m'>" +
-          DATA.speaking.length + " tasks &middot; timed</span><span class='m'>self-marked rubric</span></a>" +
-      "</div>" +
-      "<div class='card muted' style='margin-top:18px'>The two comprehension sections are marked automatically. Writing and speaking cannot be graded here — they give you the real prompts, the real clock, and a rubric to mark yourself against.</div>" +
-      (speechOk ? "" : "<div class='card warn' style='margin-top:12px'>This browser has no speech synthesis, so the listening section will show transcripts instead of playing audio.</div>");
+    dekEl.textContent = "Exam-condition practice under the clock, in the format of the real TCF Canada and TEF Canada sections. Pick a section to sit.";
+    var scores = readJSON(SCORE_KEY, {});
+    var hist = readJSON(HIST_KEY, {});
+    var html = "<div class='sec-grid'>";
+    ["listening", "reading", "writing", "speaking"].forEach(function (id) {
+      var S = SECTIONS[id];
+      var meta;
+      if (id === "listening" || id === "reading") meta = "<span class='pill'>" + DATA[id].length + " questions</span><span class='pill gold'>" + S.minutes + " min</span>";
+      else meta = "<span class='pill'>" + DATA[id].length + " tasks</span><span class='pill gold'>timed</span>";
+      var sc = scores[id];
+      if (sc) meta += "<span class='pill accent'>last " + Math.round(sc.correct / sc.total * 100) + "%</span>";
+      var h = Array.isArray(hist[id]) ? hist[id].slice(-8) : [];
+      if (h.length > 1) {
+        meta += "<span class='spark' title='Recent attempts'>" + h.map(function (x) {
+          return "<i class='" + (x.pct < 65 ? "low" : "") + "' style='height:" + Math.max(8, x.pct) + "%'></i>";
+        }).join("") + "</span>";
+      }
+      html += "<a class='sec-card' href='?s=" + id + "'>" +
+        "<div class='sec-top'><span class='sec-icon " + S.cls + "'>" + ICON[S.icon] + "</span>" +
+        "<div><div class='n'>" + S.name + "</div><div class='code'>" + S.code + "</div></div></div>" +
+        "<p>" + S.blurb + "</p><div class='sec-meta'>" + meta + "</div></a>";
+    });
+    html += "</div>" +
+      "<div class='notice teal' style='margin-top:20px'><div>The comprehension sections are marked automatically. Writing and speaking can't be graded by a machine here, so they give you the real prompts, the real clock, a live coach and a rubric to mark yourself against. Results are indicative, not official TCF or TEF scores.</div></div>" +
+      (speechOk ? "" : "<div class='warn' style='margin-top:12px'>This browser has no speech synthesis, so the listening section will show transcripts instead of playing audio.</div>");
+    stage.innerHTML = html;
   }
 
-  /* ---------------- MCQ sections ---------------- */
-  /* Shuffle the options too, not just the question order: authored answers
-     cluster at one index, which makes the section guessable from position. */
+  /* ================= MCQ ================= */
   function prepare(list) {
     return shuffle(list).map(function (it) {
       var order = shuffle(it.options.map(function (_, n) { return n; }));
-      return {
-        text: it.text, q: it.q, why: it.why,
-        options: order.map(function (n) { return it.options[n]; }),
-        answer: order.indexOf(it.answer)
-      };
+      return { text: it.text, q: it.q, why: it.why, options: order.map(function (n) { return it.options[n]; }), answer: order.indexOf(it.answer), picked: -1, plays: 0 };
     });
   }
 
-  function runMCQ(kind) {
-    var isListening = kind === "listening";
-    var items = prepare(DATA[kind]);
-    var totalSeconds = isListening ? 12 * 60 : 15 * 60;
-    var i = 0, correct = 0, answered = false, plays = 0, wrong = [];
-    var left = totalSeconds, ticker = null;
+  var examMode = "exam";
 
-    titleEl.textContent = isListening ? "Compréhension orale" : "Compréhension écrite";
-    dekEl.textContent = isListening
-      ? "Each recording plays at most twice, as in the real test. Answer from what you hear — the transcript appears only afterwards."
-      : "Read each document and choose the best answer. Pace yourself: the real section allows about 90 seconds per question.";
+  function introMCQ(kind) {
+    reset();
+    var S = SECTIONS[kind];
+    setCrumb(S.name);
+    document.title = S.name + " · Mock exam · NCLC 5";
+    titleEl.textContent = S.name;
+    dekEl.textContent = S.blurb;
+    if (window.NCLC && !window.NCLC.requirePro(stage, "Full mock exams are part of Pro")) return;
+    stage.innerHTML = "<div class='card intro'>" +
+      "<div class='facts'><span class='pill'>" + DATA[kind].length + " questions</span><span class='pill gold'>" + S.minutes + " minutes</span>" +
+      (kind === "listening" ? "<span class='pill accent'>2 plays per recording</span>" : "") + "</div>" +
+      "<div><span class='field-label'>How do you want to sit it?</span><div class='seg' id='seg'>" +
+        "<button type='button' data-m='exam' aria-pressed='" + (examMode === "exam") + "'><span class='t'>Exam mode</span><span class='d'>Like the real test: no feedback until the end, and you can change answers.</span></button>" +
+        "<button type='button' data-m='practice' aria-pressed='" + (examMode === "practice") + "'><span class='t'>Practice mode</span><span class='d'>See the answer and explanation after every question.</span></button>" +
+      "</div></div>" +
+      (kind === "listening" && !speechOk ? "<div class='warn'>No speech synthesis in this browser — transcripts will be shown instead of audio.</div>" : "") +
+      "<div class='row' style='margin-top:0'><button class='btn btn-primary btn-lg' id='begin'>Start the clock</button><a class='btn btn-ghost' href='exam.html'>All sections</a></div>" +
+      "<div class='muted'>Keyboard: <span class='kbd'>A</span>–<span class='kbd'>D</span> or <span class='kbd'>1</span>–<span class='kbd'>4</span> to answer, <span class='kbd'>Enter</span> for next" + (kind === "listening" ? ", <span class='kbd'>P</span> to play" : "") + ".</div>" +
+    "</div>";
+    document.getElementById("seg").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-m]"); if (!b) return;
+      examMode = b.getAttribute("data-m");
+      Array.prototype.forEach.call(this.children, function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    });
+    document.getElementById("begin").addEventListener("click", function () { runMCQ(kind); });
+  }
+
+  function runMCQ(kind) {
+    reset();
+    var S = SECTIONS[kind];
+    var isListening = kind === "listening";
+    var practice = examMode === "practice";
+    var items = prepare(DATA[kind]);
+    var i = 0, left = S.minutes * 60, finished = false;
+
+    dekEl.textContent = (practice ? "Practice mode — " : "Exam mode — ") +
+      (isListening ? "each recording plays at most twice. Answer from what you hear; the transcript appears afterwards." : "read each document and choose the best answer.");
 
     stage.innerHTML =
-      "<div class='exam-bar'><span id='count'></span><div class='track'><div class='fill' id='fill'></div></div>" +
-      "<span class='clock' id='clock'></span></div><div class='card' id='qcard'></div>";
+      "<div class='exam-bar'><div class='navdots' id='dots'></div><span class='clock' id='clock'>" + ICON.clock + "<span>" + fmt(left) + "</span></span></div>" +
+      "<div class='card qcard' id='qcard'></div>";
 
     var clockEl = document.getElementById("clock");
-    function tick() {
+    every(1000, function () {
+      if (finished) return;
       left--;
-      clockEl.textContent = fmt(Math.max(0, left));
-      clockEl.className = "clock" + (left <= 60 ? " low" : "");
-      if (left <= 0) { clearInterval(ticker); finish(true); }
+      clockEl.lastChild.textContent = fmt(left);
+      clockEl.classList.toggle("low", left <= 60);
+      if (left <= 0) finish(true);
+    });
+
+    function drawDots() {
+      var dots = document.getElementById("dots");
+      dots.innerHTML = items.map(function (it, n) {
+        var cls = it.picked < 0 ? "" : practice ? (it.picked === it.answer ? "ok" : "ko") : "done";
+        return "<button type='button' class='" + cls + (n === i ? " cur" : "") + "' data-n='" + n + "' aria-label='Question " + (n + 1) + "'" + (practice ? " disabled" : "") + ">" + (n + 1) + "</button>";
+      }).join("");
     }
-    clockEl.textContent = fmt(left);
-    ticker = setInterval(tick, 1000);
+    stage.querySelector(".exam-bar").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-n]"); if (!b || practice) return;
+      go(+b.getAttribute("data-n"));
+    });
+
+    function go(n) { if (Speech) Speech.stop(); i = n; render(); }
 
     function render() {
       var item = items[i];
-      answered = false;
-      plays = 0;
-      document.getElementById("count").textContent = (i + 1) + " / " + items.length;
-      document.getElementById("fill").style.width = (i / items.length * 100) + "%";
-
-      var html = "";
+      drawDots();
+      var locked = practice && item.picked >= 0;
+      var html = "<div class='qnum'>Question " + (i + 1) + " of " + items.length + "</div>";
       if (isListening) {
-        html += "<div class='row' style='margin-top:0'>" +
-                  "<button class='play' id='play'>&#9654;&nbsp; Play recording</button>" +
-                  "<span class='plays-left' id='pleft'></span>" +
-                "</div>";
-        if (!speechOk) html += "<div class='doc' style='margin-top:14px'>" + esc(item.text) + "</div>";
-        html += "<p class='qtext' style='margin-top:18px'>" + esc(item.q) + "</p>";
+        if (speechOk) {
+          html += "<div class='player' id='player'><button type='button' class='play-btn' id='play' aria-label='Play recording'>" + ICON.play + "</button>" +
+            "<div class='bars' aria-hidden='true'>" + new Array(14).join("<i></i>") + "</div>" +
+            "<span class='plays-left' id='pleft'></span></div>";
+        } else {
+          html += "<div class='doc'>" + esc(item.text) + "</div>";
+        }
       } else {
-        html += "<div class='doc'>" + esc(item.text) + "</div><p class='qtext'>" + esc(item.q) + "</p>";
+        html += "<div class='doc'>" + esc(item.text) + "</div>";
       }
-      html += "<ul class='opts' id='opts'></ul><div id='after'></div>";
+      html += "<p class='qtext'>" + esc(item.q) + "</p><ul class='opts' id='opts'></ul><div id='after'></div>" +
+        "<div class='row'>" +
+          (!practice && i > 0 ? "<button class='btn' id='prev'>&larr; Previous</button>" : "") +
+          "<span class='spacer'></span>" +
+          (!practice ? (i + 1 < items.length ? "<button class='btn btn-primary' id='next'>Next &rarr;</button>" : "<button class='btn btn-primary' id='submit'>Submit section</button>") : "") +
+        "</div>";
       document.getElementById("qcard").innerHTML = html;
 
-      var opts = document.getElementById("opts");
+      var ul = document.getElementById("opts");
       item.options.forEach(function (opt, idx) {
         var li = document.createElement("li");
         var b = document.createElement("button");
         b.type = "button";
-        b.textContent = opt;
+        b.innerHTML = "<span class='letter'>" + "ABCD".charAt(idx) + "</span><span>" + esc(opt) + "</span>";
+        if (!practice && item.picked === idx) b.classList.add("sel");
         b.addEventListener("click", function () { choose(idx); });
         li.appendChild(b);
-        opts.appendChild(li);
+        ul.appendChild(li);
       });
+      if (locked) reveal();
 
-      if (isListening) {
+      if (isListening && speechOk) {
         var playBtn = document.getElementById("play");
         var pleft = document.getElementById("pleft");
-        function updatePlays() {
-          pleft.textContent = speechOk ? (2 - plays) + " play" + (2 - plays === 1 ? "" : "s") + " left" : "transcript shown";
-          playBtn.disabled = !speechOk || plays >= 2;
-        }
-        updatePlays();
+        var player = document.getElementById("player");
+        var upd = function () {
+          var n = 2 - item.plays;
+          pleft.textContent = n > 0 ? n + " play" + (n === 1 ? "" : "s") + " left" : "no plays left";
+          playBtn.disabled = n <= 0 && !locked;
+        };
+        upd();
         playBtn.addEventListener("click", function () {
-          if (plays >= 2) return;
-          plays++;
+          if (item.plays >= 2 && !locked) return;
+          if (!locked) item.plays++;
           playBtn.disabled = true;
+          playBtn.classList.add("playing");
+          player.classList.add("on");
           pleft.textContent = "playing…";
-          say(item.text, function () { updatePlays(); });
+          Speech.speak(item.text, { raw: true, rate: 0.95, onend: function () {
+            playBtn.classList.remove("playing"); player.classList.remove("on"); upd();
+            if (locked) playBtn.disabled = false;
+          } });
         });
       }
+
+      var prev = document.getElementById("prev"); if (prev) prev.addEventListener("click", function () { go(i - 1); });
+      var next = document.getElementById("next"); if (next) next.addEventListener("click", function () { go(i + 1); });
+      var sub = document.getElementById("submit"); if (sub) sub.addEventListener("click", function () {
+        var open = items.filter(function (x) { return x.picked < 0; }).length;
+        if (open && !confirm(open + " question" + (open === 1 ? " is" : "s are") + " unanswered. Submit anyway?")) return;
+        finish(false);
+      });
+    }
+
+    function reveal() {
+      var item = items[i];
+      Array.prototype.forEach.call(document.querySelectorAll("#opts button"), function (b, n) {
+        b.disabled = true;
+        if (n === item.answer) { b.classList.add("right"); b.insertAdjacentHTML("beforeend", "<span class='tag'>correct</span>"); }
+        else if (n === item.picked) { b.classList.add("wrong"); b.insertAdjacentHTML("beforeend", "<span class='tag'>your answer</span>"); }
+      });
+      document.getElementById("after").innerHTML =
+        "<div class='why'>" + esc(item.why) + "</div>" +
+        (isListening ? "<div class='transcript'><b>Transcription :</b> " + esc(item.text) + "</div>" : "") +
+        "<div class='row'><span class='spacer'></span><button class='btn btn-primary' id='pnext'>" + (i + 1 >= items.length ? "See results" : "Next question &rarr;") + "</button></div>";
+      document.getElementById("pnext").addEventListener("click", function () {
+        if (i + 1 >= items.length) finish(false); else go(i + 1);
+      });
+      document.getElementById("pnext").focus();
     }
 
     function choose(idx) {
-      if (answered) return;
-      answered = true;
       var item = items[i];
-      var buttons = document.querySelectorAll("#opts button");
-      Array.prototype.forEach.call(buttons, function (b, n) {
-        b.disabled = true;
-        if (n === item.answer) { b.className = "right"; b.innerHTML = esc(b.textContent) + "<span class='tag'>correct</span>"; }
-        else if (n === idx) { b.className = "wrong"; b.innerHTML = esc(b.textContent) + "<span class='tag'>your answer</span>"; }
-      });
-      if (idx === item.answer) correct++; else wrong.push(item);
-
-      var after = document.getElementById("after");
-      after.innerHTML =
-        "<div class='why'>" + esc(item.why) + "</div>" +
-        (isListening ? "<div class='transcript'><b>Transcription :</b> " + esc(item.text) + "</div>" : "") +
-        "<div class='row'><button class='btn primary' id='next'>" +
-          (i + 1 >= items.length ? "See results" : "Next question") + "</button>" +
-          (isListening && speechOk ? "<button class='btn' id='replay'>Hear it again</button>" : "") +
-        "</div>";
-      document.getElementById("next").addEventListener("click", next);
-      var rp = document.getElementById("replay");
-      if (rp) rp.addEventListener("click", function () { say(item.text); });
-      document.getElementById("next").focus();
+      if (practice) {
+        if (item.picked >= 0) return;
+        item.picked = idx;
+        if (Speech) Speech.stop();
+        drawDots();
+        reveal();
+      } else {
+        item.picked = idx;
+        Array.prototype.forEach.call(document.querySelectorAll("#opts button"), function (b, n) { b.classList.toggle("sel", n === idx); });
+        drawDots();
+      }
     }
 
-    function next() {
-      i++;
-      if (i >= items.length) return finish(false);
-      render();
-    }
+    onKeys(function (e) {
+      if (e.altKey || e.ctrlKey || e.metaKey || finished) return;
+      var tag = e.target && e.target.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      var k = e.key.toLowerCase();
+      var map = { a: 0, b: 1, c: 2, d: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
+      if (k in map) {
+        var b = document.querySelectorAll("#opts button")[map[k]];
+        if (b && !b.disabled) { e.preventDefault(); b.click(); }
+      } else if (k === "p" && isListening) {
+        var pb = document.getElementById("play"); if (pb && !pb.disabled) pb.click();
+      } else if (e.key === "Enter" && tag !== "BUTTON" && tag !== "A") {
+        var nx = document.getElementById("pnext") || document.getElementById("next");
+        if (nx) { e.preventDefault(); nx.click(); }
+      } else if (e.key === "ArrowRight" && !practice && i + 1 < items.length) go(i + 1);
+      else if (e.key === "ArrowLeft" && !practice && i > 0) go(i - 1);
+    });
 
     function finish(ranOut) {
-      clearInterval(ticker);
-      if (synth) synth.cancel();
-      var attempted = ranOut ? i : items.length;
+      if (finished) return;
+      finished = true;
+      reset();
+      var correct = items.filter(function (x) { return x.picked === x.answer; }).length;
+      var answered = items.filter(function (x) { return x.picked >= 0; }).length;
       saveScore(kind, correct, items.length);
       var pct = Math.round(correct / items.length * 100);
       var band = bandFor(pct);
+      var C = 2 * Math.PI * 54;
+      var wrong = items.filter(function (x) { return x.picked !== x.answer; });
       var html = "<div class='card'>" +
-        (ranOut ? "<div class='warn' style='margin-bottom:14px'>Time ran out after " + attempted + " of " + items.length + " questions. In the real test the section closes the same way.</div>" : "") +
-        "<div class='final-score'>" + correct + " / " + items.length + "</div>" +
-        "<div class='final-sub'>" + pct + "% &middot; " + (isListening ? "Compréhension orale" : "Compréhension écrite") + "</div>" +
+        (ranOut ? "<div class='warn' style='margin-bottom:18px'>Time ran out with " + answered + " of " + items.length + " questions answered. In the real test the section closes the same way.</div>" : "") +
+        "<div class='result-top'><div class='ring'><svg viewBox='0 0 128 128' aria-hidden='true'><circle class='bg' cx='64' cy='64' r='54'/>" +
+        "<circle class='fg " + (pct < 50 ? "low" : pct < 65 ? "mid" : "") + "' id='rfg' cx='64' cy='64' r='54' stroke-dasharray='" + C.toFixed(1) + "' stroke-dashoffset='" + C.toFixed(1) + "'/></svg>" +
+        "<span class='pct'>" + pct + "%</span></div>" +
+        "<div><h2>" + correct + " / " + items.length + " correct</h2><div class='muted'>" + esc(S.name) + " · " + (practice ? "practice mode" : "exam mode") + " · time used " + fmt(S.minutes * 60 - Math.max(0, left)) + "</div></div></div>" +
         "<div class='band " + band.cls + "'><b>" + band.label + "</b>" + band.note +
-        "<div class='muted' style='margin-top:8px'>Indicative only. This is a short practice sample, not an official TCF or TEF score.</div></div>";
+        "<div class='muted' style='margin-top:8px'>Indicative only — a short practice sample, not an official TCF or TEF score.</div></div>" +
+        "<div class='row'><button class='btn btn-primary' id='again'>Sit it again</button><a class='btn' href='exam.html'>Other sections</a><a class='btn btn-ghost' href='roadmap.html#skills'>Skill checklist</a></div>";
       if (wrong.length) {
-        html += "<h2>What to review</h2><div class='review'>";
+        html += "<h2 class='sub'>What to review</h2><div class='review'>";
         wrong.forEach(function (w) {
           html += "<div class='review-item'><div class='rq'>" + esc(w.q) + "</div>" +
-                  "<div class='ra'>" + esc(w.options[w.answer]) + " — " + esc(w.why) + "</div></div>";
+            "<div class='ra'><b>" + esc(w.options[w.answer]) + "</b> — " + esc(w.why) + "</div>" +
+            (w.picked >= 0 ? "<div class='yours'>Your answer: " + esc(w.options[w.picked]) + "</div>" : "<div class='yours'>Not answered</div>") +
+            (isListening ? "<div class='muted' style='margin-top:4px'>« " + esc(w.text) + " »</div>" : "") + "</div>";
         });
         html += "</div>";
       }
-      html += "<div class='row'><button class='btn primary' id='again'>Sit it again</button>" +
-              "<a class='btn' href='exam.html'>Other sections</a>" +
-              "<a class='btn' href='index.html'>Back to roadmap</a></div></div>";
+      html += "</div>";
       stage.innerHTML = html;
-      document.getElementById("again").addEventListener("click", function () { runMCQ(kind); });
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        var r = document.getElementById("rfg"); if (r) { r.style.strokeDashoffset = String(C * (1 - correct / items.length)); if (!correct) r.style.opacity = "0"; }
+      }); });
+      document.getElementById("again").addEventListener("click", function () { introMCQ(kind); });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     render();
   }
 
-  /* ---------------- writing ---------------- */
+  /* ================= writing ================= */
+  var CONNECTORS = [
+    { label: "Sequence", words: ["d'abord", "ensuite", "puis", "enfin", "finalement", "premièrement", "deuxièmement"] },
+    { label: "Cause", words: ["parce que", "parce qu'", "car", "puisque", "grâce à", "à cause de", "comme"] },
+    { label: "Consequence", words: ["donc", "alors", "par conséquent", "c'est pourquoi", "ainsi"] },
+    { label: "Contrast", words: ["mais", "cependant", "pourtant", "par contre", "en revanche", "néanmoins", "toutefois", "alors que", "tandis que"] },
+    { label: "Addition", words: ["de plus", "en outre", "également", "d'une part", "d'autre part", "non seulement"] },
+    { label: "Opinion", words: ["à mon avis", "je pense que", "je pense qu'", "selon moi", "il me semble que", "je trouve que", "personnellement", "je crois que"] },
+    { label: "Conclusion", words: ["en conclusion", "pour conclure", "bref", "en somme", "en résumé", "avec le recul"] }
+  ];
+  /* Heuristic tense spotting. JavaScript's \b ignores accented letters, so
+     word edges are written out with an explicit French letter class. */
+  var L = "a-zàâçéèêëîïôûùüÿœæ";
+  var START = "(?:^|[^" + L + "'])";
+  var END = "(?![" + L + "])";
+  var SUBJ = "(?:j'|je |tu |il |elle |on |nous |vous |ils |elles |c'|ce |qui |ça )(?:ne |n')?(?:me |te |se |m'|t'|s'|nous |vous |l'|le |la |les |lui |leur |y |en )*";
+  var LNOR = "a-qs-zàâçéèêëîïôûùüÿœæ";   /* French letters minus r */
+  var TENSES = [
+    { label: "Passé composé", re: new RegExp("(?:^|[^" + L + "])(?:ai|as|a|avons|avez|ont|suis|es|est|sommes|êtes|sont)\\s+(?:pas |jamais |déjà |bien |beaucoup |toujours |plus |souvent )?(?:[" + L + "]*(?:é|ée|és|ées|u|ue|us|ues|ert|erte|ort|int|eint|it|ite|û)|(?:m|pr|appr|compr|surpr|ass|acqu)is|(?:m|pr|appr|compr|surpr|ass|acqu)ises?|(?:f|extr|distr)aite?s?)" + END, "i") },
+    { label: "Imparfait", re: new RegExp(START + SUBJ + "[" + L + "]+[" + LNOR + "](?:ais|ait|ions|iez|aient)" + END, "i") },
+    { label: "Futur / conditionnel", re: new RegExp(START + SUBJ + "(?:[" + L + "]+r(?:ai|as|a|ons|ez|ont|ais|ait|ions|iez|aient)|(?:vais|vas|va|allons|allez|vont) [" + L + "]+(?:er|ir|re))" + END, "i") }
+  ];
+
+  function findConnectors(text) {
+    var t = " " + text.toLowerCase().replace(/[’`]/g, "'").replace(/\s+/g, " ") + " ";
+    return CONNECTORS.map(function (g) {
+      var hits = g.words.filter(function (w) {
+        var re = new RegExp("(^|[\\s,.;:!?«(])" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + (w.slice(-1) === "'" ? "" : "(?=[\\s,.;:!?»)])"), "i");
+        return re.test(t);
+      });
+      return { label: g.label, hits: hits };
+    });
+  }
+
   function runWriting() {
-    titleEl.textContent = "Expression écrite";
-    dekEl.textContent = "Write under the clock, then mark yourself against the rubric. Nothing here is graded automatically — the rubric is what the examiner is looking for.";
+    reset();
+    var S = SECTIONS.writing;
+    setCrumb(S.name);
+    document.title = S.name + " · Mock exam · NCLC 5";
+    titleEl.textContent = S.name;
+    dekEl.textContent = "Write under the clock while the coach tracks length, connectors and tenses. Then mark yourself against the rubric and compare with a model answer.";
+    if (window.NCLC && !window.NCLC.requirePro(stage, "The writing coach is part of Pro")) return;
+    var drafts = readJSON(DRAFT_KEY, {});
     var t = 0;
+
     function renderTask() {
+      reset();
       var task = DATA.writing[t];
-      var left = task.minutes * 60, ticker = null;
+      var range = (task.words.match(/\d+/g) || [0, 0]).map(Number);
+      var lo = range[0], hi = range[1] || range[0];
+      var key = "w" + t;
+      var left = task.minutes * 60, running = false, finishedTask = false;
+
       stage.innerHTML =
-        "<div class='exam-bar'><span>" + (t + 1) + " / " + DATA.writing.length + "</span>" +
-        "<div class='track'><div class='fill' style='width:" + (t / DATA.writing.length * 100) + "%'></div></div>" +
-        "<span class='clock' id='clock'>" + fmt(left) + "</span></div>" +
-        "<div class='card'><h2 style='margin-top:0'>" + esc(task.title) + "</h2>" +
-        "<div class='doc'>" + esc(task.prompt) + "</div>" +
-        "<div class='muted' style='margin-bottom:8px'>" + esc(task.words) + " &middot; " + task.minutes + " minutes</div>" +
-        "<textarea class='write' id='essay' placeholder='Écrivez votre réponse ici…'></textarea>" +
-        "<div class='row'><span class='wordcount' id='wc'>0 mots</span>" +
-        "<button class='btn' id='start'>Start the clock</button>" +
-        "<button class='btn primary' id='done'>Mark against the rubric</button></div>" +
-        "<div id='marking'></div></div>";
+        "<div class='exam-bar'><span class='pill'>Task " + (t + 1) + " of " + DATA.writing.length + "</span><span class='spacer' style='flex:1'></span>" +
+        "<span class='clock' id='clock'>" + ICON.clock + "<span>" + fmt(left) + "</span></span></div>" +
+        "<div class='card'>" +
+          "<div class='task-head'><h2>" + esc(task.title) + "</h2><span class='pill gold'>" + esc(task.words) + " · " + task.minutes + " min</span></div>" +
+          "<div class='doc' style='margin-top:14px'>" + esc(task.prompt) + "</div>" +
+          "<div class='write-grid'>" +
+            "<div><textarea class='write' id='essay' spellcheck='false' lang='fr' placeholder='Écrivez votre réponse ici… The clock starts when you begin typing.'></textarea>" +
+            "<div class='row'><button class='btn btn-primary' id='done'>Finish &amp; mark</button><button class='btn btn-ghost' id='clear'>Clear draft</button></div></div>" +
+            "<aside class='coach' aria-label='Writing coach'>" +
+              "<h3>Live coach</h3>" +
+              "<div><span class='wc-num' id='wcn'>0</span> <span class='wc-target'>words · target " + lo + "–" + hi + "</span></div>" +
+              "<div class='wc-track'><span class='wc-zone' style='left:" + (lo / (hi * 1.25) * 100) + "%;width:" + ((hi - lo) / (hi * 1.25) * 100) + "%'></span><span class='wc-fill' id='wcf'></span></div>" +
+              "<ul class='checks' id='checks'></ul>" +
+              "<div class='saved' id='saved'>Drafts save automatically in this browser.</div>" +
+            "</aside>" +
+          "</div>" +
+          "<div id='marking'></div>" +
+        "</div>";
 
       var essay = document.getElementById("essay");
-      var wc = document.getElementById("wc");
+      var clockEl = document.getElementById("clock");
+      essay.value = drafts[key] || "";
+
+      function analyse() {
+        var txt = essay.value;
+        var words = txt.trim() ? txt.trim().split(/\s+/).length : 0;
+        document.getElementById("wcn").textContent = words;
+        var f = document.getElementById("wcf");
+        f.style.width = Math.min(100, words / (hi * 1.25) * 100) + "%";
+        f.className = "wc-fill" + (words >= lo && words <= hi ? " in" : words > hi ? " over" : "");
+        var con = findConnectors(txt);
+        var html = "";
+        var groupsHit = con.filter(function (c) { return c.hits.length; }).length;
+        html += "<li class='" + (groupsHit >= 3 ? "on" : "") + "'><span>Connectors from 3+ families<span class='found'>" + groupsHit + " of " + con.length + " families used</span></span></li>";
+        con.forEach(function (c) {
+          html += "<li class='" + (c.hits.length ? "on" : "") + "'><span>" + c.label + (c.hits.length ? "<span class='found'>" + esc(c.hits.join(", ")) + "</span>" : "") + "</span></li>";
+        });
+        TENSES.forEach(function (tn) {
+          html += "<li class='" + (tn.re.test(txt) ? "on" : "") + "'><span>" + tn.label + " detected</span></li>";
+        });
+        var sentences = txt.split(/[.!?]+/).filter(function (s) { return s.trim().split(/\s+/).length > 2; }).length;
+        html += "<li class='" + (sentences >= 5 ? "on" : "") + "'><span>At least 5 full sentences<span class='found'>" + sentences + " so far</span></span></li>";
+        document.getElementById("checks").innerHTML = html;
+      }
+      analyse();
+
+      var saveTimer = null;
       essay.addEventListener("input", function () {
-        var n = essay.value.trim() ? essay.value.trim().split(/\s+/).length : 0;
-        wc.textContent = n + " mot" + (n === 1 ? "" : "s");
+        if (!running && !finishedTask) startClock();
+        analyse();
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(function () {
+          drafts[key] = essay.value;
+          writeJSON(DRAFT_KEY, drafts);
+          document.getElementById("saved").textContent = "Draft saved " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        }, 600);
       });
 
-      var clockEl = document.getElementById("clock");
-      document.getElementById("start").addEventListener("click", function () {
-        if (ticker) return;
-        this.disabled = true;
-        ticker = setInterval(function () {
+      function startClock() {
+        running = true;
+        every(1000, function () {
           left--;
-          clockEl.textContent = fmt(Math.max(0, left));
-          clockEl.className = "clock" + (left <= 120 ? " low" : "");
-          if (left <= 0) clearInterval(ticker);
-        }, 1000);
-        essay.focus();
+          clockEl.lastChild.textContent = fmt(left);
+          clockEl.classList.toggle("low", left <= 120 && left > 0);
+          if (left === 0 && window.NCLC) window.NCLC.toast("Time's up — finish your sentence and mark your answer.");
+        });
+      }
+
+      document.getElementById("clear").addEventListener("click", function () {
+        if (essay.value && !confirm("Clear this draft?")) return;
+        essay.value = ""; delete drafts[key]; writeJSON(DRAFT_KEY, drafts); analyse(); essay.focus();
       });
 
       document.getElementById("done").addEventListener("click", function () {
-        if (ticker) clearInterval(ticker);
+        finishedTask = true;
+        reset();
         var m = document.getElementById("marking");
-        var html = "<h2>Mark your own answer</h2><ul class='rubric'>";
+        var html = "<h2 class='sub'>Mark your own answer</h2><ul class='rubric' id='rub'>";
         task.rubric.forEach(function (r, n) {
-          html += "<li><input type='checkbox' id='r" + n + "'><label for='r" + n + "'>" + esc(r) + "</label></li>";
+          html += "<li><label><input type='checkbox' data-r='" + n + "'><span>" + esc(r) + "</span></label></li>";
         });
-        html += "</ul><div class='row'>" +
-          (t + 1 < DATA.writing.length ? "<button class='btn primary' id='nextTask'>Next task</button>" : "<a class='btn primary' href='exam.html'>Other sections</a>") +
-          "<a class='btn' href='index.html'>Back to roadmap</a></div>";
+        html += "</ul><div class='self-score' id='ss'>0 / " + task.rubric.length + "</div>" +
+          (task.model ? "<details class='model'><summary>Compare with a model answer</summary><div class='model-text'>" + esc(task.model) + "</div></details>" : "") +
+          "<div class='row'>" +
+          (t + 1 < DATA.writing.length ? "<button class='btn btn-primary' id='nextTask'>Next task &rarr;</button>" : "<a class='btn btn-primary' href='exam.html'>Other sections</a>") +
+          "<a class='btn btn-ghost' href='roadmap.html#order'>Review grammar</a></div>";
         m.innerHTML = html;
+        m.querySelector("#rub").addEventListener("change", function () {
+          var n = m.querySelectorAll("#rub input:checked").length;
+          document.getElementById("ss").textContent = n + " / " + task.rubric.length;
+        });
         var nt = document.getElementById("nextTask");
-        if (nt) nt.addEventListener("click", function () { t++; renderTask(); });
-        m.scrollIntoView({ block: "nearest" });
+        if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+        m.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
     renderTask();
   }
 
-  /* ---------------- speaking ---------------- */
+  /* ================= speaking ================= */
   function runSpeaking() {
-    titleEl.textContent = "Expression orale";
-    dekEl.textContent = "Prepare, then speak aloud for the full time — record yourself if you can. Mark yourself against the rubric afterwards.";
+    reset();
+    var S = SECTIONS.speaking;
+    setCrumb(S.name);
+    document.title = S.name + " · Mock exam · NCLC 5";
+    titleEl.textContent = S.name;
+    dekEl.textContent = "Prepare, then speak aloud for the full time. Record yourself if you can — hearing your own answer is the fastest way to find gaps.";
+    if (window.NCLC && !window.NCLC.requirePro(stage, "Speaking practice with recording is part of Pro")) return;
+    var canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
     var t = 0;
+
     function renderTask() {
+      reset();
       var task = DATA.speaking[t];
-      var phase = "idle", left = task.prepSeconds, ticker = null;
+      var C = 2 * Math.PI * 82;
+      var phase = "idle", left = 0, span = 1;
+      var recorder = null, chunks = [], stream = null, audioUrl = null;
+
       stage.innerHTML =
-        "<div class='exam-bar'><span>" + (t + 1) + " / " + DATA.speaking.length + "</span>" +
-        "<div class='track'><div class='fill' id='fill' style='width:0%'></div></div>" +
-        "<span class='clock' id='clock'>" + fmt(left) + "</span></div>" +
-        "<div class='card'><h2 style='margin-top:0'>" + esc(task.title) + "</h2>" +
-        "<div class='doc'>" + esc(task.prompt) + "</div>" +
-        "<div class='muted' id='phase'>" + task.prepSeconds + "s to prepare, then " + Math.round(task.speakSeconds / 60) + " minutes speaking.</div>" +
-        "<div class='row'><button class='btn primary' id='go'>Start preparation</button>" +
-        "<button class='btn' id='skip' disabled>Skip to speaking</button></div>" +
-        "<div id='marking'></div></div>";
+        "<div class='exam-bar'><span class='pill'>Task " + (t + 1) + " of " + DATA.speaking.length + "</span></div>" +
+        "<div class='card'>" +
+          "<div class='task-head'><h2>" + esc(task.title) + "</h2><span class='pill gold'>" +
+            (task.prepSeconds ? task.prepSeconds + "s prep · " : "no prep · ") + Math.round(task.speakSeconds / 60) + " min speaking</span></div>" +
+          "<div class='doc' style='margin-top:14px'>" + esc(task.prompt) + "</div>" +
+          (speechOk ? "<button class='btn btn-sm' id='hear-prompt'>Hear the prompt</button>" : "") +
+          "<div class='speak-stage'>" +
+            "<div class='big-timer' id='bt'><svg viewBox='0 0 190 190' aria-hidden='true'><circle class='bg' cx='95' cy='95' r='82'/>" +
+              "<circle class='fg' id='btfg' cx='95' cy='95' r='82' stroke-dasharray='" + C.toFixed(1) + "' stroke-dashoffset='0'/></svg>" +
+              "<div class='inner'><span class='t' id='btt'>" + fmt(task.prepSeconds || task.speakSeconds) + "</span><span class='ph' id='btp'>ready</span></div></div>" +
+            "<div>" +
+              "<p class='phase-msg' id='pmsg'>" + (task.prepSeconds ? "Press start to begin your preparation time." : "No preparation for this task — press start and speak straight away.") + "</p>" +
+              "<div class='muted' id='psub'>Speak aloud, in full sentences, until the timer runs out.</div>" +
+              (canRecord ? "<label class='rec-toggle' style='margin-top:12px'><input type='checkbox' id='rec' checked> Record my answer (stays on this device)</label>" : "<div class='muted' style='margin-top:10px'>Recording isn't available in this browser.</div>") +
+              "<div class='row'><button class='btn btn-primary' id='go'>Start</button><button class='btn' id='skip' hidden>Skip to speaking</button><button class='btn' id='stop' hidden>Stop early</button></div>" +
+              "<textarea class='notes' id='notes' placeholder='Preparation notes — key words only, not full sentences.'" + (task.prepSeconds ? "" : " hidden") + "></textarea>" +
+            "</div>" +
+          "</div>" +
+          "<div id='playback'></div>" +
+          "<div id='marking'></div>" +
+        "</div>";
 
-      var clockEl = document.getElementById("clock");
-      var phaseEl = document.getElementById("phase");
-      var fillEl = document.getElementById("fill");
-      var goBtn = document.getElementById("go");
-      var skipBtn = document.getElementById("skip");
+      var fg = document.getElementById("btfg"), bt = document.getElementById("bt");
+      var btt = document.getElementById("btt"), btp = document.getElementById("btp");
+      var pmsg = document.getElementById("pmsg"), psub = document.getElementById("psub");
+      var goBtn = document.getElementById("go"), skipBtn = document.getElementById("skip"), stopBtn = document.getElementById("stop");
+      var hp = document.getElementById("hear-prompt");
+      if (hp) hp.addEventListener("click", function () { Speech.speak(task.prompt, { raw: true }); });
 
+      cleanup.push(function () {
+        if (recorder && recorder.state !== "inactive") { try { recorder.stop(); } catch (e) {} }
+        if (stream) stream.getTracks().forEach(function (tr) { tr.stop(); });
+      });
+
+      var ticker = null;
+      function tickTo() {
+        btt.textContent = fmt(left);
+        fg.style.strokeDashoffset = String(C * (1 - left / span));
+      }
       function startPhase(which) {
         phase = which;
-        left = which === "prep" ? task.prepSeconds : task.speakSeconds;
-        var span = left;
-        phaseEl.textContent = which === "prep"
-          ? "Preparation — note your ideas, don't write full sentences."
-          : "Speak now, aloud, until the clock runs out.";
-        skipBtn.disabled = which !== "prep";
+        left = span = which === "prep" ? task.prepSeconds : task.speakSeconds;
+        bt.className = "big-timer " + which;
+        btp.textContent = which === "prep" ? "preparation" : "speaking";
+        fg.style.transition = "none"; fg.style.strokeDashoffset = "0"; void fg.offsetWidth; fg.style.transition = "";
+        tickTo();
+        if (which === "prep") {
+          pmsg.textContent = "Preparation — jot down key words.";
+          psub.textContent = "Plan an opening, two or three points, and a closing line.";
+          skipBtn.hidden = false; stopBtn.hidden = true;
+          document.getElementById("notes").focus();
+        } else {
+          pmsg.innerHTML = (recorder ? "<span class='rec-dot'></span>" : "") + "Speak now, aloud.";
+          psub.textContent = "Keep going until the timer ends — fill pauses with an example or a reason.";
+          skipBtn.hidden = true; stopBtn.hidden = false;
+          startRecording();
+        }
         if (ticker) clearInterval(ticker);
-        ticker = setInterval(function () {
+        ticker = every(1000, function () {
           left--;
-          clockEl.textContent = fmt(Math.max(0, left));
-          clockEl.className = "clock" + (left <= 30 ? " low" : "");
-          fillEl.style.width = ((span - left) / span * 100) + "%";
+          tickTo();
           if (left <= 0) {
             clearInterval(ticker);
-            if (phase === "prep") startPhase("speak");
-            else { phaseEl.textContent = "Time. Now mark yourself against the rubric."; showRubric(); }
+            if (phase === "prep") startPhase("speak"); else endSpeaking();
           }
-        }, 1000);
+        });
       }
 
-      goBtn.addEventListener("click", function () { goBtn.disabled = true; startPhase("prep"); });
+      function startRecording() {
+        var box = document.getElementById("rec");
+        if (!canRecord || !box || !box.checked || recorder) return;
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+          if (phase !== "speak") { s.getTracks().forEach(function (tr) { tr.stop(); }); return; }
+          stream = s;
+          chunks = [];
+          recorder = new MediaRecorder(s);
+          recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+          recorder.onstop = function () {
+            if (stream) stream.getTracks().forEach(function (tr) { tr.stop(); });
+            if (!chunks.length) return;
+            var blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+            if (audioUrl) URL.revokeObjectURL(audioUrl);
+            audioUrl = URL.createObjectURL(blob);
+            var ext = /mp4/.test(blob.type) ? "m4a" : /ogg/.test(blob.type) ? "ogg" : "webm";
+            document.getElementById("playback").innerHTML =
+              "<h2 class='sub'>Listen back</h2><audio controls src='" + audioUrl + "'></audio>" +
+              "<div class='row' style='margin-top:8px'><a class='btn btn-sm' download='speaking-task-" + (t + 1) + "." + ext + "' href='" + audioUrl + "'>Download recording</a>" +
+              "<span class='muted'>Listen for long pauses, English words and repeated openers.</span></div>";
+          };
+          recorder.start();
+          pmsg.innerHTML = "<span class='rec-dot'></span>Recording — speak now, aloud.";
+        }).catch(function () {
+          psub.textContent = "Microphone blocked — carry on speaking; nothing is recorded.";
+        });
+      }
+
+      function endSpeaking() {
+        phase = "done";
+        if (ticker) clearInterval(ticker);
+        if (recorder && recorder.state !== "inactive") recorder.stop();
+        bt.className = "big-timer";
+        btp.textContent = "done";
+        btt.textContent = "0:00";
+        pmsg.textContent = "Time. Now mark yourself against the rubric.";
+        psub.textContent = "";
+        stopBtn.hidden = true; skipBtn.hidden = true;
+        showRubric();
+      }
+
+      goBtn.addEventListener("click", function () {
+        goBtn.hidden = true;
+        startPhase(task.prepSeconds ? "prep" : "speak");
+      });
       skipBtn.addEventListener("click", function () { startPhase("speak"); });
+      stopBtn.addEventListener("click", endSpeaking);
 
       function showRubric() {
-        skipBtn.disabled = true;
         var m = document.getElementById("marking");
-        var html = "<h2>Mark your own answer</h2><ul class='rubric'>";
+        var html = "<h2 class='sub'>Mark your own answer</h2><ul class='rubric' id='rub'>";
         task.rubric.forEach(function (r, n) {
-          html += "<li><input type='checkbox' id='s" + n + "'><label for='s" + n + "'>" + esc(r) + "</label></li>";
+          html += "<li><label><input type='checkbox' data-r='" + n + "'><span>" + esc(r) + "</span></label></li>";
         });
-        html += "</ul><div class='row'>" +
-          (t + 1 < DATA.speaking.length ? "<button class='btn primary' id='nextTask'>Next task</button>" : "<a class='btn primary' href='exam.html'>Other sections</a>") +
-          "<a class='btn' href='index.html'>Back to roadmap</a></div>";
+        html += "</ul><div class='self-score' id='ss'>0 / " + task.rubric.length + "</div><div class='row'>" +
+          (t + 1 < DATA.speaking.length ? "<button class='btn btn-primary' id='nextTask'>Next task &rarr;</button>" : "<a class='btn btn-primary' href='exam.html'>Other sections</a>") +
+          "<button class='btn' id='retry'>Try this task again</button></div>";
         m.innerHTML = html;
+        m.querySelector("#rub").addEventListener("change", function () {
+          document.getElementById("ss").textContent = m.querySelectorAll("#rub input:checked").length + " / " + task.rubric.length;
+        });
         var nt = document.getElementById("nextTask");
-        if (nt) nt.addEventListener("click", function () { t++; renderTask(); });
+        if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+        document.getElementById("retry").addEventListener("click", function () { renderTask(); });
       }
     }
     renderTask();
   }
 
-  /* ---------------- boot ---------------- */
-  var want = new URLSearchParams(location.search).get("s");
-  if (want === "listening" || want === "reading") runMCQ(want);
-  else if (want === "writing") runWriting();
-  else if (want === "speaking") runSpeaking();
-  else showPicker();
+  /* ================= boot ================= */
+  function route() {
+    var want = new URLSearchParams(location.search).get("s");
+    if (want === "listening" || want === "reading") introMCQ(want);
+    else if (want === "writing") runWriting();
+    else if (want === "speaking") runSpeaking();
+    else showPicker();
+  }
+  route();
 })();
 </script>
-</body></html>
+</body>
+</html>

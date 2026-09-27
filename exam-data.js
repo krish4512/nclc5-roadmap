@@ -78,6 +78,76 @@ window.NCLC_EXAM = {
       options: ["De souvenirs d'enfance", "D'un voyage récent", "D'un déménagement", "D'un problème de famille"],
       answer: 0,
       why: "L'imparfait (« j'étais », « nous passions ») signale un souvenir répété du passé."
+    },
+    {
+      text: "Bonjour, ici Julie, de l'agence immobilière. La visite de l'appartement prévue demain à dix heures est déplacée à quinze heures. Rappelez-moi si cet horaire ne vous convient pas.",
+      q: "Pourquoi Julie appelle-t-elle ?",
+      options: ["Pour changer l'heure de la visite", "Pour annuler la visite", "Pour proposer un autre appartement", "Pour demander un dépôt"],
+      answer: 0,
+      why: "La visite est « déplacée à quinze heures » : seule l'heure change."
+    },
+    {
+      text: "Ce soir, de fortes chutes de neige sont attendues dans la région de Québec. On conseille aux automobilistes d'éviter les déplacements non essentiels jusqu'à demain midi.",
+      q: "Que conseille-t-on aux automobilistes ?",
+      options: ["De rouler lentement toute la nuit", "De limiter leurs déplacements", "De changer leurs pneus", "De prendre l'autoroute"],
+      answer: 1,
+      why: "« Éviter les déplacements non essentiels » veut dire ne sortir que si c'est nécessaire."
+    },
+    {
+      text: "Bienvenue au service à la clientèle de votre compagnie d'électricité. Pour signaler une panne, faites le un. Pour une question sur votre facture, faites le deux. Pour parler à un agent, restez en ligne.",
+      q: "Que faut-il faire pour poser une question sur sa facture ?",
+      options: ["Faire le un", "Rester en ligne", "Faire le deux", "Rappeler plus tard"],
+      answer: 2,
+      why: "« Pour une question sur votre facture, faites le deux. »"
+    },
+    {
+      text: "Salut Marc, c'est Léa. Je suis désolée, je ne pourrai pas venir au cinéma ce soir : ma fille est malade. On pourrait y aller samedi, si tu veux ?",
+      q: "Que propose Léa ?",
+      options: ["D'annuler la sortie pour de bon", "De venir chez elle ce soir", "D'emmener sa fille au cinéma", "D'aller au cinéma samedi"],
+      answer: 3,
+      why: "« On pourrait y aller samedi » — elle reporte la sortie, elle ne l'annule pas."
+    },
+    {
+      text: "Personnellement, je préfère aller au travail à vélo. C'est bon pour la santé et je ne perds plus de temps dans les bouchons. Par contre, en hiver, c'est plus compliqué.",
+      q: "Quel inconvénient cette personne mentionne-t-elle ?",
+      options: ["Le vélo est difficile en hiver", "Le vélo coûte cher", "Le trajet est trop long", "Il n'y a pas de piste cyclable"],
+      answer: 0,
+      why: "« Par contre » introduit l'inconvénient : « en hiver, c'est plus compliqué »."
+    },
+    {
+      text: "À partir du premier mars, les employés pourront choisir leurs horaires, à condition d'être présents entre dix heures et quinze heures.",
+      q: "Quelle condition est imposée aux employés ?",
+      options: ["Commencer à huit heures", "Être présents entre dix heures et quinze heures", "Travailler le samedi", "Demander une autorisation chaque jour"],
+      answer: 1,
+      why: "« À condition d'être présents entre dix heures et quinze heures. »"
+    },
+    {
+      text: "La bibliothèque organise un atelier gratuit de conversation en français tous les mercredis soir. L'inscription est obligatoire, car le nombre de places est limité à douze personnes.",
+      q: "Pourquoi faut-il s'inscrire ?",
+      options: ["Parce que l'atelier est payant", "Parce qu'il faut passer un test", "Parce que les places sont limitées", "Parce que l'atelier change de jour"],
+      answer: 2,
+      why: "« Car le nombre de places est limité à douze personnes. » L'atelier est gratuit."
+    },
+    {
+      text: "Prenez un comprimé matin et soir pendant sept jours, toujours avec un repas. Si la fièvre ne baisse pas après trois jours, revenez me voir.",
+      q: "Dans quel cas le patient doit-il revenir voir le médecin ?",
+      options: ["Après sept jours de traitement", "Chaque matin", "S'il oublie un comprimé", "Si la fièvre ne baisse pas après trois jours"],
+      answer: 3,
+      why: "« Si la fièvre ne baisse pas après trois jours, revenez me voir. »"
+    },
+    {
+      text: "Selon un sondage publié ce matin, plus de la moitié des Canadiens aimeraient travailler quatre jours par semaine, même avec un salaire légèrement réduit.",
+      q: "Qu'apprend-on dans ce sondage ?",
+      options: ["Beaucoup de Canadiens accepteraient de gagner un peu moins pour travailler quatre jours", "La plupart des Canadiens veulent un salaire plus élevé", "Les Canadiens travaillent déjà quatre jours par semaine", "Les Canadiens refusent toute baisse de salaire"],
+      answer: 0,
+      why: "« Même avec un salaire légèrement réduit » : ils accepteraient de gagner un peu moins."
+    },
+    {
+      text: "Désolé, madame, ce modèle n'est plus disponible en magasin. Je peux le commander pour vous : vous le recevrez chez vous dans cinq jours ouvrables, sans frais de livraison.",
+      q: "Que propose le vendeur ?",
+      options: ["Un autre modèle", "De commander l'article avec une livraison gratuite", "Un rabais de cinq pour cent", "De revenir chercher l'article dans cinq jours"],
+      answer: 1,
+      why: "Il propose de commander l'article, livré à domicile « sans frais de livraison »."
     }
   ],
 
@@ -154,6 +224,76 @@ window.NCLC_EXAM = {
       options: ["L'échanger dans les 30 jours", "Ni le retourner ni l'échanger", "Le retourner avec le reçu", "Se faire rembourser"],
       answer: 1,
       why: "La dernière phrase exclut les articles en solde de toute reprise ou échange."
+    },
+    {
+      text: "Objet : Confirmation d'inscription\nMadame, Monsieur,\nNous confirmons votre inscription au cours « Français au travail » (niveau B1). Les cours commencent le 9 septembre. Veuillez apporter une pièce d'identité lors de la première séance.\nLe secrétariat",
+      q: "Que faut-il apporter au premier cours ?",
+      options: ["Un manuel de français", "Une preuve de paiement", "Une pièce d'identité", "Un certificat de niveau"],
+      answer: 2,
+      why: "« Veuillez apporter une pièce d'identité lors de la première séance. »"
+    },
+    {
+      text: "À VENDRE — Vélo de ville\nTrès bon état, utilisé deux saisons. 250 $ (prix neuf : 600 $). Casque inclus.\nVisites possibles le soir après 18 h. Écrire à Paul : paul.vente@courriel.ca",
+      q: "Quand peut-on aller voir le vélo ?",
+      options: ["Le soir après 18 h", "Le matin seulement", "Uniquement la fin de semaine", "À n'importe quelle heure"],
+      answer: 0,
+      why: "« Visites possibles le soir après 18 h. »"
+    },
+    {
+      text: "PISCINE MUNICIPALE — Règlement\nLe bonnet de bain est obligatoire. Les enfants de moins de 8 ans doivent être accompagnés d'un adulte dans l'eau. Il est interdit de manger au bord du bassin.",
+      q: "Quelle règle concerne les jeunes enfants ?",
+      options: ["Ils ne peuvent pas entrer dans la piscine", "Ils doivent être accompagnés d'un adulte dans l'eau", "Ils doivent porter une ceinture de natation", "Ils peuvent manger au bord du bassin"],
+      answer: 1,
+      why: "Les moins de 8 ans « doivent être accompagnés d'un adulte dans l'eau »."
+    },
+    {
+      text: "De plus en plus de familles choisissent de cultiver leurs légumes dans des jardins communautaires. Ces espaces permettent non seulement de manger sainement à moindre coût, mais aussi de rencontrer ses voisins.",
+      q: "Selon le texte, quel est un avantage des jardins communautaires ?",
+      options: ["Ils remplacent les supermarchés", "Ils sont réservés aux enfants", "Ils rapportent de l'argent aux familles", "Ils favorisent les rencontres entre voisins"],
+      answer: 3,
+      why: "« Non seulement… mais aussi de rencontrer ses voisins » : deux avantages, dont le lien social."
+    },
+    {
+      text: "NOTE DE SERVICE\nÀ compter du lundi 3 juin, le stationnement de l'entreprise sera fermé pour travaux pendant deux semaines. Les employés sont invités à utiliser les transports en commun ; les billets seront remboursés sur présentation des reçus.",
+      q: "Comment l'entreprise aide-t-elle les employés ?",
+      options: ["Elle loue un autre stationnement", "Elle autorise le télétravail", "Elle rembourse les billets de transport en commun", "Elle prête des vélos"],
+      answer: 2,
+      why: "« Les billets seront remboursés sur présentation des reçus. »"
+    },
+    {
+      text: "Salut ! Le souper chez Karim est toujours samedi, mais il commence à 19 h au lieu de 18 h. Chacun apporte un dessert. Tu peux me confirmer si tu viens ?\nInès",
+      q: "Qu'est-ce qui a changé pour le souper ?",
+      options: ["L'heure", "Le jour", "Le lieu", "Le menu"],
+      answer: 0,
+      why: "Le jour ne change pas (« toujours samedi ») ; seule l'heure passe de 18 h à 19 h."
+    },
+    {
+      text: "Pour certains, les réseaux sociaux isolent les jeunes. Pourtant, une enquête récente montre que la majorité des adolescents les utilisent surtout pour rester en contact avec des amis qu'ils voient déjà en personne.",
+      q: "Que montre l'enquête ?",
+      options: ["Les réseaux sociaux isolent la majorité des jeunes", "Les jeunes s'en servent surtout pour garder contact avec leurs amis", "Les adolescents n'ont plus d'amis en personne", "Les jeunes passent moins de temps en ligne"],
+      answer: 1,
+      why: "« Pourtant » annonce un résultat qui contredit l'idée reçue : ils restent en contact avec leurs amis."
+    },
+    {
+      text: "RÈGLEMENT DE L'IMMEUBLE\nLes ordures doivent être déposées dans les bacs le mardi soir seulement. Le recyclage est ramassé le jeudi. Aucun meuble ne doit être laissé dans le couloir.",
+      q: "Quand faut-il sortir les ordures ?",
+      options: ["Le jeudi matin", "Tous les soirs", "Le lundi", "Le mardi soir"],
+      answer: 3,
+      why: "« Le mardi soir seulement. » Le jeudi concerne le recyclage."
+    },
+    {
+      text: "OFFRE D'EMPLOI — Réceptionniste bilingue\nClinique dentaire. Français et anglais exigés. Horaire : du lundi au jeudi, de 8 h à 16 h. Salaire selon l'expérience. Entrée en poste immédiate.",
+      q: "Quelle compétence est exigée ?",
+      options: ["Un diplôme en médecine dentaire", "Parler français et anglais", "Travailler la fin de semaine", "Posséder une voiture"],
+      answer: 1,
+      why: "« Français et anglais exigés » — le poste est bilingue."
+    },
+    {
+      text: "Quand je suis arrivé à Montréal, je ne connaissais personne. C'est en faisant du bénévolat dans une banque alimentaire que je me suis fait mes premiers amis et que j'ai amélioré mon français.",
+      q: "Comment cette personne a-t-elle amélioré son français ?",
+      options: ["En suivant un cours intensif", "En regardant la télévision", "En faisant du bénévolat", "En travaillant dans un restaurant"],
+      answer: 2,
+      why: "« C'est en faisant du bénévolat… que j'ai amélioré mon français. »"
     }
   ],
 
@@ -173,7 +313,8 @@ window.NCLC_EXAM = {
         "Une phrase qui combine les deux temps, du type « Je regardais… quand… a sonné ».",
         "Un paragraphe de conclusion qui dit ce que vous avez appris.",
         "Le nombre de mots demandé est respecté, sans recopier l'énoncé."
-      ]
+      ],
+      model: "L'année dernière, j'ai déménagé à Montréal pour commencer un nouveau travail. Au début, tout était difficile : je ne connaissais personne, il faisait très froid et je ne comprenais pas toujours l'accent québécois. D'abord, j'ai cherché un appartement près du métro. Ensuite, je me suis inscrit à un cours de français du soir. Un jour, pendant que j'attendais l'autobus, une voisine m'a proposé de m'accompagner au marché. Nous avons parlé pendant une heure et elle m'a présenté ses amis. Enfin, après quelques mois, je me sentais chez moi.\n\nAvec le recul, j'ai appris qu'il faut oser parler aux gens, même quand on fait des erreurs. Cette expérience m'a rendu plus patient et plus confiant. Aujourd'hui, je conseille à tous les nouveaux arrivants de faire la même chose."
     },
     {
       title: "Tâche 2 — Donner et justifier une opinion",
@@ -186,7 +327,22 @@ window.NCLC_EXAM = {
         "Au moins un connecteur de cause (parce que, car) et un de contraste (cependant, par contre).",
         "Un inconvénient reconnu — un texte à une seule face plafonne la note.",
         "Une conclusion qui reprend la position sans la répéter mot pour mot."
-      ]
+      ],
+      model: "À mon avis, travailler à domicile présente plus d'avantages que travailler au bureau, surtout pour les personnes qui habitent loin.\n\nD'une part, le télétravail permet d'économiser beaucoup de temps. Par exemple, je n'ai plus besoin de passer une heure dans les transports chaque matin, donc je commence ma journée moins fatigué. D'autre part, on peut mieux organiser sa vie de famille, car on est présent quand les enfants rentrent de l'école. De plus, on dépense moins d'argent pour l'essence et les repas au restaurant.\n\nCependant, je reconnais que le travail à domicile a un inconvénient important : on peut se sentir isolé, parce qu'on voit moins ses collègues. C'est pourquoi je pense qu'il faut aller au bureau au moins une fois par semaine.\n\nEn conclusion, le télétravail me semble la meilleure solution, à condition de garder un lien régulier avec l'équipe."
+    },
+    {
+      title: "Tâche 3 — Comparer deux points de vue",
+      minutes: 30,
+      words: "120–180 mots",
+      prompt: "Document 1 : « Il faut interdire les voitures au centre-ville. L'air serait plus propre, les rues plus calmes, et les piétons se sentiraient en sécurité. »\nDocument 2 : « Interdire les voitures, c'est pénaliser les personnes âgées, les familles et les commerçants, qui ont besoin de venir en voiture. »\n\nPremière partie (40 à 60 mots) : présentez les deux points de vue.\nDeuxième partie (80 à 120 mots) : donnez votre opinion sur le sujet.",
+      rubric: [
+        "La première partie reformule les deux opinions avec vos mots, sans recopier les documents.",
+        "Un connecteur d'opposition relie les deux points de vue : alors que, tandis que, en revanche.",
+        "Votre opinion est clairement annoncée au début de la deuxième partie.",
+        "Au moins deux arguments, dont un appuyé par un exemple concret.",
+        "La longueur de chaque partie est respectée."
+      ],
+      model: "Les deux documents parlent de la place des voitures au centre-ville. Selon le premier, il faudrait les interdire, parce que l'air serait plus pur et les rues plus sûres pour les piétons. En revanche, le second auteur pense qu'une interdiction pénaliserait les personnes âgées, les familles et les commerçants.\n\nPersonnellement, je suis plutôt favorable à une limitation des voitures, mais pas à une interdiction totale. D'abord, la pollution est un vrai problème pour la santé, surtout pour les enfants. Dans ma ville, les rues piétonnes sont toujours pleines de monde la fin de semaine, et les commerces y fonctionnent bien. Cependant, il faut penser aux personnes qui ont du mal à marcher. On pourrait donc réserver l'accès en voiture aux livraisons, aux taxis et aux personnes à mobilité réduite, tout en développant les transports en commun. Ainsi, le centre-ville resterait vivant et accessible à tous."
     }
   ],
 
@@ -194,6 +350,19 @@ window.NCLC_EXAM = {
    * Expression orale — prep time then speaking time, with a rubric.
    * ---------------------------------------------------------------- */
   speaking: [
+    {
+      title: "Tâche 1 — Entretien dirigé",
+      prepSeconds: 0,
+      speakSeconds: 120,
+      prompt: "L'examinateur vous demande de vous présenter. Parlez de votre famille, de votre travail ou de vos études, de vos loisirs, et de vos projets au Canada.",
+      rubric: [
+        "Vous abordez les quatre thèmes : famille, travail ou études, loisirs, projets.",
+        "Le présent pour décrire, le passé composé pour votre parcours, le futur proche ou le futur simple pour vos projets.",
+        "Des phrases complètes et reliées (et, mais, parce que), pas une liste de mots.",
+        "Au moins un détail précis par thème : un lieu, une date, un exemple.",
+        "Vous parlez sans interruption pendant les deux minutes."
+      ]
+    },
     {
       title: "Tâche A — Obtenir des renseignements",
       prepSeconds: 60,
