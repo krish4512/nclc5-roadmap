@@ -12,6 +12,7 @@ You upload the folder and it works.
 | Page | What it is |
 | --- | --- |
 | `index.html` | Landing page |
+| `learn.html` + `assets/course-1..4.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons, pronunciation, common mistakes, a shadowing drill, vocabulary and a self-check |
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `quiz.html` | Practice drills built from the roadmap's tables: type, multiple choice, flashcards and listen-and-type; streaks, hints, weak-item review |
 | `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording |
@@ -81,6 +82,10 @@ python3 -m http.server 8000
 ```
 
 ## Editing content
+
+- **Course modules:** edit `assets/course-1.js` … `course-4.js`. Each module is one object
+  (`title`, `why`, `goals`, `lessons`, `sounds`, `mistakes`, `speak`, `vocab`, `quiz`, `practice`,
+  `sources`). Modules appear in the order they're pushed, and are numbered automatically.
 
 - **Roadmap, drills:** edit the tables in `roadmap.html`. The drills are generated from them.
   A table with `data-quiz="vocab"` becomes a vocabulary set (French in odd columns, English

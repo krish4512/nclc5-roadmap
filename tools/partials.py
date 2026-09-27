@@ -7,7 +7,7 @@ Each page marks the regions this script owns:
     <!-- partial:header KEY -->  ... <!-- /partial:header -->
     <!-- partial:footer -->      ... <!-- /partial:footer -->
 
-KEY is the nav item to highlight (roadmap, practice, exam, pricing) or "none".
+KEY is the nav item to highlight (learn, roadmap, practice, exam, pricing) or "none".
 Edit the templates below, then run from the repository root:
 
     python3 tools/partials.py
@@ -33,6 +33,7 @@ HEAD = """<!-- partial:head -->
 <!-- /partial:head -->"""
 
 NAV = [
+    ("learn", "learn.html", "Learn"),
     ("roadmap", "roadmap.html", "Roadmap"),
     ("practice", "quiz.html", "Practice"),
     ("exam", "exam.html", "Mock exam"),
@@ -80,6 +81,7 @@ FOOTER = """<!-- partial:footer -->
       <div>
         <h4>Study</h4>
         <ul>
+          <li><a href="learn.html">French course</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
           <li><a href="quiz.html">Practice drills</a></li>
           <li><a href="exam.html">Mock exam</a></li>

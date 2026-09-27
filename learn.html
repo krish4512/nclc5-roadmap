@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn French to NCLC 5 · Research-Based Course</title>
+<meta name="description" content="A research-based French course from first sounds to B1 / NCLC 5: pronunciation, grammar in the right order, speaking drills, common mistakes and self-checks for the TCF Canada and TEF Canada.">
+<!-- partial:head -->
+<meta name="theme-color" content="#7a1f2b">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<!-- /partial:head -->
+<script src="assets/speech.js"></script>
+<script src="assets/course-1.js"></script>
+<script src="assets/course-2.js"></script>
+<script src="assets/course-3.js"></script>
+<script src="assets/course-4.js"></script>
+<style>
+  .learn { max-width: 1180px; margin: 0 auto; padding: 28px 24px 24px; display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 36px; align-items: start; }
+  @media (max-width: 960px) { .learn { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+  @media (max-width: 560px) { .learn { padding: 18px 16px 16px; } }
+
+  /* ---------- sidebar ---------- */
+  .side { position: sticky; top: calc(var(--header-h) + 16px); max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; padding-right: 6px; scrollbar-width: thin; }
+  @media (max-width: 960px) { .side { display: none; } }
+  .side-prog { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 14px; }
+  .side-prog b { font-size: 14px; }
+  .side-prog .bar { height: 6px; background: var(--surface-alt); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+  .side-prog .bar i { display: block; height: 100%; background: var(--teal); border-radius: 4px; transition: width 0.3s ease; }
+  .side-prog .sub { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
+  .side h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 16px 0 6px 8px; }
+  .side a {
+    display: flex; gap: 10px; align-items: flex-start; text-decoration: none; color: var(--ink-soft);
+    font-size: 14px; line-height: 1.35; padding: 7px 8px; border-radius: 8px;
+  }
+  .side a:hover { background: var(--surface-alt); color: var(--ink); }
+  .side a.cur { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  .side a .dot {
+    flex: none; width: 20px; height: 20px; border-radius: 50%; margin-top: -1px;
+    display: grid; place-items: center; font-family: var(--mono); font-size: 10px; font-weight: 600;
+    border: 1.5px solid var(--border-strong); color: var(--ink-faint); background: var(--surface);
+  }
+  .side a.done .dot { background: var(--teal); border-color: var(--teal); color: var(--teal-ink); }
+
+  .mobile-nav { display: none; }
+  @media (max-width: 960px) {
+    .mobile-nav { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
+    .mobile-nav select { flex: 1; min-width: 0; font-family: var(--sans); font-size: 15px; padding: 9px 10px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+  }
+
+  /* ---------- overview ---------- */
+  .hero-l h1 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.015em; font-size: clamp(30px, 4.4vw, 42px); line-height: 1.1; margin: 10px 0 12px; }
+  .hero-l p.lead { color: var(--ink-soft); font-size: 17px; max-width: 64ch; margin: 0 0 20px; }
+  .levels { display: flex; flex-direction: column; gap: 28px; margin-top: 30px; }
+  .level-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .level-head h2 { font-family: var(--serif); font-size: 23px; margin: 0; }
+  .level-head span { font-size: 14px; color: var(--ink-soft); }
+  .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .mod-card {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+    box-shadow: var(--shadow-sm); transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .mod-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--accent-soft-border); color: var(--ink); }
+  .mod-card .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .mod-card .num { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+  .mod-card .t { font-weight: 600; font-size: 15.5px; line-height: 1.3; }
+  .mod-card .s { font-size: 13.5px; color: var(--ink-soft); }
+  .mod-card.done { border-color: var(--teal-soft-border); }
+  .mod-card .ok { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--teal); }
+
+  .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 8px; }
+  .hero-l .btn { white-space: normal; text-align: center; }
+  .principle { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .principle b { display: block; margin-bottom: 4px; font-size: 14.5px; }
+  .principle span { font-size: 13.5px; color: var(--ink-soft); }
+
+  /* ---------- module ---------- */
+  .mod-head .meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 0; }
+  .mod-head h1 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.015em; font-size: clamp(28px, 4vw, 38px); line-height: 1.12; margin: 10px 0 8px; }
+  .mod-head .subtitle { color: var(--ink-soft); font-size: 17px; margin: 0 0 16px; max-width: 64ch; }
+  .toc-chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 16px 0 6px; }
+  .toc-chips a { font-size: 13px; text-decoration: none; color: var(--ink-soft); border: 1px solid var(--border); background: var(--surface); padding: 5px 11px; border-radius: 999px; }
+  .toc-chips a:hover { color: var(--accent); border-color: var(--accent-soft-border); }
+
+  .block { margin-top: 38px; scroll-margin-top: calc(var(--header-h) + 16px); }
+  .block > h2 { font-family: var(--serif); font-size: 24px; margin: 0 0 12px; display: flex; align-items: center; gap: 10px; }
+  .block > h2 .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; flex: none; background: var(--accent-soft); color: var(--accent); }
+  .block > h2 .ic svg { width: 16px; height: 16px; }
+  .why { font-size: 16px; line-height: 1.65; color: var(--ink); }
+  .why p { margin: 0 0 12px; }
+  .goals { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; }
+  .goals li { display: flex; gap: 10px; background: var(--teal-soft); border: 1px solid var(--teal-soft-border); border-radius: 10px; padding: 10px 12px; font-size: 14.5px; }
+  .goals li::before { content: "✓"; color: var(--teal); font-weight: 700; flex: none; }
+
+  .lesson { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; margin-top: 14px; box-shadow: var(--shadow-sm); }
+  @media (max-width: 560px) { .lesson { padding: 18px 16px; } }
+  .lesson h3 { margin: 0 0 10px; font-size: 18px; display: flex; gap: 10px; align-items: baseline; }
+  .lesson h3 .n { font-family: var(--mono); font-size: 12px; color: var(--accent); flex: none; }
+  .lesson .body { font-size: 15.5px; line-height: 1.65; color: var(--ink); }
+  .lesson .body p { margin: 0 0 10px; }
+  .lesson .body ul, .lesson .body ol { margin: 6px 0 12px; padding-left: 22px; }
+  .lesson .body li { margin: 4px 0; }
+  .fr { font-family: var(--serif); font-style: italic; color: var(--accent); }
+  :root[data-theme="dark"] .fr { color: var(--accent); }
+  .ipa { font-family: var(--mono); font-size: 0.92em; color: var(--teal); }
+  .lesson .table-wrap { overflow-x: auto; margin: 12px 0; border: 1px solid var(--border); border-radius: 10px; }
+  .lesson table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+  .lesson caption { text-align: left; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); padding: 9px 12px 6px; }
+  .lesson th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); font-weight: 600; padding: 8px 12px; background: var(--surface-alt); border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .lesson td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .lesson tr:last-child td { border-bottom: none; }
+  .lesson td.say-cell { white-space: nowrap; }
+  .ex-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .ex-list li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: start; padding: 9px 12px; background: var(--bg); border-radius: 9px; }
+  .ex-list .frx { font-family: var(--serif); font-size: 16.5px; }
+  .ex-list .enx { grid-column: 2; font-size: 13.5px; color: var(--ink-soft); }
+  .tipbox { margin-top: 14px; background: var(--gold-soft); border-radius: 10px; padding: 11px 14px; font-size: 14.5px; line-height: 1.55; }
+  .tipbox b:first-child { color: var(--gold); }
+
+  .say-btn {
+    appearance: none; -webkit-appearance: none; display: inline-grid; place-items: center; flex: none;
+    width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--ink-soft); cursor: pointer; vertical-align: middle; padding: 0;
+  }
+  .say-btn:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-soft-border); }
+  .say-btn.on { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+  .say-btn svg { width: 14px; height: 14px; }
+  td .say-btn { margin-left: 6px; width: 24px; height: 24px; }
+  td .say-btn svg { width: 12px; height: 12px; }
+
+  .sound-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
+  .sound-card h3 { margin: 0 0 6px; font-size: 16px; }
+  .sound-card .body { font-size: 15px; line-height: 1.6; }
+  .sound-card .body p { margin: 0 0 8px; }
+  .pairs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pairs button {
+    appearance: none; -webkit-appearance: none; display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--serif); font-size: 16px; color: var(--ink); background: var(--bg);
+    border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px 6px 10px; cursor: pointer;
+  }
+  .pairs button:hover { border-color: var(--teal-soft-border); background: var(--teal-soft); }
+  .pairs button.on { border-color: var(--teal); background: var(--teal-soft); }
+  .pairs button svg { width: 13px; height: 13px; color: var(--teal); }
+
+  .mistakes { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .mistakes th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); padding: 9px 14px; background: var(--surface-alt); }
+  .mistakes td { padding: 10px 14px; border-top: 1px solid var(--border); vertical-align: top; }
+  .mistakes .w { color: var(--accent); text-decoration: line-through; text-decoration-thickness: 1px; font-family: var(--serif); }
+  .mistakes .r { color: var(--teal); font-weight: 600; font-family: var(--serif); }
+  .mistakes .y { color: var(--ink-soft); font-size: 13.5px; }
+  @media (max-width: 640px) {
+    .mistakes thead { display: none; }
+    .mistakes tr { display: block; border-top: 1px solid var(--border); padding: 8px 0; }
+    .mistakes td { display: block; border: none; padding: 3px 14px; }
+  }
+
+  .speak-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .speak-controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 4px 0 14px; }
+  .speak-controls label { font-size: 13.5px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
+  .shadow-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .shadow-list li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1.5px solid transparent; transition: border-color 0.2s ease, background 0.2s ease; }
+  .shadow-list li.active { border-color: var(--teal); background: var(--teal-soft); }
+  .shadow-list li.yourturn { border-color: var(--gold); background: var(--gold-soft); }
+  .shadow-list .txt { flex: 1; min-width: 0; }
+  .shadow-list .frx { font-family: var(--serif); font-size: 16.5px; }
+  .shadow-list .enx { font-size: 13px; color: var(--ink-soft); }
+  .task-box { margin-top: 16px; background: var(--accent-soft); border: 1px solid var(--accent-soft-border); border-radius: 12px; padding: 14px 16px; font-size: 15px; line-height: 1.6; }
+  .task-box b:first-child { color: var(--accent); }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+  .vocab-item { display: flex; gap: 10px; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; }
+  .vocab-item .frx { font-family: var(--serif); font-size: 16px; }
+  .vocab-item .enx { font-size: 13px; color: var(--ink-soft); }
+
+  .quiz-q { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-top: 10px; }
+  .quiz-q .q { font-weight: 600; margin-bottom: 10px; font-size: 15.5px; }
+  .quiz-q .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-q .opts button {
+    appearance: none; -webkit-appearance: none; font-family: var(--sans); font-size: 15px; color: var(--ink);
+    background: var(--bg); border: 1.5px solid var(--border); border-radius: 9px; padding: 8px 14px; cursor: pointer;
+  }
+  .quiz-q .opts button:hover:not([disabled]) { border-color: var(--accent-soft-border); background: var(--accent-soft); }
+  .quiz-q .opts button[disabled] { cursor: default; }
+  .quiz-q .opts button.right { border-color: var(--teal); background: var(--teal-soft); }
+  .quiz-q .opts button.wrong { border-color: var(--accent); background: var(--accent-soft); }
+  .quiz-q .expl { margin-top: 10px; font-size: 14px; color: var(--ink-soft); border-left: 3px solid var(--teal); padding-left: 10px; }
+  .quiz-score { margin-top: 12px; font-weight: 600; }
+
+  .finish { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); }
+  .finish .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; }
+  .finish .checks label { display: flex; gap: 9px; align-items: flex-start; cursor: pointer; }
+  .finish .checks input { margin-top: 3px; accent-color: var(--teal); width: 16px; height: 16px; flex: none; }
+  .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+  .pager a { flex: 1 1 240px; text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--ink); }
+  .pager a:hover { border-color: var(--accent-soft-border); color: var(--ink); }
+  .pager small { display: block; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+  .pager a.next { text-align: right; }
+  .sources { font-size: 13.5px; color: var(--ink-soft); }
+  .sources ol { padding-left: 20px; margin: 6px 0 0; }
+  .sources li { margin: 4px 0; }
+  .practice-row { display: flex; gap: 8px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- partial:header learn -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="learn.html" aria-current="page">Learn</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="quiz.html">Practice</a>
+      <a href="exam.html">Mock exam</a>
+      <a href="pricing.html">Pricing</a>
+      <a class="nav-cta" href="pricing.html">Get Pro</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark theme"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 14.6A8.6 8.6 0 0 1 9.4 3.3a.7.7 0 0 0-.9-.9A10 10 0 1 0 21.6 15.5a.7.7 0 0 0-.9-.9z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /partial:header -->
+
+<main id="main">
+  <div class="learn">
+    <aside class="side" id="side" aria-label="Course modules"></aside>
+    <div>
+      <div class="mobile-nav"><select id="mnav" aria-label="Jump to module"></select></div>
+      <div id="view"></div>
+    </div>
+  </div>
+</main>
+
+<!-- partial:footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <p>A structured French study plan, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+      </div>
+      <div>
+        <h4>Study</h4>
+        <ul>
+          <li><a href="learn.html">French course</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="quiz.html">Practice drills</a></li>
+          <li><a href="exam.html">Mock exam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="#" data-portal>Manage subscription</a></li>
+          <li><a href="contact.html">Contact &amp; FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html#refunds">Refund policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
+      <p>&copy; <span data-year>2026</span> <span data-site="legalName">Your Business Name</span></p>
+    </div>
+  </div>
+</footer>
+<!-- /partial:footer -->
+
+<script>
+(function () {
+  var C = window.COURSE || { modules: [] };
+  var M = C.modules;
+  var Speech = window.NCLCSpeech;
+  var PROG_KEY = "nclc5-course";
+  var view = document.getElementById("view");
+  var side = document.getElementById("side");
+  var mnav = document.getElementById("mnav");
+
+  var LEVELS = [
+    { id: "Start", name: "Start here", sub: "How to learn, and how French sounds" },
+    { id: "A1", name: "A1 · Foundations", sub: "Survive everyday exchanges in the present" },
+    { id: "A2", name: "A2 · Everyday French", sub: "Talk about your routine, your past and your plans" },
+    { id: "B1", name: "B1 · Independent user (NCLC 5)", sub: "Give opinions, hypothesise, argue and narrate in detail" },
+    { id: "Exam", name: "Exam performance", sub: "Turn B1 French into an NCLC 5 result" }
+  ];
+
+  var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+  function strip(html) { var d = document.createElement("div"); d.innerHTML = html; return d.textContent || ""; }
+  function canSpeak() { return !!(Speech && Speech.available()); }
+
+  /* ---------- progress ---------- */
+  var prog = {};
+  try { prog = JSON.parse(localStorage.getItem(PROG_KEY) || "{}") || {}; } catch (e) { prog = {}; }
+  function save() { try { localStorage.setItem(PROG_KEY, JSON.stringify(prog)); } catch (e) {} }
+  function isDone(id) { return !!(prog[id] && prog[id].done); }
+
+  /* ---------- speech helpers ---------- */
+  var activeBtn = null;
+  function say(text, btn, opts) {
+    if (!canSpeak()) return;
+    if (activeBtn) activeBtn.classList.remove("on");
+    activeBtn = btn || null;
+    if (btn) btn.classList.add("on");
+    Speech.speak(text, {
+      slow: opts && opts.slow,
+      onend: function () { if (btn) btn.classList.remove("on"); if (activeBtn === btn) activeBtn = null; if (opts && opts.onend) opts.onend(); }
+    });
+  }
+  function sayBtn(text) {
+    if (!canSpeak()) return "";
+    return "<button type='button' class='say-btn' data-say='" + esc(strip(text)) + "' aria-label='Listen: " + esc(strip(text)) + "'>" + SPK + "</button>";
+  }
+
+  /* ---------- sidebar ---------- */
+  function renderSide(curId) {
+    var done = M.filter(function (m) { return isDone(m.id); }).length;
+    var html = "<div class='side-prog'><b>" + done + " of " + M.length + " modules done</b>" +
+      "<div class='bar'><i style='width:" + Math.round(done / Math.max(1, M.length) * 100) + "%'></i></div>" +
+      "<div class='sub'><a href='#' style='padding:0;display:inline' data-home>Course overview</a></div></div>";
+    LEVELS.forEach(function (L) {
+      var list = M.filter(function (m) { return m.level === L.id; });
+      if (!list.length) return;
+      html += "<h4>" + esc(L.name) + "</h4>";
+      list.forEach(function (m) {
+        html += "<a href='#" + m.id + "' class='" + (m.id === curId ? "cur " : "") + (isDone(m.id) ? "done" : "") + "'>" +
+          "<span class='dot'>" + (isDone(m.id) ? "✓" : m.num) + "</span><span>" + esc(m.title) + "</span></a>";
+      });
+    });
+    side.innerHTML = html;
+    var opts = "<option value=''>Course overview</option>";
+    LEVELS.forEach(function (L) {
+      var list = M.filter(function (m) { return m.level === L.id; });
+      if (!list.length) return;
+      opts += "<optgroup label='" + esc(L.name) + "'>";
+      list.forEach(function (m) {
+        opts += "<option value='" + m.id + "'" + (m.id === curId ? " selected" : "") + ">" + (isDone(m.id) ? "✓ " : m.num + ". ") + esc(m.title) + "</option>";
+      });
+      opts += "</optgroup>";
+    });
+    mnav.innerHTML = opts;
+  }
+  mnav.addEventListener("change", function () { location.hash = mnav.value ? "#" + mnav.value : "#"; });
+  side.addEventListener("click", function (e) {
+    if (e.target.closest("[data-home]")) { e.preventDefault(); location.hash = ""; route(); }
+  });
+
+  /* ---------- overview ---------- */
+  function renderOverview() {
+    document.title = "Learn French to NCLC 5 · Research-Based Course";
+    var done = M.filter(function (m) { return isDone(m.id); }).length;
+    var next = M.filter(function (m) { return !isDone(m.id); })[0];
+    var html = "<div class='hero-l'><span class='eyebrow'>The course</span>" +
+      "<h1>From your first French sounds to NCLC 5</h1>" +
+      "<p class='lead'>" + M.length + " modules in the order research and the CEFR say you should learn them. Each one explains the grammar properly, shows you how to pronounce it, flags the mistakes English speakers make, gets you speaking out loud, and checks that it stuck.</p>" +
+      "<div class='practice-row'>" + (next ? "<a class='btn btn-primary btn-lg' href='#" + next.id + "'>" + (done ? "Continue: " : "Start: ") + esc(next.title) + "</a>" : "<a class='btn btn-primary btn-lg' href='exam.html'>Take a mock exam</a>") +
+      "<a class='btn btn-lg' href='#method'>How this course works</a></div></div>" +
+      "<div class='principles' style='margin-top:28px'>" +
+        "<div class='principle'><b>Retrieve, don't reread</b><span>Testing yourself beats re-studying for long-term memory. Every module ends with a check.</span></div>" +
+        "<div class='principle'><b>Space it out</b><span>Come back to old modules days later. Spaced review beats cramming for retention.</span></div>" +
+        "<div class='principle'><b>Speak from day one</b><span>Producing French shows you the gaps that reading hides. Every module has a speaking drill.</span></div>" +
+        "<div class='principle'><b>Mix your practice</b><span>Interleaving topics feels harder but produces better retention a week later.</span></div>" +
+      "</div><div class='levels'>";
+    LEVELS.forEach(function (L) {
+      var list = M.filter(function (m) { return m.level === L.id; });
+      if (!list.length) return;
+      html += "<section><div class='level-head'><h2>" + esc(L.name) + "</h2><span>" + esc(L.sub) + "</span></div><div class='mod-grid'>";
+      list.forEach(function (m) {
+        html += "<a class='mod-card" + (isDone(m.id) ? " done" : "") + "' href='#" + m.id + "'>" +
+          "<div class='top'><span class='num'>Module " + m.num + " · " + esc(m.hours) + "</span>" + (isDone(m.id) ? "<span class='ok'>✓ done</span>" : "") + "</div>" +
+          "<span class='t'>" + esc(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span></a>";
+      });
+      html += "</div></section>";
+    });
+    html += "</div>";
+    view.innerHTML = html;
+    renderSide(null);
+  }
+
+  /* ---------- module ---------- */
+  var ICONS = {
+    goal: "◎", learn: "✎", sound: "♪", warn: "!", speak: "◉", vocab: "Aa", check: "?", done: "✓"
+  };
+
+  /* "parle" in a je-row is spoken as "je parle"; "il / elle" uses the first */
+  function withPerson(person, form) {
+    person = person.split("/")[0].trim();
+    if (!person || /^[-—]/.test(form)) return form;
+    if (/^je$/i.test(person) && /^[aeiouyâàéèêëîïôûùüh]/i.test(form)) return "j'" + form;
+    return person + " " + form;
+  }
+
+  function renderTable(t) {
+    var sayCols = t.say || [];
+    var h = "<div class='table-wrap'><table>" + (t.cap ? "<caption>" + t.cap + "</caption>" : "") + "<thead><tr>";
+    t.head.forEach(function (c) { h += "<th>" + c + "</th>"; });
+    h += "</tr></thead><tbody>";
+    t.rows.forEach(function (r) {
+      h += "<tr>";
+      r.forEach(function (c, i) {
+        var s = sayCols.indexOf(i) !== -1 && c && c !== "—";
+        h += "<td" + (s ? " class='say-cell'" : "") + ">" + c + (s ? sayBtn(t.pron && i > 0 ? withPerson(strip(r[0]), strip(c)) : c) : "") + "</td>";
+      });
+      h += "</tr>";
+    });
+    return h + "</tbody></table></div>";
+  }
+
+  function renderModule(m) {
+    document.title = m.title + " · Learn French to NCLC 5";
+    var idx = M.indexOf(m);
+    var prev = M[idx - 1], next = M[idx + 1];
+    var levelName = (LEVELS.filter(function (L) { return L.id === m.level; })[0] || {}).name || m.level;
+    var chips = [["overview", "Overview"], ["lessons", "Lessons"]];
+    if (m.sounds) chips.push(["sounds", "Say it right"]);
+    if (m.mistakes) chips.push(["mistakes", "Common mistakes"]);
+    if (m.speak) chips.push(["speak", "Speak it"]);
+    if (m.vocab) chips.push(["vocab", "Vocabulary"]);
+    if (m.quiz) chips.push(["check", "Check yourself"]);
+
+    var h = "<div class='mod-head'><span class='eyebrow'>Module " + m.num + " · " + esc(levelName) + "</span>" +
+      "<h1>" + esc(m.title) + "</h1><p class='subtitle'>" + esc(m.subtitle) + "</p>" +
+      "<div class='meta'><span class='pill gold'>" + esc(m.hours) + "</span><span class='pill'>" + m.lessons.length + " lessons</span>" +
+      (m.quiz ? "<span class='pill'>" + m.quiz.length + "-question check</span>" : "") + (isDone(m.id) ? "<span class='pill accent'>✓ completed</span>" : "") + "</div>" +
+      "<div class='toc-chips'>" + chips.map(function (c) { return "<a href='#" + m.id + "/" + c[0] + "'>" + c[1] + "</a>"; }).join("") + "</div></div>";
+
+    h += "<section class='block' id='sec-overview'><h2><span class='ic'>" + ICONS.goal + "</span>Why this, and why now</h2><div class='why'>" + m.why + "</div>" +
+      (m.goals ? "<ul class='goals'>" + m.goals.map(function (g) { return "<li>" + g + "</li>"; }).join("") + "</ul>" : "") + "</section>";
+
+    h += "<section class='block' id='sec-lessons'><h2><span class='ic'>" + ICONS.learn + "</span>Lessons</h2>";
+    m.lessons.forEach(function (L, i) {
+      h += "<article class='lesson'><h3><span class='n'>" + m.num + "." + (i + 1) + "</span>" + L.title + "</h3><div class='body'>" + (L.body || "") + "</div>";
+      (L.tables || (L.table ? [L.table] : [])).forEach(function (t) { h += renderTable(t); });
+      if (L.after) h += "<div class='body'>" + L.after + "</div>";
+      if (L.examples) {
+        h += "<ul class='ex-list'>" + L.examples.map(function (e) {
+          return "<li>" + (sayBtn(e[0]) || "<span></span>") + "<span class='frx'>" + e[0] + "</span><span class='enx'>" + e[1] + "</span></li>";
+        }).join("") + "</ul>";
+      }
+      if (L.tip) h += "<div class='tipbox'><b>Tip · </b>" + L.tip + "</div>";
+      h += "</article>";
+    });
+    h += "</section>";
+
+    if (m.sounds) {
+      h += "<section class='block' id='sec-sounds'><h2><span class='ic'>" + ICONS.sound + "</span>Say it right</h2>" +
+        (m.sounds.intro ? "<div class='why'>" + m.sounds.intro + "</div>" : "");
+      m.sounds.points.forEach(function (p) {
+        h += "<div class='sound-card'><h3>" + p.title + "</h3><div class='body'>" + p.body + "</div>" +
+          (p.say && canSpeak() ? "<div class='pairs'>" + p.say.map(function (s) { return "<button type='button' data-say='" + esc(strip(s)) + "'>" + SPK + s + "</button>"; }).join("") + "</div>" : "") +
+          "</div>";
+      });
+      h += "</section>";
+    }
+
+    if (m.mistakes) {
+      h += "<section class='block' id='sec-mistakes'><h2><span class='ic'>" + ICONS.warn + "</span>Mistakes English speakers make</h2>" +
+        "<table class='mistakes'><thead><tr><th>Not this</th><th>But this</th><th>Why</th></tr></thead><tbody>" +
+        m.mistakes.map(function (x) { return "<tr><td class='w'>" + x[0] + "</td><td class='r'>" + x[1] + "</td><td class='y'>" + x[2] + "</td></tr>"; }).join("") +
+        "</tbody></table></section>";
+    }
+
+    if (m.speak) {
+      h += "<section class='block' id='sec-speak'><h2><span class='ic'>" + ICONS.speak + "</span>Speak it</h2>" +
+        "<div class='speak-panel'><div class='why' style='font-size:15px'>" + (m.speak.intro || "Listen to each line, then say it out loud during the pause — copy the rhythm and melody, not just the words. This is <b>shadowing</b>.") + "</div>" +
+        (canSpeak() ? "<div class='speak-controls'><button type='button' class='btn btn-teal btn-sm' id='shadow-go'>▶ Shadow all lines</button>" +
+          "<button type='button' class='btn btn-sm' id='shadow-stop' hidden>Stop</button>" +
+          "<label><input type='checkbox' id='shadow-slow'> Slow</label><label><input type='checkbox' id='shadow-hide'> Hide the French (listening only)</label></div>" : "<p class='muted'>Audio needs a browser with speech synthesis.</p>") +
+        "<ol class='shadow-list' id='shadow-list'>" + m.speak.lines.map(function (l, i) {
+          return "<li data-i='" + i + "'>" + sayBtn(l[0]) + "<div class='txt'><div class='frx'>" + l[0] + "</div><div class='enx'>" + l[1] + "</div></div></li>";
+        }).join("") + "</ol>" +
+        (m.speak.task ? "<div class='task-box'><b>Your turn · </b>" + m.speak.task + "</div>" : "") + "</div></section>";
+    }
+
+    if (m.vocab) {
+      h += "<section class='block' id='sec-vocab'><h2><span class='ic'>" + ICONS.vocab + "</span>Key vocabulary</h2><div class='vocab-grid'>" +
+        m.vocab.map(function (v) { return "<div class='vocab-item'><div><div class='frx'>" + v[0] + "</div><div class='enx'>" + v[1] + "</div></div>" + sayBtn(v[0]) + "</div>"; }).join("") +
+        "</div></section>";
+    }
+
+    if (m.quiz) {
+      h += "<section class='block' id='sec-check'><h2><span class='ic'>" + ICONS.check + "</span>Check yourself</h2>" +
+        "<p class='muted' style='margin:0'>Answer before you look back at the lessons — the effort of recalling is what makes it stick.</p><div id='quiz'></div><div class='quiz-score' id='qscore'></div></section>";
+    }
+
+    h += "<section class='block' id='sec-done'><h2><span class='ic'>" + ICONS.done + "</span>Finish the module</h2><div class='finish'>" +
+      "<div><ul class='checks'>" +
+        "<li><label><input type='checkbox' data-c='read'> I worked through every lesson and said the examples aloud</label></li>" +
+        (m.speak ? "<li><label><input type='checkbox' data-c='speak'> I shadowed the lines and did the speaking task</label></li>" : "") +
+        (m.quiz ? "<li><label><input type='checkbox' data-c='quiz'> I scored at least 80% on the check</label></li>" : "") +
+      "</ul>" +
+      (m.practice ? "<div class='practice-row' style='margin-top:12px'>" + m.practice.map(function (p) { return "<a class='btn btn-sm' href='" + p[1] + "'>" + esc(p[0]) + " →</a>"; }).join("") + "</div>" : "") +
+      "</div><button type='button' class='btn " + (isDone(m.id) ? "" : "btn-primary") + "' id='done-btn'>" + (isDone(m.id) ? "✓ Completed — mark as not done" : "Mark module complete") + "</button></div>";
+    if (m.sources) {
+      h += "<div class='sources' style='margin-top:18px'><b>Research behind this module</b><ol>" +
+        m.sources.map(function (s) { return "<li>" + (s[1] ? "<a href='" + s[1] + "' target='_blank' rel='noopener'>" + s[0] + "</a>" : s[0]) + "</li>"; }).join("") + "</ol></div>";
+    }
+    h += "</section>";
+
+    h += "<nav class='pager' aria-label='Module navigation'>" +
+      (prev ? "<a href='#" + prev.id + "'><small>← Previous</small>" + esc(prev.title) + "</a>" : "<a href='#'><small>← Back</small>Course overview</a>") +
+      (next ? "<a class='next' href='#" + next.id + "'><small>Next →</small>" + esc(next.title) + "</a>" : "<a class='next' href='exam.html'><small>Next →</small>Take a mock exam</a>") +
+      "</nav>";
+
+    view.innerHTML = h;
+    renderSide(m.id);
+    wireModule(m);
+  }
+
+  function wireModule(m) {
+    var p = prog[m.id] || {};
+    view.querySelectorAll(".finish input[data-c]").forEach(function (cb) {
+      cb.checked = !!(p.checks && p.checks[cb.getAttribute("data-c")]);
+      cb.addEventListener("change", function () {
+        prog[m.id] = prog[m.id] || {};
+        prog[m.id].checks = prog[m.id].checks || {};
+        prog[m.id].checks[cb.getAttribute("data-c")] = cb.checked;
+        save();
+      });
+    });
+    document.getElementById("done-btn").addEventListener("click", function () {
+      prog[m.id] = prog[m.id] || {};
+      prog[m.id].done = !prog[m.id].done;
+      prog[m.id].at = Date.now();
+      save();
+      if (prog[m.id].done && window.NCLC) window.NCLC.toast("Module " + m.num + " complete. Come back to it in a few days for a spaced review.");
+      renderModule(m);
+      var el = document.getElementById("sec-done"); if (el) el.scrollIntoView({ block: "center" });
+    });
+
+    if (m.quiz) buildQuiz(m);
+    if (m.speak && canSpeak()) wireShadow(m);
+  }
+
+  function buildQuiz(m) {
+    var box = document.getElementById("quiz");
+    var answered = 0, right = 0;
+    m.quiz.forEach(function (q, qi) {
+      var order = q.o.map(function (_, i) { return i; });
+      for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
+      var d = document.createElement("div");
+      d.className = "quiz-q";
+      d.innerHTML = "<div class='q'>" + (qi + 1) + ". " + q.q + "</div><div class='opts'></div><div class='expl' hidden></div>";
+      var opts = d.querySelector(".opts");
+      order.forEach(function (oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.innerHTML = q.o[oi];
+        b.addEventListener("click", function () {
+          if (d.getAttribute("data-done")) return;
+          d.setAttribute("data-done", "1");
+          answered++;
+          if (oi === q.a) right++;
+          opts.querySelectorAll("button").forEach(function (x, n) {
+            x.disabled = true;
+            if (order[n] === q.a) x.classList.add("right");
+            else if (x === b) x.classList.add("wrong");
+          });
+          var ex = d.querySelector(".expl"); ex.hidden = false; ex.innerHTML = (oi === q.a ? "<b>Correct.</b> " : "<b>Not quite.</b> ") + q.why;
+          if (answered === m.quiz.length) {
+            var pct = Math.round(right / m.quiz.length * 100);
+            document.getElementById("qscore").textContent = "Score: " + right + " / " + m.quiz.length + " (" + pct + "%) — " +
+              (pct >= 80 ? "solid. Mark the module complete and review it again in a few days." : "re-read the lessons behind the ones you missed, then try again tomorrow.");
+            prog[m.id] = prog[m.id] || {};
+            prog[m.id].best = Math.max(prog[m.id].best || 0, pct);
+            save();
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+  }
+
+  var shadowRun = 0;
+  function wireShadow(m) {
+    var go = document.getElementById("shadow-go"), stop = document.getElementById("shadow-stop");
+    var slow = document.getElementById("shadow-slow"), hide = document.getElementById("shadow-hide");
+    var items = view.querySelectorAll("#shadow-list li");
+    hide.addEventListener("change", function () {
+      view.querySelectorAll("#shadow-list .frx").forEach(function (x) { x.style.visibility = hide.checked ? "hidden" : ""; });
+    });
+    function end() {
+      shadowRun++;
+      items.forEach(function (li) { li.classList.remove("active", "yourturn"); });
+      go.hidden = false; stop.hidden = true;
+      if (Speech) Speech.stop();
+    }
+    stop.addEventListener("click", end);
+    go.addEventListener("click", function () {
+      var run = ++shadowRun;
+      go.hidden = true; stop.hidden = false;
+      var i = 0;
+      (function step() {
+        if (run !== shadowRun) return;
+        if (i >= m.speak.lines.length) return end();
+        items.forEach(function (li) { li.classList.remove("active", "yourturn"); });
+        var li = items[i];
+        li.classList.add("active");
+        li.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        var text = strip(m.speak.lines[i][0]);
+        Speech.speak(text, { slow: slow.checked, onend: function () {
+          if (run !== shadowRun) return;
+          li.classList.remove("active"); li.classList.add("yourturn");
+          /* the pause is long enough to repeat the line at a natural pace */
+          var gap = Math.min(9000, 1400 + text.split(/\s+/).length * (slow.checked ? 650 : 480));
+          setTimeout(function () { if (run !== shadowRun) return; li.classList.remove("yourturn"); i++; step(); }, gap);
+        } });
+      })();
+    });
+  }
+
+  /* delegated clicks for every speak button */
+  view.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-say]");
+    if (!b) return;
+    e.preventDefault();
+    say(b.getAttribute("data-say"), b);
+  });
+
+  /* ---------- routing ---------- */
+  function route() {
+    shadowRun++;
+    if (Speech) Speech.stop();
+    var h = decodeURIComponent(location.hash.replace(/^#/, ""));
+    var parts = h.split("/");
+    var m = M.filter(function (x) { return x.id === parts[0]; })[0];
+    if (m) {
+      renderModule(m);
+      var target = parts[1] ? document.getElementById("sec-" + parts[1]) : null;
+      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+    } else {
+      renderOverview();
+      window.scrollTo(0, 0);
+    }
+  }
+  M.forEach(function (m, i) { m.num = i; });
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+</body>
+</html>
