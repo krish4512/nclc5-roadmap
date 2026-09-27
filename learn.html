@@ -22,6 +22,7 @@
 <script src="assets/course-2.js"></script>
 <script src="assets/course-3.js"></script>
 <script src="assets/course-4.js"></script>
+<script src="assets/course-t2.js"></script>
 <script src="assets/course-5.js"></script>
 <style>
   .learn { max-width: 1180px; margin: 0 auto; padding: 28px 24px 24px; display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 36px; align-items: start; }
@@ -688,7 +689,7 @@
     form.innerHTML = html;
     form.querySelectorAll("textarea").forEach(function (t) { t.value = vals[t.getAttribute("data-f")] || ""; });
 
-    function clean(v) { return String(v || "").trim().replace(/[.\s]+$/, ""); }
+    function clean(v) { return String(v || "").trim().replace(/[.?!\s]+$/, ""); }
     function assemble(asText) {
       return B.parts.map(function (part) {
         var body = part.text.replace(/\{(\w+)\}/g, function (_, id) {
