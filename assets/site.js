@@ -41,6 +41,39 @@
     nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
   }
 
+  /* ---------- dropdown menus ---------- */
+  function wireDropdowns() {
+    var items = Array.prototype.slice.call(document.querySelectorAll("[data-dd]"));
+    if (!items.length) return;
+    function close(except) {
+      items.forEach(function (it) {
+        if (it === except) return;
+        it.classList.remove("open");
+        var b = it.querySelector(".dd-toggle");
+        if (b) b.setAttribute("aria-expanded", "false");
+      });
+    }
+    items.forEach(function (it) {
+      var btn = it.querySelector(".dd-toggle");
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = !it.classList.contains("open");
+        close(it);
+        it.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      /* after following a link (including hash links on the same page), fold the menu away */
+      it.querySelectorAll(".dd a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          close(null);
+          if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+        });
+      });
+    });
+    document.addEventListener("click", function (e) { if (!e.target.closest("[data-dd]")) close(null); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(null); });
+  }
+
   /* ---------- config-driven text ---------- */
   function mailto(subject) {
     return "mailto:" + (SITE.email || "") + (subject ? "?subject=" + encodeURIComponent(subject) : "");
@@ -139,7 +172,7 @@
 
   window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto };
 
-  function boot() { wireTheme(); wireMenu(); fillConfig(); }
+  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
