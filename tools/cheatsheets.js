@@ -1,0 +1,279 @@
+#!/usr/bin/env node
+/* Build the free one-page PDF cheat sheets from the course content.
+
+   Reads assets/course-*.js (the same data learn.html renders) and
+   assets/course-en.js (English glosses), lays each module out on one
+   US Letter page, shrinks the type or trims the lowest-priority items
+   until it fits, and writes:
+
+     assets/cheatsheets/<module-id>.pdf       one page per module
+     assets/cheatsheets/all-modules.pdf       every sheet in one file
+     assets/cheatsheets/thumbs/<module-id>.jpg  previews for cheatsheets.html
+     assets/cheatsheets/manifest.js           the list cheatsheets.html shows
+
+   Run from the repository root after editing course content:
+
+     node tools/cheatsheets.js
+
+   Needs Playwright with Chromium (npm i -g playwright). Fonts come from
+   tools/fonts (Inter, SIL Open Font License) so the PDFs look the same on
+   any machine. */
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
+
+const ROOT = path.resolve(__dirname, "..");
+const OUT = path.join(ROOT, "assets", "cheatsheets");
+const THUMBS = path.join(OUT, "thumbs");
+
+let chromium;
+try { ({ chromium } = require("playwright")); }
+catch (e) { ({ chromium } = require(path.join(execSync("npm root -g").toString().trim(), "playwright"))); }
+
+/* ---------- load site data ---------- */
+global.window = {};
+require(path.join(ROOT, "assets", "config.js"));
+for (const f of ["1", "2", "3", "4", "t2", "5"]) require(path.join(ROOT, "assets", "course-" + f + ".js"));
+require(path.join(ROOT, "assets", "course-en.js"));
+const SITE = window.SITE, M = window.COURSE.modules, EN = window.COURSE_EN;
+const BASE = /example\.com/.test(SITE.url || "") ? "https://krish4512.github.io/nclc5-roadmap" : SITE.url.replace(/\/$/, "");
+M.forEach((m, i) => { m.num = i; });
+
+const LEVELS = {
+  Start: { name: "Start here", color: "#6c47e4" },
+  A1: { name: "A1 · Foundations", color: "#2563eb" },
+  A2: { name: "A2 · Everyday French", color: "#0784a8" },
+  B1: { name: "B1 · Independent user", color: "#e0620d" },
+  Exam: { name: "Exam performance", color: "#b42ac6" }
+};
+
+const strip = s => String(s || "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+/* keep bold / italics / French highlighting, drop everything else */
+function inline(html) {
+  return String(html || "")
+    .replace(/<span class='fr'[^>]*>/g, "<span class='fr'>")
+    .replace(/<(?!\/?(b|strong|em|i|span)\b)[^>]+>/g, "")
+    .replace(/<span(?! class='fr')[^>]*>/g, "<span>")
+    .trim();
+}
+function en(text, mod) {
+  const k = strip(text);
+  return (EN.scoped[mod + "|" + k] || EN.map[k] || "");
+}
+function withPerson(person, form) {
+  person = strip(person).split("/")[0].trim(); form = strip(form);
+  if (!person || /^[-—]/.test(form)) return form;
+  if (/^je$/i.test(person) && /^[aeiouyâàéèêëîïôûùüh]/i.test(form)) return "j'" + form;
+  return person + " " + form;
+}
+function fonts() {
+  const dir = path.join(__dirname, "fonts");
+  const face = (family, file, weight, range) =>
+    `@font-face{font-family:'${family}';font-weight:${weight};src:url(data:font/woff2;base64,${fs.readFileSync(path.join(dir, file)).toString("base64")}) format('woff2');unicode-range:${range};}`;
+  const LAT = "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215";
+  const EXT = "U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF";
+  let css = "";
+  for (const w of [400, 500, 600, 700]) css += face("Inter", `inter-latin-${w}-normal.woff2`, w, LAT) + face("Inter", `inter-latin-ext-${w}-normal.woff2`, w, EXT);
+  for (const w of [700, 800]) css += face("Inter Tight", `inter-tight-latin-${w}-normal.woff2`, w, LAT) + face("Inter Tight", `inter-tight-latin-ext-${w}-normal.woff2`, w, EXT);
+  return css;
+}
+
+/* ---------- pick what goes on a sheet ---------- */
+function pickTables(m) {
+  const all = [];
+  m.lessons.forEach(L => (L.tables || (L.table ? [L.table] : [])).forEach(t => all.push(t)));
+  const len = t => t.rows.reduce((n, r) => n + r.reduce((a, c) => a + strip(c).length, 0), 0) / Math.max(1, t.rows.length * t.head.length);
+  /* conjugation / phrase tables with audio first, then compact ones */
+  const scored = all.map((t, i) => ({ t, i, s: (t.say && t.say.length ? 0 : 1) * 100 + len(t) }));
+  scored.sort((a, b) => a.s - b.s);
+  return scored.slice(0, 2).sort((a, b) => a.i - b.i).map(x => x.t);
+}
+function spread(list, n) {
+  if (list.length <= n) return list;
+  const out = [];
+  for (let i = 0; i < n; i++) out.push(list[Math.floor(i * list.length / n)]);
+  return out;
+}
+
+function tableHtml(t, mod) {
+  const say = t.say || [];
+  let h = "<table>" + (t.cap ? "<caption>" + esc(strip(t.cap)) + "</caption>" : "") + "<thead><tr>" +
+    t.head.map(c => "<th>" + esc(strip(c)) + "</th>").join("") + "</tr></thead><tbody>";
+  t.rows.forEach((r, ri) => {
+    h += "<tr class='drop' data-p='3' data-o='" + (100 - ri) + "'>";
+    r.forEach((c, i) => {
+      const key = t.pron && i > 0 ? withPerson(r[0], c) : c;
+      const g = c && c !== "—" && (i > 0 || !t.pron) ? en(key, mod) : "";
+      h += "<td" + (i === 0 ? " class='k'" : "") + ">" + inline(c) + (g ? "<small>" + esc(g) + "</small>" : "") + "</td>";
+    });
+    h += "</tr>";
+  });
+  return h + "</tbody></table>";
+}
+
+function sheet(m) {
+  const L = LEVELS[m.level] || LEVELS.Start;
+  const mod = m.id;
+  const url = BASE + "/learn.html#" + m.id;
+  const examples = [];
+  m.lessons.forEach(Ls => (Ls.examples || []).forEach(e => examples.push(e)));
+  if (m.speak) m.speak.lines.forEach(l => examples.push(l));
+  /* full model answers are too long for a phrase list */
+  const phrases = spread(examples.filter(e => strip(e[0]).length <= 140), 10);
+  const tips = m.lessons.filter(Ls => Ls.tip).map(Ls => Ls.tip);
+  const left = [], right = [];
+
+  if (m.goals) left.push("<section><h2>You'll be able to</h2><ul class='goals'>" +
+    m.goals.map((g, i) => "<li class='drop' data-p='1' data-o='" + (50 - i) + "'>" + inline(g) + "</li>").join("") + "</ul></section>");
+
+  if (m.builder) {
+    /* exam modules: the memorised template is the thing to print */
+    left.push("<section class='tpl'><h2>" + esc(m.builder.title || "Your answer template") + "</h2>" +
+      m.builder.parts.map((p, i) => {
+        const fr = esc(p.text).replace(/\{(\w+)\}/g, "<b class='slot'>…</b>");
+        const e = en(p.text, mod);
+        return "<div class='part drop' data-p='2' data-o='" + (60 - i) + "'><h3>" + esc(p.title) + "</h3><p class='frt'>" + fr + "</p>" +
+          (e ? "<p class='ent'>" + esc(e).replace(/\{(\w+)\}/g, "…") + "</p>" : "") + "</div>";
+      }).join("") + "</section>");
+  } else {
+    pickTables(m).forEach(t => left.push("<section class='tbl'>" + tableHtml(t, mod) + "</section>"));
+  }
+
+  if (phrases.length) right.push("<section><h2>Key phrases</h2><ul class='ph'>" +
+    phrases.map((e, i) => "<li class='drop' data-p='4' data-o='" + (50 - i) + "'><span class='fr'>" + inline(e[0]) + "</span><span class='e'>" + inline(e[1]) + "</span></li>").join("") + "</ul></section>");
+
+  if (m.mistakes) right.push("<section><h2>Avoid these mistakes</h2><ul class='mis'>" +
+    m.mistakes.slice(0, 7).map((x, i) => "<li class='drop' data-p='5' data-o='" + (50 - i) + "'><span class='w'>" + inline(x[0]) + "</span><span class='r'>" + inline(x[1]) + "</span><span class='y'>" + inline(x[2]) + "</span></li>").join("") + "</ul></section>");
+
+  if (m.vocab) right.push("<section><h2>Must-know words</h2><ul class='voc'>" +
+    m.vocab.slice(0, 14).map((v, i) => "<li class='drop' data-p='6' data-o='" + (50 - i) + "'><b>" + inline(v[0]) + "</b> " + inline(v[1]) + "</li>").join("") + "</ul></section>");
+
+  if (tips.length) right.push("<section class='tip drop' data-p='7' data-o='1'><h2>Tip</h2><p>" + inline(tips[0]) + "</p></section>");
+
+  return `<div class="page" style="--c:${L.color}">
+  <header>
+    <div class="brand"><span class="mark">B1</span>${esc(SITE.brand)} <span class="free">Free cheat sheet</span></div>
+    <div class="lvl">Module ${m.num} · ${esc(L.name)}</div>
+    <h1>${esc(m.title)}</h1>
+    <p class="sub">${esc(m.subtitle)}</p>
+  </header>
+  <main class="${m.builder ? "wide" : ""}">
+    <div class="col">${left.join("")}</div>
+    <div class="col">${right.join("")}</div>
+  </main>
+  <footer>
+    <div><b>Full lessons with audio, drills and mock exams:</b> <a href="${url}">${esc(url.replace(/^https?:\/\//, ""))}</a></div>
+    <div class="fine">Independent study resource, not affiliated with France Éducation international, CCI Paris Île-de-France or IRCC. © ${new Date().getFullYear()} ${esc(SITE.legalName)}</div>
+  </footer>
+</div>`;
+}
+
+const CSS = `
+@page { size: 8.5in 11in; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: Inter, "DejaVu Sans", sans-serif; color: #1d1d1f; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { --fs: 9.4px; width: 8.5in; height: 11in; padding: 0.42in 0.46in 0.36in; display: flex; flex-direction: column; overflow: hidden; position: relative; font-size: var(--fs); line-height: 1.38; break-after: page; }
+.page::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7px; background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 40%, #c2419a)); }
+header { border-bottom: 1px solid #e6e6eb; padding-bottom: 9px; margin-bottom: 11px; }
+.brand { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 10px; color: #515154; }
+.mark { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 5px; color: #fff; font-size: 7.5px; font-weight: 800; background: linear-gradient(135deg, #2451d6, #6c47e4 55%, #c2419a); }
+.free { margin-left: auto; font-size: 8.5px; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 35%, #fff); background: color-mix(in srgb, var(--c) 8%, #fff); padding: 2px 8px; border-radius: 99px; }
+.lvl { margin-top: 10px; font-size: 9px; font-weight: 700; color: var(--c); letter-spacing: 0.02em; }
+h1 { font-family: "Inter Tight", Inter, sans-serif; font-weight: 800; font-size: 23px; letter-spacing: -0.015em; word-spacing: 0.04em; line-height: 1.08; margin: 3px 0 4px; }
+.sub { margin: 0; color: #515154; font-size: 10.5px; }
+main { flex: 1; display: grid; grid-template-columns: 1.08fr 1fr; gap: 16px; min-height: 0; }
+main.wide { grid-template-columns: 1.35fr 1fr; }
+.col { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+section h2 { display: flex; align-items: center; gap: 6px; font-size: calc(var(--fs) * 1.02); font-weight: 700; letter-spacing: 0.01em; text-transform: uppercase; color: var(--c); margin: 0 0 5px; }
+section h2::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+ul { list-style: none; margin: 0; padding: 0; }
+.fr { font-weight: 600; color: #1d1d1f; }
+.goals li { position: relative; padding-left: 13px; margin: 2px 0; }
+.goals li::before { content: "✓"; position: absolute; left: 0; color: var(--c); font-weight: 700; }
+table { width: 100%; border-collapse: collapse; border: 1px solid color-mix(in srgb, var(--c) 28%, #fff); border-radius: 7px; overflow: hidden; font-size: calc(var(--fs) * 0.98); }
+caption { text-align: left; font-weight: 700; font-size: calc(var(--fs) * 0.95); color: var(--c); padding: 0 0 3px; }
+th { text-align: left; font-size: calc(var(--fs) * 0.88); font-weight: 700; color: color-mix(in srgb, var(--c) 80%, #000); background: color-mix(in srgb, var(--c) 9%, #fff); padding: 4px 6px; }
+td { padding: 3.5px 6px; border-top: 1px solid #ececf0; vertical-align: top; }
+td.k { font-weight: 700; }
+td small { display: block; color: #86868b; font-size: calc(var(--fs) * 0.84); line-height: 1.25; font-weight: 400; }
+.ph li { display: flex; flex-direction: column; padding: 3px 0 3px 8px; border-left: 2px solid var(--c); margin-bottom: 4px; }
+.ph .e { color: #6e6e73; font-size: calc(var(--fs) * 0.92); }
+.mis li { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px; padding: 4px 0; border-top: 1px solid #ececf0; }
+.mis li:first-child { border-top: none; }
+.mis .w { color: #c0392b; text-decoration: line-through; text-decoration-color: rgba(192,57,43,.5); }
+.mis .w::before { content: "✗ "; text-decoration: none; display: inline-block; }
+.mis .r { color: #16865a; font-weight: 600; }
+.mis .r::before { content: "✓ "; }
+.mis .y { grid-column: 1 / -1; color: #6e6e73; font-size: calc(var(--fs) * 0.9); }
+.mis .fr { color: inherit; }
+.voc { columns: 2; column-gap: 12px; }
+.voc li { break-inside: avoid; margin-bottom: 2px; }
+.voc b { font-weight: 600; }
+.tip { background: #fdf5e6; border: 1px solid #f3dfb8; border-radius: 8px; padding: 7px 9px; }
+.tip h2 { color: #b06a00; }
+.tip h2::before { background: #b06a00; }
+.tip p { margin: 0; }
+.tpl .part { margin-bottom: 7px; padding-left: 8px; border-left: 2px solid color-mix(in srgb, var(--c) 40%, #fff); }
+.tpl h3 { margin: 0 0 2px; font-size: calc(var(--fs) * 0.92); color: var(--c); text-transform: uppercase; letter-spacing: 0.02em; }
+.tpl .frt { margin: 0; font-weight: 500; }
+.tpl .ent { margin: 2px 0 0; color: #86868b; font-size: calc(var(--fs) * 0.88); }
+.slot { color: var(--c); }
+footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e6e6eb; font-size: 8.6px; color: #515154; }
+footer a { color: var(--c); font-weight: 600; text-decoration: none; }
+footer .fine { margin-top: 3px; font-size: 7.2px; color: #a1a1a6; }
+`;
+
+/* shrink type, then drop the lowest-priority items, until the page fits */
+function fitAll() {
+  document.querySelectorAll(".page").forEach(page => {
+    const main = page.querySelector("main");
+    const over = () => [...main.querySelectorAll(".col")].some(c => c.scrollHeight > main.clientHeight + 0.5);
+    let fs = 9.4;
+    while (over() && fs > 7.6) { fs -= 0.2; page.style.setProperty("--fs", fs + "px"); }
+    let guard = 200;
+    while (over() && guard--) {
+      const items = [...page.querySelectorAll(".drop")].filter(el => el.isConnected);
+      if (!items.length) break;
+      items.sort((a, b) => (+b.dataset.p - +a.dataset.p) || (+a.dataset.o - +b.dataset.o));
+      const el = items[0], parent = el.parentNode;
+      el.remove();
+      /* never leave a heading or an empty table behind */
+      const sec = parent.closest("section");
+      if (sec && !sec.querySelector(".drop, p, li:not(.drop)")) sec.remove();
+      else if (parent.tagName === "TBODY" && !parent.children.length) parent.closest("section").remove();
+    }
+    page.dataset.fs = fs.toFixed(1);
+    page.dataset.over = over() ? "1" : "0";
+  });
+}
+
+(async () => {
+  fs.mkdirSync(THUMBS, { recursive: true });
+  const head = "<!doctype html><html lang='fr'><head><meta charset='utf-8'><style>" + fonts() + CSS + "</style></head><body>";
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 816, height: 1056 } });
+  const thumb = await browser.newPage({ viewport: { width: 816, height: 1056 }, deviceScaleFactor: 0.5 });
+  const report = [];
+  for (const m of M) {
+    await page.setContent(head + sheet(m) + "</body></html>", { waitUntil: "load" });
+    await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(fitAll);
+    const info = await page.$eval(".page", p => ({ fs: p.dataset.fs, over: p.dataset.over, dropped: 0 }));
+    await page.pdf({ path: path.join(OUT, m.id + ".pdf"), width: "8.5in", height: "11in", printBackground: true, pageRanges: "1" });
+    await thumb.setContent(await page.content(), { waitUntil: "load" });
+    await thumb.evaluate(() => document.fonts.ready);
+    await thumb.screenshot({ path: path.join(THUMBS, m.id + ".jpg"), type: "jpeg", quality: 80 });
+    report.push(m.id + " fs=" + info.fs + (info.over === "1" ? " OVERFLOW" : ""));
+  }
+  await page.setContent(head + M.map(sheet).join("") + "</body></html>", { waitUntil: "load" });
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(fitAll);
+  await page.pdf({ path: path.join(OUT, "all-modules.pdf"), width: "8.5in", height: "11in", printBackground: true });
+  await browser.close();
+  /* list read by cheatsheets.html */
+  fs.writeFileSync(path.join(OUT, "manifest.js"), "/* Generated by tools/cheatsheets.js — do not edit. */\nwindow.CHEATSHEETS = " +
+    JSON.stringify(M.map(m => ({ id: m.id, num: m.num, level: m.level, title: m.title, subtitle: m.subtitle })), null, 1) + ";\n");
+  console.log(report.join("\n"));
+})();

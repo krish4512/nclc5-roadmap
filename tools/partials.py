@@ -47,6 +47,7 @@ NAV = [
         ("learn.html#exam", "Exam technique", "TCF & TEF task by task"),
         ("learn.html#tcf-t2", "TCF task 2 kit", "Asking questions: the interaction task"),
         ("learn.html#tcf-t3", "TCF task 3 template", "Giving your opinion in 4:30"),
+        ("cheatsheets.html", "Free cheat sheets", "21 one-page PDFs to print"),
     ]),
     ("roadmap", "roadmap.html", "Roadmap", [
         ("roadmap.html", "Roadmap overview", "Your checklist and progress"),
@@ -153,6 +154,7 @@ FOOTER = """<!-- partial:footer -->
         <h4>Study</h4>
         <ul>
           <li><a href="learn.html">French course</a></li>
+          <li><a href="cheatsheets.html">Free cheat sheets</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
           <li><a href="quiz.html">Practice drills</a></li>
           <li><a href="exam.html">Mock exam</a></li>

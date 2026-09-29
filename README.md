@@ -16,6 +16,7 @@ You upload the folder and it works.
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `quiz.html` | Practice drills built from the roadmap's tables: type, multiple choice, flashcards and listen-and-type; streaks, hints, weak-item review |
 | `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording |
+| `cheatsheets.html` + `assets/cheatsheets/` | 21 free one-page PDF cheat sheets (one per module, plus all-in-one), with an optional email sign-up to unlock them |
 | `pricing.html` | Plans and Stripe checkout buttons |
 | `contact.html` | Support email, billing portal link, FAQ |
 | `privacy.html`, `terms.html` | Privacy policy, and terms of service with the refund policy |
@@ -23,6 +24,7 @@ You upload the folder and it works.
 | `assets/config.js` | **The one file you edit before launch** |
 | `assets/site.css`, `assets/site.js`, `assets/speech.js` | Shared design system, header and footer behaviour, and French text-to-speech |
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
+| `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
 
 ## Before you launch
 
@@ -86,6 +88,13 @@ python3 -m http.server 8000
 - **Course modules:** edit `assets/course-1.js` … `course-4.js`. Each module is one object
   (`title`, `why`, `goals`, `lessons`, `sounds`, `mistakes`, `speak`, `vocab`, `quiz`, `practice`,
   `sources`). Modules appear in the order they're pushed, and are numbered automatically.
+
+- **Cheat sheets:** they're generated from the course, so after editing a module run
+  `node tools/cheatsheets.js` (needs Node and Playwright: `npm i -g playwright`). Each sheet
+  is fitted to one Letter page automatically. English glosses come from `assets/course-en.js`.
+- **Email sign-ups for the cheat sheets:** set `leadForm` in `assets/config.js` to a form
+  endpoint (Formspree, Mailchimp, ConvertKit, Buttondown…). Leave it empty to let anyone
+  download without an email.
 
 - **Roadmap, drills:** edit the tables in `roadmap.html`. The drills are generated from them.
   A table with `data-quiz="vocab"` becomes a vocabulary set (French in odd columns, English

@@ -419,6 +419,7 @@
           <a href="learn.html#exam"><b>Exam technique</b><span>TCF & TEF task by task</span></a>
           <a href="learn.html#tcf-t2"><b>TCF task 2 kit</b><span>Asking questions: the interaction task</span></a>
           <a href="learn.html#tcf-t3"><b>TCF task 3 template</b><span>Giving your opinion in 4:30</span></a>
+          <a href="cheatsheets.html"><b>Free cheat sheets</b><span>21 one-page PDFs to print</span></a>
         </div>
       </div>
       <div class="nav-item" data-dd>
@@ -498,6 +499,7 @@
         <h4>Study</h4>
         <ul>
           <li><a href="learn.html">French course</a></li>
+          <li><a href="cheatsheets.html">Free cheat sheets</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
           <li><a href="quiz.html">Practice drills</a></li>
           <li><a href="exam.html">Mock exam</a></li>
@@ -859,7 +861,8 @@
         (m.speak ? "<li><label><input type='checkbox' data-c='speak'> I shadowed the lines and did the speaking task</label></li>" : "") +
         (m.quiz ? "<li><label><input type='checkbox' data-c='quiz'> I scored at least 80% on the check</label></li>" : "") +
       "</ul>" +
-      (m.practice ? "<div class='practice-row' style='margin-top:14px'>" + m.practice.map(function (p) { return "<a class='btn btn-sm' href='" + p[1] + "'>" + esc(p[0]) + " →</a>"; }).join("") + "</div>" : "") +
+      "<div class='practice-row' style='margin-top:14px'>" + (m.practice || []).map(function (p) { return "<a class='btn btn-sm' href='" + p[1] + "'>" + esc(p[0]) + " →</a>"; }).join("") +
+        "<a class='btn btn-sm' href='cheatsheets.html?m=" + m.id + "'>↓ One-page cheat sheet (PDF)</a></div>" +
       "</div><button type='button' class='btn " + (isDone(m.id) ? "" : "btn-primary") + "' id='done-btn'>" + (isDone(m.id) ? "✓ Completed — mark as not done" : "Mark module complete") + "</button></div>";
     if (m.sources) {
       h += "<div class='sources' style='margin-top:18px'><b>Research behind this module</b><ol>" +
