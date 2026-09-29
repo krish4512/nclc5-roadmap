@@ -58,6 +58,16 @@ window.SITE = {
   customerPortal: "",
 
   /* ---------------------------------------------------------------- *
+   * Free cheat sheets (cheatsheets.html). To collect email sign-ups
+   * before the downloads unlock, paste a form endpoint that accepts a
+   * POST with an "email" field — e.g. a Formspree form URL
+   * (https://formspree.io/f/xxxx) or a Mailchimp / ConvertKit /
+   * Buttondown form action. Leave it empty and the PDFs are simply
+   * free to download, no email asked.
+   * ---------------------------------------------------------------- */
+  leadForm: "",
+
+  /* ---------------------------------------------------------------- *
    * Access control. A static site cannot verify a payment on its own,
    * so by default every feature is open ("paywall: false") and the
    * checkout simply takes payment. When you connect a membership

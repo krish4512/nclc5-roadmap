@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free French Cheat Sheets (PDF) · NCLC 5 Roadmap</title>
+<meta name="description" content="21 free one-page French cheat sheets for the TCF Canada and TEF Canada: conjugation tables with English, key phrases, common mistakes and the TCF speaking templates. Print-ready PDFs.">
+<!-- partial:head -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)document.documentElement.classList.add("js-motion");</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<!-- /partial:head -->
+<script src="assets/cheatsheets/manifest.js"></script>
+<style>
+  :root { --h-Start: #6c47e4; --h-A1: #2563eb; --h-A2: #0784a8; --h-B1: #e0620d; --h-Exam: #b42ac6; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --h-Start: #a58cff; --h-A1: #6d9bff; --h-A2: #3cc3e0; --h-B1: #ff9a57; --h-Exam: #e27cf2; } }
+  :root[data-theme="dark"] { --h-Start: #a58cff; --h-A1: #6d9bff; --h-A2: #3cc3e0; --h-B1: #ff9a57; --h-Exam: #e27cf2; }
+
+  .cs-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 64px 0 24px; }
+  @media (max-width: 900px) { .cs-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 40px; } }
+  .cs-hero h1 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.035em; font-size: clamp(36px, 5.4vw, 58px); line-height: 1.04; margin: 10px 0 16px; }
+  .cs-hero p.lead { color: var(--ink-soft); font-size: clamp(17px, 1.6vw, 19px); line-height: 1.55; margin: 0 0 22px; max-width: 54ch; }
+  .cs-points { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 8px; }
+  .cs-points li { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; }
+  .cs-points li::before { content: "✓"; flex: none; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 800; background: var(--accent-soft); color: var(--accent); margin-top: 1px; }
+  .cs-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+  /* fanned stack of real sheet previews */
+  .stack { position: relative; height: 440px; }
+  @media (max-width: 900px) { .stack { height: 360px; } }
+  .stack img {
+    position: absolute; top: 50%; left: 50%; width: 260px; aspect-ratio: 8.5 / 11; object-fit: cover; border-radius: 8px;
+    background: #fff; box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+    transform: translate(-50%, -50%) rotate(var(--r)) translateX(var(--x)); transition: transform 0.6s var(--ease);
+  }
+  @media (max-width: 900px) { .stack img { width: 210px; } }
+  .stack:hover img { transform: translate(-50%, -50%) rotate(calc(var(--r) * 1.6)) translateX(calc(var(--x) * 1.5)); }
+
+  /* email gate */
+  .gate { margin: 36px 0 8px; border-radius: 24px; padding: 28px; border: 1px solid var(--accent-soft-border); background: radial-gradient(120% 140% at 100% 0%, var(--teal-soft), transparent 60%), var(--accent-soft); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: center; }
+  @media (max-width: 800px) { .gate { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+  .gate h2 { font-family: var(--serif); letter-spacing: -0.03em; font-size: clamp(22px, 2.6vw, 28px); margin: 0 0 6px; }
+  .gate p { margin: 0; color: var(--ink-soft); }
+  .gate form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .gate input[type=email] { flex: 1 1 220px; min-width: 0; font: inherit; font-size: 16px; padding: 12px 16px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink); }
+  .gate input[type=email]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft-border); }
+  .gate .fine { flex-basis: 100%; font-size: 12.5px; color: var(--ink-faint); margin-top: 4px; }
+  .gate .fine a { color: inherit; }
+  .gate .msg { flex-basis: 100%; font-size: 14px; font-weight: 600; }
+  .gate .msg.bad { color: var(--bad); }
+
+  /* grid */
+  .cs-level { margin-top: 48px; }
+  .cs-level-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .cs-level-head .badge { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--lv); color: var(--bg); font-weight: 800; font-size: 13px; }
+  .cs-level-head h2 { font-family: var(--serif); font-size: clamp(20px, 2.4vw, 25px); letter-spacing: -0.025em; margin: 0; }
+  .cs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+  .cs-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s ease; scroll-margin-top: calc(var(--header-h) + 20px); }
+  .cs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .cs-card.hi { border-color: var(--lv); box-shadow: 0 0 0 3px var(--lv), var(--shadow); }
+  .cs-thumb { display: block; background: var(--surface-alt); padding: 14px 14px 0; border-bottom: 1px solid var(--border); overflow: hidden; height: 190px; }
+  .cs-thumb img { display: block; width: 100%; border-radius: 4px 4px 0 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12); transition: transform 0.5s var(--ease); }
+  .cs-card:hover .cs-thumb img { transform: translateY(-6px); }
+  .cs-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .cs-num { font-size: 12px; font-weight: 700; color: var(--lv); }
+  .cs-title { font-weight: 650; font-size: 15px; line-height: 1.3; letter-spacing: -0.01em; }
+  .cs-dl { margin-top: auto; padding-top: 10px; display: flex; gap: 8px; align-items: center; }
+  .cs-dl .btn { flex: 1; justify-content: center; }
+  .cs-dl .open { font-size: 13px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+  .cs-dl .open:hover { color: var(--accent); }
+  .locked .cs-dl .btn::before { content: "🔒 "; }
+</style>
+</head>
+<body>
+
+<!-- partial:header learn -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <div class="nav-item" data-dd>
+        <a class="nav-top" href="learn.html" aria-current="page">Learn</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Learn menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dd">
+          <a href="learn.html"><b>Course overview</b><span>All 21 modules and your progress</span></a>
+          <a href="learn.html#method"><b>How to learn French</b><span>The research-based method</span></a>
+          <a href="learn.html#sounds"><b>Pronunciation</b><span>The sounds of French</span></a>
+          <a href="learn.html#basics"><b>A1 · Foundations</b><span>Être, avoir, present tense, questions</span></a>
+          <a href="learn.html#reflexive"><b>A2 · Everyday French</b><span>Passé composé, imparfait, pronouns</span></a>
+          <a href="learn.html#conditional"><b>B1 · Independent user</b><span>Conditional, subjunctive, arguing</span></a>
+          <a href="learn.html#exam"><b>Exam technique</b><span>TCF & TEF task by task</span></a>
+          <a href="learn.html#tcf-t2"><b>TCF task 2 kit</b><span>Asking questions: the interaction task</span></a>
+          <a href="learn.html#tcf-t3"><b>TCF task 3 template</b><span>Giving your opinion in 4:30</span></a>
+          <a href="cheatsheets.html"><b>Free cheat sheets</b><span>21 one-page PDFs to print</span></a>
+        </div>
+      </div>
+      <div class="nav-item" data-dd>
+        <a class="nav-top" href="roadmap.html">Roadmap</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Roadmap menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dd">
+          <a href="roadmap.html"><b>Roadmap overview</b><span>Your checklist and progress</span></a>
+          <a href="roadmap.html#scores"><b>Score bands</b><span>What NCLC 5 means on each test</span></a>
+          <a href="roadmap.html#format"><b>Exam format</b><span>Sections, tasks and timing</span></a>
+          <a href="roadmap.html#order"><b>Grammar order</b><span>Conjugation tables with audio</span></a>
+          <a href="roadmap.html#vocab"><b>Vocabulary banks</b><span>Ten exam themes</span></a>
+          <a href="roadmap.html#skills"><b>Skills checklist</b><span>What examiners score</span></a>
+        </div>
+      </div>
+      <div class="nav-item" data-dd>
+        <a class="nav-top" href="quiz.html">Practice</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Practice menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dd">
+          <a href="quiz.html"><b>All drill sets</b><span>Pick a set and a mode</span></a>
+          <a href="quiz.html?set=conj"><b>Verb conjugations</b><span>Every table on the roadmap</span></a>
+          <a href="quiz.html?set=verbs-all"><b>All verbs</b><span>-er, -ir and -re verbs</span></a>
+          <a href="quiz.html?set=vocab-all"><b>All vocabulary</b><span>Ten themes mixed</span></a>
+          <a href="quiz.html?set=weak"><b>Weak items review</b><span>What you missed recently</span></a>
+        </div>
+      </div>
+      <div class="nav-item" data-dd>
+        <a class="nav-top" href="exam.html">Mock exam</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Mock exam menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dd">
+          <a href="exam.html"><b>All sections</b><span>Your scores and history</span></a>
+          <a href="exam.html?s=listening"><b>Listening</b><span>20 questions · 18 min</span></a>
+          <a href="exam.html?s=reading"><b>Reading</b><span>20 questions · 30 min</span></a>
+          <a href="exam.html?s=writing"><b>Writing</b><span>3 tasks with a live coach</span></a>
+          <a href="exam.html?s=speaking"><b>Speaking</b><span>3 tasks with timers and recording</span></a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a class="nav-cta" href="pricing.html">Get Pro</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark theme"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 14.6A8.6 8.6 0 0 1 9.4 3.3a.7.7 0 0 0-.9-.9A10 10 0 1 0 21.6 15.5a.7.7 0 0 0-.9-.9z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /partial:header -->
+
+<main id="main">
+  <div class="container">
+    <section class="cs-hero">
+      <div>
+        <span class="eyebrow">Free download</span>
+        <h1>21 French cheat sheets. <span class="gradient-text">One page each.</span></h1>
+        <p class="lead">Every module of the course, condensed to a single printable page: the key tables with English under every form, the phrases to memorise, the mistakes examiners notice, and the TCF speaking templates.</p>
+        <ul class="cs-points">
+          <li>Conjugation and grammar tables, translated line by line</li>
+          <li>Ready-to-say phrases and the fixes for common mistakes</li>
+          <li>The TCF Canada Task 2 and Task 3 speaking templates on one page</li>
+        </ul>
+        <div class="cs-actions">
+          <a class="btn btn-primary btn-lg" id="dl-all" href="assets/cheatsheets/all-modules.pdf" download>Download all 21 (PDF)</a>
+          <a class="btn btn-ghost" href="#sheets">Pick one module ↓</a>
+        </div>
+      </div>
+      <div class="stack" aria-hidden="true">
+        <img src="assets/cheatsheets/thumbs/basics.jpg" alt="" style="--r:-9deg;--x:-70px" loading="lazy">
+        <img src="assets/cheatsheets/thumbs/tcf-t3.jpg" alt="" style="--r:8deg;--x:70px" loading="lazy">
+        <img src="assets/cheatsheets/thumbs/passe-compose.jpg" alt="" style="--r:0deg;--x:0px">
+      </div>
+    </section>
+
+    <section class="gate" id="gate" hidden>
+      <div>
+        <h2>Get the cheat sheets free</h2>
+        <p>Enter your email and every PDF on this page unlocks instantly. We'll also send you a short study tip now and then.</p>
+      </div>
+      <form id="gate-form" novalidate>
+        <label class="sr-only" for="gate-email">Email address</label>
+        <input type="email" id="gate-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+        <button type="submit" class="btn btn-primary">Unlock downloads</button>
+        <div class="msg" id="gate-msg" role="status"></div>
+        <div class="fine">No spam; unsubscribe in one click. See our <a href="privacy.html#collect">privacy policy</a>.</div>
+      </form>
+    </section>
+
+    <div id="sheets"></div>
+  </div>
+<!-- partial:related learn -->
+<section class="related" aria-label="Keep going">
+  <div class="container">
+    <h2>Keep going</h2>
+    <div class="related-grid">
+      <a class="related-card" href="roadmap.html"><b>Roadmap checklist</b><span>Tick off grammar, vocabulary and skills as you master them.</span><i aria-hidden="true">→</i></a>
+      <a class="related-card" href="quiz.html"><b>Practice drills</b><span>Drill what you just learned in four modes.</span><i aria-hidden="true">→</i></a>
+      <a class="related-card" href="exam.html"><b>Mock exam</b><span>Test yourself under real exam timing.</span><i aria-hidden="true">→</i></a>
+    </div>
+  </div>
+</section>
+<!-- /partial:related -->
+</main>
+
+<!-- partial:footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <p>A structured French study plan, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+      </div>
+      <div>
+        <h4>Study</h4>
+        <ul>
+          <li><a href="learn.html">French course</a></li>
+          <li><a href="cheatsheets.html">Free cheat sheets</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="quiz.html">Practice drills</a></li>
+          <li><a href="exam.html">Mock exam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Exam prep</h4>
+        <ul>
+          <li><a href="learn.html#exam">Exam technique</a></li>
+          <li><a href="learn.html#tcf-t2">TCF task 2 kit</a></li>
+          <li><a href="learn.html#tcf-t3">TCF task 3 template</a></li>
+          <li><a href="exam.html?s=speaking">Speaking mock</a></li>
+          <li><a href="exam.html?s=writing">Writing mock</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="#" data-portal>Manage subscription</a></li>
+          <li><a href="contact.html">Contact &amp; FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html#refunds">Refund policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
+      <p>&copy; <span data-year>2026</span> <span data-site="legalName">Your Business Name</span></p>
+    </div>
+  </div>
+</footer>
+<!-- /partial:footer -->
+
+<script>
+(function () {
+  var SHEETS = window.CHEATSHEETS || [];
+  var SITE = window.SITE || {};
+  var KEY = "nclc5-lead";
+  var LEVELS = [
+    ["Start", "Go", "Start here"], ["A1", "A1", "A1 · Foundations"], ["A2", "A2", "A2 · Everyday French"],
+    ["B1", "B1", "B1 · Independent user"], ["Exam", "TCF", "Exam performance"]
+  ];
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function unlocked() {
+    if (!SITE.leadForm) return true;
+    try { return !!localStorage.getItem(KEY); } catch (e) { return false; }
+  }
+
+  var root = document.getElementById("sheets");
+  var html = "";
+  LEVELS.forEach(function (L) {
+    var list = SHEETS.filter(function (s) { return s.level === L[0]; });
+    if (!list.length) return;
+    html += "<section class='cs-level' style='--lv:var(--h-" + L[0] + ")'><div class='cs-level-head'><span class='badge'>" + L[1] + "</span><h2>" + esc(L[2]) + "</h2></div><div class='cs-grid'>";
+    list.forEach(function (s) {
+      var pdf = "assets/cheatsheets/" + s.id + ".pdf";
+      html += "<article class='cs-card' id='sheet-" + s.id + "'>" +
+        "<a class='cs-thumb' href='" + pdf + "' data-pdf><img src='assets/cheatsheets/thumbs/" + s.id + ".jpg' alt='Preview of the " + esc(s.title) + " cheat sheet' loading='lazy' width='408' height='528'></a>" +
+        "<div class='cs-body'><span class='cs-num'>Module " + s.num + "</span><span class='cs-title'>" + esc(s.title) + "</span>" +
+        "<div class='cs-dl'><a class='btn btn-sm' href='" + pdf + "' download data-pdf>Download PDF</a><a class='open' href='learn.html#" + s.id + "'>Lesson →</a></div></div></article>";
+    });
+    html += "</div></section>";
+  });
+  root.innerHTML = html;
+
+  var gate = document.getElementById("gate");
+  function applyLock() {
+    var open = unlocked();
+    gate.hidden = open;
+    document.body.classList.toggle("locked", !open);
+  }
+  applyLock();
+
+  /* while locked, every download link sends you to the sign-up form */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-pdf], #dl-all");
+    if (!a || unlocked()) return;
+    e.preventDefault();
+    gate.scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(function () { document.getElementById("gate-email").focus({ preventScroll: true }); }, 450);
+  });
+
+  document.getElementById("gate-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("gate-email"), msg = document.getElementById("gate-msg");
+    var email = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.className = "msg bad"; msg.textContent = "Please enter a valid email address."; input.focus(); return; }
+    var btn = e.target.querySelector("button"); btn.disabled = true;
+    var body = new FormData(); body.append("email", email); body.append("source", "cheatsheets");
+    /* no-cors: works with any form provider; the request is fire-and-forget */
+    fetch(SITE.leadForm, { method: "POST", body: body, mode: "no-cors" }).catch(function () {}).then(function () {
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (err) {}
+      applyLock();
+      if (window.NCLC) window.NCLC.toast("Unlocked — enjoy the cheat sheets!");
+      btn.disabled = false;
+    });
+  });
+
+  /* ?m=module-id highlights one sheet (linked from each lesson) */
+  var m = new URLSearchParams(location.search).get("m");
+  var card = m && document.getElementById("sheet-" + m);
+  if (card) {
+    card.classList.add("hi");
+    setTimeout(function () { card.scrollIntoView({ behavior: "smooth", block: "center" }); }, 300);
+  }
+})();
+</script>
+</body>
+</html>
