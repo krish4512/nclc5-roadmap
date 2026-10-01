@@ -278,7 +278,48 @@
     return false;
   }
 
-  window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto };
+  /* ---------- daily study streak ----------
+     A day counts once the learner actually does something (answers a
+     question, plays audio, completes a module…). Days are stored as local
+     YYYY-MM-DD strings; the streak survives until the end of the day after
+     the last study day. */
+  var DAYS_KEY = "nclc5-study-days";
+  function dayStr(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function addDays(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function readDays() {
+    try { var a = JSON.parse(localStorage.getItem(DAYS_KEY) || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+  }
+  function streakInfo() {
+    var days = readDays(), set = {}, now = new Date(), today = dayStr(now);
+    days.forEach(function (d) { set[d] = 1; });
+    var start = set[today] ? now : (set[dayStr(addDays(now, -1))] ? addDays(now, -1) : null);
+    var current = 0;
+    if (start) { var d = start; while (set[dayStr(d)]) { current++; d = addDays(d, -1); } }
+    var best = 0, run = 0, prev = null;
+    days.slice().sort().forEach(function (k) {
+      var p = k.split("-"), dt = new Date(+p[0], +p[1] - 1, +p[2]);
+      run = prev && dayStr(addDays(prev, 1)) === k ? run + 1 : 1;
+      best = Math.max(best, run); prev = dt;
+    });
+    var week = [];
+    for (var i = 6; i >= 0; i--) { var w = addDays(now, -i); week.push({ day: dayStr(w), label: "SMTWTFS".charAt(w.getDay()), done: !!set[dayStr(w)], today: i === 0 }); }
+    return { current: current, best: Math.max(best, current), today: !!set[today], total: days.length, week: week };
+  }
+  var streakListeners = [];
+  function markStudy() {
+    var today = dayStr(new Date()), days = readDays();
+    if (days.indexOf(today) !== -1) return false;
+    days.push(today);
+    days = days.sort().slice(-400);
+    try { localStorage.setItem(DAYS_KEY, JSON.stringify(days)); } catch (e) { return false; }
+    var info = streakInfo();
+    toast(info.current > 1 ? "🔥 " + info.current + " days in a row — keep it going tomorrow!" : "🔥 Day 1 of your streak. Come back tomorrow to make it 2.");
+    streakListeners.forEach(function (fn) { try { fn(info); } catch (e) {} });
+    return true;
+  }
+  function onStreak(fn) { streakListeners.push(fn); }
+
+  window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak };
 
   function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

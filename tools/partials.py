@@ -20,11 +20,19 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
+# The live address of the site, used for link previews (WhatsApp, Facebook,
+# LinkedIn…), which need absolute URLs. Change it when you move to your own
+# domain, then run this script again.
+SITE_URL = "https://krish4512.github.io/nclc5-roadmap"
+
 HEAD = """<!-- partial:head -->
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="NCLC 5">
 <link rel="manifest" href="site.webmanifest">
+{SOCIAL}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -212,8 +220,32 @@ def related(key):
 <!-- /partial:related -->"""
 
 
-def render(text):
-    text = re.sub(r"<!-- partial:head -->.*?<!-- /partial:head -->", lambda m: HEAD, text, flags=re.S)
+def social(text, name):
+    """Link-preview tags built from the page's own <title> and description."""
+    title = re.search(r"<title>(.*?)</title>", text, re.S)
+    desc = re.search(r'<meta name="description" content="(.*?)">', text, re.S)
+    title = title.group(1).strip() if title else "NCLC 5 Roadmap"
+    desc = desc.group(1).strip() if desc else "A research-based French course, drills and mock exams for NCLC 5 on the TCF Canada and TEF Canada."
+    url = SITE_URL + "/" + ("" if name == "index.html" else name)
+    image = SITE_URL + "/assets/og-image.jpg"
+    return "\n".join([
+        '<meta property="og:type" content="website">',
+        '<meta property="og:site_name" content="NCLC 5 Roadmap">',
+        f'<meta property="og:title" content="{title}">',
+        f'<meta property="og:description" content="{desc}">',
+        f'<meta property="og:url" content="{url}">',
+        f'<meta property="og:image" content="{image}">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        '<meta property="og:image:alt" content="NCLC 5 Roadmap — Your French, exam-ready.">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:image" content="{image}">',
+    ])
+
+
+def render(text, name=""):
+    head = HEAD.replace("{SOCIAL}", social(text, name))
+    text = re.sub(r"<!-- partial:head -->.*?<!-- /partial:head -->", lambda m: head, text, flags=re.S)
     text = re.sub(r"<!-- partial:header (\w+) -->.*?<!-- /partial:header -->",
                   lambda m: header(m.group(1)), text, flags=re.S)
     text = re.sub(r"<!-- partial:footer -->.*?<!-- /partial:footer -->", lambda m: FOOTER, text, flags=re.S)
@@ -225,7 +257,7 @@ def render(text):
 def main():
     for page in sorted(ROOT.glob("*.html")):
         old = page.read_text(encoding="utf-8")
-        new = render(old)
+        new = render(old, page.name)
         if new != old:
             page.write_text(new, encoding="utf-8")
             print("updated", page.name)

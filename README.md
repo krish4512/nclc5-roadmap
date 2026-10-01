@@ -25,6 +25,7 @@ You upload the folder and it works.
 | `assets/site.css`, `assets/site.js`, `assets/speech.js` | Shared design system, header and footer behaviour, and French text-to-speech |
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
 | `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
+| `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
 
 ## Before you launch
 
@@ -41,7 +42,9 @@ You upload the folder and it works.
      cancel and update their card.
    - Until a link is set, its button opens an email to you instead, so nothing is broken.
    - Consider turning on Stripe Tax for GST/HST/QST if you're required to collect it.
-3. **Replace `https://www.example.com`** in `robots.txt` and `sitemap.xml` with your domain.
+3. **When you move to your own domain**, replace `https://krish4512.github.io/nclc5-roadmap` in
+   `robots.txt`, `sitemap.xml` and `SITE_URL` in `tools/partials.py` (then run
+   `python3 tools/partials.py` so link previews point at the new address).
 4. **Read the Privacy Policy and Terms** (`privacy.html`, `terms.html`) and adjust them to
    your business. They reflect exactly what this code does, but they are templates, not legal
    advice. Have a lawyer review them before you take payments.
