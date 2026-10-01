@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Replace the domain below with your own (see README.md).
-Sitemap: https://www.example.com/sitemap.xml
+# Change this to your own domain when you move off GitHub Pages (see README.md).
+Sitemap: https://krish4512.github.io/nclc5-roadmap/sitemap.xml

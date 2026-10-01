@@ -9,7 +9,20 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="NCLC 5">
 <link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NCLC 5 Roadmap">
+<meta property="og:title" content="Learn French to NCLC 5 · Research-Based Course">
+<meta property="og:description" content="A research-based French course from first sounds to B1 / NCLC 5: pronunciation, grammar in the right order, speaking drills, common mistakes and self-checks for the TCF Canada and TEF Canada.">
+<meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/learn.html">
+<meta property="og:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NCLC 5 Roadmap — Your French, exam-ready.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -93,6 +106,32 @@
     .mobile-nav { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
     .mobile-nav select { flex: 1; min-width: 0; font-family: var(--sans); font-size: 15px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
   }
+
+  /* ---------- streak ---------- */
+  .streak { margin-top: 26px; max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px; box-shadow: var(--shadow-sm); }
+  .streak.on { border-color: color-mix(in srgb, #f97316 35%, var(--border)); background: linear-gradient(135deg, color-mix(in srgb, #f97316 9%, var(--surface)), var(--surface) 70%); }
+  .streak .st-top { display: flex; align-items: center; gap: 8px; }
+  .streak .flame { font-size: 22px; line-height: 1; filter: grayscale(1); opacity: 0.5; }
+  .streak.on .flame { filter: none; opacity: 1; animation: flicker 2.4s ease-in-out infinite; }
+  @keyframes flicker { 50% { transform: scale(1.08) rotate(-3deg); } }
+  @media (prefers-reduced-motion: reduce) { .streak.on .flame { animation: none; } }
+  .streak .st-n { font-size: 15px; color: var(--ink-soft); }
+  .streak .st-n b { font-size: 20px; color: var(--ink); font-weight: 700; margin-right: 2px; }
+  .streak .st-best { margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--ink-faint); }
+  .streak .st-week { list-style: none; margin: 12px 0 8px; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .streak .st-week li { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--ink-faint); }
+  .streak .st-week i { width: 100%; max-width: 30px; height: 8px; border-radius: 99px; background: var(--surface-alt); border: 1px solid var(--border); }
+  .streak .st-week li.done i { background: linear-gradient(90deg, #f59e0b, #f97316); border-color: transparent; }
+  .streak .st-week li.today span { color: var(--ink); }
+  .streak .st-week li.today i { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px color-mix(in srgb, #f97316 60%, transparent); }
+  .streak .st-msg { margin: 0; font-size: 13px; color: var(--ink-soft); }
+  .streak.compact { margin-top: 12px; padding: 10px 0 0; border: none; border-top: 1px solid var(--border); border-radius: 0; box-shadow: none; background: none; }
+  .streak.compact .flame { font-size: 17px; }
+  .streak.compact .st-n { font-size: 13px; }
+  .streak.compact .st-n b { font-size: 15px; }
+  .streak.compact .st-week { margin: 8px 0 6px; gap: 4px; }
+  .streak.compact .st-week i { height: 6px; }
+  .streak.compact .st-msg { font-size: 12px; }
 
   /* ---------- overview ---------- */
   .hero-l { position: relative; }
@@ -643,12 +682,56 @@
     return "<button type='button' class='say-btn' data-say='" + esc(strip(text)) + "' aria-label='Listen: " + esc(strip(text)) + "'>" + SPK + "</button>";
   }
 
+  /* ---------- daily streak + resume point ---------- */
+  function streakHtml(compact) {
+    var S = window.NCLC && window.NCLC.streak ? window.NCLC.streak() : null;
+    if (!S) return "";
+    var msg = S.today ? "Done for today — see you tomorrow." : (S.current ? "Study today to keep your streak alive." : "Answer a question or play a sound to start a streak.");
+    return "<div class='streak" + (compact ? " compact" : "") + (S.current ? " on" : "") + "' data-streak>" +
+      "<div class='st-top'><span class='flame' aria-hidden='true'>🔥</span><span class='st-n'><b>" + S.current + "</b> day" + (S.current === 1 ? "" : "s") + " in a row</span>" +
+      (S.best > 1 && !compact ? "<span class='st-best'>Best: " + S.best + "</span>" : "") + "</div>" +
+      "<ol class='st-week' aria-label='Last 7 days'>" + S.week.map(function (d) {
+        return "<li class='" + (d.done ? "done" : "") + (d.today ? " today" : "") + "' title='" + d.day + (d.done ? " — studied" : "") + "'><i></i><span>" + d.label + "</span></li>";
+      }).join("") + "</ol><p class='st-msg'>" + msg + "</p></div>";
+  }
+  function refreshStreak() {
+    document.querySelectorAll("[data-streak]").forEach(function (el) {
+      var t = document.createElement("div");
+      t.innerHTML = streakHtml(el.classList.contains("compact"));
+      el.replaceWith(t.firstChild);
+    });
+  }
+  if (window.NCLC && window.NCLC.onStreak) window.NCLC.onStreak(refreshStreak);
+  /* the home page reads this to offer "Continue where you left off" */
+  function saveResume(cur) {
+    var prev = null;
+    try { prev = JSON.parse(localStorage.getItem("nclc5-resume") || "null"); } catch (e) {}
+    /* the module you last opened, unless you've finished it; then the first one not done */
+    var lastId = cur ? cur.id : prev && prev.last;
+    var last = M.filter(function (m) { return m.id === lastId; })[0];
+    var notDone = M.filter(function (m) { return !isDone(m.id); });
+    var after = last ? notDone.filter(function (m) { return m.num > last.num; })[0] : null;
+    var pick = last && !isDone(last.id) ? last : after || notDone[0];
+    var data = { done: M.filter(function (m) { return isDone(m.id); }).length, total: M.length, at: Date.now(), last: last ? last.id : null };
+    if (pick) data.next = { id: pick.id, num: pick.num, title: pick.title };
+    try { localStorage.setItem("nclc5-resume", JSON.stringify(data)); } catch (e) {}
+    return pick;
+  }
+  /* any real interaction with a lesson counts as studying today; so does
+     a minute spent reading one */
+  var readTimer = null;
+  function studied() { if (window.NCLC && window.NCLC.markStudy) window.NCLC.markStudy(); }
+  view.addEventListener("click", function (e) {
+    if (curMod && e.target.closest("button, input, textarea, select") && !e.target.closest("#en-toggle")) studied();
+  });
+  view.addEventListener("input", function () { if (curMod) studied(); });
+
   /* ---------- sidebar ---------- */
   function renderSide(curId) {
     var done = M.filter(function (m) { return isDone(m.id); }).length;
     var html = "<div class='side-prog'><b>" + done + " of " + M.length + " modules done</b>" +
       "<div class='bar'><i style='width:" + Math.round(done / Math.max(1, M.length) * 100) + "%'></i></div>" +
-      "<div class='sub'><a href='#' style='padding:0;display:inline' data-home>Course overview</a></div></div>";
+      "<div class='sub'><a href='#' style='padding:0;display:inline' data-home>Course overview</a></div>" + streakHtml(true) + "</div>";
     LEVELS.forEach(function (L) {
       var list = M.filter(function (m) { return m.level === L.id; });
       if (!list.length) return;
@@ -678,14 +761,16 @@
 
   /* ---------- overview ---------- */
   function renderOverview() {
+    curMod = "";
+    clearTimeout(readTimer);
+    var next = saveResume(null);
     document.title = "Learn French to NCLC 5 · Research-Based Course";
     var done = M.filter(function (m) { return isDone(m.id); }).length;
-    var next = M.filter(function (m) { return !isDone(m.id); })[0];
     var html = "<div class='hero-l'><span class='eyebrow'>The course</span>" +
       "<h1>From your first French sounds to NCLC 5</h1>" +
       "<p class='lead'>" + M.length + " modules in the order research and the CEFR say you should learn them. Each one explains the grammar properly, shows you how to pronounce it, flags the mistakes English speakers make, gets you speaking out loud, and checks that it stuck.</p>" +
-      "<div class='practice-row'>" + (next ? "<a class='btn btn-primary btn-lg' href='#" + next.id + "'>" + (done ? "Continue: " : "Start: ") + esc(next.title) + "</a>" : "<a class='btn btn-primary btn-lg' href='exam.html'>Take a mock exam</a>") +
-      "<a class='btn btn-lg' href='#method'>How this course works</a></div></div>" +
+      "<div class='practice-row'>" + (next ? "<a class='btn btn-primary btn-lg' href='#" + next.id + "'>" + (done || next.num > 0 ? "Continue: " : "Start: ") + esc(next.title) + "</a>" : "<a class='btn btn-primary btn-lg' href='exam.html'>Take a mock exam</a>") +
+      "<a class='btn btn-lg' href='#method'>How this course works</a></div>" + streakHtml(false) + "</div>" +
       "<div class='path' aria-label='Course levels'>";
     LEVELS.forEach(function (L) {
       var list = M.filter(function (m) { return m.level === L.id; });
@@ -760,6 +845,9 @@
 
   function renderModule(m) {
     curMod = m.id;
+    saveResume(m);
+    clearTimeout(readTimer);
+    readTimer = setTimeout(function () { if (curMod === m.id) studied(); }, 60000);
     document.title = m.title + " · Learn French to NCLC 5";
     var idx = M.indexOf(m);
     var prev = M[idx - 1], next = M[idx + 1];
