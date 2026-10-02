@@ -92,11 +92,12 @@
       }).join("") + "</div></div>";
     },
     bars: function (s) {
-      var u = s.unit || "%";
+      var u = s.unit || "%", total = s.items.reduce(function (n, it) { return n + it[1]; }, 0);
       return "<div class='vbars'><div class='vstack'>" + s.items.map(function (it, i) {
-        return "<span class='vs" + (i % 5) + "' style='flex:" + it[1] + "'>" + it[1] + u + "</span>";
+        /* thin segments stay unlabelled; the legend below carries every value */
+        return "<span class='vs" + (i % 5) + "' style='flex:" + it[1] + "'>" + (it[1] / total >= 0.09 ? it[1] + u : "") + "</span>";
       }).join("") + "</div><div class='vlegend'>" + s.items.map(function (it, i) {
-        return "<div><i class='vs" + (i % 5) + "'></i><b>" + hl(it[0]) + "</b>" + (it[2] ? "<small>" + hl(it[2]) + "</small>" : "") + "</div>";
+        return "<div><i class='vs" + (i % 5) + "'></i><b>" + hl(it[0]) + " · " + it[1] + u + "</b>" + (it[2] ? "<small>" + hl(it[2]) + "</small>" : "") + "</div>";
       }).join("") + "</div></div>";
     },
     grid: function (s) {
