@@ -43,6 +43,7 @@
 <script src="assets/course-visuals.js"></script>
 <script src="assets/course-practice.js"></script>
 <script src="assets/course-reading.js"></script>
+<script src="assets/course-writing.js"></script>
 <link rel="stylesheet" href="assets/course-visuals.css">
 <style>
   /* ---------- colour system ----------
@@ -254,6 +255,68 @@
   .goals li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: var(--bg); font-weight: 800; font-size: 12px; margin-top: 1px; }
 
   /* lessons */
+  /* ---------- progress, dictation, writing, say it ---------- */
+  .mring { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; color: var(--c-ink); }
+  .mring i { width: 16px; height: 16px; border-radius: 50%; background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--c-line) 0); -webkit-mask: radial-gradient(circle, transparent 4px, #000 4.5px); mask: radial-gradient(circle, transparent 4px, #000 4.5px); }
+  .side a:not(.done) .dot { background: radial-gradient(circle, var(--surface) 7.5px, transparent 8px), conic-gradient(var(--c) calc(var(--p, 0) * 1%), var(--c-line) 0); border-color: transparent; }
+  .mod-card .mbar { display: block; height: 4px; border-radius: 3px; background: var(--c-line); margin-top: 8px; overflow: hidden; }
+  .mod-card .mbar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
+  .auto-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+  .auto-list li { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .auto-list a { color: var(--ink); text-decoration: none; font-weight: 500; }
+  .auto-list a:hover { text-decoration: underline; }
+  .auto-list small { color: var(--ink-faint); font-size: 13px; }
+  .auto-list .ai, .wr-checks .ai { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--border-strong); display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--surface); }
+  .auto-list li.ok .ai, .wr-checks li.ok .ai { background: var(--good); border-color: var(--good); }
+  .auto-list li.ok a { color: var(--ink-soft); }
+  .auto-note { margin: 12px 0 0; font-size: 13px; color: var(--ink-faint); }
+  .dict { display: flex; flex-direction: column; gap: 12px; }
+  .d-q { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow-sm); }
+  .d-q[data-done="right"] { border-color: var(--good-border); }
+  .d-play { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .d-n { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--c-soft); color: var(--c-ink); font-size: 12px; font-weight: 700; }
+  .d-q .t-in { padding-left: 0; }
+  .d-out { margin-top: 10px; }
+  .d-words { margin: 0 0 6px; font-size: 16.5px; line-height: 1.7; }
+  .dw-ok { color: var(--good); font-weight: 600; }
+  .dw-acc { color: var(--gold); font-weight: 600; background: var(--gold-soft); border-radius: 4px; padding: 0 2px; }
+  .dw-miss { color: var(--bad); font-weight: 600; text-decoration: underline wavy; text-underline-offset: 4px; }
+  .d-extra { margin: 0 0 6px; font-size: 14px; color: var(--ink-soft); }
+  .d-verdict { margin: 0; font-size: 14.5px; font-weight: 600; } .d-verdict.good { color: var(--good); } .d-verdict.bad { color: var(--bad); }
+  .d-en { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-faint); }
+  .wr { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 18px 20px; box-shadow: var(--shadow-sm); }
+  .wr-prompt { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+  .wr-prompt b { font-size: 17px; line-height: 1.45; } .wr-prompt span { font-size: 14px; color: var(--ink-faint); }
+  .wr-prompt .wr-len { font-weight: 700; color: var(--c-ink); }
+  .wr-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; }
+  @media (max-width: 760px) { .wr-grid { grid-template-columns: minmax(0, 1fr); } }
+  .wr textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; line-height: 1.6; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink); resize: vertical; min-height: 180px; }
+  .wr textarea:focus { outline: none; border-color: var(--c); box-shadow: 0 0 0 3px var(--c-soft); }
+  .wr-meter { display: flex; align-items: center; gap: 10px; margin: 8px 0 12px; font-size: 13px; color: var(--ink-soft); }
+  .wr-bar { flex: 1; height: 6px; border-radius: 4px; background: var(--surface-alt); overflow: hidden; }
+  .wr-bar i { display: block; height: 100%; width: 0; background: var(--c-line); border-radius: 4px; transition: width .2s; }
+  .wr-bar i.ok { background: var(--good); } .wr-bar i.over { background: var(--gold); }
+  .wr-side { background: var(--surface-alt); border-radius: 16px; padding: 14px 16px; }
+  .wr-h { display: block; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--c-ink); margin-bottom: 10px; }
+  .wr-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 14.5px; }
+  .wr-checks li { display: flex; gap: 9px; align-items: flex-start; }
+  .wr-checks li .ai { margin-top: 1px; }
+  .wr-checks small { color: var(--ink-faint); } .wr-checks .tip { display: block; font-size: 13px; margin-top: 2px; }
+  .wr-warn { margin-top: 12px; background: var(--gold-soft); border-radius: 12px; padding: 10px 12px; font-size: 13.5px; }
+  .wr-warn b { color: var(--gold); } .wr-warn ul { margin: 4px 0 0; padding-left: 18px; }
+  .wr-done { margin: 12px 0 0; font-weight: 700; color: var(--good); font-size: 14px; }
+  .wr-model { margin-top: 16px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--c-line); background: var(--c-soft); }
+  .wr-model p { margin: 8px 0 0; line-height: 1.65; } .wr-en { font-size: 14px; color: var(--ink-faint); } .wr-note { font-size: 12.5px; color: var(--ink-faint); }
+  .rl.listen-mode .rl-lines { filter: blur(7px); user-select: none; pointer-events: none; }
+  .rl.listen-mode .rl-lines + .rl-tools::before { content: "Text hidden: listen, answer the questions, then show it."; display: block; width: 100%; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 4px; }
+  .sayit { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 6px; grid-column: -2; }
+  .rl-lines li:not(.has-sp) .sayit { grid-column: 1; padding-left: 36px; }
+  .sayit-b { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 99px; border: 1px solid var(--c-line); background: var(--surface); color: var(--c-ink); cursor: pointer; min-height: 32px; }
+  .sayit-b.on { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+  .sayit-r { display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; }
+  .sr-ok { color: var(--good); font-weight: 600; } .sr-miss { color: var(--bad); font-weight: 600; text-decoration: underline wavy; }
+  .sr-good { color: var(--good); font-weight: 600; } .sr-bad { color: var(--bad); } .sr-heard { color: var(--ink-faint); font-size: 12.5px; }
+  .sayit-hint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-faint); }
   /* ---------- Real life ---------- */
   .rl { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px 22px; box-shadow: var(--shadow-sm); }
   .rl-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
@@ -660,7 +723,8 @@
   var SEC = {
     lessons: ["blue", "Lessons", "learn"], sounds: ["cyan", "Say it right", "sound"], mistakes: ["rose", "Common mistakes", "warn"],
     speak: ["orange", "Speak it", "speak"], vocab: ["indigo", "Vocabulary", "vocab"], builder: ["magenta", "Answer builder", "build"],
-    check: ["amber", "Check yourself", "check"], done: ["green", "Finish", "done"], reading: ["green", "Real life", "read"]
+    check: ["amber", "Check yourself", "check"], done: ["green", "Finish", "done"], reading: ["green", "Real life", "read"],
+    listen: ["blue", "Dictation", "sound"], write: ["violet", "Write it", "build"]
   };
 
   var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
@@ -796,7 +860,7 @@
       html += "<h4 class='" + hue(L.hue) + "'>" + esc(L.name) + "</h4>";
       list.forEach(function (m) {
         html += "<a href='#" + m.id + "' class='" + hue(L.hue) + (m.id === curId ? " cur" : "") + (isDone(m.id) ? " done" : "") + "'>" +
-          "<span class='dot'>" + (isDone(m.id) ? "✓" : m.num) + "</span><span>" + esc(m.title) + "</span></a>";
+          "<span class='dot' style='--p:" + (isDone(m.id) ? 100 : modProgress(m).pct) + "'>" + (isDone(m.id) ? "✓" : m.num) + "</span><span>" + esc(m.title) + "</span></a>";
       });
     });
     side.innerHTML = html;
@@ -854,7 +918,9 @@
       list.forEach(function (m) {
         html += "<a class='mod-card" + (isDone(m.id) ? " done" : "") + "' href='#" + m.id + "'>" +
           "<div class='top'><span class='num'><i>" + m.num + "</i>Module</span>" + (isDone(m.id) ? "<span class='ok'>✓ Done</span>" : "") + "</div>" +
-          "<span class='t'>" + esc(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span><span class='hrs'>" + esc(m.hours) + "</span></a>";
+          "<span class='t'>" + esc(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span><span class='hrs'>" + esc(m.hours) +
+          (!isDone(m.id) && modProgress(m).pct ? " · " + modProgress(m).pct + "% done" : "") + "</span>" +
+          (!isDone(m.id) && modProgress(m).pct ? "<span class='mbar' aria-hidden='true'><i style='width:" + modProgress(m).pct + "%'></i></span>" : "") + "</a>";
       });
       html += "</div>" + cpCard(L) + "</section>";
     });
@@ -914,9 +980,11 @@
     var L = levelOf(m.level);
     var chips = [["overview", "Overview", L.hue], ["lessons"]];
     if (RL[m.id]) chips.push(["reading"]);
+    if (dictItems(m).length) chips.push(["listen"]);
     if (m.sounds) chips.push(["sounds"]);
     if (m.mistakes) chips.push(["mistakes"]);
     if (m.speak) chips.push(["speak"]);
+    if (WR[m.id]) chips.push(["write"]);
     if (m.vocab) chips.push(["vocab"]);
     if (m.builder) chips.push(["builder"]);
     if (m.quiz) chips.push(["check"]);
@@ -927,6 +995,7 @@
       "<h1>" + esc(m.title) + "</h1><p class='subtitle'>" + esc(m.subtitle) + "</p>" +
       "<div class='meta'><span class='pill'>⏱ " + esc(m.hours) + "</span><span class='pill'>" + m.lessons.length + " lessons</span>" +
       (m.quiz ? "<span class='pill'>" + m.quiz.length + "-question check</span>" : "") + (isDone(m.id) ? "<span class='pill done'>✓ Completed</span>" : "") +
+      "<a class='pill mring' id='mring' href='#" + m.id + "/done' style='--p:" + modProgress(m).pct + "' title='Your progress in this module'><i aria-hidden='true'></i><span>" + modProgress(m).pct + "% done</span></a>" +
       "<button type='button' class='pill en-toggle' id='en-toggle' aria-pressed='" + (showEn() ? "true" : "false") + "' title='Show or hide English translations'><span class='sw' aria-hidden='true'></span><span>" + (showEn() ? "English on" : "English off") + "</span></button></div></div>" +
       "<nav class='toc-bar' id='toc' aria-label='Sections in this module'>" + chips.map(function (c) {
         var s = SEC[c[0]];
@@ -954,6 +1023,7 @@
     });
     h += "</section>";
     h += readingBlock(m);
+    h += dictBlock(m);
 
     if (m.sounds) {
       h += secHead("sounds", "Say it right", canSpeak() ? "Tap any word to hear it, then copy it straight away." : "") +
@@ -981,10 +1051,11 @@
           "<label><input type='checkbox' id='shadow-slow'> Slow</label><label><input type='checkbox' id='shadow-hide'> Hide the French (listening only)</label></div>" : "<p class='muted'>Audio needs a browser with speech synthesis.</p>") +
         "<ol class='shadow-list' id='shadow-list'>" + m.speak.lines.map(function (l, i) {
           return "<li data-i='" + i + "'>" + sayBtn(l[0]) + "<div class='txt'><div class='frx'>" + l[0] + "</div><div class='enx'>" + l[1] + "</div>" +
-            (window.NCLCRecorder ? window.NCLCRecorder.controls(strip(l[0])) : "") + "</div></li>";
+            (window.NCLCRecorder ? window.NCLCRecorder.controls(strip(l[0])) : "") + sayItBtn(strip(l[0])) + "</div></li>";
         }).join("") + "</ol>" +
-        (m.speak.task ? "<div class='task-box'><b>Your turn · </b>" + m.speak.task + "</div>" : "") + "</div></section>";
+        (m.speak.task ? "<div class='task-box'><b>Your turn · </b>" + m.speak.task + "</div>" : "") + sayHint() + "</div></section>";
     }
+    h += writeBlock(m);
 
     if (m.vocab) {
       h += secHead("vocab", "Key vocabulary", m.vocab.length + " words and phrases to own for this topic.") + "<div class='vocab-grid'>" +
@@ -1010,14 +1081,11 @@
     }
 
     h += secHead("done", "Finish the module") + "<div class='finish'>" +
-      "<div><ul class='checks'>" +
-        "<li><label><input type='checkbox' data-c='read'> I worked through every lesson and said the examples aloud</label></li>" +
-        (m.speak ? "<li><label><input type='checkbox' data-c='speak'> I shadowed the lines and did the speaking task</label></li>" : "") +
-        (m.quiz ? "<li><label><input type='checkbox' data-c='quiz'> I scored at least 80% on the check</label></li>" : "") +
-      "</ul>" +
+      "<div><ul class='auto-list' id='auto-list'>" + autoList(m) + "</ul>" +
       "<div class='practice-row' style='margin-top:14px'>" + (m.practice || []).map(function (p) { return "<a class='btn btn-sm' href='" + p[1] + "'>" + esc(p[0]) + " →</a>"; }).join("") +
         "<a class='btn btn-sm' href='cheatsheets.html?m=" + m.id + "'>↓ One-page cheat sheet (PDF)</a></div>" +
       "</div><button type='button' class='btn " + (isDone(m.id) ? "" : "btn-primary") + "' id='done-btn'>" + (isDone(m.id) ? "✓ Completed — mark as not done" : "Mark module complete") + "</button></div>" +
+      "<p class='auto-note'>The list ticks itself as you go. When every part is done, the module is marked complete for you.</p>" +
       "<div class='lesson-foot'>" + reportBtn("Module " + m.num + ": " + m.title, "Spotted a mistake anywhere in this module? Tell us") + "</div>";
     if (m.sources) {
       h += "<div class='sources' style='margin-top:18px'><b>Research behind this module</b><ol>" +
@@ -1077,16 +1145,7 @@
   }
 
   function wireModule(m) {
-    var p = prog[m.id] || {};
-    view.querySelectorAll(".finish input[data-c]").forEach(function (cb) {
-      cb.checked = !!(p.checks && p.checks[cb.getAttribute("data-c")]);
-      cb.addEventListener("change", function () {
-        prog[m.id] = prog[m.id] || {};
-        prog[m.id].checks = prog[m.id].checks || {};
-        prog[m.id].checks[cb.getAttribute("data-c")] = cb.checked;
-        save();
-      });
-    });
+    wireWriting(m);
     document.getElementById("done-btn").addEventListener("click", function () {
       prog[m.id] = prog[m.id] || {};
       prog[m.id].done = !prog[m.id].done;
@@ -1102,6 +1161,7 @@
     if (m.speak && canSpeak()) wireShadow(m);
     wireReading(m);
     if (m.builder) wireBuilder(m);
+    refreshProgress(m.id);
   }
 
   function buildQuiz(m) {
@@ -1142,6 +1202,7 @@
             prog[m.id] = prog[m.id] || {};
             prog[m.id].best = Math.max(prog[m.id].best || 0, pct);
             save();
+            refreshProgress(m.id);
           }
         });
         opts.appendChild(b);
@@ -1327,6 +1388,7 @@
       save();
       box.classList.add("all-done");
       var ok2 = document.getElementById("rl-ok"); if (ok2) ok2.hidden = false;
+      refreshProgress(reg.mod);
     }
     if (box && !box.classList.contains("cp-try") && !box.classList.contains("rl-try") && !box.querySelector(".t-q:not([data-done])")) {
       var l = +box.getAttribute("data-try-l");
@@ -1337,6 +1399,7 @@
       box.classList.add("all-done");
       box.querySelector(".try-ok").hidden = false;
       var n = document.querySelector("#sec-l" + l + " h3 .n"); if (n) n.classList.add("tried");
+      refreshProgress(reg.mod);
     }
   }
   view.addEventListener("click", function (e) {
@@ -1386,14 +1449,15 @@
     var lines = t.lines.map(function (l, i) {
       var sp = talk ? l[0] : "";
       return "<li" + (sp ? " class='has-sp'" : "") + " data-rl='" + i + "'>" + (sp ? "<span class='rl-sp'>" + esc(sp) + "</span>" : "") +
-        "<span class='rl-line'>" + sayBtn(l[1]) + "<span class='rl-fr' lang='fr'>" + esc(l[1]) + "</span></span><span class='rl-en' hidden>" + esc(l[2]) + "</span></li>";
+        "<span class='rl-line'>" + sayBtn(l[1]) + "<span class='rl-fr' lang='fr'>" + esc(l[1]) + "</span></span><span class='rl-en' hidden>" + esc(l[2]) + "</span>" + sayItBtn(l[1]) + "</li>";
     }).join("");
     return secHead("reading", "Real life", "French as you'll meet it in Canada, using this module's grammar. Read it, listen, then answer.") +
       "<div class='rl rl-" + t.kind + "'><div class='rl-head'><span class='rl-kind'><span aria-hidden='true'>" + k[0] + "</span>" + k[1] + "</span>" +
       "<b class='rl-title' lang='fr'>" + esc(t.title) + "</b>" + (author ? "<span class='rl-by'>From: " + esc(author) + "</span>" : "") + "<span class='rl-intro'>" + esc(t.intro) + "</span></div>" +
       "<ul class='rl-lines'>" + lines + "</ul><div class='rl-tools'>" +
-      (canSpeak() ? "<button type='button' class='btn btn-sm' id='rl-play'>▶ Listen to it all</button><button type='button' class='btn btn-sm' id='rl-stop' hidden>■ Stop</button>" : "") +
-      "<button type='button' class='btn btn-sm' id='rl-en' aria-pressed='false'>Show English</button></div></div>" +
+      (canSpeak() ? "<button type='button' class='btn btn-sm' id='rl-play'>▶ Listen to it all</button><button type='button' class='btn btn-sm' id='rl-stop' hidden>■ Stop</button>" +
+        "<button type='button' class='btn btn-sm' id='rl-hide' aria-pressed='false'>🎧 Listen first (hide the text)</button>" : "") +
+      "<button type='button' class='btn btn-sm' id='rl-en' aria-pressed='false'>Show English</button></div>" + sayHint() + "</div>" +
       "<div class='try rl-try" + (done ? " all-done" : "") + "'><div class='try-h'><span class='try-k'>Did you get it?</span><b>" + t.q.length + " questions</b>" +
       "<span class='try-ok' id='rl-ok'" + (done ? "" : " hidden") + ">✓ Read</span></div>" +
       t.q.map(function (it, n) { var key = m.id + "|rl|" + n; ITEMS[key] = { it: it, mod: m.id, l: null }; return itemHtml(it, key, n + 1); }).join("") + "</div></section>";
@@ -1401,6 +1465,14 @@
   function wireReading(m) {
     var t = RL[m.id], enBtn = document.getElementById("rl-en");
     if (!t || !enBtn) return;
+    var hide = document.getElementById("rl-hide");
+    if (hide) hide.addEventListener("click", function () {
+      var on = hide.getAttribute("aria-pressed") !== "true";
+      hide.setAttribute("aria-pressed", on);
+      hide.textContent = on ? "👁 Show the text" : "🎧 Listen first (hide the text)";
+      var box = view.querySelector(".rl"); box.classList.toggle("listen-mode", on);
+      box.querySelector(".rl-lines").setAttribute("aria-hidden", on ? "true" : "false");
+    });
     enBtn.addEventListener("click", function () {
       var on = enBtn.getAttribute("aria-pressed") !== "true";
       enBtn.setAttribute("aria-pressed", on); enBtn.textContent = on ? "Hide English" : "Show English";
@@ -1423,6 +1495,207 @@
       })();
     });
   }
+
+  /* ---------- module progress: what you've actually done ---------- */
+  var WR = window.NCLC_WRITING || {};
+  function modProgress(m) {
+    var p = prog[m.id] || {}, parts = [];
+    var withTry = m.lessons.map(function (_, i) { return i; }).filter(function (i) { return ((PR.data[m.id] || [])[i] || []).length; });
+    var tried = withTry.filter(function (i) { return p.tried && p.tried[i]; }).length;
+    if (withTry.length) parts.push({ key: "lessons", label: "Practise every lesson (Try it)", sub: tried + " of " + withTry.length, ratio: tried / withTry.length, w: 4 });
+    if (RL[m.id]) parts.push({ key: "reading", label: "Read the real-life text", ratio: p.read ? 1 : 0, w: 1 });
+    if (dictItems(m).length) parts.push({ key: "listen", label: "Do the dictation", ratio: p.dict ? 1 : 0, w: 1 });
+    if (WR[m.id]) parts.push({ key: "write", label: "Write it: complete the writing task", ratio: p.wrote ? 1 : 0, w: 1 });
+    if (m.quiz) parts.push({ key: "check", label: "Score 80% on the check", sub: p.best ? "best " + p.best + "%" : "", ratio: (p.best || 0) >= 80 ? 1 : 0, w: 2 });
+    var tw = parts.reduce(function (n, x) { return n + x.w; }, 0) || 1;
+    var pct = Math.round(parts.reduce(function (n, x) { return n + x.ratio * x.w; }, 0) / tw * 100);
+    return { parts: parts, pct: pct };
+  }
+  function autoList(m) {
+    return modProgress(m).parts.map(function (x) {
+      var ok = x.ratio >= 1;
+      return "<li class='" + (ok ? "ok" : "") + "'><span class='ai' aria-hidden='true'>" + (ok ? "✓" : "") + "</span>" +
+        "<a href='#" + m.id + "/" + (x.key === "lessons" ? "lessons" : x.key) + "'>" + x.label + "</a>" + (x.sub ? "<small>" + x.sub + "</small>" : "") +
+        "<span class='sr-only'>" + (ok ? "done" : "not done yet") + "</span></li>";
+    }).join("");
+  }
+  function refreshProgress(mid) {
+    var m = M.filter(function (x) { return x.id === mid; })[0];
+    if (!m || curMod !== mid) return;
+    var pr = modProgress(m);
+    var ring = document.getElementById("mring");
+    if (ring) { ring.style.setProperty("--p", pr.pct); ring.querySelector("span").textContent = pr.pct + "% done"; }
+    var list = document.getElementById("auto-list"); if (list) list.innerHTML = autoList(m);
+    if (pr.pct >= 100 && !isDone(mid)) {
+      prog[mid] = prog[mid] || {}; prog[mid].done = true; prog[mid].at = Date.now(); save();
+      if (window.NCLC) { NCLC.toast("🎉 Module " + m.num + " complete — every part done. Review it again in a few days."); NCLC.checkBadges(); }
+      var b = document.getElementById("done-btn"); if (b) { b.className = "btn"; b.textContent = "✓ Completed — mark as not done"; }
+    }
+    renderSide(mid);
+  }
+
+  /* ---------- dictation: three sentences from the module, heard and typed ---------- */
+  function dictItems(m) {
+    if (!canSpeak()) return [];
+    var pool = [];
+    m.lessons.forEach(function (Ls) { (Ls.examples || []).forEach(function (e) { pool.push(e); }); });
+    if (m.speak) m.speak.lines.forEach(function (l) { pool.push(l); });
+    pool = pool.map(function (e) { return [strip(e[0]), strip(e[1] || "")]; }).filter(function (e) {
+      var w = e[0].split(/\s+/).length;
+      return w >= 4 && w <= 12 && !/[…\/→\[\]()|=]|\.\.\./.test(e[0]);
+    });
+    if (pool.length < 3) return [];
+    return [pool[0], pool[Math.floor(pool.length / 2)], pool[pool.length - 1]];
+  }
+  function dictBlock(m) {
+    var items = dictItems(m);
+    if (!items.length) return "";
+    return secHead("listen", "Dictation", "Listen, then type exactly what you hear. Slow it down as often as you like.") +
+      "<div class='dict'>" + items.map(function (e, i) {
+        return "<div class='d-q' data-d='" + i + "'><div class='d-play'><span class='d-n'>" + (i + 1) + "</span>" +
+          "<button type='button' class='btn btn-sm' data-dsay='" + i + "'>▶ Play</button><button type='button' class='btn btn-sm' data-dsay='" + i + "' data-slow='1'>🐢 Slow</button></div>" +
+          "<form class='t-in' data-dict><input type='text' lang='fr' autocomplete='off' autocapitalize='off' spellcheck='false' aria-label='Type the sentence you hear' placeholder='Type what you hear'><button type='submit' class='btn btn-sm'>Check</button></form>" +
+          "<div class='d-out' hidden></div></div>";
+      }).join("") + "</div></section>";
+  }
+  function words(t) { return (String(t).match(/[\p{L}\p{N}'’-]+/gu) || []); }
+  /* word-by-word comparison: longest common subsequence on accent-free words */
+  function diffWords(target, typed) {
+    var a = words(target), b = words(typed);
+    var A = a.map(function (w) { return fold(clean(w)); }), Bf = b.map(function (w) { return fold(clean(w)); });
+    var L = []; for (var i = 0; i <= a.length; i++) { L.push(new Array(b.length + 1).fill(0)); }
+    for (i = a.length - 1; i >= 0; i--) for (var j = b.length - 1; j >= 0; j--) L[i][j] = A[i] === Bf[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+    var out = [], extra = [], ok = 0, acc = 0; i = 0; j = 0;
+    while (i < a.length && j < b.length) {
+      if (A[i] === Bf[j]) { var exact = clean(a[i]) === clean(b[j]); out.push([a[i], exact ? "ok" : "acc"]); if (exact) ok++; else acc++; i++; j++; }
+      else if (L[i + 1][j] >= L[i][j + 1]) { out.push([a[i], "miss"]); i++; }
+      else { extra.push(b[j]); j++; }
+    }
+    for (; i < a.length; i++) out.push([a[i], "miss"]);
+    for (; j < b.length; j++) extra.push(b[j]);
+    return { out: out, extra: extra, ok: ok, acc: acc, total: a.length };
+  }
+
+  /* ---------- "Write it": a short task checked live ---------- */
+  var WB = "(?:(?<=[\\p{L}\\p{N}])(?![\\p{L}\\p{N}])|(?<![\\p{L}\\p{N}])(?=[\\p{L}\\p{N}]))";
+  /* \b ignores accented letters; rebuild each pattern with a Unicode word boundary */
+  function ure(re) { return new RegExp(re.source.replace(/\\b/g, WB), re.flags.replace("u", "") + "u"); }
+  function nMatch(re, t) { return (String(t).match(ure(re)) || []).length; }
+  function drafts() { try { return JSON.parse(localStorage.getItem("nclc5-writing") || "{}") || {}; } catch (e) { return {}; } }
+  function writeBlock(m) {
+    var w = WR[m.id];
+    if (!w) return "";
+    var d = drafts()[m.id] || "";
+    return secHead("write", "Write it", "A short exam-style task with this module's grammar. The checklist updates as you type.") +
+      "<div class='wr'><div class='wr-prompt'><b lang='fr'>" + esc(w.prompt) + "</b><span>" + esc(w.en) + "</span><span class='wr-len'>" + w.min + "–" + w.max + " words</span></div>" +
+      "<div class='wr-grid'><div><textarea id='wr-text' lang='fr' rows='8' spellcheck='true' aria-label='Your text' placeholder='Écrivez ici…'>" + esc(d) + "</textarea>" +
+      "<div class='wr-meter'><span id='wr-count'>0 words</span><span class='wr-bar'><i id='wr-bar'></i></span></div>" +
+      "<div class='practice-row'><button type='button' class='btn btn-sm' id='wr-model'>Show a model answer</button><button type='button' class='btn btn-sm' id='wr-copy'>Copy for my teacher</button></div></div>" +
+      "<div class='wr-side'><b class='wr-h'>Checklist</b><ul class='wr-checks' id='wr-checks'></ul><div id='wr-watch'></div><p class='wr-done' id='wr-done' hidden>✓ Task complete — compare with the model answer.</p></div></div>" +
+      "<div class='wr-model' id='wr-modelbox' hidden><b>Model answer</b><p lang='fr'>" + esc(w.model).replace(/\n/g, "<br>") + "</p><p class='wr-en'>" + esc(w.modelEn || "").replace(/\n/g, "<br>") + "</p>" +
+      "<p class='wr-note'>The checklist looks for evidence of each structure; it can't judge every sentence. Compare your text with this model, line by line.</p></div></div></section>";
+  }
+  function wireWriting(m) {
+    var w = WR[m.id], ta = document.getElementById("wr-text");
+    if (!w || !ta) return;
+    function update() {
+      var t = ta.value, n = words(t).length;
+      document.getElementById("wr-count").textContent = n + " word" + (n === 1 ? "" : "s") + " · aim for " + w.min + "–" + w.max;
+      var bar = document.getElementById("wr-bar");
+      bar.style.width = Math.min(100, n / w.max * 100) + "%";
+      bar.className = n >= w.min && n <= w.max ? "ok" : n > w.max ? "over" : "";
+      var all = n >= w.min;
+      document.getElementById("wr-checks").innerHTML = w.checks.map(function (c) {
+        var k = nMatch(c.re, t), need = c.n || 1, ok = k >= need;
+        if (!ok) all = false;
+        return "<li class='" + (ok ? "ok" : "") + "'><span class='ai' aria-hidden='true'>" + (ok ? "✓" : "") + "</span><span><b>" + esc(c.label) + "</b>" +
+          (need > 1 ? " <small>" + Math.min(k, need) + "/" + need + "</small>" : "") + (ok ? "" : "<small class='tip'>" + esc(c.tip) + "</small>") + "</span></li>";
+      }).join("");
+      var hits = (w.watch || []).filter(function (x) { return t && nMatch(x.re, t) > 0; });
+      document.getElementById("wr-watch").innerHTML = hits.length ? "<div class='wr-warn'><b>Watch out</b><ul>" + hits.map(function (x) { return "<li>" + esc(x.tip) + "</li>"; }).join("") + "</ul></div>" : "";
+      document.getElementById("wr-done").hidden = !all;
+      if (all && !(prog[m.id] && prog[m.id].wrote)) { prog[m.id] = prog[m.id] || {}; prog[m.id].wrote = 1; save(); studied(); refreshProgress(m.id); }
+    }
+    ta.addEventListener("input", function () {
+      update();
+      var d = drafts(); d[m.id] = ta.value;
+      try { localStorage.setItem("nclc5-writing", JSON.stringify(d)); } catch (e) {}
+    });
+    document.getElementById("wr-model").addEventListener("click", function () {
+      var box = document.getElementById("wr-modelbox"); box.hidden = !box.hidden;
+      this.textContent = box.hidden ? "Show a model answer" : "Hide the model answer";
+    });
+    document.getElementById("wr-copy").addEventListener("click", function () {
+      var txt = "Module " + m.num + " — " + w.prompt + "\n\n" + ta.value;
+      var done = function () { if (window.NCLC) NCLC.toast("Copied — paste it into an email to your teacher."); };
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, function () {}); else { ta.select(); document.execCommand("copy"); done(); }
+    });
+    update();
+  }
+
+  /* ---------- "Say it": the browser's speech recognition checks if you were understood ---------- */
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  function sayItBtn(text) {
+    if (!SR) return "";
+    return "<span class='sayit'><button type='button' class='sayit-b' data-sayit='" + esc(strip(text)) + "'>🎤 Say it</button><span class='sayit-r' aria-live='polite'></span></span>";
+  }
+  function sayHint() { return SR ? "<p class='sayit-hint'>🎤 <b>Say it</b> uses your browser's speech recognition to check you were understood. Your browser's provider (for example Google or Apple) may process the audio.</p>" : ""; }
+  var recog = null;
+  function sayIt(btn) {
+    var target = btn.getAttribute("data-sayit"), out = btn.parentNode.querySelector(".sayit-r");
+    if (recog) { try { recog.abort(); } catch (e) {} recog = null; }
+    if (Speech) Speech.stop();
+    var rc = new SR(); recog = rc;
+    rc.lang = "fr-CA"; rc.interimResults = false; rc.maxAlternatives = 3;
+    btn.classList.add("on"); btn.textContent = "● Listening…"; out.innerHTML = "";
+    var finish = function () { btn.classList.remove("on"); btn.textContent = "🎤 Say it"; recog = null; };
+    rc.onresult = function (ev) {
+      var alts = [].slice.call(ev.results[0]).map(function (a) { return a.transcript; });
+      var best = alts.map(function (h) { return { h: h, d: diffWords(target, h) }; }).sort(function (x, y) { return (y.d.ok + y.d.acc) - (x.d.ok + x.d.acc); })[0];
+      out.innerHTML = sayItResult(best.d, best.h);
+      if (best.d.ok + best.d.acc === best.d.total) studied();
+    };
+    rc.onerror = function (ev) { out.innerHTML = "<span class='sr-bad'>" + (ev.error === "not-allowed" ? "Microphone blocked — allow it in your browser's site settings." : ev.error === "no-speech" ? "Didn't hear anything — try again a little louder." : "Speech recognition isn't available right now.") + "</span>"; };
+    rc.onend = finish;
+    try { rc.start(); } catch (e) { finish(); }
+  }
+  function sayItResult(d, heard) {
+    var got = d.ok + d.acc, all = got === d.total;
+    return "<span class='sr-words'>" + d.out.map(function (x) { return "<span class='" + (x[1] === "miss" ? "sr-miss" : "sr-ok") + "'>" + esc(x[0]) + "</span>"; }).join(" ") + "</span>" +
+      "<span class='" + (all ? "sr-good" : "sr-bad") + "'>" + (all ? "✓ Understood — every word." : got + " of " + d.total + " words understood. The red ones weren't recognised — listen and try again.") + "</span>" +
+      "<span class='sr-heard'>We heard: « " + esc(heard) + " »</span>";
+  }
+
+  /* dictation + say-it clicks */
+  view.addEventListener("click", function (e) {
+    var sb = e.target.closest("[data-sayit]");
+    if (sb) { e.preventDefault(); sayIt(sb); return; }
+    var db = e.target.closest("[data-dsay]");
+    if (db) {
+      var m = M.filter(function (x) { return x.id === curMod; })[0]; if (!m) return;
+      var it = dictItems(m)[+db.getAttribute("data-dsay")];
+      say(it[0], db, { slow: db.hasAttribute("data-slow") });
+    }
+  });
+  view.addEventListener("submit", function (e) {
+    var f = e.target.closest("[data-dict]");
+    if (!f) return;
+    e.preventDefault();
+    var m = M.filter(function (x) { return x.id === curMod; })[0]; if (!m) return;
+    var q = f.closest(".d-q"), i = +q.getAttribute("data-d"), it = dictItems(m)[i], inp = f.querySelector("input");
+    if (!clean(inp.value)) { inp.focus(); return; }
+    var d = diffWords(it[0], inp.value), perfect = d.ok === d.total && !d.extra.length, close = d.ok + d.acc === d.total && !d.extra.length;
+    var out = q.querySelector(".d-out");
+    out.hidden = false;
+    out.innerHTML = "<p class='d-words' lang='fr'>" + d.out.map(function (x) { return "<span class='dw-" + x[1] + "'>" + esc(x[0]) + "</span>"; }).join(" ") + "</p>" +
+      (d.extra.length ? "<p class='d-extra'>Extra words: <s lang='fr'>" + esc(d.extra.join(" ")) + "</s></p>" : "") +
+      "<p class='d-verdict " + (close ? "good" : "bad") + "'>" + (perfect ? "✓ Perfect." : close ? "✓ Right — check the accents in amber." : d.ok + d.acc + " of " + d.total + " words. Red words are missing — play it again.") + "</p>" +
+      (it[1] ? "<p class='d-en'>" + esc(it[1]) + "</p>" : "");
+    q.setAttribute("data-done", close ? "right" : "wrong");
+    if (close) studied();
+    else if (window.NCLC && NCLC.miss) NCLC.miss({ q: "In French: « " + (it[1] || "dictation") + " »", a: it[0], why: "From the Module " + m.num + " dictation.", mod: m.id, l: null });
+    if (!view.querySelector(".d-q:not([data-done])")) { prog[m.id] = prog[m.id] || {}; prog[m.id].dict = 1; save(); refreshProgress(m.id); }
+  });
 
   /* level checkpoints: 15 questions drawn from every lesson of a level */
   function cpRead() { try { return JSON.parse(localStorage.getItem(CP_KEY) || "{}") || {}; } catch (e) { return {}; } }

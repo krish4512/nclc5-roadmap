@@ -18,6 +18,7 @@ You upload the folder and it works.
 | `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question, and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
 | `assets/course-reading.js` | The "Real life" text for each module (message, notice, email, voicemail or dialogue) with English and three questions |
 | `assets/course-visuals.css` | Styles for the cheat-code pictures, shared by `learn.html` and the PDF cheat sheets |
+| `assets/course-writing.js` | The "Write it" task for each module: prompt, word range, live checks (regular expressions, matched with Unicode word boundaries), mistake hints and a model answer |
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `review.html` + `assets/srs.js` | Daily review: spaced repetition over the vocabulary, sentences and mistakes of the modules reached |
 | `conjugate.html` + `assets/verbs.js` | Verb conjugator: 360+ verbs, 7 tenses, English for every form, audio |
