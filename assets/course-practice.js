@@ -245,42 +245,9 @@ window.NCLC_PRACTICE = {
       [{ c: "Three weeks out, focus on…", o: ["your weakest section and your top errors", "learning new grammar", "resting"], why: "Target the weak spots daily." },
        { c: "The final week should be…", o: ["light review and good sleep", "the most intense week", "only new topics"], why: "Memory consolidation needs sleep." }]
     ],
-    "tcf-t2": [
-      [{ c: "How long do you get to prepare for task 2?", o: ["2 minutes", "No time", "10 minutes"], why: "Use it to pick tu or vous and jot keywords." },
-       { c: "During the questions, after each answer you should…", o: ["react briefly, then ask the next", "read your next question immediately"], why: "It's an interaction, not a questionnaire." }],
-      [{ c: "« Vous appelez le service client d'un supermarché. » Which register?", o: ["vous", "tu"], why: "A service desk → vous." },
-       { c: "A friend organizes a party. Which question fits?", o: ["Tu as besoin d'aide ?", "Avez-vous besoin d'aide ?"], why: "A friend → tu. Then stay consistent." }],
-      [{ c: "A good opening includes…", o: ["a greeting, the context and asking for time", "only your first question"], why: "Bonjour… J'ai vu votre annonce… Avez-vous une minute ?" },
-       { t: "Avez-vous une ___ ?", a: "minute", why: "A polite way to ask for their time." }],
-      [{ c: "Question 3 of the sequence asks about…", o: ["timing (Quel est le délai… ?)", "price", "goodbye"], why: "1 availability, 2 requirements, 3 timing, 4 price…" },
-       { c: "A B1 boost question:", o: ["Que se passerait-il si j'arrivais en retard ?", "C'est quand ?"], why: "si + imparfait → conditionnel shows B1 range." }],
-      [{ c: "Which is correct?", o: ["Quels types de cours proposez-vous ?", "Quel types de cours proposez-vous ?", "Qu'est-ce que types de cours ?"], why: "quels agrees with types (masc. plural)." },
-       { t: "___-il réserver à l'avance ? (is it necessary)", a: "Faut|faut", why: "Faut-il… ? = Is it necessary to… ?" }],
-      [{ t: "Est-il nécessaire que je ___ présent ? (être)", a: "sois", why: "il est nécessaire que + subjunctive." },
-       { c: "Vaut-il mieux que je ___ le matin ? (venir)", o: ["vienne", "viens"], why: "il vaut mieux que + subjunctive." }],
-      [{ c: "Which transition proves you listened?", o: ["Puisque vous mentionnez cela, je me demandais…", "Question suivante.", "OK."], why: "Link to what they just said." },
-       { t: "Ma ___ question porte sur… (last)", a: "dernière", why: "Ma dernière question… signals the wrap-up." }],
-      [{ c: "A reaction that checks understanding:", o: ["Si je comprends bien, …", "Je vois, c'est noté.", "Bonne journée !"], why: "Si je comprends bien… reformulates their answer." },
-       { c: "« C'est un avantage non négligeable » is a reaction that…", o: ["evaluates", "says goodbye", "asks for time"], why: "It weighs what you heard." }],
-      [{ c: "In what order should you close?", o: ["summarise, thank, next step, goodbye", "goodbye only", "thank, then a new question"], why: "J'ai bien compris… Merci… Je vais y réfléchir… Bonne journée !" },
-       { t: "Merci beaucoup pour votre ___. (time)", a: "temps", why: "Merci pour votre temps." }],
-      [], []
-    ],
-    "tcf-t3": [
-      [{ c: "Which part takes the longest?", o: ["Argument 1", "The opening", "The conclusion"], why: "About 70 seconds for your strongest reason." },
-       { c: "Preparation time for task 3:", o: ["None", "2 minutes", "5 minutes"], why: "That's why a memorised template helps." }],
-      [{ c: "« Les jeunes lisent-ils moins qu'avant ? » → la question de savoir…", o: ["si les jeunes lisent moins qu'avant", "est-ce que les jeunes lisent moins", "les jeunes lisent-ils moins"], why: "Yes/no question → si + statement order." },
-       { t: "J'ai un avis ___ sur ce sujet. (nuanced)", a: "nuancé", why: "Announce a nuanced view." }],
-      [{ c: "Which reset phrase gives a concrete case?", o: ["Par exemple,", "Je m'explique :", "Pour conclure,"], why: "Je m'explique expands; par exemple illustrates; c'est le cas de… points to people." },
-       { t: "Je m'___ : un bon téléphone coûte plus de mille dollars.", a: "explique", why: "Je m'explique : = let me explain." }],
-      [{ t: "Ce premier point m'___ assez naturellement au second.", a: "amène", why: "amener à = to lead to." },
-       { c: "« Il faut considérer que… » is used to…", o: ["explain the second argument", "greet the examiner", "end the answer"], why: "It develops your second reason." }],
-      [{ c: "Which phrase introduces the other side?", o: ["D'un autre côté, certaines personnes pensent que…", "De l'autre côté…", "À la fin…"], why: "D'un autre côté = on the other hand." },
-       { t: "En ___, il ne fait aucun doute que… (however)", a: "revanche", why: "En revanche = on the other hand / however." }],
-      [{ c: "Il vaut mieux qu'un équilibre ___ maintenu.", o: ["soit", "est"], why: "il vaut mieux que + subjunctive." },
-       { t: "Pour conclure, si je ___ résumer ma pensée… (devoir, imparfait)", a: "devais", why: "si + imparfait, then je dirais (conditional)." }],
-      [], [], []
-    ]
+    /* the TCF speaking kits are kept short: no "Try it" there */
+    "tcf-t2": [[], [], [], [], [], []],
+    "tcf-t3": [[], [], [], [], [], [], []]
   },
   quizLesson: {
     method: [1, 2, 4, 3, 4],
@@ -302,7 +269,7 @@ window.NCLC_PRACTICE = {
     argue: [0, 0, 3, 0, 4],
     reported: [1, 2, 0, 2],
     exam: [1, 2, 3, 4, 3],
-    "tcf-t2": [1, 4, 7, 3, 5, 6],
-    "tcf-t3": [0, 1, 2, 1, 5, 1]
+    "tcf-t2": [0, 3, 4, 2, 5, 4],
+    "tcf-t3": [0, 1, 2, 6, 5, 1]
   }
 };

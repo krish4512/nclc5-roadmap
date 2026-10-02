@@ -978,15 +978,17 @@
     var idx = M.indexOf(m);
     var prev = M[idx - 1], next = M[idx + 1];
     var L = levelOf(m.level);
+    /* "focus" modules (the TCF speaking kits) show only the lessons and the check */
+    var F = !!m.focus;
     var chips = [["overview", "Overview", L.hue], ["lessons"]];
-    if (RL[m.id]) chips.push(["reading"]);
-    if (dictItems(m).length) chips.push(["listen"]);
-    if (m.sounds) chips.push(["sounds"]);
-    if (m.mistakes) chips.push(["mistakes"]);
-    if (m.speak) chips.push(["speak"]);
-    if (WR[m.id]) chips.push(["write"]);
-    if (m.vocab) chips.push(["vocab"]);
-    if (m.builder) chips.push(["builder"]);
+    if (!F && RL[m.id]) chips.push(["reading"]);
+    if (!F && dictItems(m).length) chips.push(["listen"]);
+    if (!F && m.sounds) chips.push(["sounds"]);
+    if (!F && m.mistakes) chips.push(["mistakes"]);
+    if (!F && m.speak) chips.push(["speak"]);
+    if (!F && WR[m.id]) chips.push(["write"]);
+    if (!F && m.vocab) chips.push(["vocab"]);
+    if (!F && m.builder) chips.push(["builder"]);
     if (m.quiz) chips.push(["check"]);
     chips.push(["done"]);
 
@@ -1018,14 +1020,13 @@
         }).join("") + "</ul>";
       }
       if (Ls.tip) h += "<div class='tipbox'><b>Tip · </b>" + Ls.tip + "</div>";
-      h += tryBlock(m, i);
+      if (!F) h += tryBlock(m, i);
       h += "<div class='lesson-foot'>" + reportBtn("Module " + m.num + " · Lesson " + m.num + "." + (i + 1) + ": " + strip(Ls.title)) + "</div></article>";
     });
     h += "</section>";
-    h += readingBlock(m);
-    h += dictBlock(m);
+    if (!F) { h += readingBlock(m); h += dictBlock(m); }
 
-    if (m.sounds) {
+    if (!F && m.sounds) {
       h += secHead("sounds", "Say it right", canSpeak() ? "Tap any word to hear it, then copy it straight away." : "") +
         (m.sounds.intro ? "<div class='why'>" + m.sounds.intro + "</div>" : "");
       m.sounds.points.forEach(function (p) {
@@ -1036,14 +1037,14 @@
       h += "</section>";
     }
 
-    if (m.mistakes) {
+    if (!F && m.mistakes) {
       h += secHead("mistakes", "Mistakes English speakers make", "Examiners notice these first. Learn the right version now so it becomes automatic.") +
         "<table class='mistakes'><thead><tr><th>Not this</th><th>But this</th><th>Why</th></tr></thead><tbody>" +
         m.mistakes.map(function (x) { return "<tr><td class='w'>" + x[0] + "</td><td class='r'>" + x[1] + glB(x[1]) + "</td><td class='y'>" + x[2] + "</td></tr>"; }).join("") +
         "</tbody></table></section>";
     }
 
-    if (m.speak) {
+    if (!F && m.speak) {
       h += secHead("speak", "Speak it") +
         "<div class='speak-panel'><div class='why' style='font-size:16px'>" + (m.speak.intro || "Listen to each line, then say it out loud during the pause — copy the rhythm and melody, not just the words. This is <b>shadowing</b>.") + "</div>" +
         (canSpeak() ? "<div class='speak-controls'><button type='button' class='btn btn-teal btn-sm' id='shadow-go'>▶ Shadow all lines</button>" +
@@ -1055,15 +1056,15 @@
         }).join("") + "</ol>" +
         (m.speak.task ? "<div class='task-box'><b>Your turn · </b>" + m.speak.task + "</div>" : "") + sayHint() + "</div></section>";
     }
-    h += writeBlock(m);
+    if (!F) h += writeBlock(m);
 
-    if (m.vocab) {
+    if (!F && m.vocab) {
       h += secHead("vocab", "Key vocabulary", m.vocab.length + " words and phrases to own for this topic.") + "<div class='vocab-grid'>" +
         m.vocab.map(function (v) { return "<div class='vocab-item'><div><div class='frx'>" + v[0] + "</div><div class='enx'>" + v[1] + "</div></div>" + sayBtn(v[0]) + "</div>"; }).join("") +
         "</div></section>";
     }
 
-    if (m.builder) {
+    if (!F && m.builder) {
       var secs = m.builder.seconds || 270, clk = Math.floor(secs / 60) + ":" + ("0" + secs % 60).slice(-2);
       h += secHead("builder", esc(m.builder.title || "Answer builder")) +
         (m.builder.intro ? "<div class='why' style='margin-bottom:16px'>" + m.builder.intro + "</div>" : "") +
@@ -1158,9 +1159,9 @@
 
     wireToc(m);
     if (m.quiz) buildQuiz(m);
-    if (m.speak && canSpeak()) wireShadow(m);
+    if (!m.focus && m.speak && canSpeak()) wireShadow(m);
     wireReading(m);
-    if (m.builder) wireBuilder(m);
+    if (!m.focus && m.builder) wireBuilder(m);
     refreshProgress(m.id);
   }
 
@@ -1500,12 +1501,12 @@
   var WR = window.NCLC_WRITING || {};
   function modProgress(m) {
     var p = prog[m.id] || {}, parts = [];
-    var withTry = m.lessons.map(function (_, i) { return i; }).filter(function (i) { return ((PR.data[m.id] || [])[i] || []).length; });
+    var withTry = m.focus ? [] : m.lessons.map(function (_, i) { return i; }).filter(function (i) { return ((PR.data[m.id] || [])[i] || []).length; });
     var tried = withTry.filter(function (i) { return p.tried && p.tried[i]; }).length;
     if (withTry.length) parts.push({ key: "lessons", label: "Practise every lesson (Try it)", sub: tried + " of " + withTry.length, ratio: tried / withTry.length, w: 4 });
-    if (RL[m.id]) parts.push({ key: "reading", label: "Read the real-life text", ratio: p.read ? 1 : 0, w: 1 });
-    if (dictItems(m).length) parts.push({ key: "listen", label: "Do the dictation", ratio: p.dict ? 1 : 0, w: 1 });
-    if (WR[m.id]) parts.push({ key: "write", label: "Write it: complete the writing task", ratio: p.wrote ? 1 : 0, w: 1 });
+    if (!m.focus && RL[m.id]) parts.push({ key: "reading", label: "Read the real-life text", ratio: p.read ? 1 : 0, w: 1 });
+    if (!m.focus && dictItems(m).length) parts.push({ key: "listen", label: "Do the dictation", ratio: p.dict ? 1 : 0, w: 1 });
+    if (!m.focus && WR[m.id]) parts.push({ key: "write", label: "Write it: complete the writing task", ratio: p.wrote ? 1 : 0, w: 1 });
     if (m.quiz) parts.push({ key: "check", label: "Score 80% on the check", sub: p.best ? "best " + p.best + "%" : "", ratio: (p.best || 0) >= 80 ? 1 : 0, w: 2 });
     var tw = parts.reduce(function (n, x) { return n + x.w; }, 0) || 1;
     var pct = Math.round(parts.reduce(function (n, x) { return n + x.ratio * x.w; }, 0) / tw * 100);

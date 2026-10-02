@@ -8,101 +8,76 @@ window.COURSE.modules.push({
   level: "Exam",
   title: "TCF speaking task 3: your answer template",
   subtitle: "A memorised five-part structure — opening, argument, bridge, counterpoint, conclusion — that you adapt to any opinion question.",
-  hours: "3–4 h, then daily practice",
-  why: "<p>In TCF Canada speaking <b>task 3</b>, the examiner reads you a question — <span class='fr'>« La mixité sociale à l'école aide-t-elle à développer la tolérance ? »</span> — and you have about <b>4 minutes 30</b> to give and defend your opinion, <b>with no preparation time</b>. Most candidates lose points here not because their French is weak, but because they freeze, repeat themselves, or run out of things to say after a minute.</p><p>The fix is a <b>template</b>: a set of fixed phrases for each part of your answer that you've practised so often they come out automatically. Your brain then only has to find the <em>ideas</em>, not the structure and the connectors at the same time. Research supports this: learners who were taught to notice and reuse fixed multi-word phrases (<em>formulaic sequences</em>) were judged <b>more proficient</b> by blind examiners in an oral interview, and the number of such phrases they used correlated with their proficiency ratings (Boers et al., 2006).</p><p>This module teaches the template part by part, shows a complete model answer, gives you practice questions with ideas, and lets you <b>build your own answers</b> in the builder below.</p>",
+  hours: "about 1 h",
+  focus: true,
+  why: "<p>In TCF Canada speaking <b>task 3</b>, the examiner asks your opinion on a question and you speak for about <b>4 minutes 30</b>, <b>with no preparation</b>. The trick is a memorised five-part template: the phrases come out automatically, so you only have to think of ideas.</p>",
   goals: [
-    "Recite the full template from memory, part by part",
-    "Adapt the opening to any question in under 10 seconds",
-    "Speak for the full time using two arguments, a counterpoint and a conclusion",
-    "Use \"reset\" phrases to recover when you lose your thread"
+    "Recite the five-part template from memory",
+    "Adapt the opening to any question",
+    "Fill the time with two arguments, a counterpoint and a conclusion"
   ],
   lessons: [
     {
-      title: "The structure at a glance, and how to pace it",
-      body: "<p>Five parts. Aim for roughly this timing — it adds up to about 4 minutes, leaving a margin for the examiner's follow-up question.</p>",
+      title: "The five parts, and how long each one takes",
+      body: "<p>Five parts, about 4 minutes in total:</p>",
       table: {
-        head: ["Part", "Job", "Target time"],
+        head: ["Part", "What you do", "Time"],
         rows: [
-          ["1. Opening", "Name the topic, restate the question, show it matters, announce a nuanced view", "~40 s"],
+          ["1. Opening", "Name the topic, restate the question, announce a nuanced view", "~40 s"],
           ["2. Argument 1", "Your strongest reason, explained, with an example", "~70 s"],
-          ["3. Bridge + argument 2", "Link to a second reason and develop it", "~60 s"],
-          ["4. Counterpoint", "Acknowledge the other side, then push back", "~45 s"],
-          ["5. Conclusion", "Your view in one sentence, then a balanced final thought", "~30 s"]
+          ["3. Argument 2", "Link to a second reason and develop it", "~60 s"],
+          ["4. Counterpoint", "Show the other side, then push back", "~45 s"],
+          ["5. Conclusion", "Your view in one sentence, then a balanced last word", "~30 s"]
         ]
-      },
-      tip: "The opening is fully memorised and the same every time — only the topic words change. That's deliberate: it gives you 40 seconds of confident, fluent French while your mind finds arguments for part 2."
+      }
     },
     {
       title: "Part 1 — Opening",
-      body: "<p>Memorise this word for word. The parts in brackets are the only things you change.</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Alors, le sujet sur lequel je vais m'exprimer aujourd'hui porte sur <b>[le thème]</b>, et plus précisément sur la question de savoir <b>[la question, reformulée]</b>. C'est un sujet qui, au fond, concerne tout le monde, même ceux qui pensent ne pas être concernés. <b>[Une phrase qui relie le sujet à la vie réelle.]</b> Et personnellement, je ne crois pas qu'il existe une réponse unique. Alors que certains défendent cette idée avec conviction, d'autres s'y opposent tout aussi fermement. Donc, j'ai un avis nuancé sur ce sujet, et je vais expliquer mon point de vue en détail à travers quelques arguments.</span></div><p><b>How to reformulate the question</b> after <span class='fr'>la question de savoir</span>: turn it into an indirect question — <span class='fr'>si</span> for yes/no questions, keep the question word otherwise, and use statement word order.</p>",
+      body: "<p>Learn it word for word. Only the brackets change.</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Alors, le sujet sur lequel je vais m'exprimer aujourd'hui porte sur <b>[le thème]</b>, et plus précisément sur la question de savoir <b>[la question]</b>. C'est un sujet qui concerne tout le monde. Personnellement, je ne crois pas qu'il existe une réponse unique. Donc, j'ai un avis nuancé, et je vais expliquer mon point de vue à travers quelques arguments.</span></div><p>After <span class='fr'>la question de savoir</span>, use <span class='fr'>si</span> for a yes/no question, with normal word order:</p>",
       table: {
         head: ["The examiner asks…", "You say: « …la question de savoir… »"],
         rows: [
-          ["Les réseaux sociaux rapprochent-ils vraiment les gens ?", "si les réseaux sociaux rapprochent vraiment les gens"],
-          ["L'autorité joue-t-elle un rôle essentiel dans l'éducation des enfants ?", "si l'autorité joue un rôle essentiel dans l'éducation des enfants"],
+          ["Les réseaux sociaux rapprochent-ils les gens ?", "si les réseaux sociaux rapprochent les gens"],
           ["Pourquoi certaines personnes ne regardent jamais la télévision ?", "pourquoi certaines personnes ne regardent jamais la télévision"]
         ],
         say: [1]
-      },
-      after: "<p><b>The \"real-life\" line</b> (your note: <em>add one line relating to the topic</em>) makes the opening sound personal rather than recited. Keep it short and concrete: <span class='fr'>Aujourd'hui, presque tout le monde a un téléphone dans la poche.</span> / <span class='fr'>Moi-même, je suis parent de deux enfants.</span></p>",
-      tip: "<span class='fr'>Je ne crois pas qu'il <u>existe</u></span> — the subjunctive after a negative opinion verb (Module 15). It's already in your template, so you show B1 range without thinking about it."
+      }
     },
     {
-      title: "Part 2 — Argument 1, and the reset phrases",
-      body: "<p>Lead with your <b>strongest</b> reason:</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>La première raison, et c'est sans doute celle qui compte le plus à mes yeux, c'est que <b>[argument 1]</b>.</span></div><p>Then develop it with your three <b>reset phrases</b>. They do two jobs: they push you to explain and illustrate (which examiners reward), and they give you a fixed phrase to fall back on when you lose your train of thought — say one, and the sentence restarts itself.</p>",
+      title: "Part 2 — Argument 1",
+      body: "<p>Start with your strongest reason, then develop it with the three reset phrases — they also restart you if you lose your thread.</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>La première raison, et c'est sans doute celle qui compte le plus à mes yeux, c'est que <b>[argument 1]</b>.</span></div>",
       table: {
-        head: ["Reset phrase", "Use it to…", "Example"],
+        head: ["Reset phrase", "Example"],
         rows: [
-          ["Je m'explique :", "expand an idea you stated too briefly", "Je m'explique : un bon téléphone coûte aujourd'hui plus de mille dollars."],
-          ["Par exemple,", "give a concrete case", "Par exemple, une famille de quatre personnes…"],
-          ["C'est le cas de…", "point to a real person, group or situation", "C'est le cas de mes collègues, qui…"]
+          ["Je m'explique :", "Je m'explique : un bon téléphone coûte plus de mille dollars."],
+          ["Par exemple,", "Par exemple, une famille de quatre personnes…"],
+          ["C'est le cas de…", "C'est le cas de mes collègues, qui…"]
         ],
-        say: [0, 2]
-      },
-      tip: "Other reset phrases worth adding once these are automatic: <span class='fr'>Autrement dit,</span> (in other words), <span class='fr'>Ce que je veux dire, c'est que…</span>, <span class='fr'>Prenons l'exemple de…</span>"
+        say: [1]
+      }
     },
     {
-      title: "Part 3 — Bridge to the second argument",
-      body: "<p>A smooth transition is what makes an answer sound organised rather than like a list. Your three bridge phrases, in order:</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Ce premier point m'amène assez naturellement au second : <b>[argument 2]</b>. Il faut considérer que <b>[explanation]</b>. Pour ajouter à cette raison, je dirais que <b>[an extra detail or example]</b>.</span></div><p>Notice that <span class='fr'>je dirais</span> is a conditional (Module 13) — it softens your claim, which is exactly the tone of a measured opinion.</p>"
+      title: "Part 3 — Argument 2",
+      body: "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Ce premier point m'amène assez naturellement au second : <b>[argument 2]</b>. Il faut considérer que <b>[explication]</b>. Pour ajouter à cette raison, je dirais que <b>[un détail ou un exemple]</b>.</span></div>"
     },
     {
       title: "Part 4 — Counterpoint",
-      body: "<p>Showing you understand the other side, then answering it, is what separates a B1 argument from an A2 list of opinions.</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>D'un autre côté, certaines personnes pensent que <b>[the opposing view]</b>. En revanche, il ne fait aucun doute qu'il y a des impacts négatifs sur <b>[what is harmed]</b>.</span></div><p>If your honest opinion is on the other side, flip the second sentence to a positive one: <span class='fr'>En revanche, il ne fait aucun doute que cela apporte des bénéfices réels à…</span></p>"
+      body: "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>D'un autre côté, certaines personnes pensent que <b>[l'avis contraire]</b>. En revanche, il ne fait aucun doute que <b>[votre réponse]</b>.</span></div><p>Showing the other side, then answering it, is what makes it a B1 argument.</p>"
     },
     {
       title: "Part 5 — Conclusion",
-      body: "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Pour conclure, si je devais résumer ma pensée en une seule phrase, je dirais que <b>[your view in one sentence]</b>. En fin de compte, il vaut mieux qu'un équilibre soit maintenu entre <b>[side A]</b> et <b>[side B]</b>.</span></div><p>Two structures to notice, because they're exactly the B1 range examiners look for: <span class='fr'>si je devais…, je dirais</span> is a hypothesis with si + imparfait → conditionnel (Module 13), and <span class='fr'>il vaut mieux qu'un équilibre <u>soit</u> maintenu</span> uses the subjunctive after <span class='fr'>il vaut mieux que</span> (Module 15).</p>"
+      body: "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Pour conclure, si je devais résumer ma pensée en une seule phrase, je dirais que <b>[votre avis]</b>. En fin de compte, il vaut mieux qu'un équilibre soit maintenu entre <b>[A]</b> et <b>[B]</b>.</span></div>"
     },
     {
-      title: "A complete model answer",
-      body: "<p>Question: <span class='fr'>« Certains consommateurs changent souvent de téléphone portable. Que pensez-vous de cette pratique ? »</span> About 310 words — roughly 3 minutes at a steady B1 pace, leaving time for an extra example and the examiner's follow-up. The template phrases are exactly the ones you memorise; only the ideas about phones are new.</p>",
+      title: "A complete example answer",
+      body: "<p>Question: <span class='fr'>« Certains consommateurs changent souvent de téléphone portable. Que pensez-vous de cette pratique ? »</span></p>",
       examples: [
-        ["Alors, le sujet sur lequel je vais m'exprimer aujourd'hui porte sur les téléphones portables, et plus précisément sur la question de savoir s'il est raisonnable d'en changer souvent. C'est un sujet qui, au fond, concerne tout le monde, même ceux qui pensent ne pas être concernés. Aujourd'hui, presque tout le monde a un téléphone dans la poche, et de nouveaux modèles sortent chaque année. Et personnellement, je ne crois pas qu'il existe une réponse unique. Alors que certains défendent cette pratique avec conviction, d'autres s'y opposent tout aussi fermement. Donc, j'ai un avis nuancé sur ce sujet, et je vais expliquer mon point de vue en détail à travers quelques arguments.", "Opening"],
-        ["La première raison, et c'est sans doute celle qui compte le plus à mes yeux, c'est que changer souvent de téléphone coûte très cher. Je m'explique : un bon téléphone coûte aujourd'hui plus de mille dollars. Par exemple, une famille de quatre personnes qui change d'appareil tous les ans dépense des milliers de dollars, alors que les anciens téléphones fonctionnaient encore très bien.", "Argument 1"],
-        ["Ce premier point m'amène assez naturellement au second : l'environnement. Il faut considérer que la fabrication d'un téléphone demande des métaux rares et beaucoup d'énergie. Pour ajouter à cette raison, je dirais que les vieux téléphones sont rarement recyclés : ils finissent souvent dans un tiroir ou à la poubelle.", "Bridge + argument 2"],
-        ["D'un autre côté, certaines personnes pensent qu'un nouveau téléphone est nécessaire pour leur travail, parce qu'il est plus rapide et plus sécuritaire. C'est vrai, surtout pour les mises à jour de sécurité. En revanche, il ne fait aucun doute qu'il y a des impacts négatifs sur notre budget et sur la planète quand on change d'appareil seulement pour suivre la mode.", "Counterpoint"],
-        ["Pour conclure, si je devais résumer ma pensée en une seule phrase, je dirais qu'il faut changer de téléphone quand c'est nécessaire, et non pas quand c'est à la mode. En fin de compte, il vaut mieux qu'un équilibre soit maintenu entre le besoin de technologie et le respect de notre budget et de l'environnement.", "Conclusion"]
+        ["Alors, le sujet sur lequel je vais m'exprimer aujourd'hui porte sur les téléphones portables, et plus précisément sur la question de savoir s'il est raisonnable d'en changer souvent. C'est un sujet qui concerne tout le monde. Personnellement, je ne crois pas qu'il existe une réponse unique. Donc, j'ai un avis nuancé, et je vais expliquer mon point de vue à travers quelques arguments.", "Opening"],
+        ["La première raison, et c'est sans doute celle qui compte le plus à mes yeux, c'est que changer souvent de téléphone coûte très cher. Je m'explique : un bon téléphone coûte aujourd'hui plus de mille dollars. Par exemple, une famille de quatre personnes qui change d'appareil tous les ans dépense des milliers de dollars.", "Argument 1"],
+        ["Ce premier point m'amène assez naturellement au second : l'environnement. Il faut considérer que la fabrication d'un téléphone demande des métaux rares et beaucoup d'énergie. Pour ajouter à cette raison, je dirais que les vieux téléphones sont rarement recyclés.", "Argument 2"],
+        ["D'un autre côté, certaines personnes pensent qu'un nouveau téléphone est nécessaire pour leur travail. En revanche, il ne fait aucun doute qu'il y a des impacts négatifs sur notre budget et sur la planète quand on change d'appareil seulement pour suivre la mode.", "Counterpoint"],
+        ["Pour conclure, si je devais résumer ma pensée en une seule phrase, je dirais qu'il faut changer de téléphone quand c'est nécessaire, et non pas quand c'est à la mode. En fin de compte, il vaut mieux qu'un équilibre soit maintenu entre le besoin de technologie et le respect de l'environnement.", "Conclusion"]
       ]
-    },
-    {
-      title: "Practice questions, with ideas on both sides",
-      body: "<p>The questions from your list, written in exam form. For each, pick <b>two reasons</b> for your side and <b>one</b> for the other side, then build the answer in the builder below.</p>",
-      table: {
-        head: ["Question", "Ideas for", "Ideas against"],
-        rows: [
-          ["À votre avis, l'autorité joue-t-elle un rôle essentiel dans l'éducation des enfants ?", "des repères clairs et la sécurité ; apprendre le respect des règles ; se préparer à la vie en société", "trop d'autorité peut rendre les enfants moins expressifs, et ils n'apprennent pas à expliquer leurs émotions ; la peur plutôt que la compréhension"],
-          ["Certains consommateurs changent souvent de téléphone portable. Que pensez-vous de cette pratique ?", "meilleure sécurité et nouvelles fonctions ; outil de travail", "le coût ; l'impact environnemental ; la pression sociale et la mode"],
-          ["Pour évoluer dans son entreprise, faut-il avant tout être compétent dans son travail ? Partagez-vous cette opinion ?", "la compétence crée la confiance ; les résultats sont mesurables", "le réseau et les relations comptent aussi ; la communication et l'attitude ; savoir se faire remarquer"],
-          ["Certaines personnes décident de ne jamais regarder la télévision. Qu'en pensez-vous ?", "plus de temps pour lire, faire du sport, la famille ; moins de publicité", "on peut rater l'actualité locale ; certaines émissions sont éducatives ; un moment partagé en famille"],
-          ["La mixité sociale à l'école aide-t-elle à développer la tolérance ? Pourquoi ?", "on apprend à connaître d'autres cultures et milieux ; moins de préjugés", "sans accompagnement des enseignants, des groupes peuvent se former ; les inégalités ne disparaissent pas toutes seules"],
-          ["Les réseaux sociaux rapprochent-ils vraiment les gens ?", "garder le contact avec la famille à l'étranger ; trouver une communauté", "des relations superficielles ; moins de contacts en personne ; la comparaison et l'anxiété"]
-        ]
-      },
-      tip: "Canadian angle: examiners in a Canadian test respond well to concrete Canadian examples — immigration, winters, public transit, bilingualism, multicultural schools. One real example is worth three general statements."
-    },
-    {
-      title: "Notes on the handwritten template",
-      body: "<p>Your template is well built. A few small language points were adjusted in this module, so you memorise the most natural version:</p><ul><li><span class='fr'>De l'autre côté</span> → <span class='fr'>D'un autre côté</span> — the standard way to introduce the opposing view (\"on the other hand\").</li><li><span class='fr'>À la fin, il vaut mieux…</span> → <span class='fr'>En fin de compte, il vaut mieux…</span> — <span class='fr'>à la fin</span> means \"at the end\" in time (at the end of the film); for \"ultimately\" use <span class='fr'>en fin de compte</span> or <span class='fr'>au bout du compte</span>.</li><li><span class='fr'>Qu'en pensez-vous de cette pratique ?</span> → <span class='fr'>Que pensez-vous de cette pratique ?</span> or <span class='fr'>Qu'en pensez-vous ?</span> — <span class='fr'>en</span> already means \"of it\", so it can't be used together with <span class='fr'>de cette pratique</span>.</li><li><span class='fr'>changent les téléphones portables</span> → <span class='fr'>changent de téléphone portable</span> — \"to change (replace) something\" is <span class='fr'>changer de</span> + noun with no article.</li><li><span class='fr'>Certains personnes</span> → <span class='fr'>Certaines personnes</span> — <span class='fr'>personne</span> is feminine.</li><li><span class='fr'>Pour évaluer dans son entreprise</span> → <span class='fr'>Pour évoluer dans son entreprise</span> — <span class='fr'>évoluer</span> (to progress, move up) fits the question; <span class='fr'>évaluer</span> means \"to assess\".</li></ul>"
     }
   ],
   builder: {
