@@ -7,7 +7,7 @@
  * ------------------------------------------------------------------ */
 window.SITE = {
   /* Public product name, shown in the header, titles and emails. */
-  brand: "NCLC 5 Roadmap",
+  brand: "Prêt Français",
 
   /* Your live domain, no trailing slash. Used in legal pages. */
   url: "https://www.example.com",

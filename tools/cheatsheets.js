@@ -157,7 +157,7 @@ function sheet(m) {
 
   return `<div class="page" style="--c:${L.color}">
   <header>
-    <div class="brand"><span class="mark">B1</span>${esc(SITE.brand)} <span class="free">Free cheat sheet</span></div>
+    <div class="brand"><span class="mark">ê</span>${esc(SITE.brand)} <span class="free">Free cheat sheet</span></div>
     <div class="lvl">Module ${m.num} · ${esc(L.name)}</div>
     <h1>${esc(m.title)}</h1>
     <p class="sub">${esc(m.subtitle)}</p>
@@ -182,7 +182,7 @@ function codes(m) {
   const figs = list.map(x => "<div class='cc-fig'><span class='cc-n'>Lesson " + m.num + "." + (x.i + 1) + "</span>" + VIS.render(x.spec, L.hue) + "</div>").join("");
   return `<div class="page cc-page" style="--c:${L.color}">
   <header class="cc-head">
-    <div class="brand"><span class="mark">B1</span>${esc(SITE.brand)} <span class="free">Cheat codes</span></div>
+    <div class="brand"><span class="mark">ê</span>${esc(SITE.brand)} <span class="free">Cheat codes</span></div>
     <div class="lvl">Module ${m.num} · ${esc(L.name)}</div>
     <h1>${esc(m.title)}: the rules at a glance</h1>
   </header>
@@ -240,7 +240,7 @@ body { font-family: Inter, "DejaVu Sans", sans-serif; color: #1d1d1f; -webkit-pr
 .page::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7px; background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 40%, #c2419a)); }
 header { border-bottom: 1px solid #e6e6eb; padding-bottom: 9px; margin-bottom: 11px; }
 .brand { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 10px; color: #515154; }
-.mark { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 5px; color: #fff; font-size: 7.5px; font-weight: 800; background: linear-gradient(135deg, #2451d6, #6c47e4 55%, #c2419a); }
+.mark { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 5px; color: #fff; font-size: 11px; line-height: 1; font-weight: 800; background: linear-gradient(135deg, #2451d6, #6c47e4 55%, #c2419a); }
 .free { margin-left: auto; font-size: 8.5px; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 35%, #fff); background: color-mix(in srgb, var(--c) 8%, #fff); padding: 2px 8px; border-radius: 99px; }
 .lvl { margin-top: 10px; font-size: 9px; font-weight: 700; color: var(--c); letter-spacing: 0.02em; }
 h1 { font-family: "Inter Tight", Inter, sans-serif; font-weight: 800; font-size: 23px; letter-spacing: -0.015em; word-spacing: 0.04em; line-height: 1.08; margin: 3px 0 4px; }
