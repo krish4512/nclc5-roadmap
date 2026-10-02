@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>French Verb Conjugator with English · NCLC 5 Roadmap</title>
+<meta name="description" content="Conjugate 360+ French verbs in every tense you need for the TCF and TEF — present, passé composé, imparfait, futur, conditionnel, subjonctif and impératif — with English for every form and audio.">
+<!-- partial:head -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="NCLC 5">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NCLC 5 Roadmap">
+<meta property="og:title" content="French Verb Conjugator with English · NCLC 5 Roadmap">
+<meta property="og:description" content="Conjugate 360+ French verbs in every tense you need for the TCF and TEF — present, passé composé, imparfait, futur, conditionnel, subjonctif and impératif — with English for every form and audio.">
+<meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/conjugate.html">
+<meta property="og:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NCLC 5 Roadmap — Your French, exam-ready.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(d){var r={};try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);r=JSON.parse(localStorage.getItem("nclc5-reading")||"{}")||{}}catch(e){}if(r.size)d.setAttribute("data-text",r.size);if(r.spacing)d.setAttribute("data-spacing","1");if(r.font==="readable"){d.setAttribute("data-font","readable");document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">')}if(r.motion==="reduce")d.setAttribute("data-motion","reduce");else if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)d.classList.add("js-motion")})(document.documentElement);</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<!-- /partial:head -->
+<script src="assets/speech.js"></script>
+<script src="assets/verbs.js"></script>
+<style>
+  .cj { max-width: 1120px; margin: 0 auto; padding: 40px 24px 72px; }
+  @media (max-width: 560px) { .cj { padding: 26px 16px 56px; } }
+  .cj h1 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.035em; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; margin: 8px 0 10px; }
+  .cj .lead { color: var(--ink-soft); font-size: 17px; margin: 0 0 22px; max-width: 62ch; }
+  .search { position: relative; max-width: 560px; }
+  .search input { width: 100%; font: inherit; font-size: 18px; padding: 14px 18px 14px 46px; border-radius: 999px; border: 1.5px solid var(--border-strong); background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+  .search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .search svg { position: absolute; left: 17px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--ink-faint); }
+  .sugg { list-style: none; margin: 6px 0 0; padding: 6px; position: absolute; left: 0; right: 0; z-index: 30; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow-lg); max-height: 320px; overflow-y: auto; }
+  .sugg[hidden] { display: none; }
+  .sugg li { padding: 10px 14px; border-radius: 12px; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
+  .sugg li[aria-selected="true"], .sugg li:hover { background: var(--accent-soft); }
+  .sugg li b { font-weight: 600; } .sugg li span { color: var(--ink-soft); font-size: 14px; text-align: right; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+  .chips button { appearance: none; -webkit-appearance: none; font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--ink-soft); cursor: pointer; }
+  .chips button:hover { border-color: var(--accent-soft-border); color: var(--ink); }
+
+  .vhead { margin: 34px 0 18px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 18px; }
+  .vhead h2 { font-family: var(--serif); font-size: clamp(30px, 4.4vw, 44px); letter-spacing: -0.03em; margin: 0; line-height: 1; display: flex; align-items: center; gap: 12px; }
+  .vhead .en { font-size: 18px; color: var(--ink-soft); }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+  .tags span { font-size: 13px; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: var(--surface-alt); border: 1px solid var(--border); color: var(--ink-soft); }
+  .note { background: var(--gold-soft); border-radius: 14px; padding: 11px 14px; font-size: 14.5px; margin: 0 0 18px; }
+  .tgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  @media (max-width: 400px) { .tgrid { grid-template-columns: minmax(0, 1fr); } }
+  .tcard { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 16px 18px; box-shadow: var(--shadow-sm); min-width: 0; }
+  .tcard h3 { margin: 0; font-size: 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .tcard h3 a { font-size: 12.5px; font-weight: 600; text-decoration: none; }
+  .tcard .use { margin: 2px 0 10px; font-size: 12.5px; color: var(--ink-faint); }
+  .tcard ul { list-style: none; margin: 0; padding: 0; }
+  .tcard li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 10px; padding: 7px 0; border-top: 1px solid var(--border); }
+  .tcard li:first-child { border-top: none; }
+  .tcard .f { font-weight: 600; font-size: 15.5px; }
+  .tcard .e { grid-column: 1; font-size: 13px; color: var(--ink-faint); }
+  .say { grid-row: span 2; appearance: none; -webkit-appearance: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-alt); color: var(--accent); cursor: pointer; display: grid; place-items: center; }
+  .say svg { width: 14px; height: 14px; }
+  .empty { color: var(--ink-soft); margin-top: 26px; }
+</style>
+</head>
+<body>
+
+<!-- partial:header practice -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="today.html">Today</a>
+      <a href="learn.html">Learn</a>
+      <a href="quiz.html" aria-current="page">Practice</a>
+      <a href="exam.html">Exam</a>
+      <a class="nav-cta" href="pricing.html">Get Pro</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /partial:header -->
+
+<main id="main">
+<!-- partial:tabs -->
+<nav class="tabs" aria-label="Practice">
+  <div class="container"><a href="review.html">Daily review</a><a href="quiz.html">Drills</a><a href="conjugate.html" aria-current="page">Verb conjugator</a><a href="speak.html">Listen & repeat</a></div>
+</nav>
+<!-- /partial:tabs -->
+  <div class="cj">
+    <span class="eyebrow">360+ verbs · 7 tenses · English for every form</span>
+    <h1>Verb conjugator</h1>
+    <p class="lead">Type a French verb — or its English meaning — to see every tense you need for the TCF and TEF, with audio.</p>
+    <div class="search" role="combobox" aria-expanded="false" aria-owns="sugg" aria-haspopup="listbox" id="combo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="e.g. prendre, être, to go…" aria-label="Search for a verb" aria-autocomplete="list" aria-controls="sugg">
+      <ul class="sugg" id="sugg" role="listbox" hidden></ul>
+    </div>
+    <div class="chips" id="chips" aria-label="Most useful verbs"></div>
+    <div id="out"></div>
+  </div>
+</main>
+
+<!-- partial:footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+      </div>
+      <div>
+        <h4>Study</h4>
+        <ul>
+          <li><a href="today.html">Today</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="exam.html">Exam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Free</h4>
+        <ul>
+          <li><a href="start.html">Find your level</a></li>
+          <li><a href="cheatsheets.html">Cheat sheets</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact & FAQ</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
+      <p>&copy; <span data-year>2026</span> <span data-site="legalName">Your Business Name</span></p>
+    </div>
+  </div>
+</footer>
+<!-- /partial:footer -->
+
+<script>
+(function () {
+  var V = window.NCLC_VERBS, Speech = window.NCLCSpeech;
+  var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+  var TENSES = [
+    ["present", "Présent", "Now, habits, general truths", "present"],
+    ["passe", "Passé composé", "Completed past actions", "passe-compose"],
+    ["imparfait", "Imparfait", "Past background, habits (\"used to\")", "imparfait"],
+    ["futur", "Futur simple", "What will happen", "compare-future"],
+    ["conditionnel", "Conditionnel", "Would; polite requests; si-clauses", "conditional"],
+    ["subjonctif", "Subjonctif", "After il faut que, je veux que…", "subjunctive"],
+    ["imperatif", "Impératif", "Instructions and commands", "reflexive"]
+  ];
+  var POPULAR = ["être", "avoir", "aller", "faire", "pouvoir", "vouloir", "devoir", "prendre", "venir", "savoir", "dire", "parler", "finir", "s'appeler"];
+  var q = document.getElementById("q"), sugg = document.getElementById("sugg"), out = document.getElementById("out"), combo = document.getElementById("combo");
+  var sel = -1, matches = [];
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+  function fold(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/^(to |se |s')/, ""); }
+
+  document.getElementById("chips").innerHTML = POPULAR.map(function (v) { return "<button type='button' data-v=\"" + esc(v) + "\">" + esc(v) + "</button>"; }).join("");
+
+  function search(text) {
+    var t = fold(text.trim());
+    if (!t) return [];
+    var starts = [], has = [], enHits = [];
+    V.list.forEach(function (v) {
+      var f = fold(v.inf), e = v.en.toLowerCase();
+      if (f.indexOf(t) === 0) starts.push(v); else if (f.indexOf(t) > 0) has.push(v);
+      else if (e.replace(/^to /, "").split(/[\/(),]/).some(function (p) { return p.trim().indexOf(text.trim().toLowerCase().replace(/^to /, "")) === 0; })) enHits.push(v);
+    });
+    /* "to go" is clearly English: show the English matches first */
+    return (/^to\s/i.test(text.trim()) ? enHits.concat(starts, has) : starts.concat(enHits, has)).slice(0, 10);
+  }
+  function showSugg() {
+    matches = search(q.value); sel = -1;
+    if (!matches.length) { sugg.hidden = true; combo.setAttribute("aria-expanded", "false"); return; }
+    sugg.innerHTML = matches.map(function (v, i) { return "<li role='option' id='o" + i + "' data-v=\"" + esc(v.inf) + "\"><b>" + esc(v.inf) + "</b><span>" + esc(v.en) + "</span></li>"; }).join("");
+    sugg.hidden = false; combo.setAttribute("aria-expanded", "true");
+  }
+  function highlight() { [].forEach.call(sugg.children, function (li, i) { li.setAttribute("aria-selected", i === sel ? "true" : "false"); }); q.setAttribute("aria-activedescendant", sel >= 0 ? "o" + sel : ""); }
+
+  function render(inf, push) {
+    var c = V.conjugate(inf);
+    sugg.hidden = true; combo.setAttribute("aria-expanded", "false");
+    if (!c) { out.innerHTML = "<p class='empty'>No verb found for “" + esc(inf) + "”. Try the infinitive (e.g. <b>prendre</b>) or the English meaning.</p>"; return; }
+    q.value = c.inf;
+    document.title = "Conjugate “" + c.inf + "” (" + c.en + ") · NCLC 5 Roadmap";
+    if (push !== false) try { history.replaceState(null, "", "?v=" + encodeURIComponent(c.inf)); } catch (e) {}
+    var canSay = Speech && Speech.available();
+    var html = "<div class='vhead'><h2 lang='fr'>" + (canSay ? "<button type='button' class='say' data-say=\"" + esc(c.inf) + "\" aria-label='Listen'>" + SPK + "</button>" : "") + esc(c.inf) + "</h2><span class='en'>" + esc(c.en) + "</span>" +
+      "<div class='tags'><span>" + esc(c.group) + "</span><span>Passé composé with " + c.aux + "</span><span>Past participle: " + esc(c.pp) + "</span>" + (c.pron ? "<span>Pronominal</span>" : "") + "</div></div>" +
+      (c.note ? "<p class='note'>" + esc(c.note) + "</p>" : "") + "<div class='tgrid'>";
+    TENSES.forEach(function (t) {
+      var rows = c.tenses[t[0]];
+      if (!rows) return;
+      html += "<section class='tcard'><h3><span>" + t[1] + "</span><a href='learn.html#" + t[3] + "'>Lesson →</a></h3><p class='use'>" + t[2] + "</p><ul lang='fr'>" +
+        rows.filter(Boolean).map(function (r) {
+          return "<li><span class='f'>" + esc(r[0]) + "</span>" + (canSay ? "<button type='button' class='say' data-say=\"" + esc(r[0].replace(/\((e|s)\)/g, "").replace("il/elle/on", "il").replace("ils/elles", "ils")) + "\" aria-label='Listen: " + esc(r[0]) + "'>" + SPK + "</button>" : "") +
+            "<span class='e' lang='en'>" + esc(r[1]) + "</span></li>";
+        }).join("") + "</ul></section>";
+    });
+    out.innerHTML = html + "</div>";
+    if (window.NCLC && window.NCLC.markStudy && push !== false) { /* looking things up is reference, not study: no streak */ }
+  }
+
+  q.addEventListener("input", showSugg);
+  q.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown" && matches.length) { e.preventDefault(); sel = Math.min(matches.length - 1, sel + 1); highlight(); }
+    else if (e.key === "ArrowUp" && matches.length) { e.preventDefault(); sel = Math.max(0, sel - 1); highlight(); }
+    else if (e.key === "Enter") { e.preventDefault(); var m = sel >= 0 ? matches[sel] : search(q.value)[0]; render(m ? m.inf : q.value.trim()); }
+    else if (e.key === "Escape") { sugg.hidden = true; }
+  });
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-v]");
+    if (t) { render(t.getAttribute("data-v")); window.scrollTo({ top: out.getBoundingClientRect().top + scrollY - 140, behavior: "smooth" }); return; }
+    var s = e.target.closest("[data-say]");
+    if (s && Speech) { Speech.speak(s.getAttribute("data-say")); return; }
+    if (!e.target.closest("#combo")) sugg.hidden = true;
+  });
+  var start = new URLSearchParams(location.search).get("v");
+  render(start || "être", !!start);
+})();
+</script>
+</body>
+</html>
