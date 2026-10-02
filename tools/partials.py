@@ -6,10 +6,10 @@ Each page marks the regions this script owns:
     <!-- partial:head -->        ... <!-- /partial:head -->
     <!-- partial:header KEY -->  ... <!-- /partial:header -->
     <!-- partial:footer -->      ... <!-- /partial:footer -->
-    <!-- partial:related KEY --> ... <!-- /partial:related -->   ("Keep going" cards)
-    <!-- partial:journey KEY --> ... <!-- /partial:journey -->   ("How this site works" strip)
+    <!-- partial:tabs -->         ... <!-- /partial:tabs -->      (the section's tabs)
 
-KEY is the nav item to highlight (learn, roadmap, practice, exam, pricing) or "none".
+KEY is the section to highlight (today, learn, practice, exam) or "none".
+Tabs work out the section and active tab from the page's file name (TABS).
 Edit the templates below, then run from the repository root:
 
     python3 tools/partials.py
@@ -38,100 +38,77 @@ HEAD = """<!-- partial:head -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)document.documentElement.classList.add("js-motion");</script>
+<script>(function(d){var r={};try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);r=JSON.parse(localStorage.getItem("nclc5-reading")||"{}")||{}}catch(e){}if(r.size)d.setAttribute("data-text",r.size);if(r.spacing)d.setAttribute("data-spacing","1");if(r.font==="readable"){d.setAttribute("data-font","readable");document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">')}if(r.motion==="reduce")d.setAttribute("data-motion","reduce");else if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)d.classList.add("js-motion")})(document.documentElement);</script>
 <script src="assets/config.js"></script>
 <script src="assets/site.js"></script>
 <!-- /partial:head -->"""
 
-# Top-level nav items. Items with a submenu get a dropdown on desktop and a
-# collapsible group in the mobile menu. Each submenu entry: (href, label, hint).
+# ---------------------------------------------------------------------------
+# Site structure: four sections, each with a few tabs. Nothing else.
+#   Today    — your daily hub
+#   Learn    — the course and what supports it
+#   Practice — make it automatic
+#   Exam     — prove it
+# Tabs (and footer links) only appear once their page exists, so nothing
+# ever links to a missing page.
+# ---------------------------------------------------------------------------
 NAV = [
-    ("learn", "learn.html", "Learn", [
-        ("learn.html", "Course overview", "All 21 modules and your progress"),
-        ("start.html", "Find your level", "2-minute check: where to start"),
-        ("learn.html#method", "How to learn French", "The research-based method"),
-        ("learn.html#sounds", "Pronunciation", "The sounds of French"),
-        ("learn.html#basics", "A1 · Foundations", "Être, avoir, present tense, questions"),
-        ("learn.html#reflexive", "A2 · Everyday French", "Passé composé, imparfait, pronouns"),
-        ("learn.html#conditional", "B1 · Independent user", "Conditional, subjunctive, arguing"),
-        ("learn.html#exam", "Exam technique", "TCF & TEF task by task"),
-        ("learn.html#tcf-t2", "TCF task 2 kit", "Asking questions: the interaction task"),
-        ("learn.html#tcf-t3", "TCF task 3 template", "Giving your opinion in 4:30"),
-        ("cheatsheets.html", "Free cheat sheets", "21 one-page PDFs to print"),
-    ]),
-    ("roadmap", "roadmap.html", "Roadmap", [
-        ("roadmap.html", "Roadmap overview", "Your checklist and progress"),
-        ("roadmap.html#scores", "Score bands", "What NCLC 5 means on each test"),
-        ("roadmap.html#format", "Exam format", "Sections, tasks and timing"),
-        ("roadmap.html#order", "Grammar order", "Conjugation tables with audio"),
-        ("roadmap.html#vocab", "Vocabulary banks", "Ten exam themes"),
-        ("roadmap.html#skills", "Skills checklist", "What examiners score"),
-    ]),
-    ("practice", "quiz.html", "Practice", [
-        ("quiz.html", "All drill sets", "Pick a set and a mode"),
-        ("quiz.html?set=conj", "Verb conjugations", "Every table on the roadmap"),
-        ("quiz.html?set=verbs-all", "All verbs", "-er, -ir and -re verbs"),
-        ("quiz.html?set=vocab-all", "All vocabulary", "Ten themes mixed"),
-        ("quiz.html?set=weak", "Weak items review", "What you missed recently"),
-    ]),
-    ("exam", "exam.html", "Mock exam", [
-        ("exam.html", "All sections", "Your scores and history"),
-        ("exam.html?s=listening", "Listening", "20 questions · 18 min"),
-        ("exam.html?s=reading", "Reading", "20 questions · 30 min"),
-        ("exam.html?s=writing", "Writing", "3 tasks with a live coach"),
-        ("exam.html?s=speaking", "Speaking", "3 tasks with timers and recording"),
-    ]),
-    ("pricing", "pricing.html", "Pricing", None),
+    ("today", "today.html", "Today"),
+    ("learn", "learn.html", "Learn"),
+    ("practice", "quiz.html", "Practice"),
+    ("exam", "exam.html", "Exam"),
 ]
 
-CHEVRON = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-
-# "Keep going" cards shown near the bottom of each study page.
-RELATED = {
+TABS = {
     "learn": [
-        ("roadmap.html", "Roadmap checklist", "Tick off grammar, vocabulary and skills as you master them."),
-        ("quiz.html", "Practice drills", "Drill what you just learned in four modes."),
-        ("exam.html", "Mock exam", "Test yourself under real exam timing."),
-    ],
-    "roadmap": [
-        ("learn.html", "The full course", "Every roadmap topic explained in depth, with speaking drills."),
-        ("quiz.html", "Practice drills", "Turn these tables into automatic recall."),
-        ("learn.html#tcf-t2", "TCF task 2 kit", "Question patterns for the interaction task."),
-        ("exam.html", "Mock exam", "See where you stand, section by section."),
+        ("learn.html", "Course"),
+        ("start.html", "Find your level"),
+        ("cheatsheets.html", "Cheat sheets"),
+        ("roadmap.html", "Grammar reference"),
     ],
     "practice": [
-        ("learn.html", "The full course", "Lessons behind every drill set."),
-        ("roadmap.html#vocab", "Vocabulary banks", "Review a theme before drilling it."),
-        ("exam.html", "Mock exam", "Put your vocabulary to work under time pressure."),
+        ("review.html", "Daily review"),
+        ("quiz.html", "Drills"),
+        ("conjugate.html", "Verb conjugator"),
+        ("speak.html", "Listen & repeat"),
     ],
     "exam": [
-        ("learn.html#exam", "Exam technique", "Strategy for every section of the TCF and TEF."),
-        ("learn.html#tcf-t2", "TCF task 2 kit", "Openings, 10-question sequence, reactions."),
-        ("learn.html#tcf-t3", "TCF task 3 template", "A five-part opinion structure and builder."),
-        ("learn.html#argue", "Connectors & arguments", "For the writing and opinion tasks."),
+        ("exam.html", "Mock exam"),
+        ("topics.html", "Speaking topics"),
+        ("writing.html", "Writing models"),
+        ("guides.html", "Guides"),
     ],
 }
+
+
+def exists(href):
+    return (ROOT / href.split("#")[0].split("?")[0]).exists()
+
+
+def section_of(name):
+    """Which section a page belongs to, and which tab is active."""
+    if name.startswith("guide-"):
+        return "exam", "guides.html"
+    for sec, tabs in TABS.items():
+        for href, _ in tabs:
+            if href == name:
+                return sec, href
+    return None, None
+
 
 MOON = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 14.6A8.6 8.6 0 0 1 9.4 3.3a.7.7 0 0 0-.9-.9A10 10 0 1 0 21.6 15.5a.7.7 0 0 0-.9-.9z"/></svg>'
 SUN = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>'
 MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>'
+AA = '<span class="aa" aria-hidden="true">Aa</span>'
 
 
 def header(active):
     links = []
-    for key, href, label, sub in NAV:
-        cur = ' aria-current="page"' if key == active else ""
-        if not sub:
-            links.append(f'      <a href="{href}"{cur}>{label}</a>')
+    for key, href, label in NAV:
+        if not exists(href):
             continue
-        items = "\n".join(
-            f'          <a href="{h}"><b>{l}</b><span>{hint}</span></a>' for h, l, hint in sub)
-        links.append(f"""      <div class="nav-item" data-dd>
-        <a class="nav-top" href="{href}"{cur}>{label}</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="{label} menu">{CHEVRON}</button>
-        <div class="dd">
-{items}
-        </div>
-      </div>""")
+        cur = ' aria-current="page"' if key == active else ""
+        links.append(f'      <a href="{href}"{cur}>{label}</a>')
     links.append('      <a class="nav-cta" href="pricing.html">Get Pro</a>')
     nav = "\n".join(links)
     return f"""<!-- partial:header {active} -->
@@ -143,7 +120,7 @@ def header(active):
 {nav}
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark theme">{MOON}{SUN}</button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font">{AA}</button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu">{MENU}</button>
     </div>
@@ -152,51 +129,46 @@ def header(active):
 <!-- /partial:header -->"""
 
 
-FOOTER = """<!-- partial:footer -->
+def tabs(name):
+    sec, active = section_of(name)
+    if not sec:
+        return "<!-- partial:tabs -->\n<!-- /partial:tabs -->"
+    items = []
+    for href, label in TABS[sec]:
+        if not exists(href):
+            continue
+        cur = ' aria-current="page"' if href == active else ""
+        items.append(f'<a href="{href}"{cur}>{label}</a>')
+    return f"""<!-- partial:tabs -->
+<nav class="tabs" aria-label="{dict((k, l) for k, _, l in NAV)[sec]}">
+  <div class="container">{"".join(items)}</div>
+</nav>
+<!-- /partial:tabs -->"""
+
+
+def footer():
+    def col(title, links):
+        lis = "\n".join(f'          <li><a href="{h}">{l}</a></li>' for h, l in links if exists(h))
+        return f"""      <div>
+        <h4>{title}</h4>
+        <ul>
+{lis}
+        </ul>
+      </div>"""
+    cols = "\n".join([
+        col("Study", [("today.html", "Today"), ("learn.html", "Learn"), ("quiz.html", "Practice"), ("exam.html", "Exam")]),
+        col("Free", [("start.html", "Find your level"), ("cheatsheets.html", "Cheat sheets"), ("guides.html", "Exam guides"), ("whats-new.html", "What's new")]),
+        col("Help", [("pricing.html", "Pricing"), ("contact.html", "Contact & FAQ"), ("privacy.html", "Privacy"), ("terms.html", "Terms")]),
+    ])
+    return f"""<!-- partial:footer -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
-        <p>A structured French study plan, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
-      <div>
-        <h4>Study</h4>
-        <ul>
-          <li><a href="start.html">Find your level</a></li>
-          <li><a href="learn.html">French course</a></li>
-          <li><a href="cheatsheets.html">Free cheat sheets</a></li>
-          <li><a href="roadmap.html">Roadmap</a></li>
-          <li><a href="quiz.html">Practice drills</a></li>
-          <li><a href="exam.html">Mock exam</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Exam prep</h4>
-        <ul>
-          <li><a href="learn.html#exam">Exam technique</a></li>
-          <li><a href="learn.html#tcf-t2">TCF task 2 kit</a></li>
-          <li><a href="learn.html#tcf-t3">TCF task 3 template</a></li>
-          <li><a href="exam.html?s=speaking">Speaking mock</a></li>
-          <li><a href="exam.html?s=writing">Writing mock</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Account</h4>
-        <ul>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="#" data-portal>Manage subscription</a></li>
-          <li><a href="contact.html">Contact &amp; FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="terms.html">Terms of service</a></li>
-          <li><a href="privacy.html">Privacy policy</a></li>
-          <li><a href="terms.html#refunds">Refund policy</a></li>
-        </ul>
-      </div>
+{cols}
     </div>
     <div class="footer-legal">
       <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
@@ -205,52 +177,6 @@ FOOTER = """<!-- partial:footer -->
   </div>
 </footer>
 <!-- /partial:footer -->"""
-
-
-# "How this site works" strip at the top of the study pages. KEY is the
-# current step: start, learn, practice, exam, or roadmap (the reference).
-JOURNEY = [
-    ("start", "start.html", "Find your level", "2-minute check"),
-    ("learn", "learn.html", "Learn", "21 modules, in order"),
-    ("practice", "quiz.html", "Drill", "Make it automatic"),
-    ("exam", "exam.html", "Test", "Timed mock exams"),
-]
-
-
-def journey(key):
-    steps = []
-    for i, (k, href, title, hint) in enumerate(JOURNEY, 1):
-        cur = ' aria-current="step"' if k == key else ""
-        cls = "j-step cur" if k == key else "j-step"
-        steps.append(f'<li><a class="{cls}" href="{href}"{cur}><i>{i}</i><span><b>{title}</b><small>{hint}</small></span></a></li>')
-    ref_cls = "j-ref cur" if key == "roadmap" else "j-ref"
-    ref_cur = ' aria-current="page"' if key == "roadmap" else ""
-    return f"""<!-- partial:journey {key} -->
-<nav class="journey" aria-label="How this site works">
-  <div class="container">
-    <ol>
-      {"".join(steps)}
-    </ol>
-    <a class="{ref_cls}" href="roadmap.html"{ref_cur}><b>Roadmap</b><small>Your checklist &amp; reference</small></a>
-  </div>
-</nav>
-<!-- /partial:journey -->"""
-
-
-def related(key):
-    cards = "\n".join(
-        f'      <a class="related-card" href="{h}"><b>{t}</b><span>{d}</span><i aria-hidden="true">→</i></a>'
-        for h, t, d in RELATED[key])
-    return f"""<!-- partial:related {key} -->
-<section class="related" aria-label="Keep going">
-  <div class="container">
-    <h2>Keep going</h2>
-    <div class="related-grid">
-{cards}
-    </div>
-  </div>
-</section>
-<!-- /partial:related -->"""
 
 
 def social(text, name):
@@ -281,11 +207,8 @@ def render(text, name=""):
     text = re.sub(r"<!-- partial:head -->.*?<!-- /partial:head -->", lambda m: head, text, flags=re.S)
     text = re.sub(r"<!-- partial:header (\w+) -->.*?<!-- /partial:header -->",
                   lambda m: header(m.group(1)), text, flags=re.S)
-    text = re.sub(r"<!-- partial:footer -->.*?<!-- /partial:footer -->", lambda m: FOOTER, text, flags=re.S)
-    text = re.sub(r"<!-- partial:journey (\w+) -->.*?<!-- /partial:journey -->",
-                  lambda m: journey(m.group(1)), text, flags=re.S)
-    text = re.sub(r"<!-- partial:related (\w+) -->.*?<!-- /partial:related -->",
-                  lambda m: related(m.group(1)), text, flags=re.S)
+    text = re.sub(r"<!-- partial:footer -->.*?<!-- /partial:footer -->", lambda m: footer(), text, flags=re.S)
+    text = re.sub(r"<!-- partial:tabs -->.*?<!-- /partial:tabs -->", lambda m: tabs(name), text, flags=re.S)
     return text
 
 

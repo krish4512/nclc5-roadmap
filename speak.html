@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Listen &amp; Repeat · NCLC 5 Roadmap</title>
+<meta name="description" content="Speaking practice for the TCF and TEF: listen to each French sentence, record yourself, and compare your pronunciation with the model, module by module.">
+<!-- partial:head -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="NCLC 5">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NCLC 5 Roadmap">
+<meta property="og:title" content="Listen &amp; Repeat · NCLC 5 Roadmap">
+<meta property="og:description" content="Speaking practice for the TCF and TEF: listen to each French sentence, record yourself, and compare your pronunciation with the model, module by module.">
+<meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/speak.html">
+<meta property="og:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NCLC 5 Roadmap — Your French, exam-ready.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(d){var r={};try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);r=JSON.parse(localStorage.getItem("nclc5-reading")||"{}")||{}}catch(e){}if(r.size)d.setAttribute("data-text",r.size);if(r.spacing)d.setAttribute("data-spacing","1");if(r.font==="readable"){d.setAttribute("data-font","readable");document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">')}if(r.motion==="reduce")d.setAttribute("data-motion","reduce");else if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)d.classList.add("js-motion")})(document.documentElement);</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<!-- /partial:head -->
+<script src="assets/speech.js"></script>
+<script src="assets/course-index.js"></script>
+<script src="assets/recorder.js"></script>
+<style>
+  .lr { max-width: 860px; margin: 0 auto; padding: 40px 24px 72px; }
+  @media (max-width: 560px) { .lr { padding: 26px 16px 56px; } }
+  .lr h1 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.035em; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; margin: 8px 0 10px; }
+  .lr .lead { color: var(--ink-soft); font-size: 17px; margin: 0 0 20px; }
+  .how { list-style: none; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  @media (max-width: 640px) { .how { grid-template-columns: minmax(0, 1fr); } }
+  .how li { background: var(--surface-alt); border-radius: 16px; padding: 12px 14px; font-size: 14.5px; }
+  .how b { display: block; margin-bottom: 2px; }
+  .pick { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+  .pick label { font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .pick select { font: inherit; font-size: 15px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); max-width: 100%; }
+  .pick .slow { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; color: var(--ink-soft); }
+  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .line { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: start; }
+  .line .say { appearance: none; -webkit-appearance: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--accent-soft); color: var(--accent); cursor: pointer; display: grid; place-items: center; grid-row: span 3; }
+  .line .say svg { width: 16px; height: 16px; }
+  .line .fr { font-size: 18px; font-weight: 600; line-height: 1.4; }
+  .line .en { font-size: 14px; color: var(--ink-soft); }
+  .line .rec-ctl { margin-top: 6px; }
+  .empty { color: var(--ink-soft); }
+  .fine { font-size: 13px; color: var(--ink-faint); margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<!-- partial:header practice -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="today.html">Today</a>
+      <a href="learn.html">Learn</a>
+      <a href="quiz.html" aria-current="page">Practice</a>
+      <a href="exam.html">Exam</a>
+      <a class="nav-cta" href="pricing.html">Get Pro</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /partial:header -->
+
+<main id="main">
+<!-- partial:tabs -->
+<nav class="tabs" aria-label="Practice">
+  <div class="container"><a href="review.html">Daily review</a><a href="quiz.html">Drills</a><a href="conjugate.html">Verb conjugator</a><a href="speak.html" aria-current="page">Listen & repeat</a></div>
+</nav>
+<!-- /partial:tabs -->
+  <div class="lr">
+    <span class="eyebrow">Speaking practice</span>
+    <h1>Listen &amp; repeat</h1>
+    <p class="lead">Copying a model voice — rhythm, linking and melody, not just the words — is one of the fastest ways to sound natural. Record yourself and compare.</p>
+    <ol class="how"><li><b>1 · Listen</b>Play the sentence. Slow it down if you need to.</li><li><b>2 · Record</b>Say it straight away, copying the melody.</li><li><b>3 · Compare</b>Hear the model, then you. Spot one difference, try again.</li></ol>
+    <div class="pick"><label for="mod">Module</label><select id="mod"></select><label class="slow"><input type="checkbox" id="slow"> Slow voice</label></div>
+    <ul class="lines" id="lines"></ul>
+    <p class="fine">Recordings stay in this browser tab — nothing is uploaded — and disappear when you leave the page.</p>
+  </div>
+</main>
+
+<!-- partial:footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+      </div>
+      <div>
+        <h4>Study</h4>
+        <ul>
+          <li><a href="today.html">Today</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="exam.html">Exam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Free</h4>
+        <ul>
+          <li><a href="start.html">Find your level</a></li>
+          <li><a href="cheatsheets.html">Cheat sheets</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact & FAQ</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
+      <p>&copy; <span data-year>2026</span> <span data-site="legalName">Your Business Name</span></p>
+    </div>
+  </div>
+</footer>
+<!-- /partial:footer -->
+
+<script>
+(function () {
+  var C = window.COURSE_INDEX, Speech = window.NCLCSpeech, R = window.NCLCRecorder;
+  var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+  var sel = document.getElementById("mod"), list = document.getElementById("lines"), slow = document.getElementById("slow");
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+  var withLines = C.modules.filter(function (m) { return C.lines.some(function (l) { return l[2] === m.id; }); });
+  sel.innerHTML = withLines.map(function (m) { return "<option value='" + m.id + "'>Module " + m.num + " · " + esc(m.title) + "</option>"; }).join("");
+  /* start on the module you're working on */
+  var startId = new URLSearchParams(location.search).get("m");
+  try { var r = JSON.parse(localStorage.getItem("nclc5-resume") || "null"); if (!startId && r && r.next) startId = r.next.id; } catch (e) {}
+  if (startId && withLines.some(function (m) { return m.id === startId; })) sel.value = startId;
+
+  function render() {
+    var lines = C.lines.filter(function (l) { return l[2] === sel.value; });
+    var canSay = Speech && Speech.available();
+    list.innerHTML = lines.map(function (l) {
+      return "<li class='line'>" + (canSay ? "<button type='button' class='say' data-say=\"" + esc(l[0]) + "\" aria-label='Listen'>" + SPK + "</button>" : "<span></span>") +
+        "<span class='fr' lang='fr'>" + esc(l[0]) + "</span><span class='en'>" + esc(l[1]) + "</span>" + (R.supported() ? R.controls(l[0]) : "") + "</li>";
+    }).join("") + (R.supported() ? "" : "<li class='empty'>Recording isn't supported in this browser — you can still listen and repeat aloud.</li>");
+    try { history.replaceState(null, "", "?m=" + sel.value); } catch (e) {}
+  }
+  sel.addEventListener("change", render);
+  list.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-say]");
+    if (b && Speech) { Speech.speak(b.getAttribute("data-say"), { slow: slow.checked }); if (window.NCLC && window.NCLC.markStudy) window.NCLC.markStudy(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

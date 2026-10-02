@@ -12,8 +12,12 @@ You upload the folder and it works.
 | Page | What it is |
 | --- | --- |
 | `index.html` | Landing page |
+| `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite |
 | `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons, pronunciation, common mistakes, a shadowing drill, vocabulary and a self-check; plus TCF speaking task 2 (question framing) and task 3 (opinion template) modules with interactive builders |
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
+| `review.html` + `assets/srs.js` | Daily review: spaced repetition over the vocabulary, sentences and mistakes of the modules reached |
+| `conjugate.html` + `assets/verbs.js` | Verb conjugator: 360+ verbs, 7 tenses, English for every form, audio |
+| `speak.html` + `assets/recorder.js` | Listen & repeat: record yourself and compare with the model (also inside each course module) |
 | `quiz.html` | Practice drills built from the roadmap's tables: type, multiple choice, flashcards and listen-and-type; streaks, hints, weak-item review |
 | `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording |
 | `start.html` | 2-minute placement check: 12 questions from A1 to B1 that recommend a starting module and a plan for the learner's test date |
@@ -26,6 +30,7 @@ You upload the folder and it works.
 | `assets/site.css`, `assets/site.js`, `assets/speech.js` | Shared design system, header and footer behaviour, and French text-to-speech |
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
 | `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
+| `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today, Daily review and Listen & repeat) |
 | `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
 
 ## Before you launch
@@ -87,12 +92,27 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
+## Site structure
+
+Four sections in the top menu, each with a few tabs (defined in `NAV` and `TABS` in
+`tools/partials.py`; a tab appears automatically once its page exists):
+
+- **Today** — the daily hub
+- **Learn** — Course · Find your level · Cheat sheets · Grammar reference
+- **Practice** — Daily review · Drills · Verb conjugator · Listen & repeat
+- **Exam** — Mock exam · Speaking topics · Writing models · Guides
+
+The "Aa" button in the header holds the reading settings (theme, text size, easy-read
+font, spacing, animations).
+
 ## Editing content
 
 - **Course modules:** edit `assets/course-1.js` … `course-4.js`. Each module is one object
   (`title`, `why`, `goals`, `lessons`, `sounds`, `mistakes`, `speak`, `vocab`, `quiz`, `practice`,
   `sources`). Modules appear in the order they're pushed, and are numbered automatically.
 
+- **After editing course content**, run `node tools/build-index.js` (Today, Daily review and
+  Listen & repeat read the digest it writes) and `node tools/cheatsheets.js`.
 - **Cheat sheets:** they're generated from the course, so after editing a module run
   `node tools/cheatsheets.js` (needs Node and Playwright: `npm i -g playwright`). Each sheet
   is fitted to one Letter page automatically. English glosses come from `assets/course-en.js`.

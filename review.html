@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Review · NCLC 5 Roadmap</title>
+<meta name="description" content="Five minutes a day of spaced-repetition review: the French words, sentences and common mistakes from the modules you've studied, brought back just before you'd forget them.">
+<!-- partial:head -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="NCLC 5">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NCLC 5 Roadmap">
+<meta property="og:title" content="Daily Review · NCLC 5 Roadmap">
+<meta property="og:description" content="Five minutes a day of spaced-repetition review: the French words, sentences and common mistakes from the modules you've studied, brought back just before you'd forget them.">
+<meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/review.html">
+<meta property="og:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NCLC 5 Roadmap — Your French, exam-ready.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(d){var r={};try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);r=JSON.parse(localStorage.getItem("nclc5-reading")||"{}")||{}}catch(e){}if(r.size)d.setAttribute("data-text",r.size);if(r.spacing)d.setAttribute("data-spacing","1");if(r.font==="readable"){d.setAttribute("data-font","readable");document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">')}if(r.motion==="reduce")d.setAttribute("data-motion","reduce");else if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)d.classList.add("js-motion")})(document.documentElement);</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<!-- /partial:head -->
+<script src="assets/speech.js"></script>
+<script src="assets/course-index.js"></script>
+<script src="assets/srs.js"></script>
+<style>
+  .rv { max-width: 680px; margin: 0 auto; padding: 44px 24px 72px; }
+  @media (max-width: 560px) { .rv { padding: 28px 16px 56px; } }
+  .rv h1 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.035em; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; margin: 8px 0 12px; }
+  .rv .lead { color: var(--ink-soft); font-size: 17px; line-height: 1.55; margin: 0 0 24px; }
+  .rv-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 24px; }
+  .rv-stats div { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px; }
+  .rv-stats b { display: block; font-size: 26px; letter-spacing: -0.02em; }
+  .rv-stats span { font-size: 13px; color: var(--ink-soft); }
+  .rv-opts { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 18px 0 0; font-size: 14px; color: var(--ink-soft); }
+  .rv-opts .seg { display: inline-flex; }
+
+  .rv-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
+  .rv-bar .track { flex: 1; height: 6px; border-radius: 99px; background: var(--surface-alt); overflow: hidden; }
+  .rv-bar .track i { display: block; height: 100%; background: var(--brand-gradient); border-radius: 99px; transition: width 0.4s var(--ease); }
+  .card-r { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 26px; box-shadow: var(--shadow); padding: 30px 28px 24px; min-height: 300px; display: flex; flex-direction: column; animation: card-in 0.35s var(--ease); }
+  @keyframes card-in { from { opacity: 0; transform: translateY(10px) scale(0.99); } }
+  @media (max-width: 560px) { .card-r { padding: 22px 18px 18px; border-radius: 22px; } }
+  .card-r .kind { font-size: 12.5px; font-weight: 700; color: var(--accent); display: flex; justify-content: space-between; gap: 10px; }
+  .card-r .kind small { font-weight: 500; color: var(--ink-faint); text-align: right; }
+  .card-r .front { margin: 22px 0 6px; font-size: clamp(24px, 3.6vw, 32px); font-weight: 650; letter-spacing: -0.02em; line-height: 1.3; display: flex; gap: 12px; align-items: flex-start; }
+  .card-r .front.wrong { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: color-mix(in srgb, var(--bad) 50%, transparent); font-size: clamp(20px, 3vw, 26px); }
+  .card-r .ask { color: var(--ink-faint); font-size: 14.5px; margin: 0; }
+  .card-r .back { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); animation: card-in 0.3s var(--ease); }
+  .card-r .back .en { font-size: 20px; font-weight: 600; }
+  .card-r .back .right { font-size: 22px; font-weight: 650; color: var(--good); display: flex; gap: 10px; align-items: flex-start; }
+  .card-r .back .why { color: var(--ink-soft); font-size: 15px; margin: 8px 0 0; }
+  .card-r .back .sub { color: var(--ink-soft); font-size: 15px; margin-top: 4px; }
+  .card-r .say { flex: none; appearance: none; -webkit-appearance: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-alt); color: var(--accent); cursor: pointer; display: grid; place-items: center; margin-top: 2px; }
+  .card-r .say:hover { border-color: var(--accent); }
+  .card-r .say svg { width: 18px; height: 18px; }
+  .card-r .spacer { flex: 1; min-height: 16px; }
+  .rv-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+  .rv-actions.one { grid-template-columns: minmax(0, 1fr); }
+  .rv-actions button { appearance: none; -webkit-appearance: none; font: inherit; cursor: pointer; border-radius: 16px; padding: 12px 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--ink); display: flex; flex-direction: column; align-items: center; gap: 2px; transition: transform 0.15s var(--ease), border-color 0.15s ease; }
+  .rv-actions button:hover { transform: translateY(-1px); }
+  .rv-actions button b { font-size: 15.5px; }
+  .rv-actions button small { font-size: 12px; color: var(--ink-faint); }
+  .rv-actions .again { border-color: var(--bad-border); background: var(--bad-soft); }
+  .rv-actions .good { border-color: var(--accent-soft-border); background: var(--accent-soft); }
+  .rv-actions .easy { border-color: var(--good-border); background: var(--good-soft); }
+  .rv-actions .show { background: var(--ink); color: var(--bg); border-color: var(--ink); padding: 15px; }
+  .rv-actions .show b { font-size: 16px; }
+  .rv-keys { text-align: center; font-size: 12.5px; color: var(--ink-faint); margin-top: 12px; }
+  @media (hover: none) { .rv-keys { display: none; } }
+  .rv-done { text-align: center; padding: 40px 10px; }
+  .rv-done .big { font-size: 56px; }
+  .rv-done h2 { font-family: var(--serif); font-size: 30px; letter-spacing: -0.03em; margin: 10px 0 8px; }
+  .rv-done p { color: var(--ink-soft); margin: 0 auto 22px; max-width: 46ch; }
+  .rv-done .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- partial:header practice -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="today.html">Today</a>
+      <a href="learn.html">Learn</a>
+      <a href="quiz.html" aria-current="page">Practice</a>
+      <a href="exam.html">Exam</a>
+      <a class="nav-cta" href="pricing.html">Get Pro</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /partial:header -->
+
+<main id="main">
+<!-- partial:tabs -->
+<nav class="tabs" aria-label="Practice">
+  <div class="container"><a href="review.html" aria-current="page">Daily review</a><a href="quiz.html">Drills</a><a href="conjugate.html">Verb conjugator</a><a href="speak.html">Listen & repeat</a></div>
+</nav>
+<!-- /partial:tabs -->
+  <div class="rv" id="app" aria-live="polite"></div>
+</main>
+
+<!-- partial:footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+      </div>
+      <div>
+        <h4>Study</h4>
+        <ul>
+          <li><a href="today.html">Today</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="exam.html">Exam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Free</h4>
+        <ul>
+          <li><a href="start.html">Find your level</a></li>
+          <li><a href="cheatsheets.html">Cheat sheets</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact & FAQ</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Independent study resource. Not affiliated with or endorsed by France Éducation international (TCF), CCI Paris Île-de-France (TEF), or Immigration, Refugees and Citizenship Canada. No score is guaranteed.</p>
+      <p>&copy; <span data-year>2026</span> <span data-site="legalName">Your Business Name</span></p>
+    </div>
+  </div>
+</footer>
+<!-- /partial:footer -->
+
+<script>
+(function () {
+  var S = window.NCLC_SRS, Speech = window.NCLCSpeech, app = document.getElementById("app");
+  var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+  var DIR_KEY = "nclc5-review-dir";
+  var dir = "fr"; try { dir = localStorage.getItem(DIR_KEY) || "fr"; } catch (e) {}
+  var session = null;
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+  function say(t) { if (Speech && Speech.available()) Speech.speak(t); }
+  function sayBtn(t) { return Speech && Speech.available() ? "<button type='button' class='say' data-say='" + esc(t) + "' aria-label='Listen'>" + SPK + "</button>" : ""; }
+  function gapText(d) { return d === 0 ? "again today" : d === 1 ? "tomorrow" : d < 30 ? d + " days" : Math.round(d / 30) + " mo"; }
+
+  function home() {
+    var q = S.queue(), st = S.stats();
+    var n = q.all.length;
+    app.innerHTML =
+      "<span class='eyebrow'>Five minutes a day</span><h1>Daily review</h1>" +
+      "<p class='lead'>The words, sentences and mistakes from the modules you've reached, brought back just before you'd forget them. Rate each card honestly — that's what decides when you see it next.</p>" +
+      "<div class='rv-stats'><div><b>" + q.due.length + "</b><span>due today</span></div><div><b>" + q.fresh.length + "</b><span>new today</span></div><div><b>" + st.learned + "</b><span>learned for good</span></div></div>" +
+      (n ? "<button type='button' class='btn btn-primary btn-lg' data-start>Start review (" + n + " card" + (n === 1 ? "" : "s") + ")</button>"
+         : "<div class='plan' style='background:var(--good-soft);border:1px solid var(--good-border);border-radius:18px;padding:16px 18px'><b>All done for today.</b> Come back tomorrow — or open the next module to unlock new cards.</div>") +
+      "<div class='rv-opts'><span>New cards a day</span><div class='seg' role='group' aria-label='New cards a day'>" +
+        [5, 10, 20].map(function (k) { return "<button type='button' data-per='" + k + "' aria-pressed='" + (st.perDay === k) + "'>" + k + "</button>"; }).join("") +
+      "</div><span>Words</span><div class='seg' role='group' aria-label='Direction for words'>" +
+        "<button type='button' data-dir='fr' aria-pressed='" + (dir === "fr") + "'>French → English</button><button type='button' data-dir='en' aria-pressed='" + (dir === "en") + "'>English → French</button>" +
+      "</div></div>" +
+      "<p class='note' style='margin-top:18px;font-size:13.5px;color:var(--ink-faint)'>Cards come from Modules 0–" + Math.max.apply(null, [2].concat(q.all.map(function (c) { return S.num(c.mod); }))) + " so far · " + st.deckSize + " cards unlocked · " + st.totalReviews + " reviews done in total.</p>";
+  }
+
+  function start() {
+    var q = S.queue();
+    session = { cards: q.all.slice(), i: 0, done: 0, again: 0, total: q.all.length, shown: false };
+    card();
+  }
+
+  function card() {
+    if (!session.cards.length) return finish();
+    var c = session.cards[0];
+    session.shown = false;
+    var kind = c.t === "w" ? "Word" : c.t === "s" ? "Sentence" : "Fix the mistake";
+    var front, ask;
+    if (c.t === "m") { front = "<p class='front wrong' lang='fr'>" + esc(c.wrong) + "</p>"; ask = "What's the correct version?"; }
+    else if (c.t === "w" && dir === "en") { front = "<p class='front'>" + esc(c.en) + "</p>"; ask = "Say it in French."; }
+    else { front = "<p class='front' lang='fr'>" + sayBtn(c.fr) + "<span>" + esc(c.fr) + "</span></p>"; ask = "What does it mean?"; }
+    app.innerHTML =
+      "<div class='rv-bar'><span>" + session.done + " / " + session.total + "</span><span class='track'><i style='width:" + Math.round(session.done / Math.max(1, session.total) * 100) + "%'></i></span><button type='button' class='linkbtn muted' data-end style='font-size:13px;background:none;border:none;color:var(--ink-faint);cursor:pointer'>End</button></div>" +
+      "<div class='card-r'><div class='kind'><span>" + kind + "</span><small>Module " + S.num(c.mod) + " · " + esc(S.title(c.mod)) + "</small></div>" +
+      front + "<p class='ask'>" + ask + "</p><div id='back'></div><div class='spacer'></div>" +
+      "<div class='rv-actions one' id='acts'><button type='button' class='show' data-show><b>Show answer</b></button></div></div>" +
+      "<p class='rv-keys'>Space: show answer · 1 Again · 2 Good · 3 Easy</p>";
+    if (c.t !== "m" && !(c.t === "w" && dir === "en")) say(c.fr);
+  }
+
+  function show() {
+    var c = session.cards[0];
+    if (!c || session.shown) return;
+    session.shown = true;
+    var back;
+    if (c.t === "m") back = "<p class='right' lang='fr'>" + sayBtn(c.fr) + "<span>✓ " + esc(c.fr) + "</span></p><p class='sub'>" + esc(c.en) + "</p><p class='why'>" + esc(c.why) + "</p>";
+    else if (c.t === "w" && dir === "en") back = "<p class='right' lang='fr' style='color:var(--ink)'>" + sayBtn(c.fr) + "<span>" + esc(c.fr) + "</span></p>";
+    else back = "<p class='en'>" + esc(c.en) + "</p>";
+    document.getElementById("back").innerHTML = "<div class='back'>" + back + "</div>";
+    if (c.t === "m" || (c.t === "w" && dir === "en")) say(c.fr);
+    var p = S.preview(c);
+    var acts = document.getElementById("acts");
+    acts.className = "rv-actions";
+    acts.innerHTML =
+      "<button type='button' class='again' data-rate='0'><b>Again</b><small>" + gapText(p[0]) + "</small></button>" +
+      "<button type='button' class='good' data-rate='1'><b>Good</b><small>" + gapText(p[1]) + "</small></button>" +
+      "<button type='button' class='easy' data-rate='2'><b>Easy</b><small>" + gapText(p[2]) + "</small></button>";
+    acts.querySelector(".good").focus();
+  }
+
+  function rateIt(r) {
+    var c = session.cards[0];
+    if (!c || !session.shown) return;
+    S.rate(c, r);
+    if (window.NCLC && window.NCLC.markStudy) window.NCLC.markStudy();
+    session.cards.shift();
+    if (r === 0) { session.again++; session.cards.splice(Math.min(3, session.cards.length), 0, c); }
+    else session.done++;
+    card();
+  }
+
+  function finish() {
+    var st = S.stats();
+    app.innerHTML = "<div class='rv-done'><div class='big' aria-hidden='true'>🎉</div><h2>Review done</h2>" +
+      "<p>" + session.done + " card" + (session.done === 1 ? "" : "s") + " reviewed" + (session.again ? ", " + session.again + " repeated until they stuck" : "") + ". " + st.learned + " cards are now learned for good. See you tomorrow.</p>" +
+      "<div class='row'><a class='btn btn-primary' href='today.html'>Back to Today</a><a class='btn' href='learn.html'>Continue the course</a></div></div>";
+    session = null;
+  }
+
+  app.addEventListener("click", function (e) {
+    var t;
+    if (e.target.closest("[data-start]")) start();
+    else if (e.target.closest("[data-show]")) show();
+    else if ((t = e.target.closest("[data-rate]"))) rateIt(+t.getAttribute("data-rate"));
+    else if ((t = e.target.closest("[data-say]"))) say(t.getAttribute("data-say"));
+    else if (e.target.closest("[data-end]")) { session = null; home(); }
+    else if ((t = e.target.closest("[data-per]"))) { S.setPerDay(+t.getAttribute("data-per")); home(); }
+    else if ((t = e.target.closest("[data-dir]"))) { dir = t.getAttribute("data-dir"); try { localStorage.setItem(DIR_KEY, dir); } catch (er) {} home(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!session || e.ctrlKey || e.metaKey || e.altKey || /input|textarea/i.test(e.target.tagName)) return;
+    if ((e.key === " " || e.key === "Enter") && !session.shown) { e.preventDefault(); show(); }
+    else if (session.shown && /^[123]$/.test(e.key)) { e.preventDefault(); rateIt(+e.key - 1); }
+  });
+  home();
+})();
+</script>
+</body>
+</html>

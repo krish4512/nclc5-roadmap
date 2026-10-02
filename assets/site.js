@@ -319,11 +319,93 @@
   }
   function onStreak(fn) { streakListeners.push(fn); }
 
-  /* on phones the "how this site works" strip scrolls sideways: bring the
-     current step into view */
-  function wireJourney() {
-    var bar = document.querySelector(".journey .container"), cur = bar && bar.querySelector(".cur");
+  /* on phones the section tabs scroll sideways: bring the current one into view */
+  function wireTabs() {
+    var bar = document.querySelector(".tabs .container"), cur = bar && bar.querySelector("[aria-current]");
     if (bar && cur && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = Math.max(0, cur.offsetLeft - bar.offsetLeft - 24);
+  }
+
+  /* ---------- reading settings (the "Aa" button) ----------
+     Theme, text size, an easy-read font, extra spacing and animations.
+     Saved in nclc5-reading (and nclc5-theme); the inline script in <head>
+     applies them before the page paints. */
+  var READ_KEY = "nclc5-reading";
+  function readPrefs() { try { return JSON.parse(localStorage.getItem(READ_KEY) || "{}") || {}; } catch (e) { return {}; } }
+  function applyPrefs(r) {
+    if (r.size) root.setAttribute("data-text", r.size); else root.removeAttribute("data-text");
+    if (r.spacing) root.setAttribute("data-spacing", "1"); else root.removeAttribute("data-spacing");
+    if (r.font === "readable") {
+      root.setAttribute("data-font", "readable");
+      if (!document.getElementById("readable-font")) {
+        var l = document.createElement("link");
+        l.id = "readable-font"; l.rel = "stylesheet";
+        l.href = "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap";
+        document.head.appendChild(l);
+      }
+    } else root.removeAttribute("data-font");
+    if (r.motion === "reduce") {
+      root.setAttribute("data-motion", "reduce");
+      root.classList.remove("js-motion");
+    } else root.removeAttribute("data-motion");
+  }
+  function wireSettings() {
+    var btn = document.querySelector("[data-settings]");
+    if (!btn) return;
+    var pop = null;
+    var OPTS = {
+      theme: [["light", "Light"], ["dark", "Dark"], ["auto", "Auto"]],
+      size: [["s", "Small"], ["", "Normal"], ["l", "Large"], ["xl", "Larger"]],
+      font: [["", "Standard"], ["readable", "Easy-read"]],
+      spacing: [["", "Normal"], ["1", "Wider"]],
+      motion: [["", "On"], ["reduce", "Off"]]
+    };
+    var LABELS = { theme: "Theme", size: "Text size", font: "Font", spacing: "Spacing", motion: "Animations" };
+    function current(k) {
+      if (k === "theme") { var t = null; try { t = localStorage.getItem(THEME_KEY); } catch (e) {} return t === "dark" || t === "light" ? t : "auto"; }
+      var v = readPrefs()[k]; return v ? String(v === true ? "1" : v) : "";
+    }
+    function render() {
+      pop.innerHTML = "<h2 id='set-title'>Reading settings</h2>" + Object.keys(OPTS).map(function (k) {
+        return "<div class='row'><span id='set-" + k + "'>" + LABELS[k] + "</span><div class='seg' role='group' aria-labelledby='set-" + k + "'>" +
+          OPTS[k].map(function (o) { return "<button type='button' data-k='" + k + "' data-v='" + o[0] + "' aria-pressed='" + (current(k) === o[0]) + "'>" + o[1] + "</button>"; }).join("") +
+          "</div></div>";
+      }).join("") + "<div class='foot'><span>Saved on this device</span><button type='button' data-reset>Reset all</button></div>";
+    }
+    function set(k, v) {
+      if (k === "theme") {
+        try { if (v === "auto") localStorage.removeItem(THEME_KEY); else localStorage.setItem(THEME_KEY, v); } catch (e) {}
+        if (v === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", v);
+      } else {
+        var r = readPrefs();
+        if (v) r[k] = k === "spacing" ? true : v; else delete r[k];
+        try { localStorage.setItem(READ_KEY, JSON.stringify(r)); } catch (e) {}
+        applyPrefs(r);
+      }
+      render();
+    }
+    function close() { if (pop) { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); } }
+    btn.setAttribute("aria-expanded", "false");
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (!pop) {
+        pop = document.createElement("div");
+        pop.className = "settings-pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-labelledby", "set-title"); pop.hidden = true;
+        document.body.appendChild(pop);
+        pop.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          var b = ev.target.closest("[data-k]");
+          if (b) set(b.getAttribute("data-k"), b.getAttribute("data-v"));
+          else if (ev.target.closest("[data-reset]")) {
+            try { localStorage.removeItem(READ_KEY); localStorage.removeItem(THEME_KEY); } catch (er) {}
+            root.removeAttribute("data-theme"); applyPrefs({}); render();
+          }
+        });
+      }
+      if (pop.hidden) { render(); pop.hidden = false; btn.setAttribute("aria-expanded", "true"); var f = pop.querySelector("[aria-pressed='true']"); if (f) f.focus(); }
+      else close();
+    });
+    document.addEventListener("click", close);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && pop && !pop.hidden) { close(); btn.focus(); } });
   }
 
   /* ---------- "Report a mistake" ----------
@@ -390,9 +472,53 @@
     report(b.getAttribute("data-report"));
   });
 
-  window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
+  /* ---------- badges & milestones ----------
+     Worked out from what's already saved on this device; a toast announces
+     any badge earned since the last page view. */
+  var LEVEL_MODS = {
+    A1: ["basics", "present", "questions", "describe", "numbers", "irregulars"],
+    A2: ["reflexive", "passe-compose", "imparfait", "pronouns", "compare-future"],
+    B1: ["conditional", "relatives", "subjunctive", "argue", "reported"]
+  };
+  function readJ(k, f) { try { return JSON.parse(localStorage.getItem(k) || "null") || f; } catch (e) { return f; } }
+  function badges() {
+    var prog = readJ("nclc5-course", {}), done = function (id) { return !!(prog[id] && prog[id].done); };
+    var nDone = Object.keys(prog).filter(done).length;
+    var st = streakInfo();
+    var srs = readJ("nclc5-srs", {}), reviews = Object.keys(srs.log || {}).reduce(function (n, d) { return n + ((srs.log[d] || {}).n || 0); }, 0);
+    var lvl = function (L) { return LEVEL_MODS[L].every(done); };
+    var list = [
+      ["start", "👣", "First step", "Took the placement check or opened a module", !!(readJ("nclc5-placement", null) || readJ("nclc5-resume", null))],
+      ["mod1", "✅", "First module", "Completed your first module", nDone >= 1],
+      ["a1", "🧱", "A1 complete", "Finished every A1 module", lvl("A1")],
+      ["a2", "🧭", "A2 complete", "Finished every A2 module", lvl("A2")],
+      ["b1", "🎯", "B1 complete", "Finished every B1 module", lvl("B1")],
+      ["course", "🎓", "Course complete", "All 21 modules done", nDone >= 21],
+      ["s3", "🔥", "3-day streak", "Studied 3 days in a row", st.best >= 3],
+      ["s7", "⚡", "7-day streak", "Studied a whole week in a row", st.best >= 7],
+      ["s30", "🏆", "30-day streak", "A month without missing a day", st.best >= 30],
+      ["drill", "💪", "First drill", "Finished a practice drill", Object.keys(readJ("nclc5-quiz-scores", {})).length > 0],
+      ["rev50", "🧠", "50 reviews", "Reviewed 50 cards in Daily review", reviews >= 50],
+      ["mock", "📝", "First mock exam", "Completed a mock-exam section", Object.keys(readJ("nclc5-exam-scores", {})).length > 0],
+      ["voice", "🎙️", "First recording", "Recorded yourself in Listen & repeat", (+localStorage.getItem("nclc5-rec-count") || 0) > 0]
+    ];
+    return list.map(function (b) { return { id: b[0], icon: b[1], name: b[2], desc: b[3], earned: b[4] }; });
+  }
+  function checkBadges() {
+    var seen = readJ("nclc5-badges", null), all = badges();
+    var earned = all.filter(function (b) { return b.earned; }).map(function (b) { return b.id; });
+    if (seen) {
+      var fresh = all.filter(function (b) { return b.earned && seen.indexOf(b.id) === -1; });
+      if (fresh.length === 1) toast(fresh[0].icon + " New badge: " + fresh[0].name + "!");
+      else if (fresh.length > 1) toast("🏅 " + fresh.length + " new badges — see them on Today");
+    }
+    try { localStorage.setItem("nclc5-badges", JSON.stringify(earned)); } catch (e) {}
+  }
+  onStreak(function () { setTimeout(checkBadges, 2800); });
 
-  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireJourney(); }
+  window.NCLC = { badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
+
+  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireTabs(); wireSettings(); setTimeout(checkBadges, 1200); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();

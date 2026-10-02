@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)document.documentElement.classList.add("js-motion");</script>
+<script>(function(d){var r={};try{var t=localStorage.getItem("nclc5-theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);r=JSON.parse(localStorage.getItem("nclc5-reading")||"{}")||{}}catch(e){}if(r.size)d.setAttribute("data-text",r.size);if(r.spacing)d.setAttribute("data-spacing","1");if(r.font==="readable"){d.setAttribute("data-font","readable");document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">')}if(r.motion==="reduce")d.setAttribute("data-motion","reduce");else if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)&&"IntersectionObserver"in window)d.classList.add("js-motion")})(document.documentElement);</script>
 <script src="assets/config.js"></script>
 <script src="assets/site.js"></script>
 <!-- /partial:head -->
@@ -263,58 +263,14 @@
   <div class="container">
     <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
-      <div class="nav-item" data-dd>
-        <a class="nav-top" href="learn.html">Learn</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Learn menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="dd">
-          <a href="learn.html"><b>Course overview</b><span>All 21 modules and your progress</span></a>
-          <a href="start.html"><b>Find your level</b><span>2-minute check: where to start</span></a>
-          <a href="learn.html#method"><b>How to learn French</b><span>The research-based method</span></a>
-          <a href="learn.html#sounds"><b>Pronunciation</b><span>The sounds of French</span></a>
-          <a href="learn.html#basics"><b>A1 · Foundations</b><span>Être, avoir, present tense, questions</span></a>
-          <a href="learn.html#reflexive"><b>A2 · Everyday French</b><span>Passé composé, imparfait, pronouns</span></a>
-          <a href="learn.html#conditional"><b>B1 · Independent user</b><span>Conditional, subjunctive, arguing</span></a>
-          <a href="learn.html#exam"><b>Exam technique</b><span>TCF & TEF task by task</span></a>
-          <a href="learn.html#tcf-t2"><b>TCF task 2 kit</b><span>Asking questions: the interaction task</span></a>
-          <a href="learn.html#tcf-t3"><b>TCF task 3 template</b><span>Giving your opinion in 4:30</span></a>
-          <a href="cheatsheets.html"><b>Free cheat sheets</b><span>21 one-page PDFs to print</span></a>
-        </div>
-      </div>
-      <div class="nav-item" data-dd>
-        <a class="nav-top" href="roadmap.html">Roadmap</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Roadmap menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="dd">
-          <a href="roadmap.html"><b>Roadmap overview</b><span>Your checklist and progress</span></a>
-          <a href="roadmap.html#scores"><b>Score bands</b><span>What NCLC 5 means on each test</span></a>
-          <a href="roadmap.html#format"><b>Exam format</b><span>Sections, tasks and timing</span></a>
-          <a href="roadmap.html#order"><b>Grammar order</b><span>Conjugation tables with audio</span></a>
-          <a href="roadmap.html#vocab"><b>Vocabulary banks</b><span>Ten exam themes</span></a>
-          <a href="roadmap.html#skills"><b>Skills checklist</b><span>What examiners score</span></a>
-        </div>
-      </div>
-      <div class="nav-item" data-dd>
-        <a class="nav-top" href="quiz.html" aria-current="page">Practice</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Practice menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="dd">
-          <a href="quiz.html"><b>All drill sets</b><span>Pick a set and a mode</span></a>
-          <a href="quiz.html?set=conj"><b>Verb conjugations</b><span>Every table on the roadmap</span></a>
-          <a href="quiz.html?set=verbs-all"><b>All verbs</b><span>-er, -ir and -re verbs</span></a>
-          <a href="quiz.html?set=vocab-all"><b>All vocabulary</b><span>Ten themes mixed</span></a>
-          <a href="quiz.html?set=weak"><b>Weak items review</b><span>What you missed recently</span></a>
-        </div>
-      </div>
-      <div class="nav-item" data-dd>
-        <a class="nav-top" href="exam.html">Mock exam</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Mock exam menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="dd">
-          <a href="exam.html"><b>All sections</b><span>Your scores and history</span></a>
-          <a href="exam.html?s=listening"><b>Listening</b><span>20 questions · 18 min</span></a>
-          <a href="exam.html?s=reading"><b>Reading</b><span>20 questions · 30 min</span></a>
-          <a href="exam.html?s=writing"><b>Writing</b><span>3 tasks with a live coach</span></a>
-          <a href="exam.html?s=speaking"><b>Speaking</b><span>3 tasks with timers and recording</span></a>
-        </div>
-      </div>
-      <a href="pricing.html">Pricing</a>
+      <a href="today.html">Today</a>
+      <a href="learn.html">Learn</a>
+      <a href="quiz.html" aria-current="page">Practice</a>
+      <a href="exam.html">Exam</a>
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle dark theme"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 14.6A8.6 8.6 0 0 1 9.4 3.3a.7.7 0 0 0-.9-.9A10 10 0 1 0 21.6 15.5a.7.7 0 0 0-.9-.9z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -323,34 +279,17 @@
 <!-- /partial:header -->
 
 <main id="main">
-<!-- partial:journey practice -->
-<nav class="journey" aria-label="How this site works">
-  <div class="container">
-    <ol>
-      <li><a class="j-step" href="start.html"><i>1</i><span><b>Find your level</b><small>2-minute check</small></span></a></li><li><a class="j-step" href="learn.html"><i>2</i><span><b>Learn</b><small>21 modules, in order</small></span></a></li><li><a class="j-step cur" href="quiz.html" aria-current="step"><i>3</i><span><b>Drill</b><small>Make it automatic</small></span></a></li><li><a class="j-step" href="exam.html"><i>4</i><span><b>Test</b><small>Timed mock exams</small></span></a></li>
-    </ol>
-    <a class="j-ref" href="roadmap.html"><b>Roadmap</b><small>Your checklist &amp; reference</small></a>
-  </div>
+<!-- partial:tabs -->
+<nav class="tabs" aria-label="Practice">
+  <div class="container"><a href="review.html">Daily review</a><a href="quiz.html" aria-current="page">Drills</a><a href="conjugate.html">Verb conjugator</a><a href="speak.html">Listen & repeat</a></div>
 </nav>
-<!-- /partial:journey -->
+<!-- /partial:tabs -->
 <div class="wrap">
   <div class="crumbs" id="crumbs"><a href="roadmap.html">Roadmap</a><span aria-hidden="true">/</span><span>Practice</span></div>
   <h1 class="title" id="title">Practice drills</h1>
   <p class="dek" id="dek">Active recall against the material on the roadmap.</p>
   <div id="stage" aria-live="polite"></div>
 </div>
-<!-- partial:related practice -->
-<section class="related" aria-label="Keep going">
-  <div class="container">
-    <h2>Keep going</h2>
-    <div class="related-grid">
-      <a class="related-card" href="learn.html"><b>The full course</b><span>Lessons behind every drill set.</span><i aria-hidden="true">→</i></a>
-      <a class="related-card" href="roadmap.html#vocab"><b>Vocabulary banks</b><span>Review a theme before drilling it.</span><i aria-hidden="true">→</i></a>
-      <a class="related-card" href="exam.html"><b>Mock exam</b><span>Put your vocabulary to work under time pressure.</span><i aria-hidden="true">→</i></a>
-    </div>
-  </div>
-</section>
-<!-- /partial:related -->
 </main>
 
 <!-- partial:footer -->
@@ -359,43 +298,31 @@
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
-        <p>A structured French study plan, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
         <h4>Study</h4>
         <ul>
-          <li><a href="start.html">Find your level</a></li>
-          <li><a href="learn.html">French course</a></li>
-          <li><a href="cheatsheets.html">Free cheat sheets</a></li>
-          <li><a href="roadmap.html">Roadmap</a></li>
-          <li><a href="quiz.html">Practice drills</a></li>
-          <li><a href="exam.html">Mock exam</a></li>
+          <li><a href="today.html">Today</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="exam.html">Exam</a></li>
         </ul>
       </div>
       <div>
-        <h4>Exam prep</h4>
+        <h4>Free</h4>
         <ul>
-          <li><a href="learn.html#exam">Exam technique</a></li>
-          <li><a href="learn.html#tcf-t2">TCF task 2 kit</a></li>
-          <li><a href="learn.html#tcf-t3">TCF task 3 template</a></li>
-          <li><a href="exam.html?s=speaking">Speaking mock</a></li>
-          <li><a href="exam.html?s=writing">Writing mock</a></li>
+          <li><a href="start.html">Find your level</a></li>
+          <li><a href="cheatsheets.html">Cheat sheets</a></li>
         </ul>
       </div>
       <div>
-        <h4>Account</h4>
+        <h4>Help</h4>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="#" data-portal>Manage subscription</a></li>
-          <li><a href="contact.html">Contact &amp; FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="terms.html">Terms of service</a></li>
-          <li><a href="privacy.html">Privacy policy</a></li>
-          <li><a href="terms.html#refunds">Refund policy</a></li>
+          <li><a href="contact.html">Contact & FAQ</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
     </div>
