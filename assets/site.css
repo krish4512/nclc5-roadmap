@@ -186,12 +186,14 @@ p { text-wrap: pretty; }
 }
 .brand:hover { color: var(--ink); }
 .brand-mark {
-  width: 30px; height: 30px; flex: none; border-radius: 9px;
-  display: grid; place-items: center;
-  background: var(--brand-gradient); color: #fff;
-  font-family: var(--serif); font-size: 19px; font-weight: 800; line-height: 1; padding-bottom: 2px; box-sizing: border-box;
-  box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--accent) 60%, transparent);
+  width: 30px; height: 30px; flex: none; display: block;
+  filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--accent) 35%, transparent));
+  transition: transform 0.25s var(--ease);
 }
+.brand:hover .brand-mark { transform: translateY(-1px) rotate(-4deg); }
+/* wordmark: "Prêt" bold, "Français" in secondary ink */
+.wordmark { font-family: var(--serif); font-weight: 800; letter-spacing: -0.025em; }
+.wordmark span { font-weight: 500; color: var(--ink-soft); }
 
 .nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
 .nav a {

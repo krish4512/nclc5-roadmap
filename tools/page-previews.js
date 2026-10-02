@@ -11,6 +11,7 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
+const MARK = fs.readFileSync(path.join(ROOT, "assets", "brand", "mark.svg"), "utf8");
 let chromium;
 try { ({ chromium } = require("playwright")); }
 catch (e) { ({ chromium } = require(path.join(execSync("npm root -g").toString().trim(), "playwright"))); }
@@ -54,7 +55,9 @@ body{position:relative;background:#fbfbfd;font-family:Inter,sans-serif;color:#1d
 .b1{width:520px;height:520px;left:-160px;top:-200px;background:#c9d6ff}
 .b2{width:520px;height:520px;right:-80px;bottom:-240px;background:#e3d9ff}
 .brand{position:absolute;left:72px;top:60px;display:flex;align-items:center;gap:14px;font-weight:600;font-size:24px}
-.mark{width:48px;height:48px;border-radius:13px;background:${GRAD};display:grid;place-items:center;color:#fff;font-family:'Inter Tight';font-weight:800;font-size:30px;line-height:1;padding-bottom:3px;box-sizing:border-box}
+.mark{width:52px;height:52px;display:block;filter:drop-shadow(0 8px 16px rgba(108,71,228,.35))}
+.mark svg{width:100%;height:100%;display:block}
+.wm b{font-weight:800}.wm span{font-weight:500;color:#515154}
 .copy{position:absolute;left:72px;top:170px;width:${wide ? 520 : 510}px}
 .eb{font-size:22px;font-weight:700;color:#2451d6;margin:0 0 14px}
 h1{margin:0;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:${title.length > 26 ? 60 : 72}px;line-height:1.02;letter-spacing:-0.04em}
@@ -64,7 +67,7 @@ p{margin:22px 0 0;font-size:27px;line-height:1.35;color:#515154;font-weight:500}
 .url{position:absolute;left:72px;bottom:54px;font-size:20px;font-weight:600;color:#86868b}
 </style></head><body>
 <i class="blob b1"></i><i class="blob b2"></i>
-<div class="brand"><span class="mark">ê</span>Prêt Français</div>
+<div class="brand"><span class="mark">${MARK}</span><span class="wm"><b>Prêt</b> <span>Français</span></span></div>
 <div class="copy"><div class="eb">${esc(eyebrow)}</div><h1>${esc(title)}</h1><p>${esc(line)}</p></div>
 <div class="art-box">${fs.readFileSync(path.join(ROOT, "assets", "art", art + ".svg"), "utf8")}</div>
 <div class="url">Free French course for the TCF &amp; TEF Canada</div>

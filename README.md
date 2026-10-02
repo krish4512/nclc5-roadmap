@@ -30,6 +30,7 @@ You upload the folder and it works.
 | `contact.html` | Support email, billing portal link, FAQ |
 | `privacy.html`, `terms.html` | Privacy policy, and terms of service with the refund policy |
 | `404.html` | Not-found page |
+| `assets/brand/` | The logo: `mark.svg` (speech bubble + the circumflex of *prêt*), `mark-white.svg` for colour/dark backgrounds, `logo.svg` / `logo-white.svg` lockups, and usage notes. The favicon, app icons, link previews and PDFs are generated from these |
 | `assets/config.js` | **The one file you edit before launch** |
 | `assets/site.css`, `assets/site.js`, `assets/speech.js` | Shared design system, header and footer behaviour, and French text-to-speech |
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
