@@ -79,7 +79,7 @@
   }
   .set-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--accent-soft-border); color: var(--ink); }
   .set-card .n { font-weight: 600; font-size: 15px; line-height: 1.3; }
-  .set-card .meta { display: flex; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+  .set-card .meta { display: flex; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); }
   .set-card .meta .best { color: var(--teal); font-weight: 600; }
   .mbar { height: 5px; background: var(--surface-alt); border-radius: 4px; overflow: hidden; margin-top: auto; }
   .mbar > i { display: block; height: 100%; background: var(--teal); border-radius: 4px; }
@@ -267,6 +267,7 @@
         <a class="nav-top" href="learn.html">Learn</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Learn menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="dd">
           <a href="learn.html"><b>Course overview</b><span>All 21 modules and your progress</span></a>
+          <a href="start.html"><b>Find your level</b><span>2-minute check: where to start</span></a>
           <a href="learn.html#method"><b>How to learn French</b><span>The research-based method</span></a>
           <a href="learn.html#sounds"><b>Pronunciation</b><span>The sounds of French</span></a>
           <a href="learn.html#basics"><b>A1 · Foundations</b><span>Être, avoir, present tense, questions</span></a>
@@ -322,6 +323,16 @@
 <!-- /partial:header -->
 
 <main id="main">
+<!-- partial:journey practice -->
+<nav class="journey" aria-label="How this site works">
+  <div class="container">
+    <ol>
+      <li><a class="j-step" href="start.html"><i>1</i><span><b>Find your level</b><small>2-minute check</small></span></a></li><li><a class="j-step" href="learn.html"><i>2</i><span><b>Learn</b><small>21 modules, in order</small></span></a></li><li><a class="j-step cur" href="quiz.html" aria-current="step"><i>3</i><span><b>Drill</b><small>Make it automatic</small></span></a></li><li><a class="j-step" href="exam.html"><i>4</i><span><b>Test</b><small>Timed mock exams</small></span></a></li>
+    </ol>
+    <a class="j-ref" href="roadmap.html"><b>Roadmap</b><small>Your checklist &amp; reference</small></a>
+  </div>
+</nav>
+<!-- /partial:journey -->
 <div class="wrap">
   <div class="crumbs" id="crumbs"><a href="roadmap.html">Roadmap</a><span aria-hidden="true">/</span><span>Practice</span></div>
   <h1 class="title" id="title">Practice drills</h1>
@@ -353,6 +364,7 @@
       <div>
         <h4>Study</h4>
         <ul>
+          <li><a href="start.html">Find your level</a></li>
           <li><a href="learn.html">French course</a></li>
           <li><a href="cheatsheets.html">Free cheat sheets</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
@@ -414,6 +426,10 @@
     flame: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8.6 1c.3 2.2-1 3.3-2 4.5C5.6 6.7 4.5 8 4.5 10a3.5 3.5 0 0 0 7 0c0-1.3-.5-2.3-1.1-3 .1 1-.3 1.7-1 2 .4-2.5-.4-5.8-.8-8z"/></svg>'
   };
 
+  /* after a mistake report, Enter should go on to the next question again */
+  document.addEventListener("nclc:report-closed", function () {
+    setTimeout(function () { var b = document.getElementById("next") || document.getElementById("check"); if (b) b.focus(); }, 0);
+  });
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
@@ -979,6 +995,7 @@
           "<div class='ans'>" + esc(shown) + (canSpeak() ? "<button type='button' class='speak-btn' id='hear' aria-label='Hear it'>" + ICON.speaker + "</button>" : "") + "</div>" +
           (mode === "listen" || !ok ? "<div class='alt'>" + esc(other) + "</div>" : "") +
           (given && !ok ? "<div class='alt'>You wrote: <s>" + esc(given) + "</s></div>" : "") +
+          (!ok ? "<button type='button' class='report-link' data-report='" + esc("Drill · " + item.fr + " = " + item.en) + "'>⚑ Think this answer is wrong? Report it</button>" : "") +
           "</div></div>" +
           (mode !== "type" && mode !== "listen" ? "<div class='row'><button class='btn btn-primary' id='next'>" + (i + 1 >= queue.length ? "See results" : "Next") + "</button></div>" : "");
       }

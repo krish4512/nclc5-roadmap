@@ -67,6 +67,12 @@ window.SITE = {
    * ---------------------------------------------------------------- */
   leadForm: "",
 
+  /* "Report a mistake" buttons on lessons and drills. Paste a form
+     endpoint (a Formspree form URL works) to receive reports there; it
+     gets "where", "message", "page" and an optional "email". Leave it
+     empty and the button opens a pre-filled email to `email` above. */
+  feedbackForm: "",
+
   /* ---------------------------------------------------------------- *
    * Access control. A static site cannot verify a payment on its own,
    * so by default every feature is open ("paywall: false") and the

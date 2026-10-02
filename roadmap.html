@@ -138,7 +138,7 @@
 
   .score-card-head .badge {
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--teal);
     background: var(--teal-soft);
     border: 1px solid var(--teal-soft-border);
@@ -267,7 +267,9 @@
 
   .roadmap-stage {
     display: grid;
-    grid-template-columns: 34px 1fr;
+    /* minmax(0, …) lets wide tables scroll inside their box instead of
+       stretching the whole page on phones */
+    grid-template-columns: 34px minmax(0, 1fr);
     gap: 16px;
   }
 
@@ -302,7 +304,7 @@
 
   .roadmap-stage:last-child .roadmap-line { display: none; }
 
-  .roadmap-content { padding-bottom: 30px; }
+  .roadmap-content { padding-bottom: 30px; min-width: 0; }
   .roadmap-stage:last-child .roadmap-content { padding-bottom: 0; }
 
   .roadmap-stage-head {
@@ -385,7 +387,7 @@
 
   ol.roadmap-list summary .open-hint {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--ink-faint);
     white-space: nowrap;
     flex: none;
@@ -496,11 +498,15 @@
   .speak-btn {
     appearance: none;
     -webkit-appearance: none;
+    display: inline-grid;
+    place-items: center;
+    min-width: 28px;
+    min-height: 26px;
     border: 1px solid var(--border);
     background: var(--surface);
     color: var(--ink-faint);
-    border-radius: 5px;
-    padding: 2px 4px;
+    border-radius: 7px;
+    padding: 0 4px;
     margin-left: 6px;
     line-height: 0;
     cursor: pointer;
@@ -509,6 +515,7 @@
   }
 
   .speak-btn svg { display: block; }
+  @media (pointer: coarse) { .speak-btn { min-width: 32px; min-height: 30px; } }
 
   .speak-btn:hover {
     color: var(--accent);
@@ -798,8 +805,10 @@
     padding: 3px 10px;
     text-decoration: none;
     white-space: nowrap;
+    max-width: 100%;
   }
 
+  @media (max-width: 560px) { .practice-link { white-space: normal; } }
   .practice-link:hover {
     background: var(--accent);
     color: var(--accent-ink);
@@ -912,7 +921,7 @@
 
   .skill-tag {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--ink-faint);
     letter-spacing: 0.04em;
     white-space: nowrap;
@@ -949,10 +958,10 @@
   ul.checklist input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
     flex: none;
-    margin-top: 2px;
+    margin-top: 1px;
     border: 1.5px solid var(--ink-faint);
     border-radius: 4px;
     background: var(--surface);
@@ -968,10 +977,10 @@
   ul.checklist input[type="checkbox"]:checked::after {
     content: "";
     position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 4px;
-    height: 8px;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
     border: solid var(--surface);
     border-width: 0 2px 2px 0;
     transform: rotate(40deg);
@@ -1197,6 +1206,7 @@
         <a class="nav-top" href="learn.html">Learn</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Learn menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="dd">
           <a href="learn.html"><b>Course overview</b><span>All 21 modules and your progress</span></a>
+          <a href="start.html"><b>Find your level</b><span>2-minute check: where to start</span></a>
           <a href="learn.html#method"><b>How to learn French</b><span>The research-based method</span></a>
           <a href="learn.html#sounds"><b>Pronunciation</b><span>The sounds of French</span></a>
           <a href="learn.html#basics"><b>A1 · Foundations</b><span>Être, avoir, present tense, questions</span></a>
@@ -1252,6 +1262,16 @@
 <!-- /partial:header -->
 
 <main id="main">
+<!-- partial:journey roadmap -->
+<nav class="journey" aria-label="How this site works">
+  <div class="container">
+    <ol>
+      <li><a class="j-step" href="start.html"><i>1</i><span><b>Find your level</b><small>2-minute check</small></span></a></li><li><a class="j-step" href="learn.html"><i>2</i><span><b>Learn</b><small>21 modules, in order</small></span></a></li><li><a class="j-step" href="quiz.html"><i>3</i><span><b>Drill</b><small>Make it automatic</small></span></a></li><li><a class="j-step" href="exam.html"><i>4</i><span><b>Test</b><small>Timed mock exams</small></span></a></li>
+    </ol>
+    <a class="j-ref cur" href="roadmap.html" aria-current="page"><b>Roadmap</b><small>Your checklist &amp; reference</small></a>
+  </div>
+</nav>
+<!-- /partial:journey -->
 <div class="wrap">
 
   <header class="page-head">
@@ -2435,7 +2455,7 @@
       <div class="data-actions">
         <button type="button" class="data-btn" id="export-btn">Export progress</button>
         <button type="button" class="data-btn" id="import-btn">Import progress</button>
-        <input type="file" id="import-file" accept="application/json,.json" hidden>
+        <input type="file" id="import-file" accept="application/json,.json" aria-label="Choose a progress file to import" hidden>
         <span id="data-msg" role="status"></span>
       </div>
     </div>
@@ -2481,6 +2501,7 @@
       <div>
         <h4>Study</h4>
         <ul>
+          <li><a href="start.html">Find your level</a></li>
           <li><a href="learn.html">French course</a></li>
           <li><a href="cheatsheets.html">Free cheat sheets</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
