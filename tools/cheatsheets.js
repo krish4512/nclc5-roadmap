@@ -188,7 +188,7 @@ function codes(m) {
   </header>
   <div class="cc-body"><div class="cc-inner"><div class="cc-col"></div><div class="cc-col"></div></div><div class="cc-pool">${figs}</div></div>
   <footer>
-    <div><b>Every rule with audio, practice questions and a real-life text:</b> <a href="${url}">${esc(url.replace(/^https?:\/\//, ""))}</a></div>
+    <div><b>Every rule with audio and practice questions:</b> <a href="${url}">${esc(url.replace(/^https?:\/\//, ""))}</a></div>
     <div class="fine">Independent study resource, not affiliated with France Éducation international, CCI Paris Île-de-France or IRCC. © ${new Date().getFullYear()} ${esc(SITE.legalName)}</div>
   </footer>
 </div>`;
