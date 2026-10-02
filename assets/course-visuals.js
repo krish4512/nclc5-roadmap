@@ -123,13 +123,12 @@
         { h: "Reread", sub: "Feels easy · fades within a week", tag: "✗" },
         { h: "Test yourself", sub: "Feels harder · still there a week later", tag: "✓", on: 1 }] },
       { t: "line", title: "Space your reviews", marks: [
-        { h: "Day 1", sub: "Do the module and pass the check" }, { h: "Day 2–3", sub: "Retake the check, redo the speaking task" },
-        { h: "Day 7", sub: "Drill the practice set in Type it mode" }, { h: "Day 21", sub: "Reread the Mistakes, retake the check" }] },
+        { h: "Day 1", sub: "Do the module and pass the check" }, { h: "Day 2–3", sub: "Do your Daily review" },
+        { h: "Day 7", sub: "Missed answers come back in review" }, { h: "Day 21", sub: "Retake the check" }] },
       { t: "vs", title: "Mix topics once you know them", cols: [
         { h: "AAA · BBB · CCC", sub: "Blocked: fewer errors while practising" },
         { h: "ABC · CAB · BCA", sub: "Mixed: better results a week later", on: 1 }] },
       { t: "steps", title: "Understand first, then push yourself", items: [["Understand", "material where you know ~95% of the words"], ["Produce", "speak and write, mistakes and all"], ["Compare and fix", "check against the model, try again"]] },
-      { t: "steps", title: "Shadowing in four moves", items: [["Listen", "one sentence"], ["Repeat at once", "no pause"], ["Copy the music", "rhythm, melody, linking"], ["Record and compare", "spot one difference"]] },
       { t: "grid", title: "How long to B1", head: ["Level", "1 h a day", "2 h a day"], rows: [["True beginner", "12–15 months", "6–8 months"], ["Around A2", "5–7 months", "3–4 months"], ["Around B1", "6–10 weeks", "4–6 weeks"]], note: "Little and often beats long, rare sessions." }
     ],
     /* ------------------------------------------------------------ 1 · sounds */

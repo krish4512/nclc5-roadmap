@@ -4,7 +4,9 @@
      { c: "question", o: ["right answer", "wrong", …], why: "…" }   choose (shown shuffled)
      { t: "question with ___", a: "answer|other accepted answer", why: "…" }   type it
    NCLC_PRACTICE.quizLesson[moduleId][i] = the lesson (0-based) that question i of
-   the module's "Check yourself" comes from, so a wrong answer can point back to it. */
+   the module's Check comes from, so a wrong answer can point back to it.
+   NCLC_PRACTICE.notes[moduleId] = { m: [...], s: [...] }: the lesson each common
+   mistake and pronunciation point appears in. */
 window.NCLC_PRACTICE = {
   data: {
     method: [
@@ -18,8 +20,6 @@ window.NCLC_PRACTICE = {
        { c: "When is blocked practice (one topic at a time) the right choice?", o: ["When you're learning something brand new", "Always", "Never"], why: "Block while it's new; mix once you know the pieces." }],
       [{ c: "For a text to be useful input, you should know about…", o: ["95% of the words", "50% of the words", "every word"], why: "Below about 95% you're decoding, not learning. Choose graded material." },
        { c: "Why push yourself to speak and write early?", o: ["You notice what you can't say yet", "It replaces grammar study", "It's only for advanced learners"], why: "Output shows you the gaps (Swain's output hypothesis), so you learn what you need." }],
-      [{ c: "Shadowing means…", o: ["repeating a sentence right after hearing it, copying the melody", "reading silently", "translating into English"], why: "Copy rhythm, melody and linking — not just the words." },
-       { c: "What's the last step of a good shadowing round?", o: ["Record yourself and compare with the model", "Skip to the next sentence", "Write the sentence down"], why: "Comparing shows you one thing to fix on the next try." }],
       [{ c: "Starting around A2 at 1 hour a day, B1 takes about…", o: ["5–7 months", "2 weeks", "3 years"], why: "The course estimate: 5–7 months at 1 h a day, 3–4 months at 2 h." },
        { c: "Which routine works better?", o: ["45 minutes every day", "5 hours on Sunday only", "Whenever you feel like it"], why: "Little and often beats long, rare sessions — spacing and habit both help." }]
     ],
@@ -248,6 +248,28 @@ window.NCLC_PRACTICE = {
     /* the TCF speaking kits are kept short: no "Try it" there */
     "tcf-t2": [[], [], [], [], [], []],
     "tcf-t3": [[], [], [], [], [], [], []]
+  },
+  /* where each common mistake (m) and pronunciation point (s) is shown: the lesson index */
+  notes: {
+    "method": { m: [1, 0, 3, 4, 4, 0], s: [] },
+    "sounds": { m: [4, 1, 4, 4, 0, 5, 5], s: [1, 1, 2, 2, 3, 5] },
+    "basics": { m: [2, 2, 5, 4, 4, 4, 3], s: [1, 4] },
+    "present": { m: [2, 3, 3, 2, 1, 1], s: [0, 0, 1] },
+    "questions": { m: [0, 0, 2, 2, 1, 3], s: [1, 1] },
+    "describe": { m: [0, 1, 2, 2, 1, 1, 2], s: [0, 1] },
+    "numbers": { m: [1, 0, 3, 3, 2, 2], s: [0, 2] },
+    "irregulars": { m: [3, 1, 2, 2, 4, 5, 1], s: [0, 0] },
+    "reflexive": { m: [0, 0, 0, 2, 2, 1], s: [0] },
+    "passe-compose": { m: [2, 2, 1, 3, 2, 4, 3], s: [0, 0] },
+    "imparfait": { m: [1, 2, 2, 2, 0, 4], s: [2, 0] },
+    "pronouns": { m: [0, 1, 1, 3, 4, 0, 4], s: [0, 3] },
+    "compare-future": { m: [1, 1, 1, 1, 3, 3, 2], s: [2] },
+    "conditional": { m: [3, 3, 1, 2, 0, 0], s: [0, 1] },
+    "relatives": { m: [0, 0, 1, 2, 3, 0], s: [] },
+    "subjunctive": { m: [1, 3, 4, 4, 4, 1, 2], s: [0] },
+    "argue": { m: [0, 0, 0, 3, 1, 2], s: [] },
+    "reported": { m: [1, 2, 2, 2, 0], s: [] },
+    "exam": { m: [3, 3, 2, 2, 1, 2], s: [] }
   },
   quizLesson: {
     method: [1, 2, 4, 3, 4],

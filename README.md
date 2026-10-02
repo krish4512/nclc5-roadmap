@@ -1,7 +1,7 @@
 # NCLC 5 Roadmap
 
 A static website for learners preparing for **NCLC / CLB 5 (CEFR B1)** in French on the
-**TCF Canada** or **TEF Canada**. It includes a sequenced study roadmap, interactive drills,
+**TCF Canada** or **TEF Canada**. It includes a sequenced course, daily review,
 timed mock exams, and the pages you need to sell a subscription.
 
 It is plain HTML, CSS and JavaScript. There is no build step, no framework and no server code.
@@ -12,21 +12,16 @@ You upload the folder and it works.
 | Page | What it is |
 | --- | --- |
 | `index.html` | Landing page |
-| `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite |
-| `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons (cheat code + Try it), pronunciation, common mistakes, a writing task, vocabulary and a self-check; plus short TCF speaking task 2 and task 3 kits (lessons and a check only) |
+| `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite, and progress backup (export / import) |
+| `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each in four steps — **Lessons** (cheat code, examples, and the pronunciation points and common mistakes that belong to each lesson), **Practice** (quick questions per lesson), **Check** (quiz + writing task) and **Done**; plus short TCF speaking task 2 and task 3 kits (lessons and a check only). Each module shows an honest time estimate worked out from its content |
 | `assets/course-visuals.js` | A "cheat code" picture at the top of each lesson (formula, conjugation grid, side-by-side, timeline…), built from a short spec per lesson — edit the `data` object to change one |
-| `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question, and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
+| `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question (`quizLesson`), the lesson each common mistake and pronunciation point sits in (`notes`), and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
 | `assets/course-visuals.css` | Styles for the cheat-code pictures, shared by `learn.html` and the PDF cheat sheets |
 | `assets/course-writing.js` | The "Write it" task for each module: prompt, word range, live checks (regular expressions, matched with Unicode word boundaries), mistake hints and a model answer |
-| `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `review.html` + `assets/srs.js` | Daily review: spaced repetition over the vocabulary, sentences and mistakes of the modules reached |
-| `conjugate.html` + `assets/verbs.js` | Verb conjugator: 360+ verbs, 7 tenses, English for every form, audio |
-| `speak.html` + `assets/recorder.js` | Listen & repeat: record yourself and compare with the model (also inside each course module) |
-| `quiz.html` | Practice drills built from the roadmap's tables: type, multiple choice, flashcards and listen-and-type; streaks, hints, weak-item review |
 | `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording; plus a **full mock** in one sitting with an estimated NCLC per skill |
-| `topics.html` + `assets/topics.js` | Speaking topics: 60 TCF-style prompts for task 2 and task 3, random topic, real timers, recording |
-| `writing.html` + `assets/writing-models.js` | Writing models: each TCF writing task answered at NCLC 4, 5 and 7, mistakes marked and explained |
-| `guides.html` + `guide-*.html` | Free exam guides (SEO articles): NCLC 5 score chart, TCF vs TEF, TCF task 2 and task 3, how long to B1 |
+| `prep.html` + `assets/topics.js`, `assets/writing-models.js`, `guide-*.html` | **Exam prep** in one page with three panels (`#speaking`, `#writing`, `#guides`): 60 TCF-style speaking topics with the real timers and recording, writing models at NCLC 4, 5 and 7, and the free exam guides (SEO articles) |
+| `quiz.html`, `conjugate.html`, `speak.html`, `roadmap.html`, `topics.html`, `writing.html`, `guides.html` | Small redirect pages so old links keep working (drills → Daily review, conjugator / listen & repeat / grammar reference → the course, the rest → Exam prep) |
 | `certificate.html` | Printable certificate of completion, unlocked when all 21 modules are done |
 | `whats-new.html` | Changelog — add an entry at the top whenever you ship something |
 | `start.html` | 2-minute placement check: 12 questions from A1 to B1 that recommend a starting module and a plan for the learner's test date |
@@ -39,7 +34,7 @@ You upload the folder and it works.
 | `assets/site.css`, `assets/site.js`, `assets/speech.js` | Shared design system, header and footer behaviour, and French text-to-speech |
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
 | `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
-| `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today, Daily review and Listen & repeat) |
+| `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today and Daily review) |
 | `assets/art/` + `tools/art.py` | The illustrations (one per page, plus guide covers and the landing-page journey). Plain SVG coloured by the art tokens in `site.css`, so they follow light and dark mode; `tools/partials.py` inlines them where a page has `<!-- partial:art NAME -->` |
 | `tools/page-previews.js` | Renders a link-preview image per page into `assets/og/` from its illustration |
 | `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
@@ -52,7 +47,7 @@ You upload the folder and it works.
    - In Stripe, create a product for each plan with a recurring price (for example
      monthly, and every 3 months).
    - For each price, create a **Payment Link** (Stripe → Payment Links → New). Under
-     *After payment*, you can point the confirmation page to `https://your-domain/roadmap.html`.
+     *After payment*, you can point the confirmation page to `https://your-domain/learn.html`.
    - Paste each link into `plans.monthly.link` and `plans.quarterly.link` in `config.js`.
    - Turn on the **Customer portal** (Stripe → Settings → Billing → Customer portal),
      copy its login link, and paste it into `customerPortal`. This is where subscribers
@@ -105,29 +100,30 @@ python3 -m http.server 8000
 
 ## Site structure
 
-Four sections in the top menu, each with a few tabs (defined in `NAV` and `TABS` in
-`tools/partials.py`; a tab appears automatically once its page exists):
+Four places in the top menu (defined in `NAV` and `TABS` in `tools/partials.py`):
 
 - **Today** — the daily hub
-- **Learn** — Course · Find your level · Cheat sheets · Grammar reference
-- **Practice** — Daily review · Drills · Verb conjugator · Listen & repeat
-- **Exam** — Mock exam · Speaking topics · Writing models · Guides
+- **Course** — the modules (Find your level and Cheat sheets are linked from the course page)
+- **Review** — Daily review
+- **Exam** — Mock exam · Exam prep (the only section with tabs)
 
 The "Aa" button in the header holds the reading settings (theme, text size, easy-read
-font, spacing, animations).
+font, spacing, animations) and, on pages with audio, the French audio speed and voice.
 
 ## Editing content
 
 - **Course modules:** edit `assets/course-1.js` … `course-4.js`. Each module is one object
-  (`title`, `why`, `goals`, `lessons`, `sounds`, `mistakes`, `speak`, `vocab`, `quiz`, `practice`,
-  `sources`). Modules appear in the order they're pushed, and are numbered automatically.
+  (`title`, `goals`, `lessons`, `sounds`, `mistakes`, `speak`, `vocab`, `quiz`, `sources`;
+  `why` is kept for reference but not shown). A module's `vocab` goes into Daily review automatically.
+  When you add or remove a lesson, keep `assets/course-visuals.js` and `assets/course-practice.js`
+  (`data`, `quizLesson`, `notes`) in the same order. Modules appear in the order they're pushed, and are numbered automatically.
 
-- **After editing course content**, run `node tools/build-index.js` (Today, Daily review and
-  Listen & repeat read the digest it writes) and `node tools/cheatsheets.js`.
+- **After editing course content**, run `node tools/build-index.js` (Today and Daily review read
+  the digest it writes) and `node tools/cheatsheets.js`.
 - **Cheat sheets:** they're generated from the course, so after editing a module run
   `node tools/cheatsheets.js` (needs Node and Playwright: `npm i -g playwright`). Each sheet
   is fitted to one Letter page automatically. English glosses come from `assets/course-en.js`.
-- **Mistake reports:** every lesson (and every wrong drill answer) has a "Report a mistake"
+- **Mistake reports:** every lesson has a "Report a mistake"
   button. Set `feedbackForm` in `assets/config.js` to a form endpoint (e.g. Formspree) to
   receive reports there; left empty, the button opens a pre-filled email to your `email`.
 - **Placement check:** the 12 questions live at the top of the script in `start.html`
@@ -136,10 +132,6 @@ font, spacing, animations).
   endpoint (Formspree, Mailchimp, ConvertKit, Buttondown…). Leave it empty to let anyone
   download without an email.
 
-- **Roadmap, drills:** edit the tables in `roadmap.html`. The drills are generated from them.
-  A table with `data-quiz="vocab"` becomes a vocabulary set (French in odd columns, English
-  in even columns). A table with `data-quiz="conj"` becomes conjugation prompts; add
-  `data-quiz-tense` so prompts from different tenses don't collide.
 - **Mock exam:** edit `exam-data.js`. Each question has `text`, `q`, `options`, `answer`
   (the 0-based index of the correct option) and `why`. Options are shuffled when shown.
 - **Header / footer:** they're written into every page between `<!-- partial:… -->` markers.
@@ -149,12 +141,7 @@ font, spacing, animations).
 ## Third-party services the site uses
 
 - **Google Fonts** for typefaces.
-- **Translator** (roadmap page): Google Translate's public endpoint, with Lingva and MyMemory
-  as fallbacks. These are unofficial, keyless endpoints that can be rate-limited or changed
-  at any time. For a commercial site, consider switching `viaGoogle` in `roadmap.html` to a
-  paid API (Google Cloud Translation, DeepL) called through your own backend, or removing
-  the translator.
-- **Browser speech** for audio and dictation. No keys are needed, and quality depends on
+- **Browser speech** for audio. No keys are needed, and quality depends on
   the voices installed on the device.
 - **Stripe** for payments.
 

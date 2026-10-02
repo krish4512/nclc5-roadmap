@@ -6,7 +6,6 @@ window.COURSE.modules.push({
   level: "A1",
   title: "Negation and asking questions",
   subtitle: "Say no in six ways, and ask questions in the three registers French speakers actually use.",
-  hours: "5–7 h",
   why: "<p>The TEF speaking task A and the TCF task 2 ask you to <b>get information from someone</b> — which means asking a stream of well-formed questions for several minutes. And negation is everywhere: in notices (<span class='fr'>il est interdit de...</span>, <span class='fr'>ne pas stationner</span>), in opinions, in listening traps where one small <span class='fr'>ne... plus</span> flips the meaning of a sentence.</p>",
   goals: [
     "Wrap ne... pas and five other negations around the verb correctly",
@@ -122,7 +121,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>___ documents faut-il apporter ?</span>", o: ["Quel", "Quels", "Que"], a: 1, why: "quel agrees with documents: masculine plural = quels." },
     { q: "Which indirect question is correct?", o: ["Pouvez-vous me dire quand est-ce que ça ouvre ?", "Pouvez-vous me dire quand ça ouvre ?", "Pouvez-vous me dire quand ouvre-t-il ?"], a: 1, why: "Indirect questions use plain statement order." }
   ],
-  practice: [["Speaking task A in the mock exam", "exam.html?s=speaking"], ["Housing vocabulary", "quiz.html?set=vocab-housing"]]
 });
 
 window.COURSE.modules.push({
@@ -130,7 +128,6 @@ window.COURSE.modules.push({
   level: "A1",
   title: "Describing people, places and things",
   subtitle: "Adjective agreement and position, possessives, demonstratives — the words that make descriptions precise.",
-  hours: "6–8 h",
   why: "<p>Describing your home, your city, a colleague or a product is a core A1–A2 skill and appears across all four exam sections. It's also where written French loses the most marks for small errors: an adjective that doesn't agree, <span class='fr'>son</span> used where <span class='fr'>sa</span> was needed, or an adjective in the wrong place.</p>",
   goals: [
     "Make adjectives agree in gender and number, including irregular forms",
@@ -250,7 +247,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>___ hôtel est complet.</span>", o: ["Ce", "Cet", "Cette"], a: 1, why: "cet before a masculine noun starting with a vowel or mute h." },
     { q: "Feminine of <span class='fr'>sérieux</span>:", o: ["sérieuxe", "sérieuse", "sérieusse"], a: 1, why: "-eux → -euse." }
   ],
-  practice: [["Housing vocabulary drill", "quiz.html?set=vocab-housing"], ["Adjective tables on the roadmap", "roadmap.html#order"]]
 });
 
 window.COURSE.modules.push({
@@ -258,7 +254,6 @@ window.COURSE.modules.push({
   level: "A1",
   title: "Numbers, prices, dates and time",
   subtitle: "The details listening questions test most — and the part of French counting that trips everyone up.",
-  hours: "4–5 h",
   why: "<p>Listening and reading questions constantly hinge on a number: a price, a date, a time, a room number, a deadline. The skill-by-skill checklist on the roadmap asks you to \"pick out numbers, dates, times and prices accurately under pressure\" — and French numbers from 70 to 99 are built in a way that punishes slow processing. This module drills them until they're automatic.</p>",
   goals: [
     "Say and understand numbers 0–1,000,000 at speed, especially 70–99",
@@ -362,7 +357,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Le magasin ferme à 18 h.</span> In conversation you'd say it closes at…", o: ["six heures du soir", "huit heures du soir", "six heures du matin"], a: 0, why: "18 h = 6 p.m. = six heures du soir." },
     { q: "\"I go to the gym on Tuesdays\" (every week):", o: ["Je vais au gym mardi.", "Je vais au gym le mardi.", "Je vais au gym en mardi."], a: 1, why: "le + day = a regular habit." }
   ],
-  practice: [["Shopping vocabulary", "quiz.html?set=vocab-shopping"], ["Listening mock (numbers everywhere)", "exam.html?s=listening"]]
 });
 
 window.COURSE.modules.push({
@@ -370,7 +364,6 @@ window.COURSE.modules.push({
   level: "A1",
   title: "Key irregular verbs, near future and recent past",
   subtitle: "Aller, faire, venir, prendre, pouvoir, vouloir, devoir, savoir, connaître — and two shortcuts to talk about time.",
-  hours: "8–10 h",
   why: "<p>A handful of irregular verbs account for a huge share of everyday French. They're also the most useful shortcuts in the language: with <span class='fr'>aller + infinitive</span> you can talk about the future and with <span class='fr'>venir de + infinitive</span> about the recent past — long before you learn the futur simple or the passé composé. With <span class='fr'>pouvoir, vouloir, devoir</span> + infinitive you can ask permission, make requests, and give advice.</p>",
   goals: [
     "Conjugate the nine most useful irregular verbs in the present",
@@ -506,7 +499,6 @@ window.COURSE.modules.push({
     { q: "Negative of <span class='fr'>Je vais travailler demain</span>:", o: ["Je vais ne pas travailler demain.", "Je ne vais pas travailler demain.", "Je ne vais travailler pas demain."], a: 1, why: "The negation wraps the conjugated verb aller." },
     { q: "<span class='fr'>Ils ___ le métro chaque matin.</span> (prendre)", o: ["prendent", "prennent", "prenent"], a: 1, why: "prendre: ils prennent (double n)." }
   ],
-  practice: [["Drill irregular verbs", "quiz.html?set=conj"], ["Travel vocabulary", "quiz.html?set=vocab-travel"]]
 });
 
 window.COURSE.modules.push({
@@ -514,7 +506,6 @@ window.COURSE.modules.push({
   level: "A2",
   title: "Reflexive verbs, daily life and giving instructions",
   subtitle: "Se lever, s'habiller, s'occuper de… plus the imperative for directions, advice and instructions.",
-  hours: "5–7 h",
   why: "<p>Reflexive (pronominal) verbs are how French describes daily routines, feelings and many everyday actions: <span class='fr'>se réveiller, se dépêcher, s'inquiéter, s'inscrire, se souvenir</span>. They're also needed to build the passé composé correctly in Module 9, because they always take <span class='fr'>être</span>. The imperative — telling people what to do — is the language of instructions, notices and advice, all of which appear in the reading section.</p>",
   goals: [
     "Conjugate reflexive verbs and place the pronoun correctly, including in negatives",
@@ -619,5 +610,4 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Je ___ bien avec mon patron.</span>", o: ["m'entends", "entends", "me entends"], a: 0, why: "s'entendre avec = to get along with; me → m' before a vowel." },
     { q: "\"Please note that…\" in a formal notice:", o: ["Sais que…", "Sachez que…", "Savez que…"], a: 1, why: "savoir has an irregular imperative: sache, sachons, sachez." }
   ],
-  practice: [["Daily routines vocabulary", "quiz.html?set=vocab-routines"], ["Workplace notices", "quiz.html?set=vocab-memos"]]
 });

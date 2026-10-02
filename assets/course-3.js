@@ -6,7 +6,6 @@ window.COURSE.modules.push({
   level: "A2",
   title: "The passé composé: talking about what happened",
   subtitle: "Avoir or être, irregular past participles, agreement, and where negatives and pronouns go.",
-  hours: "10–12 h",
   why: "<p>The passé composé is the main tense for completed past events in both spoken and written French. The roadmap notes that answers stuck in the present cap you around A2 — the writing task \"recount an experience\" and the speaking tasks all expect you to narrate in the past. This is the single most important tense to automate on the way to NCLC 5.</p>",
   goals: [
     "Form the passé composé with avoir, including 25 common irregular participles",
@@ -135,7 +134,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>J'___ la poubelle.</span> (sortir = take out)", o: ["ai sorti", "suis sorti", "suis sortie"], a: 0, why: "With a direct object, sortir takes avoir." },
     { q: "\"I lived in Lyon for three years (I don't anymore).\"", o: ["J'habite à Lyon depuis trois ans.", "J'ai habité à Lyon pendant trois ans.", "J'ai habité à Lyon depuis trois ans."], a: 1, why: "A finished period: passé composé + pendant." }
   ],
-  practice: [["Recounting an experience vocabulary", "quiz.html?set=vocab-story"], ["Writing task 1 (narrate)", "exam.html?s=writing"]]
 });
 
 window.COURSE.modules.push({
@@ -143,7 +141,6 @@ window.COURSE.modules.push({
   level: "A2",
   title: "The imparfait, and choosing between the two pasts",
   subtitle: "Background vs event, habit vs single action — the distinction that defines a B1 narrative.",
-  hours: "10–12 h",
   why: "<p>English speakers find this the hardest choice in French grammar because English marks the same difference inconsistently (\"I lived\", \"I used to live\", \"I was living\"). Yet examiners read for it: the writing rubric for narration explicitly expects both tenses together — events in the passé composé, setting and habits in the imparfait. Getting this right is one of the clearest markers separating A2 from B1.</p>",
   goals: [
     "Form the imparfait of any verb (only être is irregular)",
@@ -266,7 +263,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Hier soir, il ___ très froid.</span> (background)", o: ["a fait", "faisait", "fait"], a: 1, why: "Weather as background → imparfait." },
     { q: "<span class='fr'>J'ai su la nouvelle hier.</span> means…", o: ["I knew the news yesterday.", "I found out the news yesterday.", "I used to know the news."], a: 1, why: "savoir in the passé composé = to find out." }
   ],
-  practice: [["Writing task 1: narrate", "exam.html?s=writing"], ["Recounting an experience", "quiz.html?set=vocab-story"]]
 });
 
 window.COURSE.modules.push({
@@ -274,7 +270,6 @@ window.COURSE.modules.push({
   level: "A2",
   title: "Object pronouns, y and en",
   subtitle: "Stop repeating nouns: le, la, lui, leur, y and en, and the order they go in.",
-  hours: "8–10 h",
   why: "<p>Native speakers avoid repeating nouns: <span class='fr'>Tu as appelé le propriétaire ? — Oui, je l'ai appelé.</span> Learners who can't use pronouns sound repetitive and lose points for lexical and grammatical range. Pronouns also appear in almost every listening dialogue, and misreading <span class='fr'>lui</span> (to him or her) or <span class='fr'>en</span> (some of it) can make you choose the wrong answer.</p>",
   goals: [
     "Replace direct and indirect objects with the right pronoun",
@@ -382,7 +377,6 @@ window.COURSE.modules.push({
     { q: "Correct order: \"He gave it to me.\"", o: ["Il l'a me donné.", "Il me l'a donné.", "Il lui me l'a donné."], a: 1, why: "me comes before le; both before the auxiliary." },
     { q: "<span class='fr'>Tu vas au marché ? — Oui, j'___ vais.</span>", o: ["en", "y", "le"], a: 1, why: "A place introduced by à → y." }
   ],
-  practice: [["Speaking task: get information", "exam.html?s=speaking"], ["Verb drills (mixed)", "quiz.html?set=conj"]]
 });
 
 window.COURSE.modules.push({
@@ -390,7 +384,6 @@ window.COURSE.modules.push({
   level: "A2",
   title: "Comparing, and the futur simple",
   subtitle: "More than, less than, the best — and a future tense for predictions, promises and plans.",
-  hours: "7–9 h",
   why: "<p>Comparison is the engine of opinion tasks: <em>which is better, working from home or at the office?</em> You need <span class='fr'>plus… que</span>, <span class='fr'>meilleur</span> vs <span class='fr'>mieux</span>, and superlatives. The futur simple is expected at B1 for predictions, promises, and formal plans — and it's used in notices and announcements (<span class='fr'>Le bureau sera fermé…</span>) that appear in reading and listening.</p>",
   goals: [
     "Compare adjectives, adverbs, nouns and verbs",
@@ -485,5 +478,4 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>S'il ___ demain, on restera à la maison.</span>", o: ["pleuvra", "pleut", "pleuvait"], a: 1, why: "si + present → futur in the main clause." },
     { q: "\"There's as much work as last year.\"", o: ["Il y a aussi de travail que l'année dernière.", "Il y a autant de travail que l'année dernière.", "Il y a si travail que l'année dernière."], a: 1, why: "With nouns: autant de … que." }
   ],
-  practice: [["Opinions vocabulary", "quiz.html?set=vocab-opinions"], ["Futur simple table on the roadmap", "roadmap.html#order"]]
 });

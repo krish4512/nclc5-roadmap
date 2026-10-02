@@ -1,5 +1,5 @@
 /* French text-to-speech shared by the practice and exam pages. Honours the
-   voice and slow-playback choices made on the roadmap page, and otherwise
+   voice and audio-speed choices made in the Aa settings panel, and otherwise
    prefers an installed Canadian French voice, then metropolitan French. */
 (function () {
   var synth = window.speechSynthesis;
@@ -66,6 +66,10 @@
   window.NCLCSpeech = {
     available: function () { return ok; },
     hasFrenchVoice: function () { if (!voice) pick(); return !!voice; },
+    /* the French voices on this device, and the one in use (for the settings panel) */
+    voices: function () { return ok ? (synth.getVoices() || []).filter(function (v) { return /^fr\b|^fr[-_]/i.test(v.lang || ""); }) : []; },
+    current: function () { if (!voice) pick(); return voice ? voice.name : ""; },
+    refresh: pick,
     speak: speak,
     stop: stop,
     clean: clean

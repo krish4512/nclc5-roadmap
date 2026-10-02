@@ -369,10 +369,23 @@
         return "<div class='row'><span id='set-" + k + "'>" + LABELS[k] + "</span><div class='seg' role='group' aria-labelledby='set-" + k + "'>" +
           OPTS[k].map(function (o) { return "<button type='button' data-k='" + k + "' data-v='" + o[0] + "' aria-pressed='" + (current(k) === o[0]) + "'>" + o[1] + "</button>"; }).join("") +
           "</div></div>";
-      }).join("") + "<div class='foot'><span>Saved on this device</span><button type='button' data-reset>Reset all</button></div>";
+      }).join("") + audioRows() + "<div class='foot'><span>Saved on this device</span><button type='button' data-reset>Reset all</button></div>";
+    }
+    /* French audio: speed and voice (read by assets/speech.js) */
+    function audioRows() {
+      var S = window.NCLCSpeech;
+      if (!S || !S.available()) return "";
+      var slow = false; try { slow = localStorage.getItem("nclc5-roadmap-slow-speech") === "1"; } catch (e) {}
+      var vs = S.voices ? S.voices() : [], cur = S.current ? S.current() : "";
+      return "<div class='row'><span id='set-speed'>Audio speed</span><div class='seg' role='group' aria-labelledby='set-speed'>" +
+        "<button type='button' data-k='speed' data-v='' aria-pressed='" + !slow + "'>Normal</button><button type='button' data-k='speed' data-v='1' aria-pressed='" + slow + "'>Slow</button></div></div>" +
+        (vs.length > 1 ? "<div class='row'><label for='set-voice'>French voice</label><select id='set-voice' data-voice>" + vs.map(function (v) {
+          return "<option" + (v.name === cur ? " selected" : "") + ">" + v.name.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</option>"; }).join("") + "</select></div>" : "");
     }
     function set(k, v) {
-      if (k === "theme") {
+      if (k === "speed") {
+        try { if (v) localStorage.setItem("nclc5-roadmap-slow-speech", "1"); else localStorage.removeItem("nclc5-roadmap-slow-speech"); } catch (e) {}
+      } else if (k === "theme") {
         try { if (v === "auto") localStorage.removeItem(THEME_KEY); else localStorage.setItem(THEME_KEY, v); } catch (e) {}
         if (v === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", v);
       } else {
@@ -391,10 +404,17 @@
         pop = document.createElement("div");
         pop.className = "settings-pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-labelledby", "set-title"); pop.hidden = true;
         document.body.appendChild(pop);
+        pop.addEventListener("change", function (ev) {
+          var sel = ev.target.closest("[data-voice]");
+          if (!sel) return;
+          try { localStorage.setItem("nclc5-roadmap-voice", sel.value); } catch (er) {}
+          if (window.NCLCSpeech) { if (NCLCSpeech.refresh) NCLCSpeech.refresh(); NCLCSpeech.speak("Bonjour ! Voici ma voix."); }
+        });
         pop.addEventListener("click", function (ev) {
           ev.stopPropagation();
           var b = ev.target.closest("[data-k]");
           if (b) set(b.getAttribute("data-k"), b.getAttribute("data-v"));
+          else if (ev.target.closest("[data-voice]")) return;
           else if (ev.target.closest("[data-reset]")) {
             try { localStorage.removeItem(READ_KEY); localStorage.removeItem(THEME_KEY); } catch (er) {}
             root.removeAttribute("data-theme"); applyPrefs({}); render();
@@ -498,10 +518,10 @@
       ["s3", "🔥", "3-day streak", "Studied 3 days in a row", st.best >= 3],
       ["s7", "⚡", "7-day streak", "Studied a whole week in a row", st.best >= 7],
       ["s30", "🏆", "30-day streak", "A month without missing a day", st.best >= 30],
-      ["drill", "💪", "First drill", "Finished a practice drill", Object.keys(readJ("nclc5-quiz-scores", {})).length > 0],
+      ["drill", "💪", "First practice", "Answered every practice question for a lesson", Object.keys(prog).some(function (k) { return prog[k] && prog[k].tried && Object.keys(prog[k].tried).length; })],
       ["rev50", "🧠", "50 reviews", "Reviewed 50 cards in Daily review", reviews >= 50],
       ["mock", "📝", "First mock exam", "Completed a mock-exam section", Object.keys(readJ("nclc5-exam-scores", {})).length > 0],
-      ["voice", "🎙️", "First recording", "Recorded yourself in Listen & repeat", (+localStorage.getItem("nclc5-rec-count") || 0) > 0],
+      ["voice", "🎙️", "First recording", "Recorded yourself on a speaking topic", (+localStorage.getItem("nclc5-rec-count") || 0) > 0],
       ["cpA1", "🏁", "A1 checkpoint", "Passed the A1 checkpoint", !!(cps.A1 && cps.A1.passed)],
       ["cpA2", "🚩", "A2 checkpoint", "Passed the A2 checkpoint", !!(cps.A2 && cps.A2.passed)],
       ["cpB1", "🎖️", "B1 checkpoint", "Passed the B1 checkpoint", !!(cps.B1 && cps.B1.passed)]
