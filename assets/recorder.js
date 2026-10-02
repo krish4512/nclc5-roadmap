@@ -16,13 +16,16 @@
   function supported() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder); }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
 
-  function controls(text) {
+  /* opts.max: longest recording in seconds (default 20); opts.compare: false
+     hides "Compare" (for free answers that have no model voice) */
+  function controls(text, opts) {
     if (!supported()) return "";
+    opts = opts || {};
     var has = !!takes[text];
-    return "<span class='rec-ctl' data-rec-text=\"" + esc(text) + "\">" +
+    return "<span class='rec-ctl' data-rec-text=\"" + esc(text) + "\"" + (opts.max ? " data-max='" + opts.max + "'" : "") + (opts.compare === false ? " data-nocompare" : "") + ">" +
       "<button type='button' class='rec-btn' data-rec aria-label='Record yourself saying it'>" + MIC + "<span>Record</span></button>" +
       "<button type='button' class='rec-btn' data-mine aria-label='Play your recording'" + (has ? "" : " hidden") + ">" + PLAY + "<span>You</span></button>" +
-      "<button type='button' class='rec-btn' data-compare aria-label='Play the model, then you'" + (has ? "" : " hidden") + ">⇄<span>Compare</span></button>" +
+      (opts.compare === false ? "" : "<button type='button' class='rec-btn' data-compare aria-label='Play the model, then you'" + (has ? "" : " hidden") + ">⇄<span>Compare</span></button>") +
     "</span>";
   }
 
@@ -47,13 +50,14 @@
         setIdle(btn);
         var box = btn.closest(".rec-ctl");
         box.querySelector("[data-mine]").hidden = false;
-        box.querySelector("[data-compare]").hidden = false;
+        var cmp = box.querySelector("[data-compare]"); if (cmp) cmp.hidden = false;
         rec = null; activeBtn = null;
       };
       rec.start();
       activeBtn = btn;
       btn.classList.add("on"); btn.innerHTML = STOP + "<span>Stop</span>"; btn.setAttribute("aria-label", "Stop recording");
-      timer = setTimeout(stopRec, MAX_MS);
+      var box = btn.closest(".rec-ctl"), mx = +box.getAttribute("data-max");
+      timer = setTimeout(stopRec, mx ? mx * 1000 : MAX_MS);
     }).catch(function () {
       if (window.NCLC) window.NCLC.toast("Microphone blocked — allow it in your browser's site settings to record.");
     });

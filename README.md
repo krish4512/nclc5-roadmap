@@ -19,7 +19,12 @@ You upload the folder and it works.
 | `conjugate.html` + `assets/verbs.js` | Verb conjugator: 360+ verbs, 7 tenses, English for every form, audio |
 | `speak.html` + `assets/recorder.js` | Listen & repeat: record yourself and compare with the model (also inside each course module) |
 | `quiz.html` | Practice drills built from the roadmap's tables: type, multiple choice, flashcards and listen-and-type; streaks, hints, weak-item review |
-| `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording |
+| `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording; plus a **full mock** in one sitting with an estimated NCLC per skill |
+| `topics.html` + `assets/topics.js` | Speaking topics: 60 TCF-style prompts for task 2 and task 3, random topic, real timers, recording |
+| `writing.html` + `assets/writing-models.js` | Writing models: each TCF writing task answered at NCLC 4, 5 and 7, mistakes marked and explained |
+| `guides.html` + `guide-*.html` | Free exam guides (SEO articles): NCLC 5 score chart, TCF vs TEF, TCF task 2 and task 3, how long to B1 |
+| `certificate.html` | Printable certificate of completion, unlocked when all 21 modules are done |
+| `whats-new.html` | Changelog — add an entry at the top whenever you ship something |
 | `start.html` | 2-minute placement check: 12 questions from A1 to B1 that recommend a starting module and a plan for the learner's test date |
 | `cheatsheets.html` + `assets/cheatsheets/` | 21 free one-page PDF cheat sheets (one per module, plus all-in-one), with an optional email sign-up to unlock them |
 | `pricing.html` | Plans and Stripe checkout buttons |
