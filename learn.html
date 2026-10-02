@@ -40,6 +40,7 @@
 <script src="assets/course-t2.js"></script>
 <script src="assets/course-5.js"></script>
 <script src="assets/course-en.js"></script>
+<script src="assets/course-visuals.js"></script>
 <style>
   /* ---------- colour system ----------
      Every level and every section type has its own hue. An element opts in
@@ -250,6 +251,141 @@
   .goals li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: var(--bg); font-weight: 800; font-size: 12px; margin-top: 1px; }
 
   /* lessons */
+  /* ---------- lesson visuals ("cheat code" pictures, assets/course-visuals.js) ---------- */
+  .vis { margin: 2px 0 20px; padding: 18px 20px 20px; border-radius: 18px; border: 1px solid var(--c-line);
+    background: radial-gradient(120% 140% at 0% 0%, var(--c-soft), transparent 60%), linear-gradient(160deg, var(--c-soft), var(--surface) 75%); }
+  @media (max-width: 560px) { .vis { padding: 14px 12px 16px; border-radius: 14px; } }
+  .vis-h { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 14px; }
+  .vis-k { font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; color: var(--c-ink); background: var(--surface); border: 1px solid var(--c-line); border-radius: 99px; padding: 3px 9px; }
+  .vis-t { font-family: var(--serif); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; color: var(--ink); }
+  .vis-n { margin: 14px 0 0; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+  .vis .vh { font-weight: 700; color: var(--c-ink); background: color-mix(in srgb, var(--c) 14%, transparent); border-radius: 4px; padding: 0 1px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .vis s { color: var(--ink-faint); text-decoration-thickness: 2px; }
+  .vis small { display: block; font-size: 12.5px; line-height: 1.4; color: var(--ink-faint); font-weight: 500; }
+  .vis .vfr { font-weight: 600; color: var(--ink); }
+  .vis .vct { display: block; font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .vcard, .vbx, .vpair, .vgrp, .vcol, .vsteps li, .vsc > div, .vq { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
+  /* eq */
+  .veq { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; }
+  .vbx { padding: 10px 14px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .vbx > b { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .vbx.on { background: var(--c); border-color: transparent; }
+  .vbx.on > b, .vbx.on small { color: var(--surface); }
+  .vbx.on small { opacity: .85; }
+  .vop { align-self: center; font-size: 20px; font-weight: 700; color: var(--c-ink); padding: 0 2px; }
+  .vex { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+  .vex li { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; font-size: 15px; line-height: 1.5; }
+  .vex .ven { font-size: 13.5px; color: var(--ink-faint); }
+  .vcard .vex { margin-top: 8px; }
+  .vcard .vex li { font-size: 14.5px; }
+  /* conj */
+  .vconj { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; }
+  .vcol { padding: 12px 14px; }
+  .vch { margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .vch > b { font-size: 16px; color: var(--c-ink); }
+  .vcol ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .vcol li { display: grid; grid-template-columns: 4.6em 1fr; gap: 6px; font-size: 15px; align-items: baseline; }
+  .vcol .vp { color: var(--ink-faint); font-size: 13.5px; }
+  .vcol .vf { font-weight: 600; }
+  .vcol .vf .vh { padding: 0; }
+  /* vs */
+  .vvs { display: flex; align-items: stretch; gap: 10px; }
+  .vvs > .vcard { flex: 1 1 0; min-width: 0; padding: 14px 16px; position: relative; }
+  .vcard.on { border-color: var(--c-line); box-shadow: 0 0 0 3px var(--c-soft), 0 6px 18px -10px var(--c-glow); }
+  .vcard p { margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+  .vtag { display: inline-block; margin-bottom: 6px; font-size: 12px; font-weight: 800; color: var(--c-ink); background: var(--c-soft); border: 1px solid var(--c-line); border-radius: 99px; padding: 1px 9px; }
+  .vmid { align-self: center; flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--surface); border: 1px solid var(--c-line); color: var(--c-ink); font-weight: 800; font-size: 13px; }
+  @media (max-width: 640px) {
+    .vvs { flex-direction: column; }
+    .vmid { transform: rotate(90deg); margin: -4px 0; }
+  }
+  /* line */
+  .vline { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; position: relative; padding-top: 4px; }
+  .vline::before { content: ""; position: absolute; left: 6px; right: 6px; top: 12px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--c-line), var(--c)); }
+  .vmk { position: relative; padding-top: 26px; min-width: 0; }
+  .vmk i { position: absolute; top: 4px; left: 0; width: 19px; height: 19px; border-radius: 50%; background: var(--surface); border: 4px solid var(--c); }
+  .vmk.now i { background: var(--c); box-shadow: 0 0 0 5px var(--c-soft); }
+  .vmk > b { display: block; font-size: 15px; color: var(--ink); }
+  .vmk.now > b { color: var(--c-ink); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; }
+  .vmk .vfr { display: block; margin-top: 4px; font-size: 14.5px; }
+  .vends { display: flex; justify-content: space-between; margin-top: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+  @media (max-width: 640px) {
+    .vline { grid-auto-flow: row; padding: 0 0 0 4px; gap: 14px; }
+    .vline::before { left: 13px; right: auto; top: 8px; bottom: 8px; width: 3px; height: auto; background: linear-gradient(180deg, var(--c-line), var(--c)); }
+    .vmk { padding: 0 0 0 34px; }
+    .vmk i { top: 1px; left: 4px; }
+    .vends { display: none; }
+  }
+  /* pairs */
+  .vpairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+  .vpair { padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; }
+  .vpair > b { font-size: 15.5px; font-weight: 700; color: var(--ink); }
+  .vpair span { font-size: 13.5px; line-height: 1.45; color: var(--ink-soft); }
+  /* steps */
+  .vsteps { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 22px; counter-reset: none; }
+  .vsteps li { position: relative; padding: 12px 14px; min-width: 0; }
+  .vsteps li + li::before { content: "→"; position: absolute; left: -18px; top: 50%; transform: translateY(-50%); color: var(--c-ink); font-weight: 800; }
+  .vsteps .vn { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--c); color: var(--surface); font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+  .vsteps li > b { display: block; font-size: 15px; line-height: 1.35; color: var(--ink); }
+  @media (max-width: 760px) {
+    .vsteps { grid-auto-flow: row; gap: 18px; }
+    .vsteps li + li::before { content: "↓"; left: 22px; top: -16px; transform: none; }
+  }
+  /* groups */
+  .vgroups { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .vgrp { padding: 12px 14px; }
+  .vgrp small { margin-top: 2px; }
+  .vchips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .vchips span { font-size: 14px; font-weight: 600; color: var(--c-ink); background: var(--c-soft); border: 1px solid var(--c-line); border-radius: 9px; padding: 3px 9px; }
+  /* scale */
+  .vbar { display: flex; justify-content: space-between; align-items: center; height: 26px; padding: 0 12px; border-radius: 99px; margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--c-soft), var(--c)); font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .vbar span:first-child { color: var(--c-ink); } .vbar span:last-child { color: var(--surface); }
+  .vsc { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
+  .vsc > div { padding: 10px 12px; min-width: 0; }
+  .vsc > div > b { display: block; font-size: 14.5px; line-height: 1.4; color: var(--ink); }
+  @media (max-width: 640px) { .vsc { grid-auto-flow: row; } }
+  /* ask */
+  .vq { padding: 12px 16px; font-weight: 700; font-size: 15.5px; text-align: center; border-color: var(--c-line); position: relative; margin-bottom: 22px; }
+  .vq::after { content: ""; position: absolute; left: 50%; bottom: -17px; width: 2px; height: 14px; background: var(--c-line); }
+  .vbr { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .vbr .vcard { padding: 12px 14px; }
+  .vbr .vct { color: var(--c-ink); margin: 2px 0 6px; }
+  .vbr .vfr { font-size: 14.5px; }
+  /* bars */
+  .vstack { display: flex; height: 38px; border-radius: 12px; overflow: hidden; gap: 3px; }
+  .vstack span { display: grid; place-items: center; min-width: 0; font-size: 12.5px; font-weight: 800; color: var(--surface); white-space: nowrap; overflow: hidden; }
+  .vs0 { background: var(--c); }
+  .vs1 { background: color-mix(in srgb, var(--c) 78%, var(--surface)); }
+  .vs2 { background: color-mix(in srgb, var(--c) 58%, var(--surface)); }
+  .vs3 { background: color-mix(in srgb, var(--c) 40%, var(--surface)); }
+  .vs4 { background: color-mix(in srgb, var(--c) 26%, var(--surface)); }
+  .vstack .vs3, .vstack .vs4 { color: var(--ink); }
+  .vlegend { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 14px; margin-top: 12px; }
+  .vlegend div { display: grid; grid-template-columns: 12px 1fr; column-gap: 8px; align-items: baseline; }
+  .vlegend i { width: 12px; height: 12px; border-radius: 4px; align-self: center; }
+  .vlegend div > b { font-size: 14.5px; color: var(--ink); }
+  .vlegend small { grid-column: 2; }
+  /* grid */
+  .vis .vgrid { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); }
+  .vis .vgrid table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .vis .vgrid th, .vis .vgrid td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .vis .vgrid tbody tr:last-child th, .vis .vgrid tbody tr:last-child td { border-bottom: 0; }
+  .vis .vgrid thead th { font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--c-ink); background: var(--c-soft); }
+  .vis .vgrid tbody th { font-weight: 600; color: var(--ink-soft); font-size: 14px; }
+  .vis .vgrid td { font-weight: 600; color: var(--ink); }
+  @media (max-width: 560px) {
+    .vis .vgrid table { font-size: 13.5px; table-layout: fixed; }
+    .vis .vgrid th, .vis .vgrid td { white-space: normal; padding: 8px 7px; overflow-wrap: break-word; hyphens: auto; }
+    .vis .vgrid thead th { font-size: 10.5px; letter-spacing: .02em; }
+    .vcol { padding: 10px 10px; }
+    .vcol li { grid-template-columns: 2.9em 1fr; gap: 4px; font-size: 14px; }
+    .vcol .vp { font-size: 12.5px; }
+  }
+  @media (max-width: 420px) {
+    .vconj { grid-template-columns: minmax(0, 1fr); }
+    .vcol ul { grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 14px; }
+  }
   .lesson { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px 28px; margin-top: 16px; box-shadow: var(--shadow-sm); }
   @media (max-width: 560px) { .lesson { padding: 20px 16px; border-radius: 16px; } }
   .lesson h3 { margin: 0 0 12px; font-size: 20px; letter-spacing: -0.015em; line-height: 1.3; display: flex; gap: 12px; align-items: flex-start; }
@@ -857,8 +993,10 @@
       (m.goals ? "<ul class='goals'>" + m.goals.map(function (g) { return "<li>" + g + "</li>"; }).join("") + "</ul>" : "") + "</section>";
 
     h += secHead("lessons", "Lessons", "Read each lesson, then say every example out loud before you move on.");
+    var VIS = window.NCLC_VISUALS ? NCLC_VISUALS.data[m.id] || [] : [];
     m.lessons.forEach(function (Ls, i) {
-      h += "<article class='lesson'><h3><span class='n'>" + m.num + "." + (i + 1) + "</span><span>" + Ls.title + "</span></h3><div class='body'>" + (Ls.body || "") + "</div>";
+      h += "<article class='lesson'><h3><span class='n'>" + m.num + "." + (i + 1) + "</span><span>" + Ls.title + "</span></h3>" +
+        (VIS[i] ? NCLC_VISUALS.render(VIS[i], L.hue) : "") + "<div class='body'>" + (Ls.body || "") + "</div>";
       (Ls.tables || (Ls.table ? [Ls.table] : [])).forEach(function (t) { h += renderTable(t); });
       if (Ls.after) h += "<div class='body'>" + Ls.after + "</div>";
       if (Ls.examples) {
