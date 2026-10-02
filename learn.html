@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Learn French to NCLC 5 · Research-Based Course</title>
-<meta name="description" content="A research-based French course from first sounds to B1 / NCLC 5: pronunciation, grammar in the right order, speaking drills, common mistakes and self-checks for the TCF Canada and TEF Canada.">
+<meta name="description" content="A research-based French course from first sounds to B1 / NCLC 5: grammar in the right order, pronunciation, common mistakes, quick practice and self-checks for the TCF Canada and TEF Canada.">
 <!-- partial:head -->
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NCLC 5 Roadmap">
 <meta property="og:title" content="Learn French to NCLC 5 · Research-Based Course">
-<meta property="og:description" content="A research-based French course from first sounds to B1 / NCLC 5: pronunciation, grammar in the right order, speaking drills, common mistakes and self-checks for the TCF Canada and TEF Canada.">
+<meta property="og:description" content="A research-based French course from first sounds to B1 / NCLC 5: grammar in the right order, pronunciation, common mistakes, quick practice and self-checks for the TCF Canada and TEF Canada.">
 <meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/learn.html">
 <meta property="og:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og/learn.jpg">
 <meta property="og:image:width" content="1200">
@@ -410,35 +410,6 @@
   .pairs button svg { width: 13px; height: 13px; color: var(--c-ink); }
   .pairs button.on svg { color: var(--bg); }
 
-  /* mistakes */
-  .mistakes { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 15px; background: var(--surface); border: 1px solid var(--c-line); border-radius: 18px; overflow: hidden; }
-  .mistakes th { text-align: left; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 11px 16px; background: var(--c-soft); color: var(--c-ink); }
-  .mistakes th:nth-child(2) { color: var(--good); }
-  .mistakes td { padding: 13px 16px; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
-  .mistakes .w, .mistakes .r { font-weight: 600; }
-  .mistakes .w { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: color-mix(in srgb, var(--bad) 60%, transparent); }
-  .mistakes .w::before, .mistakes .r::before { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 800; margin-right: 8px; vertical-align: 1px; text-decoration: none; }
-  .mistakes .w::before { content: "✕"; background: var(--bad-soft); color: var(--bad); }
-  .mistakes .r::before { content: "✓"; background: var(--good-soft); color: var(--good); }
-  .mistakes .r { color: var(--good); }
-  .mistakes .y { color: var(--ink-soft); font-size: 14px; }
-  .mistakes .fr { color: inherit; }
-  @media (max-width: 640px) {
-    .mistakes thead { display: none; }
-    .mistakes tr { display: block; border-top: 1px solid var(--border); padding: 10px 0; }
-    .mistakes tr:first-child { border-top: none; }
-    .mistakes td { display: block; border: none; padding: 3px 16px; }
-  }
-
-  /* speak */
-
-  /* vocab */
-  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
-  .vocab-item { display: flex; gap: 10px; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 11px 14px; transition: border-color 0.2s ease, background 0.2s ease; }
-  .vocab-item:hover { border-color: var(--c-line); background: var(--c-soft); }
-  .vocab-item .frx { font-size: 16.5px; font-weight: 650; color: var(--c-ink); }
-  .vocab-item .enx { font-size: 13.5px; color: var(--ink-soft); }
-
   /* quiz */
   .quiz-q { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; margin-top: 12px; box-shadow: var(--shadow-sm); transition: border-color 0.3s ease; }
   .quiz-q[data-done] { border-color: var(--c-line); }
@@ -498,28 +469,35 @@
   .en-toggle[aria-pressed="true"] .sw { background: var(--c); }
   .en-toggle[aria-pressed="true"] .sw::after { transform: translateX(11px); }
 
-  /* ---------- answer builder ---------- */
-  .builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
-  @media (max-width: 1100px) { .builder { grid-template-columns: minmax(0, 1fr); } }
-  .b-form { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
-  .b-group h4 { display: flex; align-items: center; gap: 8px; margin: 4px 0 10px; font-size: 13px; font-weight: 700; color: var(--c-ink); }
-  .b-group h4::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
-  .b-field { margin-bottom: 8px; }
-  .b-field label { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); margin-bottom: 5px; }
-  .b-field .pre { font-style: italic; color: var(--c-ink); font-weight: 500; }
-  .b-field textarea { width: 100%; min-height: 46px; resize: vertical; font-family: var(--sans); font-size: 15.5px; line-height: 1.5; color: var(--ink); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 12px; padding: 9px 12px; transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
-  .b-field textarea:focus { outline: none; border-color: var(--c); background: var(--surface); box-shadow: 0 0 0 4px var(--c-glow); }
-  .b-preview { position: sticky; top: calc(var(--header-h) + 70px); background: var(--surface); border: 1px solid var(--c-line); border-radius: 20px; padding: 18px 20px; box-shadow: var(--shadow); max-height: calc(100vh - var(--header-h) - 90px); overflow-y: auto; }
-  @media (max-width: 1100px) { .b-preview { position: static; max-height: none; } }
-  .b-part { margin-bottom: 14px; padding-left: 12px; border-left: 2px solid var(--c-line); }
-  .b-part h5 { margin: 0 0 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: var(--c-ink); }
-  .b-part p { margin: 0; font-size: 16px; line-height: 1.65; }
-  .b-part .slot { background: var(--c-soft); color: var(--ink); border-radius: 5px; padding: 1px 4px; font-weight: 600; box-shadow: inset 0 -2px 0 var(--c-line); }
-  .b-part .gap { color: var(--ink-faint); background: var(--surface-alt); border: 1px dashed var(--border-strong); border-radius: 5px; padding: 0 5px; font-size: 13px; }
-  .b-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
-  .b-clock { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-alt); }
-  .b-clock.low { color: var(--bad); border-color: var(--bad-border); background: var(--bad-soft); }
-  .b-meta { font-size: 13px; color: var(--ink-faint); margin-bottom: 10px; }
+  /* numbered steps: Lessons → Practice → Check → Done */
+  .toc-bar.steps a::before { display: none; }
+  .toc-bar.steps a i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--c-soft); color: var(--c-ink); font-size: 11.5px; font-weight: 800; }
+  .toc-bar.steps a.on i { background: var(--c); color: var(--bg); }
+  .mod-head .goals { position: relative; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; }
+  .mod-head .goals li { background: var(--surface); padding: 10px 12px; font-size: 14.5px; }
+  /* notes inside a lesson */
+  .note-k { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--c-ink); margin-bottom: 6px; }
+  .note-k .ico { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .lesson .sound-card { box-shadow: inset 4px 0 0 var(--c); margin-top: 16px; padding: 14px 18px; }
+  .sound-card h4 { margin: 0 0 6px; font-size: 16.5px; letter-spacing: -0.01em; }
+  .watch { margin-top: 16px; border: 1px solid var(--bad-border); background: color-mix(in srgb, var(--bad-soft) 55%, var(--surface)); border-radius: 16px; padding: 14px 18px; }
+  .watch .note-k { color: var(--bad); }
+  .watch ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .watch li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px 14px; font-size: 15px; line-height: 1.5; }
+  .watch li + li { border-top: 1px solid var(--border); padding-top: 10px; }
+  .watch .w { color: var(--bad); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--bad) 60%, transparent); font-weight: 600; }
+  .watch .r { color: var(--good); font-weight: 650; }
+  .watch .r::before { content: "✓ "; }
+  .watch .y { grid-column: 1 / -1; color: var(--ink-soft); font-size: 14px; }
+  @media (max-width: 560px) { .watch li { grid-template-columns: minmax(0, 1fr); } }
+  /* practice: one set per lesson */
+  .p-set { margin-top: 18px; }
+  .p-set h3 { font-size: 16.5px; margin: 0 0 -6px; letter-spacing: -0.01em; }
+  .p-set h3 a { text-decoration: none; font-size: 12.5px; font-weight: 700; color: var(--c-ink); background: var(--c-soft); border: 1px solid var(--c-line); border-radius: 9px; padding: 2px 8px; margin-right: 6px; vertical-align: 2px; }
+  .wr-wrap { margin-top: 30px; }
+  .sub-h { font-size: 19px; margin: 0 0 4px; letter-spacing: -0.015em; }
+  .wr-wrap > .kicker { color: var(--ink-soft); font-size: 14.5px; margin: 0 0 14px; }
+  details.sources summary { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -531,8 +509,8 @@
     <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="today.html">Today</a>
-      <a href="learn.html" aria-current="page">Learn</a>
-      <a href="quiz.html">Practice</a>
+      <a href="learn.html" aria-current="page">Course</a>
+      <a href="review.html">Review</a>
       <a href="exam.html">Exam</a>
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
@@ -547,9 +525,6 @@
 
 <main id="main">
 <!-- partial:tabs -->
-<nav class="tabs" aria-label="Learn">
-  <div class="container"><a href="learn.html" aria-current="page">Course</a><a href="start.html">Find your level</a><a href="cheatsheets.html">Cheat sheets</a><a href="roadmap.html">Grammar reference</a></div>
-</nav>
 <!-- /partial:tabs -->
   <div class="learn">
     <aside class="side" id="side" aria-label="Course modules"></aside>
@@ -578,14 +553,14 @@
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
-        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+        <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
         <h4>Study</h4>
         <ul>
           <li><a href="today.html">Today</a></li>
-          <li><a href="learn.html">Learn</a></li>
-          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="learn.html">Course</a></li>
+          <li><a href="review.html">Review</a></li>
           <li><a href="exam.html">Exam</a></li>
         </ul>
       </div>
@@ -594,7 +569,7 @@
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
-          <li><a href="guides.html">Exam guides</a></li>
+          <li><a href="prep.html">Exam prep</a></li>
           <li><a href="whats-new.html">What's new</a></li>
         </ul>
       </div>
@@ -653,10 +628,8 @@
   };
   /* one hue per kind of section, the same in every module */
   var SEC = {
-    lessons: ["blue", "Lessons", "learn"], sounds: ["cyan", "Say it right", "sound"], mistakes: ["rose", "Common mistakes", "warn"],
-    speak: ["orange", "Speak it", "speak"], vocab: ["indigo", "Vocabulary", "vocab"], builder: ["magenta", "Answer builder", "build"],
-    check: ["amber", "Check yourself", "check"], done: ["green", "Finish", "done"],
-    write: ["violet", "Write it", "build"]
+    lessons: ["blue", "Lessons", "learn"], practice: ["violet", "Practice", "build"],
+    check: ["amber", "Check", "check"], done: ["green", "Done", "done"]
   };
 
   var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
@@ -822,10 +795,10 @@
     var done = M.filter(function (m) { return isDone(m.id); }).length;
     var html = "<div class='hero-l'><div class='hero-split'><div><span class='eyebrow'>The course</span>" +
       "<h1>From your first French sounds to NCLC 5</h1>" +
-      "<p class='lead'>" + M.length + " modules in the order research and the CEFR say you should learn them. Each one explains the grammar properly, shows you how to pronounce it, flags the mistakes English speakers make, gets you speaking out loud, and checks that it stuck.</p>" +
+      "<p class='lead'>" + M.length + " modules in the order research and the CEFR say you should learn them. Every module works the same way: short lessons, quick practice, a check, done.</p>" +
       "</div><div class='hero-art tool' data-art aria-hidden='true'></div></div>" +
       "<div class='practice-row'>" + (next ? "<a class='btn btn-primary btn-lg' href='#" + next.id + "'>" + (done || Object.keys(prog).length ? "Continue: " : "Start: ") + esc(next.title) + "</a>" : "<a class='btn btn-primary btn-lg' href='exam.html'>Take a mock exam</a>") +
-      "<a class='btn btn-lg' href='#method'>How this course works</a></div>" + placementNote() + streakHtml(false) + "</div>" +
+      "<a class='btn btn-lg' href='cheatsheets.html'>Cheat sheets (PDF)</a></div>" + placementNote() + streakHtml(false) + "</div>" +
       "<div class='path' aria-label='Course levels'>";
     LEVELS.forEach(function (L) {
       var list = M.filter(function (m) { return m.level === L.id; });
@@ -837,7 +810,7 @@
     html += "</div><div class='principles'>" +
         "<div class='principle " + hue("blue") + "'><span class='pi'>" + ICONS.check + "</span><b>Retrieve, don't reread</b><span>Testing yourself beats re-studying for long-term memory. Every module ends with a check.</span></div>" +
         "<div class='principle " + hue("cyan") + "'><span class='pi'>" + ICONS.loop + "</span><b>Space it out</b><span>Come back to old modules days later. Spaced review beats cramming for retention.</span></div>" +
-        "<div class='principle " + hue("orange") + "'><span class='pi'>" + ICONS.speak + "</span><b>Speak from day one</b><span>Producing French shows you the gaps that reading hides. Every module has a speaking drill.</span></div>" +
+        "<div class='principle " + hue("orange") + "'><span class='pi'>" + ICONS.speak + "</span><b>Say it out loud</b><span>Producing French shows you the gaps that reading hides. Say every example as you read.</span></div>" +
         "<div class='principle " + hue("magenta") + "'><span class='pi'>" + ICONS.mix + "</span><b>Mix your practice</b><span>Interleaving topics feels harder but produces better retention a week later.</span></div>" +
       "</div><div class='levels'>";
     LEVELS.forEach(function (L) {
@@ -850,7 +823,7 @@
       list.forEach(function (m) {
         html += "<a class='mod-card" + (isDone(m.id) ? " done" : "") + "' href='#" + m.id + "'>" +
           "<div class='top'><span class='num'><i>" + m.num + "</i>Module</span>" + (isDone(m.id) ? "<span class='ok'>✓ Done</span>" : "") + "</div>" +
-          "<span class='t'>" + esc(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span><span class='hrs'>" + esc(m.hours) +
+          "<span class='t'>" + esc(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span><span class='hrs'>" + esc(modMinutes(m)) +
           (!isDone(m.id) && modProgress(m).pct ? " · " + modProgress(m).pct + "% done" : "") + "</span>" +
           (!isDone(m.id) && modProgress(m).pct ? "<span class='mbar' aria-hidden='true'><i style='width:" + modProgress(m).pct + "%'></i></span>" : "") + "</a>";
       });
@@ -910,33 +883,39 @@
     var idx = M.indexOf(m);
     var prev = M[idx - 1], next = M[idx + 1];
     var L = levelOf(m.level);
-    /* "focus" modules (the TCF speaking kits) show only the lessons and the check */
+    /* every module has the same four steps: Lessons → Practice → Check → Done.
+       "focus" modules (the TCF speaking kits) have no Practice step. */
     var F = !!m.focus;
-    var chips = [["overview", "Overview", L.hue], ["lessons"]];
-    if (!F && m.sounds) chips.push(["sounds"]);
-    if (!F && m.mistakes) chips.push(["mistakes"]);
-    if (!F && WR[m.id]) chips.push(["write"]);
-    if (!F && m.vocab) chips.push(["vocab"]);
-    if (!F && m.builder) chips.push(["builder"]);
-    if (m.quiz) chips.push(["check"]);
+    var hasTry = !F && (PR.data[m.id] || []).some(function (x) { return x && x.length; });
+    var hasWrite = !F && !!WR[m.id];
+    var chips = [["lessons"]];
+    if (hasTry) chips.push(["practice"]);
+    if (m.quiz || hasWrite) chips.push(["check"]);
     chips.push(["done"]);
+    var mins = modMinutes(m);
 
     var h = "<div class='mod-head " + hue(L.hue) + "'><span class='big' aria-hidden='true'>" + ("0" + m.num).slice(-2) + "</span>" +
       "<span class='lvl'><i>" + esc(L.tag) + "</i>Module " + m.num + " · " + esc(L.name) + "</span>" +
       "<h1>" + esc(m.title) + "</h1><p class='subtitle'>" + esc(m.subtitle) + "</p>" +
-      "<div class='meta'><span class='pill'>⏱ " + esc(m.hours) + "</span><span class='pill'>" + m.lessons.length + " lessons</span>" +
-      (m.quiz ? "<span class='pill'>" + m.quiz.length + "-question check</span>" : "") + (isDone(m.id) ? "<span class='pill done'>✓ Completed</span>" : "") +
+      "<div class='meta'><span class='pill'>⏱ " + esc(mins) + "</span><span class='pill'>" + m.lessons.length + " lessons</span>" +
+      (isDone(m.id) ? "<span class='pill done'>✓ Completed</span>" : "") +
       "<a class='pill mring' id='mring' href='#" + m.id + "/done' style='--p:" + modProgress(m).pct + "' title='Your progress in this module'><i aria-hidden='true'></i><span>" + modProgress(m).pct + "% done</span></a>" +
-      "<button type='button' class='pill en-toggle' id='en-toggle' aria-pressed='" + (showEn() ? "true" : "false") + "' title='Show or hide English translations'><span class='sw' aria-hidden='true'></span><span>" + (showEn() ? "English on" : "English off") + "</span></button></div></div>" +
-      "<nav class='toc-bar' id='toc' aria-label='Sections in this module'>" + chips.map(function (c) {
+      "<button type='button' class='pill en-toggle' id='en-toggle' aria-pressed='" + (showEn() ? "true" : "false") + "' title='Show or hide English translations'><span class='sw' aria-hidden='true'></span><span>" + (showEn() ? "English on" : "English off") + "</span></button></div>" +
+      (m.goals ? "<ul class='goals'>" + m.goals.map(function (g) { return "<li>" + g + "</li>"; }).join("") + "</ul>" : "") + "</div>" +
+      "<nav class='toc-bar steps' id='toc' aria-label='Steps in this module'>" + chips.map(function (c, n) {
         var s = SEC[c[0]];
-        return "<a class='" + hue(c[2] || s[0]) + "' data-sec='" + c[0] + "' href='#" + m.id + "/" + c[0] + "'>" + (c[1] || s[1]) + "</a>";
+        return "<a class='" + hue(s[0]) + "' data-sec='" + c[0] + "' href='#" + m.id + "/" + c[0] + "'><i>" + (n + 1) + "</i>" + s[1] + "</a>";
       }).join("") + "</nav>";
 
-    h += "<section class='block " + hue(L.hue) + "' id='sec-overview'><h2><span class='ic'>" + ICONS.goal + "</span>Why this, and why now</h2><div class='why'>" + m.why + "</div>" +
-      (m.goals ? "<ul class='goals'>" + m.goals.map(function (g) { return "<li>" + g + "</li>"; }).join("") + "</ul>" : "") + "</section>";
+    /* pronunciation points and common mistakes sit inside the lesson they belong to */
+    var nL = m.lessons.length;
+    function at(x) { return x == null || x < 0 || x >= nL ? nL - 1 : x; }
+    var SND = {}, MIS = {};
+    var NT = (PR.notes || {})[m.id] || { m: [], s: [] };
+    if (!F && m.sounds) m.sounds.points.forEach(function (p, k) { (SND[at(NT.s[k])] = SND[at(NT.s[k])] || []).push(p); });
+    if (!F && m.mistakes) m.mistakes.forEach(function (x, k) { (MIS[at(NT.m[k])] = MIS[at(NT.m[k])] || []).push(x); });
 
-    h += secHead("lessons", "Lessons", "Read each lesson, then say every example out loud before you move on.");
+    h += secHead("lessons", "Lessons", "Read each lesson and say the examples out loud.");
     var VIS = window.NCLC_VISUALS ? NCLC_VISUALS.data[m.id] || [] : [];
     m.lessons.forEach(function (Ls, i) {
       h += "<article class='lesson' id='sec-l" + i + "'><h3><span class='n" + (tried(m.id, i) ? " tried" : "") + "'>" + m.num + "." + (i + 1) + "</span><span>" + Ls.title + "</span></h3>" +
@@ -949,64 +928,46 @@
         }).join("") + "</ul>";
       }
       if (Ls.tip) h += "<div class='tipbox'><b>Tip · </b>" + Ls.tip + "</div>";
-      if (!F) h += tryBlock(m, i);
+      (SND[i] || []).forEach(function (p) {
+        h += "<div class='sound-card'><span class='note-k'>" + ICONS.sound + "Say it right</span><h4>" + p.title + "</h4><div class='body'>" + p.body + "</div>" +
+          (p.say && canSpeak() ? "<div class='pairs'>" + p.say.map(function (s) { return "<button type='button' data-say='" + esc(strip(s)) + "'>" + SPK + "<span class='pw'><span>" + s + "</span>" + glB(s) + "</span></button>"; }).join("") + "</div>" : "") +
+          "</div>";
+      });
+      if (MIS[i]) {
+        h += "<div class='watch'><span class='note-k'>" + ICONS.warn + "Watch out</span><ul>" + MIS[i].map(function (x) {
+          return "<li><span class='w'>" + x[0] + "</span><span class='r'>" + x[1] + glB(x[1]) + "</span><span class='y'>" + x[2] + "</span></li>";
+        }).join("") + "</ul></div>";
+      }
       h += "<div class='lesson-foot'>" + reportBtn("Module " + m.num + " · Lesson " + m.num + "." + (i + 1) + ": " + strip(Ls.title)) + "</div></article>";
     });
     h += "</section>";
 
-    if (!F && m.sounds) {
-      h += secHead("sounds", "Say it right", canSpeak() ? "Tap any word to hear it, then copy it straight away." : "") +
-        (m.sounds.intro ? "<div class='why'>" + m.sounds.intro + "</div>" : "");
-      m.sounds.points.forEach(function (p) {
-        h += "<div class='sound-card'><h3>" + p.title + "</h3><div class='body'>" + p.body + "</div>" +
-          (p.say && canSpeak() ? "<div class='pairs'>" + p.say.map(function (s) { return "<button type='button' data-say='" + esc(strip(s)) + "'>" + SPK + "<span class='pw'><span>" + s + "</span>" + glB(s) + "</span></button>"; }).join("") + "</div>" : "") +
-          "</div>";
+    if (hasTry) {
+      h += secHead("practice", "Practice", "Quick questions on each lesson. Anything you miss goes to your Daily review.");
+      m.lessons.forEach(function (Ls, i) {
+        var t = tryBlock(m, i);
+        if (t) h += "<div class='p-set' id='sec-p" + i + "'><h3><a href='#" + m.id + "/l" + i + "'>" + m.num + "." + (i + 1) + "</a> " + Ls.title + "</h3>" + t + "</div>";
       });
       h += "</section>";
     }
 
-    if (!F && m.mistakes) {
-      h += secHead("mistakes", "Mistakes English speakers make", "Examiners notice these first. Learn the right version now so it becomes automatic.") +
-        "<table class='mistakes'><thead><tr><th>Not this</th><th>But this</th><th>Why</th></tr></thead><tbody>" +
-        m.mistakes.map(function (x) { return "<tr><td class='w'>" + x[0] + "</td><td class='r'>" + x[1] + glB(x[1]) + "</td><td class='y'>" + x[2] + "</td></tr>"; }).join("") +
-        "</tbody></table></section>";
+    if (m.quiz || hasWrite) {
+      h += secHead("check", "Check", "Answer without looking back. Score 80% to pass.");
+      if (m.quiz) h += "<div id='quiz'></div><div class='quiz-score' id='qscore'></div>";
+      if (hasWrite) h += writeBlock(m);
+      h += "</section>";
     }
 
-    if (!F) h += writeBlock(m);
-
-    if (!F && m.vocab) {
-      h += secHead("vocab", "Key vocabulary", m.vocab.length + " words and phrases to own for this topic.") + "<div class='vocab-grid'>" +
-        m.vocab.map(function (v) { return "<div class='vocab-item'><div><div class='frx'>" + v[0] + "</div><div class='enx'>" + v[1] + "</div></div>" + sayBtn(v[0]) + "</div>"; }).join("") +
-        "</div></section>";
-    }
-
-    if (!F && m.builder) {
-      var secs = m.builder.seconds || 270, clk = Math.floor(secs / 60) + ":" + ("0" + secs % 60).slice(-2);
-      h += secHead("builder", esc(m.builder.title || "Answer builder")) +
-        (m.builder.intro ? "<div class='why' style='margin-bottom:16px'>" + m.builder.intro + "</div>" : "") +
-        "<div class='builder'><div class='b-form' id='b-form'></div><div class='b-preview'>" +
-        "<div class='b-bar'><button type='button' class='btn btn-primary btn-sm' id='b-timer'>▶ Start " + clk + " timer</button>" +
-        "<span class='b-clock' id='b-clock'>" + clk + "</span>" +
-        (canSpeak() ? "<button type='button' class='btn btn-sm' id='b-read'>Read it to me</button>" : "") +
-        "<button type='button' class='btn btn-sm' id='b-example'>Fill with the example</button><button type='button' class='btn btn-ghost btn-sm' id='b-clear'>Clear</button></div>" +
-        "<div class='b-meta' id='b-meta'></div><div id='b-out'></div></div></div></section>";
-    }
-
-    if (m.quiz) {
-      h += secHead("check", "Check yourself", "Answer before you look back at the lessons — the effort of recalling is what makes it stick.") +
-        "<div id='quiz'></div><div class='quiz-score' id='qscore'></div></section>";
-    }
-
-    h += secHead("done", "Finish the module") + "<div class='finish'>" +
+    h += secHead("done", "Done") + "<div class='finish'>" +
       "<div><ul class='auto-list' id='auto-list'>" + autoList(m) + "</ul>" +
-      "<div class='practice-row' style='margin-top:14px'>" + (m.practice || []).map(function (p) { return "<a class='btn btn-sm' href='" + p[1] + "'>" + esc(p[0]) + " →</a>"; }).join("") +
-        "<a class='btn btn-sm' href='cheatsheets.html?m=" + m.id + "'>↓ One-page cheat sheet (PDF)</a></div>" +
+      (m.vocab && m.vocab.length ? "<p class='auto-note'>This module's " + m.vocab.length + " key words are added to your <a href='review.html'>Daily review</a> automatically.</p>" : "") +
+      "<div class='practice-row' style='margin-top:14px'><a class='btn btn-sm' href='cheatsheets.html?m=" + m.id + "'>↓ One-page cheat sheet (PDF)</a></div>" +
       "</div><button type='button' class='btn " + (isDone(m.id) ? "" : "btn-primary") + "' id='done-btn'>" + (isDone(m.id) ? "✓ Completed — mark as not done" : "Mark module complete") + "</button></div>" +
       "<p class='auto-note'>The list ticks itself as you go. When every part is done, the module is marked complete for you.</p>" +
       "<div class='lesson-foot'>" + reportBtn("Module " + m.num + ": " + m.title, "Spotted a mistake anywhere in this module? Tell us") + "</div>";
     if (m.sources) {
-      h += "<div class='sources' style='margin-top:18px'><b>Research behind this module</b><ol>" +
-        m.sources.map(function (s) { return "<li>" + (s[1] ? "<a href='" + s[1] + "' target='_blank' rel='noopener'>" + s[0] + "</a>" : s[0]) + "</li>"; }).join("") + "</ol></div>";
+      h += "<details class='sources' style='margin-top:18px'><summary><b>Research behind this module</b></summary><ol>" +
+        m.sources.map(function (s) { return "<li>" + (s[1] ? "<a href='" + s[1] + "' target='_blank' rel='noopener'>" + s[0] + "</a>" : s[0]) + "</li>"; }).join("") + "</ol></details>";
     }
     h += "</section>";
 
@@ -1075,7 +1036,6 @@
 
     wireToc(m);
     if (m.quiz) buildQuiz(m);
-    if (!m.focus && m.builder) wireBuilder(m);
     refreshProgress(m.id);
   }
 
@@ -1124,93 +1084,6 @@
       });
       box.appendChild(d);
     });
-  }
-
-  var shadowRun = 0;
-  /* ---------- answer builder ----------
-     Fields fill the {slots} of the template parts; the assembled answer is
-     saved per module so learners can come back to their own versions. */
-  var BUILD_KEY = "nclc5-builder";
-  var stopBuilderTimer = null;
-  function wireBuilder(m) {
-    var B = m.builder;
-    var store = {};
-    try { store = JSON.parse(localStorage.getItem(BUILD_KEY) || "{}") || {}; } catch (e) { store = {}; }
-    var vals = store[m.id] || {};
-    var form = document.getElementById("b-form"), out = document.getElementById("b-out"), meta = document.getElementById("b-meta");
-    var html = "";
-    B.groups.forEach(function (g) {
-      html += "<div class='b-group'><h4>" + esc(g.title) + "</h4>";
-      g.fields.forEach(function (f) {
-        html += "<div class='b-field'><label for='bf-" + f.id + "'>" + esc(f.label) + (f.pre ? " <span class='pre'>" + esc(f.pre) + "</span>" : "") + "</label>" +
-          "<textarea id='bf-" + f.id + "' data-f='" + f.id + "' rows='2' lang='fr' spellcheck='true' placeholder='" + esc(f.ph || "") + "'></textarea></div>";
-      });
-      html += "</div>";
-    });
-    form.innerHTML = html;
-    form.querySelectorAll("textarea").forEach(function (t) { t.value = vals[t.getAttribute("data-f")] || ""; });
-
-    function clean(v) { return String(v || "").trim().replace(/[.?!\s]+$/, ""); }
-    function assemble(asText) {
-      return B.parts.map(function (part) {
-        var body = part.text.replace(/\{(\w+)\}/g, function (_, id) {
-          var v = clean(vals[id]);
-          if (asText) return v || "…";
-          return v ? "<span class='slot'>" + esc(v) + "</span>" : "<span class='gap'>" + esc(id) + "</span>";
-        });
-        if (asText) return body;
-        var tr = en(part.text);
-        if (tr) tr = esc(tr).replace(/\{(\w+)\}/g, function (_, id) { var v = clean(vals[id]); return v ? "<i>" + esc(v) + "</i>" : "…"; });
-        return "<div class='b-part'><h5>" + esc(part.title) + "</h5><p>" + body + "</p>" + (tr ? "<p class='gl-b' lang='en'>" + tr + "</p>" : "") + "</div>";
-      }).join(asText ? " " : "");
-    }
-    function render() {
-      out.innerHTML = assemble(false);
-      var text = assemble(true);
-      var words = text.split(/\s+/).filter(Boolean).length;
-      var filled = B.groups.reduce(function (n, g) { return n + g.fields.filter(function (f) { return clean(vals[f.id]); }).length; }, 0);
-      var total = B.groups.reduce(function (n, g) { return n + g.fields.length; }, 0);
-      meta.textContent = filled + " of " + total + " blanks filled · about " + words + " words ≈ " + Math.max(1, Math.round(words / 110 * 60 / 10) * 10) + " seconds at a steady B1 pace";
-    }
-    var saveT = null;
-    form.addEventListener("input", function (e) {
-      var t = e.target.closest("textarea"); if (!t) return;
-      vals[t.getAttribute("data-f")] = t.value;
-      render();
-      clearTimeout(saveT);
-      saveT = setTimeout(function () { store[m.id] = vals; try { localStorage.setItem(BUILD_KEY, JSON.stringify(store)); } catch (err) {} }, 400);
-    });
-    document.getElementById("b-example").addEventListener("click", function () {
-      var has = B.groups.some(function (g) { return g.fields.some(function (f) { return clean(vals[f.id]); }); });
-      if (has && !confirm("Replace your answers with the example?")) return;
-      vals = JSON.parse(JSON.stringify(B.example));
-      form.querySelectorAll("textarea").forEach(function (t) { t.value = vals[t.getAttribute("data-f")] || ""; });
-      store[m.id] = vals; try { localStorage.setItem(BUILD_KEY, JSON.stringify(store)); } catch (err) {}
-      render();
-    });
-    document.getElementById("b-clear").addEventListener("click", function () {
-      if (!confirm("Clear all your answers?")) return;
-      vals = {}; form.querySelectorAll("textarea").forEach(function (t) { t.value = ""; });
-      store[m.id] = vals; try { localStorage.setItem(BUILD_KEY, JSON.stringify(store)); } catch (err) {}
-      render();
-    });
-    var rd = document.getElementById("b-read");
-    if (rd) rd.addEventListener("click", function () { say(assemble(true).replace(/…/g, ""), rd); });
-
-    var total = B.seconds || 270, left = total, tick = null, clock = document.getElementById("b-clock"), tb = document.getElementById("b-timer");
-    function fmt(n) { return Math.floor(n / 60) + ":" + ("0" + n % 60).slice(-2); }
-    function stopT() { clearInterval(tick); tick = null; tb.textContent = "▶ Start " + fmt(total) + " timer"; }
-    stopBuilderTimer = stopT;
-    tb.addEventListener("click", function () {
-      if (tick) { stopT(); left = total; clock.textContent = fmt(left); clock.classList.remove("low"); return; }
-      left = total; clock.textContent = fmt(left);
-      tb.textContent = "■ Stop";
-      tick = setInterval(function () {
-        left--; clock.textContent = fmt(Math.max(0, left)); clock.classList.toggle("low", left <= 30);
-        if (left <= 0) { stopT(); if (window.NCLC) window.NCLC.toast("Time! How much of your structure did you get through?"); }
-      }, 1000);
-    });
-    render();
   }
 
   /* ---------- "Try it" practice, missed answers and level checkpoints ---------- */
@@ -1309,12 +1182,25 @@
 
   /* ---------- module progress: what you've actually done ---------- */
   var WR = window.NCLC_WRITING || {};
+  /* an honest time estimate: reading the lessons, the practice, the check and the writing task */
+  function modMinutes(m) {
+    var w = 0, cnt = function (t) { return String(t || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length; };
+    m.lessons.forEach(function (Ls) {
+      w += cnt(Ls.body) + cnt(Ls.after) + cnt(Ls.tip);
+      (Ls.tables || (Ls.table ? [Ls.table] : [])).forEach(function (t) { t.rows.forEach(function (r) { w += cnt(r.join(" ")); }); });
+      (Ls.examples || []).forEach(function (e) { w += cnt(e[0]) * 2 + cnt(e[1]); });
+    });
+    var tries = m.focus ? 0 : (PR.data[m.id] || []).reduce(function (n, x) { return n + (x ? x.length : 0); }, 0);
+    var min = w / 100 + tries * 0.4 + (m.quiz ? m.quiz.length * 0.5 : 0) + (!m.focus && WR[m.id] ? 10 : 0);
+    min = Math.max(15, Math.round(min / 5) * 5);
+    return min < 60 ? "about " + min + " min" : "about " + (Math.round(min / 15) / 4).toString().replace(".25", "¼").replace(".5", "½").replace(".75", "¾") + " h";
+  }
   function modProgress(m) {
     var p = prog[m.id] || {}, parts = [];
     var withTry = m.focus ? [] : m.lessons.map(function (_, i) { return i; }).filter(function (i) { return ((PR.data[m.id] || [])[i] || []).length; });
     var tried = withTry.filter(function (i) { return p.tried && p.tried[i]; }).length;
-    if (withTry.length) parts.push({ key: "lessons", label: "Practise every lesson (Try it)", sub: tried + " of " + withTry.length, ratio: tried / withTry.length, w: 4 });
-    if (!m.focus && WR[m.id]) parts.push({ key: "write", label: "Write it: complete the writing task", ratio: p.wrote ? 1 : 0, w: 1 });
+    if (withTry.length) parts.push({ key: "lessons", label: "Answer the practice questions for every lesson", sub: tried + " of " + withTry.length, ratio: tried / withTry.length, w: 4 });
+    if (!m.focus && WR[m.id]) parts.push({ key: "write", label: "Complete the writing task", ratio: p.wrote ? 1 : 0, w: 1 });
     if (m.quiz) parts.push({ key: "check", label: "Score 80% on the check", sub: p.best ? "best " + p.best + "%" : "", ratio: (p.best || 0) >= 80 ? 1 : 0, w: 2 });
     var tw = parts.reduce(function (n, x) { return n + x.w; }, 0) || 1;
     var pct = Math.round(parts.reduce(function (n, x) { return n + x.ratio * x.w; }, 0) / tw * 100);
@@ -1324,7 +1210,7 @@
     return modProgress(m).parts.map(function (x) {
       var ok = x.ratio >= 1;
       return "<li class='" + (ok ? "ok" : "") + "'><span class='ai' aria-hidden='true'>" + (ok ? "✓" : "") + "</span>" +
-        "<a href='#" + m.id + "/" + (x.key === "lessons" ? "lessons" : x.key) + "'>" + x.label + "</a>" + (x.sub ? "<small>" + x.sub + "</small>" : "") +
+        "<a href='#" + m.id + "/" + (x.key === "lessons" ? "practice" : x.key) + "'>" + x.label + "</a>" + (x.sub ? "<small>" + x.sub + "</small>" : "") +
         "<span class='sr-only'>" + (ok ? "done" : "not done yet") + "</span></li>";
     }).join("");
   }
@@ -1355,14 +1241,14 @@
     var w = WR[m.id];
     if (!w) return "";
     var d = drafts()[m.id] || "";
-    return secHead("write", "Write it", "A short exam-style task with this module's grammar. The checklist updates as you type.") +
+    return "<div class='wr-wrap' id='sec-write'><h3 class='sub-h'>Write it</h3><p class='kicker'>A short exam-style task using this module's grammar. The checklist updates as you type.</p>" +
       "<div class='wr'><div class='wr-prompt'><b lang='fr'>" + esc(w.prompt) + "</b><span>" + esc(w.en) + "</span><span class='wr-len'>" + w.min + "–" + w.max + " words</span></div>" +
       "<div class='wr-grid'><div><textarea id='wr-text' lang='fr' rows='8' spellcheck='true' aria-label='Your text' placeholder='Écrivez ici…'>" + esc(d) + "</textarea>" +
       "<div class='wr-meter'><span id='wr-count'>0 words</span><span class='wr-bar'><i id='wr-bar'></i></span></div>" +
       "<div class='practice-row'><button type='button' class='btn btn-sm' id='wr-model'>Show a model answer</button><button type='button' class='btn btn-sm' id='wr-copy'>Copy for my teacher</button></div></div>" +
       "<div class='wr-side'><b class='wr-h'>Checklist</b><ul class='wr-checks' id='wr-checks'></ul><div id='wr-watch'></div><p class='wr-done' id='wr-done' hidden>✓ Task complete — compare with the model answer.</p></div></div>" +
       "<div class='wr-model' id='wr-modelbox' hidden><b>Model answer</b><p lang='fr'>" + esc(w.model).replace(/\n/g, "<br>") + "</p><p class='wr-en'>" + esc(w.modelEn || "").replace(/\n/g, "<br>") + "</p>" +
-      "<p class='wr-note'>The checklist looks for evidence of each structure; it can't judge every sentence. Compare your text with this model, line by line.</p></div></div></section>";
+      "<p class='wr-note'>The checklist looks for evidence of each structure; it can't judge every sentence. Compare your text with this model, line by line.</p></div></div></div>";
   }
   function wireWriting(m) {
     var w = WR[m.id], ta = document.getElementById("wr-text");
@@ -1462,8 +1348,6 @@
 
   /* ---------- routing ---------- */
   function route() {
-    shadowRun++;
-    if (stopBuilderTimer) { stopBuilderTimer(); stopBuilderTimer = null; }
     if (Speech) Speech.stop();
     var h = decodeURIComponent(location.hash.replace(/^#/, ""));
     var parts = h.split("/");

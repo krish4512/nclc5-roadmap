@@ -162,23 +162,6 @@ body += (f'<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="340" y="7
          + t(399, 154, "10", 44, 800, "", "middle", 'fill="#fff"') + t(399, 180, "cards due", 13, 600, "", "middle", 'fill="#fff" fill-opacity=".85"') + '</g>')
 svg("review", body, label="A memory curve that climbs back up at each spaced review, with 10 cards due today")
 
-# ---------------------------------------------------------------- conjugate
-conj = [("je", "étais", False), ("tu", "étais", False), ("nous", "étions", True), ("ils", "étaient", False)]
-body = card(44, 34, 306, 292)
-body += fr(68, 92, "être", 44) + t(160, 90, "to be", 15, 600, "t-mute") + speaker(318, 76, 17)
-body += '<rect x="68" y="110" width="258" height="38" rx="19" class="c-soft"/><rect x="154" y="114" width="96" height="30" rx="15" fill="url(#gh)"/>'
-body += t(111, 134, "Présent", 13, 700, "t-mute", "middle") + t(202, 134, "Imparfait", 13, 700, "", "middle", 'fill="#fff"') + t(288, 134, "Futur", 13, 700, "t-mute", "middle")
-for i, (p, v, hl) in enumerate(conj):
-    y0 = 162 + i * 38
-    if hl:
-        body += f'<rect x="60" y="{y0}" width="274" height="36" rx="11" class="c-soft2"/>'
-    elif i < 3 and not conj[i + 1][2]:
-        body += f'<rect x="72" y="{y0+37}" width="250" height="1" class="c-line"/>'
-    body += t(78, y0 + 24, p, 15, 600, "t-mute") + t(148, y0 + 25, v, 19, 800, "t-ink" if not hl else "", "start", 'fill="url(#gh)"' if hl else "")
-body += pill(332, 130, 126, 46, fr(395, 160, "je serai", 19, "middle"), anim="fl2")
-body += pill(332, 232, 126, 46, fr(395, 262, "j'ai été", 19, "middle"))
-svg("conjugate", body, label="The verb être conjugated in the imparfait, with other tenses beside it")
-
 
 # ---------------------------------------------------------------- speak (listen & repeat)
 def wave(x, cy, n, fill, seed, step=12, hmax=34):

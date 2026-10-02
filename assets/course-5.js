@@ -8,7 +8,6 @@ window.COURSE.modules.push({
   level: "Exam",
   title: "TCF speaking task 3: your answer template",
   subtitle: "A memorised five-part structure — opening, argument, bridge, counterpoint, conclusion — that you adapt to any opinion question.",
-  hours: "about 1 h",
   focus: true,
   why: "<p>In TCF Canada speaking <b>task 3</b>, the examiner asks your opinion on a question and you speak for about <b>4 minutes 30</b>, <b>with no preparation</b>. The trick is a memorised five-part template: the phrases come out automatically, so you only have to think of ideas.</p>",
   goals: [
@@ -173,7 +172,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Il vaut mieux qu'un équilibre ___ maintenu.</span>", o: ["est", "soit", "sera"], a: 1, why: "il vaut mieux que triggers the subjunctive (Module 15)." },
     { q: "Why memorise the opening word for word?", o: ["Examiners give points for length only", "It gives you fluent speech while your mind finds arguments — fixed phrases reduce the load", "It replaces the need for arguments"], a: 1, why: "Automatic formulaic phrases free attention for content; learners who use them are perceived as more proficient (Boers et al., 2006)." }
   ],
-  practice: [["Speaking mock with timers", "exam.html?s=speaking"], ["Connectors & arguments module", "learn.html#argue"], ["Opinions vocabulary", "quiz.html?set=vocab-opinions"]],
   sources: [
     ["Boers, F., Eyckmans, J., Kappel, J., Stengers, H. & Demecheleer, M. (2006). Formulaic sequences and perceived oral proficiency: putting a Lexical Approach to the test. Language Teaching Research, 10(3), 245–261.", "https://journals.sagepub.com/doi/10.1191/1362168806lr195oa"],
     ["TCF Canada — expression orale, task formats and timing.", "https://tcf-canada.ca/expression-orale/"],

@@ -9,7 +9,7 @@ Each page marks the regions this script owns:
     <!-- partial:tabs -->         ... <!-- /partial:tabs -->      (the section's tabs)
     <!-- partial:art NAME -->     ... <!-- /partial:art -->       (assets/art/NAME.svg, inlined)
 
-KEY is the section to highlight (today, learn, practice, exam) or "none".
+KEY is the section to highlight (today, learn, review, exam) or "none".
 Tabs work out the section and active tab from the page's file name (TABS).
 Edit the templates below, then run from the repository root:
 
@@ -45,39 +45,25 @@ HEAD = """<!-- partial:head -->
 <!-- /partial:head -->"""
 
 # ---------------------------------------------------------------------------
-# Site structure: four sections, each with a few tabs. Nothing else.
-#   Today    — your daily hub
-#   Learn    — the course and what supports it
-#   Practice — make it automatic
-#   Exam     — prove it
-# Tabs (and footer links) only appear once their page exists, so nothing
-# ever links to a missing page.
+# Site structure: four places to go. Nothing else.
+#   Today  — your daily hub
+#   Course — the modules, in order
+#   Review — Daily review (spaced repetition)
+#   Exam   — the mock exam, and Exam prep (speaking topics, writing models, guides)
+# Only the Exam section has tabs. Links only appear once their page exists,
+# so nothing ever links to a missing page.
 # ---------------------------------------------------------------------------
 NAV = [
     ("today", "today.html", "Today"),
-    ("learn", "learn.html", "Learn"),
-    ("practice", "quiz.html", "Practice"),
+    ("learn", "learn.html", "Course"),
+    ("review", "review.html", "Review"),
     ("exam", "exam.html", "Exam"),
 ]
 
 TABS = {
-    "learn": [
-        ("learn.html", "Course"),
-        ("start.html", "Find your level"),
-        ("cheatsheets.html", "Cheat sheets"),
-        ("roadmap.html", "Grammar reference"),
-    ],
-    "practice": [
-        ("review.html", "Daily review"),
-        ("quiz.html", "Drills"),
-        ("conjugate.html", "Verb conjugator"),
-        ("speak.html", "Listen & repeat"),
-    ],
     "exam": [
         ("exam.html", "Mock exam"),
-        ("topics.html", "Speaking topics"),
-        ("writing.html", "Writing models"),
-        ("guides.html", "Guides"),
+        ("prep.html", "Exam prep"),
     ],
 }
 
@@ -89,7 +75,7 @@ def exists(href):
 def section_of(name):
     """Which section a page belongs to, and which tab is active."""
     if name.startswith("guide-"):
-        return "exam", "guides.html"
+        return "exam", "prep.html"
     for sec, tabs in TABS.items():
         for href, _ in tabs:
             if href == name:
@@ -157,8 +143,8 @@ def footer():
         </ul>
       </div>"""
     cols = "\n".join([
-        col("Study", [("today.html", "Today"), ("learn.html", "Learn"), ("quiz.html", "Practice"), ("exam.html", "Exam")]),
-        col("Free", [("start.html", "Find your level"), ("cheatsheets.html", "Cheat sheets"), ("guides.html", "Exam guides"), ("whats-new.html", "What's new")]),
+        col("Study", [("today.html", "Today"), ("learn.html", "Course"), ("review.html", "Review"), ("exam.html", "Exam")]),
+        col("Free", [("start.html", "Find your level"), ("cheatsheets.html", "Cheat sheets"), ("prep.html", "Exam prep"), ("whats-new.html", "What's new")]),
         col("Help", [("pricing.html", "Pricing"), ("contact.html", "Contact & FAQ"), ("privacy.html", "Privacy"), ("terms.html", "Terms")]),
     ])
     return f"""<!-- partial:footer -->
@@ -167,7 +153,7 @@ def footer():
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
-        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+        <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
 {cols}
     </div>

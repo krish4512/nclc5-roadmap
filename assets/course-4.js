@@ -6,7 +6,6 @@ window.COURSE.modules.push({
   level: "B1",
   title: "The conditional: politeness, advice and hypotheses",
   subtitle: "Je voudrais, tu devrais, si j'avais… — the mood of requests, suggestions and imagined situations.",
-  hours: "8–10 h",
   why: "<p>The conditional does three jobs B1 tasks reward directly: it makes requests polite (interaction tasks), it lets you give advice (<span class='fr'>tu devrais, il faudrait</span>), and it lets you argue about hypothetical situations (<span class='fr'>si on interdisait les voitures, l'air serait plus propre</span>). It's also how you soften opinions so they sound measured rather than blunt — which is exactly the tone a persuasive answer needs.</p>",
   goals: [
     "Form the conditional of any verb using the futur stems",
@@ -114,7 +113,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>S'il fait beau demain, nous ___ à la plage.</span>", o: ["irions", "irons", "allions"], a: 1, why: "Real condition: si + présent → futur." },
     { q: "In a news report, <span class='fr'>L'incendie aurait été causé par une cigarette</span> means the cause is…", o: ["confirmed", "reported but not confirmed", "impossible"], a: 1, why: "The journalistic conditional marks unverified information." }
   ],
-  practice: [["Speaking task B: convince", "exam.html?s=speaking"], ["Opinions vocabulary", "quiz.html?set=vocab-opinions"]]
 });
 
 window.COURSE.modules.push({
@@ -122,7 +120,6 @@ window.COURSE.modules.push({
   level: "B1",
   title: "Relative pronouns: building longer sentences",
   subtitle: "Qui, que, où, dont, ce qui, ce que — join ideas the way B1 writers do.",
-  hours: "6–8 h",
   why: "<p>Short, choppy sentences (<span class='fr'>J'ai un ami. Il habite à Gatineau. Il travaille au gouvernement.</span>) are a hallmark of A2 writing. Relative pronouns let you combine them into one fluent sentence — <span class='fr'>J'ai un ami qui habite à Gatineau et qui travaille au gouvernement</span> — which examiners reward as syntactic complexity. They also let you define and explain things when you lack a word (<span class='fr'>c'est l'endroit où on…</span>), a key speaking strategy.</p>",
   goals: [
     "Choose between qui and que by the role of the noun",
@@ -206,7 +203,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>___ m'inquiète, c'est le coût du logement.</span>", o: ["Ce que", "Ce qui", "Qu'est-ce qui"], a: 1, why: "\"What\" is the subject of m'inquiète, and it's not a question → ce qui." },
     { q: "<span class='fr'>La personne avec ___ je travaille est très sympathique.</span>", o: ["que", "qui", "laquelle"], a: 1, why: "After a preposition, people take qui (lequel/laquelle is possible but qui is standard for people)." }
   ],
-  practice: [["Writing task 2 (opinion)", "exam.html?s=writing"]]
 });
 
 window.COURSE.modules.push({
@@ -214,7 +210,6 @@ window.COURSE.modules.push({
   level: "B1",
   title: "The subjunctive: necessity, wishes, feelings and doubt",
   subtitle: "Il faut que, je veux que, je suis content que, bien que — the triggers you actually need at B1.",
-  hours: "8–10 h",
   why: "<p>The present subjunctive is part of the B1 grammar inventory used by French teaching frameworks, and it appears constantly in everyday expressions — <span class='fr'>il faut que tu viennes, je veux que ça marche, avant que je parte</span>. You don't need every rule: you need the common triggers, the handful of irregular forms, and the ability to avoid it when you're unsure. Used correctly once or twice in a writing task, it's a clear signal of B1-level range.</p>",
   goals: [
     "Form the present subjunctive of regular and the 8 key irregular verbs",
@@ -333,7 +328,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Je suis surpris qu'il ___ déjà parti.</span>", o: ["est", "soit", "sera"], a: 1, why: "Emotion + que + different subject → subjunctive." },
     { q: "<span class='fr'>Bien qu'il ___ froid, on sort.</span>", o: ["fait", "fasse", "ferait"], a: 1, why: "bien que always takes the subjunctive." }
   ],
-  practice: [["Writing task 2 (opinion)", "exam.html?s=writing"]],
   sources: [
     ["Cap sur le FLE — Le subjonctif présent (B1).", "https://capsurlefle.com/fiche-de-grammaire-subjonctif-present-b1/"]
   ]
@@ -344,7 +338,6 @@ window.COURSE.modules.push({
   level: "B1",
   title: "Connectors, arguments and register",
   subtitle: "Structure an opinion, defend it, concede a point, and switch between formal and informal French.",
-  hours: "8–10 h",
   why: "<p>This is the module that most directly converts grammar into points. The TCF writing task 3, the TEF writing section B and the argumentative speaking tasks all assess whether you can <b>present a viewpoint, support it with reasons and examples, acknowledge the other side, and conclude</b> — in a register that fits the situation. Connectors are the visible skeleton examiners look for; register errors (writing <span class='fr'>salut</span> to an employer) are penalised.</p>",
   goals: [
     "Use connectors of cause, consequence, contrast, concession, addition and conclusion",
@@ -450,7 +443,6 @@ window.COURSE.modules.push({
     { q: "Which sentence is grammatical?", o: ["Car je suis malade, je ne viens pas.", "Comme je suis malade, je ne viens pas.", "Je ne viens pas comme je suis malade."], a: 1, why: "comme opens the sentence; car can't." },
     { q: "You can't remember the word for \"stapler\". Best strategy in a speaking task:", o: ["Stop and apologise", "Say it in English", "C'est l'objet qui sert à attacher des feuilles."], a: 2, why: "Describing with a relative clause keeps you talking and shows range." }
   ],
-  practice: [["Writing task 2 and 3", "exam.html?s=writing"], ["Opinions vocabulary", "quiz.html?set=vocab-opinions"]]
 });
 
 window.COURSE.modules.push({
@@ -458,7 +450,6 @@ window.COURSE.modules.push({
   level: "B1",
   title: "The plus-que-parfait and reported speech",
   subtitle: "Talk about what had already happened, and report what someone said, asked or told you.",
-  hours: "6–8 h",
   why: "<p>Two B1 structures that make narratives and reports precise. The plus-que-parfait places one past event before another (<span class='fr'>quand je suis arrivé, le train était déjà parti</span>). Reported speech is everywhere in listening and reading tasks — voicemails that report messages, articles that quote people — and lets you retell conversations in speaking tasks.</p>",
   goals: [
     "Form and use the plus-que-parfait",
@@ -537,7 +528,6 @@ window.COURSE.modules.push({
     { q: "\"I had already eaten when they arrived.\"", o: ["J'ai déjà mangé quand ils sont arrivés.", "J'avais déjà mangé quand ils sont arrivés.", "Je mangeais déjà quand ils arrivaient."], a: 1, why: "The earlier completed action → plus-que-parfait." },
     { q: "« Fermez la porte. » → Il nous a demandé…", o: ["que nous fermons la porte", "de fermer la porte", "si nous fermions la porte"], a: 1, why: "Orders → de + infinitive." }
   ],
-  practice: [["Listening mock (reported messages)", "exam.html?s=listening"]]
 });
 
 window.COURSE.modules.push({
@@ -545,7 +535,6 @@ window.COURSE.modules.push({
   level: "Exam",
   title: "Exam performance: TCF Canada and TEF Canada",
   subtitle: "Task-by-task strategy, what examiners score, and a four-week plan for the final stretch.",
-  hours: "Ongoing, final 4–6 weeks",
   why: "<p>Reaching B1 and <em>scoring</em> NCLC 5 are related but different skills. The exam rewards specific behaviours: answering the exact task, filling the time, hitting the word count, showing range with the structures from Modules 9–17, and managing the clock in comprehension sections. This module turns everything you've learned into exam technique.</p><p>Formats below reflect published TCF Canada and TEF Canada descriptions at the time of writing — always check the current format with your test centre before booking.</p>",
   goals: [
     "Know the format and timing of every section on both tests",
@@ -556,7 +545,7 @@ window.COURSE.modules.push({
   lessons: [
     {
       title: "Listening (compréhension orale)",
-      body: "<ul><li><b>Read the question and options before the audio starts.</b> Predict what you'll hear: a price? a reason? an opinion?</li><li><b>Identify the situation first</b> — who is speaking, where, and why — in the first few seconds (the roadmap checklist item L1). Context eliminates wrong options.</li><li><b>Write numbers down</b> as you hear them; don't hold them in memory.</li><li><b>Watch for traps</b>: options that repeat words from the audio but change the meaning; negations (<span class='fr'>ne… plus, ne… que</span>); opinion vs fact; the first thing mentioned vs the final decision (<span class='fr'>« Finalement, on a choisi… »</span>).</li><li><b>Some recordings play only once</b> (notably on the TEF). Train with single plays in the <a href='exam.html?s=listening'>listening mock</a>.</li><li><b>Don't leave blanks</b> — unless your test's current instructions say wrong answers lose points, an educated guess can only help. Check the rules in your convocation.</li></ul>"
+      body: "<ul><li><b>Read the question and options before the audio starts.</b> Predict what you'll hear: a price? a reason? an opinion?</li><li><b>Identify the situation first</b> — who is speaking, where, and why — in the first few seconds. Context eliminates wrong options.</li><li><b>Write numbers down</b> as you hear them; don't hold them in memory.</li><li><b>Watch for traps</b>: options that repeat words from the audio but change the meaning; negations (<span class='fr'>ne… plus, ne… que</span>); opinion vs fact; the first thing mentioned vs the final decision (<span class='fr'>« Finalement, on a choisi… »</span>).</li><li><b>Some recordings play only once</b> (notably on the TEF). Train with single plays in the <a href='exam.html?s=listening'>listening mock</a>.</li><li><b>Don't leave blanks</b> — unless your test's current instructions say wrong answers lose points, an educated guess can only help. Check the rules in your convocation.</li></ul>"
     },
     {
       title: "Reading (compréhension écrite)",
@@ -576,7 +565,7 @@ window.COURSE.modules.push({
         ]
       },
       after: "<p><b>What's assessed</b> (in both tests, broadly): completing the task as set; coherence and organisation (connectors, paragraphs); range and accuracy of vocabulary; range and accuracy of grammar. <b>Practical rules:</b> plan for 3–5 minutes before writing; leave 5 minutes to proofread for agreement (adjectives, être participles), accents and verb endings; never copy sentences from the prompt; stay within the word range.</p>",
-      tip: "Keep a personal checklist of your five most frequent errors (from your drill and mock-exam results) and proofread for exactly those. It's more effective than a general re-read."
+      tip: "Keep a personal checklist of your five most frequent errors (from your practice and mock-exam results) and proofread for exactly those. It's more effective than a general re-read."
     },
     {
       title: "Speaking (expression orale)",
@@ -636,7 +625,6 @@ window.COURSE.modules.push({
     { q: "Three weeks before the exam, the most useful activity is…", o: ["learning a new grammar topic", "targeting your weakest section and most frequent errors", "reading native novels"], a: 1, why: "Targeted practice on known weaknesses gives the biggest score gains late in preparation." },
     { q: "A speaking answer that ends after one minute of a four-minute task…", o: ["is fine if it's accurate", "loses points for development and fluency", "gets extra points for concision"], a: 1, why: "Filling the time with developed ideas is part of what's assessed." }
   ],
-  practice: [["Full mock exam", "exam.html"], ["Skill checklist", "roadmap.html#skills"], ["Score bands", "roadmap.html#scores"]],
   sources: [
     ["TCF Canada — expression orale format.", "https://tcf-canada.ca/expression-orale/"],
     ["Réussir TCF Canada — expression orale methodology.", "https://reussir-tcfcanada.com/expression-orale-la-methodologie/"],

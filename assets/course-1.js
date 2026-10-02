@@ -8,7 +8,6 @@ window.COURSE.modules.push({
   level: "Start",
   title: "How to learn French (what the research says)",
   subtitle: "The study habits that actually move you from beginner to B1 — and the popular ones that don't.",
-  hours: "45 min",
   why: "<p>Most people who stall in French aren't short of motivation or material. They're using methods that <em>feel</em> productive — rereading notes, highlighting, bingeing one grammar topic, collecting word lists — but that research shows produce weak, short-lived learning. Getting the method right first multiplies the value of every hour you spend afterwards.</p><p>This module summarises the findings from memory research and second-language acquisition research that the rest of the course is built on, and turns them into a daily and weekly routine you can follow.</p>",
   goals: [
     "Explain why testing yourself beats rereading",
@@ -19,21 +18,21 @@ window.COURSE.modules.push({
   lessons: [
     {
       title: "Balance four kinds of practice (Nation's four strands)",
-      body: "<p>Applied linguist Paul Nation argues that a well-designed language course gives <b>roughly equal time</b> to four strands. Most self-learners over-do one (usually grammar study or apps) and neglect the others — and each strand builds something the others can't.</p>",
+      body: "<p>Applied linguist Paul Nation says a good course gives <b>roughly equal time</b> to four kinds of practice. Most self-learners over-do one (usually grammar or apps) and skip the others.</p>",
       table: {
-        head: ["Strand", "What it means", "What you do in this course", "Share"],
+        head: ["Strand", "What it means", "What you do in this course"],
         rows: [
-          ["Meaning-focused input", "Listening and reading for the message, where you know almost all the words", "Graded podcasts and readers, the listening mock exam, the example sentences", "~25%"],
-          ["Meaning-focused output", "Speaking and writing to get a real message across", "The \"Your turn\" task in each module, the writing and speaking mock tasks", "~25%"],
-          ["Language-focused learning", "Deliberate study of grammar, vocabulary and pronunciation", "The lessons, tables and drills", "~25%"],
-          ["Fluency development", "Using only what you already know, but faster", "Shadowing, re-telling the same story faster, timed re-writes", "~25%"]
+          ["Input", "Listening and reading for the message", "The example sentences, easy podcasts and readers, the mock exam"],
+          ["Output", "Speaking and writing to get a message across", "Saying the examples aloud, the writing task in each module, the mock exam"],
+          ["Language study", "Grammar, vocabulary and pronunciation", "The lessons, practice questions and checks"],
+          ["Fluency", "Using what you already know, but faster", "Re-telling the same story faster, timed re-writes"]
         ]
       },
       tip: "When you feel stuck, ask which strand you've skipped this week. For most learners, it's output and fluency — they understand far more than they can say."
     },
     {
       title: "Test yourself instead of rereading (retrieval practice)",
-      body: "<p>In a well-known experiment (Roediger &amp; Karpicke, 2006), students who <b>re-studied</b> a text did better on a test five minutes later — but students who <b>practised recalling it</b> did clearly better a week later. Pulling information out of memory strengthens it far more than looking at it again. It also feels harder, which is why people avoid it.</p><ul><li>Cover the conjugation table and write it from memory, then check.</li><li>Answer the \"Check yourself\" questions <em>before</em> scrolling back to the lesson.</li><li>Use the <a href='quiz.html'>practice drills</a> in <b>Type it</b> mode more than multiple choice — producing an answer is stronger retrieval than recognising one.</li><li>After a lesson, close it and say out loud the three things you remember.</li></ul>",
+      body: "<p>In a well-known experiment (Roediger &amp; Karpicke, 2006), students who <b>re-studied</b> a text did better on a test five minutes later — but students who <b>practised recalling it</b> did clearly better a week later. Pulling information out of memory strengthens it far more than looking at it again. It also feels harder, which is why people avoid it.</p><ul><li>Cover the conjugation table and write it from memory, then check.</li><li>Answer the Check questions <em>before</em> scrolling back to the lesson.</li><li>Do your <a href='review.html'>Daily review</a>: typing an answer from memory is stronger than recognising one.</li><li>After a lesson, close it and say out loud the three things you remember.</li></ul>",
       tip: "Getting an answer wrong and then seeing the correction is still effective learning. Don't wait until you \"know it\" to test yourself."
     },
     {
@@ -43,26 +42,21 @@ window.COURSE.modules.push({
         head: ["When", "What to do"],
         rows: [
           ["Day 1", "Work through the module and pass the check"],
-          ["Day 2–3", "Retake the check and redo the speaking task without looking"],
-          ["Day 7", "Drill the related practice set in Type it mode"],
-          ["Day 21", "Re-read only the \"Mistakes\" section and retake the check"],
-          ["Monthly", "Mix it into a <a href='quiz.html?set=weak'>weak-item review</a> with other modules"]
+          ["Day 2–3", "Do your Daily review: the module's words and anything you missed come back"],
+          ["Day 21", "Re-read the Watch out notes and retake the check"],
+          ["End of a level", "Take the level checkpoint, which mixes every lesson"]
         ]
       },
       tip: "Spacing feels less efficient because you've partly forgotten things when you come back. That effortful re-learning is exactly what makes memories durable."
     },
     {
       title: "Mix topics once you've learned them (interleaving)",
-      body: "<p>Nakata &amp; Suzuki (2019) had learners practise five grammar structures either in blocks (all of one, then all of the next) or mixed together. Mixed practice produced <b>more errors during training but better results a week later</b>. Real conversations don't tell you which tense is coming, so practise choosing.</p><p>Use blocked practice when a structure is brand new; switch to mixed practice as soon as you can do it slowly. The <b>All verbs</b>, <b>All vocabulary</b> and <b>Weak items</b> drills are built for this.</p>"
+      body: "<p>Nakata &amp; Suzuki (2019) had learners practise five grammar structures either in blocks (all of one, then all of the next) or mixed together. Mixed practice produced <b>more errors during training but better results a week later</b>. Real conversations don't tell you which tense is coming, so practise choosing.</p><p>Use blocked practice when a structure is brand new; switch to mixed practice as soon as you can do it slowly. The Daily review and the level checkpoints mix topics for you.</p>"
     },
     {
       title: "Understand first, then push yourself to produce",
-      body: "<p><b>Input.</b> You learn from language you <em>almost</em> understand. Nation (2006) estimates that you need to know about <b>95% of the words</b> in a text for adequate comprehension and around <b>98%</b> for comfortable, unassisted reading. Below that, you're decoding, not acquiring. That's why graded material — learner podcasts, easy readers, slowed-down news — beats native TV for most of the A1–B1 journey.</p><p><b>Output.</b> Swain's <em>output hypothesis</em> holds that trying to speak or write makes you <b>notice the gap</b> between what you want to say and what you can say — and that noticing drives learning. Reading alone lets you skip over grammar you'd never produce correctly. So every module here ends with you speaking, and the mock exam has you writing to a word count.</p>",
+      body: "<p><b>Input.</b> You learn from language you <em>almost</em> understand. Nation (2006) estimates you need to know about <b>95% of the words</b> in a text to follow it. Below that, you're decoding, not learning, so learner podcasts and easy readers beat native TV until B1.</p><p><b>Output.</b> Swain's <em>output hypothesis</em>: trying to speak or write makes you <b>notice the gap</b> between what you want to say and what you can say, and that noticing drives learning. That's why every module has a writing task.</p>",
       tip: "Talk to yourself. Narrate what you're doing while you cook, commute or tidy — in French, out loud. When you hit a word you don't know, note it and look it up later. That list is the most useful vocabulary list you'll ever have."
-    },
-    {
-      title: "Train your ear and mouth together (shadowing)",
-      body: "<p><b>Shadowing</b> means listening to a sentence and repeating it immediately, copying the rhythm, melody and linking, not just the words. Research led by Yo Hamada has found it improves phoneme perception, word recognition and listening comprehension, and at higher levels also pronunciation and fluency. Each module's <b>Speak it</b> section is a ready-made shadowing drill:</p><ol><li>Listen once while reading.</li><li>Shadow with the text visible.</li><li>Shadow with the French hidden (tick \"Hide the French\").</li><li>Say the lines from memory, then check.</li></ol>"
     },
     {
       title: "How long it takes, and a routine that gets you there",
@@ -75,7 +69,7 @@ window.COURSE.modules.push({
           ["Around B1, need exam technique", "6–10 weeks", "4–6 weeks"]
         ]
       },
-      after: "<p><b>A 60-minute daily session that covers all four strands:</b></p><ol><li><b>10 min</b> — spaced review: retake an old module's check or run a weak-items drill.</li><li><b>20 min</b> — one new lesson, reading the examples aloud.</li><li><b>15 min</b> — input: a learner podcast or short article on an exam theme.</li><li><b>10 min</b> — shadowing and the \"Your turn\" speaking task.</li><li><b>5 min</b> — write three sentences using today's structure.</li></ol><p>Once a week, sit one section of the <a href='exam.html'>mock exam</a> under time pressure to track progress.</p>",
+      after: "<p><b>A simple 60-minute day:</b></p><ol><li><b>10 min</b> — your <a href='review.html'>Daily review</a>.</li><li><b>25 min</b> — the next step of your module, saying the examples aloud.</li><li><b>15 min</b> — a learner podcast or short article on an exam theme.</li><li><b>10 min</b> — speak or write about your day using today's grammar.</li></ol><p>Once a week, sit one section of the <a href='exam.html'>mock exam</a> under time pressure to track progress.</p>",
       tip: "Consistency beats intensity: 45 minutes every day outperforms a 5-hour Sunday, because it spaces your practice automatically."
     }
   ],
@@ -108,7 +102,6 @@ window.COURSE.modules.push({
     { q: "Mixing passé composé, imparfait and futur exercises in one session (rather than one at a time) tends to…", o: ["feel harder but improve results a week later", "feel easier and improve results", "make no difference"], a: 0, why: "Interleaving produced more errors in training but better delayed-test results (Nakata & Suzuki, 2019)." },
     { q: "According to Swain's output hypothesis, why speak and write early?", o: ["It makes you notice what you can't yet say", "It replaces the need for listening", "It only helps pronunciation"], a: 0, why: "Producing language exposes the gap between what you mean and what you can express — the \"noticing\" function." }
   ],
-  practice: [["Try a drill in Type it mode", "quiz.html"], ["See the exam format", "roadmap.html#format"]],
   sources: [
     ["Nation, I.S.P. (2007). The four strands. Innovation in Language Learning and Teaching, 1(1).", "https://www.tandfonline.com/doi/abs/10.2167/illt039.0"],
     ["Roediger, H. L. & Karpicke, J. D. (2006). Test-enhanced learning. Psychological Science, 17(3), 249–255.", "http://psychnet.wustl.edu/memory/wp-content/uploads/2018/04/Roediger-Karpicke-2006_PPS.pdf"],
@@ -127,7 +120,6 @@ window.COURSE.modules.push({
   level: "Start",
   title: "The sounds of French",
   subtitle: "Vowels English doesn't have, silent letters, linking, rhythm — and what's different in Canadian French.",
-  hours: "4–6 h, then revisit",
   why: "<p>Pronunciation isn't polish you add at the end. If you can't hear the difference between <span class='fr'>tu</span> and <span class='fr'>tout</span>, or between <span class='fr'>ils sont</span> and <span class='fr'>ils ont</span>, listening sections become guesswork — and examiners grade <em>intelligibility</em> in the speaking task. Learning the sound system early also makes every word you meet afterwards easier to remember, because you can say it.</p><p>French spelling is far more regular than English once you know the rules: the same letter combination almost always gives the same sound.</p>",
   goals: [
     "Hear and produce <span class='fr'>u</span> vs <span class='fr'>ou</span>, <span class='fr'>é</span> vs <span class='fr'>è</span>, and the three nasal vowels",
@@ -228,7 +220,7 @@ window.COURSE.modules.push({
     {
       title: "Canadian French: what you'll hear, and what to aim for",
       body: "<p>The TCF and TEF use standard French recordings, but you'll live in Canada, and Quebec French has systematic features you should recognise:</p><ul><li><b>t and d before i and u become [ts] and [dz]</b>: <span class='fr'>petit</span> ≈ \"p'tsi\", <span class='fr'>tu dis</span> ≈ \"tsu dzi\", <span class='fr'>mardi</span> ≈ \"mar-dzi\". This is automatic in Quebec speech, not slang.</li><li><b>i, u, ou relax in closed syllables</b>: <span class='fr'>vite, lune, route</span> sound more like English <em>bit, book</em>.</li><li><b>Long vowels can diphthongise</b>: <span class='fr'>père</span> may sound like \"pa-ère\", <span class='fr'>fête</span> like \"fa-ète\".</li><li>Informal speech drops sounds heavily: <span class='fr'>il y a</span> → \"y'a\", <span class='fr'>je suis</span> → \"chu\", <span class='fr'>tu es</span> → \"t'es\".</li><li>Common vocabulary differs: <span class='fr'>la fin de semaine</span> (weekend), <span class='fr'>le déjeuner / dîner / souper</span> (breakfast / lunch / dinner), <span class='fr'>magasiner</span> (to shop), <span class='fr'>un char</span> (informal: a car).</li></ul><p><b>What to aim for:</b> clear, standard pronunciation. Examiners assess intelligibility, not accent. You don't need to imitate either Paris or Montreal — but understanding both will make listening far easier.</p>",
-      tip: "The audio on this site prefers a Canadian French voice when your device has one. On the roadmap page you can switch voices to compare accents."
+      tip: "The audio on this site prefers a Canadian French voice when your device has one. Under the <b>Aa</b> button you can switch voices to compare accents."
     }
   ],
   sounds: {
@@ -271,7 +263,6 @@ window.COURSE.modules.push({
     { q: "In Quebec French, <span class='fr'>petit</span> often sounds like…", o: ["\"pe-tee\" with a hard t", "\"p'tsi\"", "\"pe-tit\" with the final t"], a: 1, why: "Quebec French affricates t and d before i and u: [ts], [dz]." },
     { q: "Which final letter is usually pronounced?", o: ["The s in trois", "The c in sac", "The t in petit"], a: 1, why: "CaReFuL: c, r, f and l are usually pronounced at the end of a word." }
   ],
-  practice: [["Listen & type drill", "quiz.html?set=vocab-all"], ["Hear the verb tables", "roadmap.html#order"]],
   sources: [
     ["Liaison en français — règles obligatoires, interdites et facultatives.", "https://fr.wikipedia.org/wiki/Liaison_en_fran%C3%A7ais"],
     ["Office québécois de la langue française — l'affrication.", "https://vitrinelinguistique.oqlf.gouv.qc.ca/24467/la-prononciation/phenomenes-phonetiques/laffrication"],
@@ -285,7 +276,6 @@ window.COURSE.modules.push({
   level: "A1",
   title: "Être, avoir, nouns and articles",
   subtitle: "The two verbs every sentence leans on, gender, and the articles that come with every noun.",
-  hours: "6–8 h",
   why: "<p><span class='fr'>Être</span> (to be) and <span class='fr'>avoir</span> (to have) are the two most frequent verbs in French and they do double duty: they're also the helpers that build the passé composé, the most important past tense for B1. And every French noun has a gender that changes the articles and adjectives around it, so learning nouns <em>with</em> their article from day one saves you thousands of small mistakes later.</p>",
   goals: [
     "Conjugate être and avoir without hesitation",
@@ -434,7 +424,6 @@ window.COURSE.modules.push({
     { q: "Which is correct?", o: ["Je vais à le bureau.", "Je vais au bureau.", "Je vais à bureau."], a: 1, why: "à + le always contracts to au." },
     { q: "Most nouns ending in <b>-tion</b> are…", o: ["masculine", "feminine", "either, randomly"], a: 1, why: "-tion and -sion nouns are feminine: la situation, la décision." }
   ],
-  practice: [["Drill être, avoir and irregulars", "quiz.html?set=conj"], ["Work vocabulary", "quiz.html?set=vocab-work"]]
 });
 
 window.COURSE.modules.push({
@@ -442,7 +431,6 @@ window.COURSE.modules.push({
   level: "A1",
   title: "The present tense, properly",
   subtitle: "Regular patterns, the spelling changes nobody warns you about, and three meanings English splits apart.",
-  hours: "8–10 h",
   why: "<p>The French present tense covers what English says three ways: <em>I work</em>, <em>I am working</em>, and — with <span class='fr'>depuis</span> — <em>I have been working</em>. Master it and you can describe your routine, your job, your home and your situation, which is the backbone of the first speaking task.</p><p>The good news: once you notice that four of the six forms of most verbs <b>sound identical</b>, the present becomes much less to memorise than the tables suggest.</p>",
   goals: [
     "Conjugate regular -er, -ir and -re verbs, and the -er spelling changers",
@@ -583,5 +571,4 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Il ___ tous les soirs.</span> (sortir)", o: ["sortit", "sort", "sortis"], a: 1, why: "sortir: je sors, tu sors, il sort — no -iss-." },
     { q: "Where does <span class='fr'>souvent</span> usually go?", o: ["Before the verb: je souvent prends", "After the verb: je prends souvent", "Only at the end of the sentence"], a: 1, why: "Short frequency adverbs follow the conjugated verb." }
   ],
-  practice: [["Drill -er, -ir, -re verbs", "quiz.html?set=verbs-all"], ["Daily routines vocabulary", "quiz.html?set=vocab-routines"]]
 });

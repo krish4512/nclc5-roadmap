@@ -99,6 +99,8 @@
 
   /* share & invite */
   .share .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  #backup .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  #backup p { margin: 0 0 12px; color: var(--ink-soft); }
   .share p { color: var(--ink-soft); margin: 0 0 14px; font-size: 14.5px; }
   .share canvas { width: 100%; max-width: 220px; height: auto; border-radius: 14px; box-shadow: var(--shadow); margin-bottom: 14px; }
 </style>
@@ -112,8 +114,8 @@
     <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="today.html" aria-current="page">Today</a>
-      <a href="learn.html">Learn</a>
-      <a href="quiz.html">Practice</a>
+      <a href="learn.html">Course</a>
+      <a href="review.html">Review</a>
       <a href="exam.html">Exam</a>
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
@@ -139,14 +141,14 @@
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
-        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+        <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
         <h4>Study</h4>
         <ul>
           <li><a href="today.html">Today</a></li>
-          <li><a href="learn.html">Learn</a></li>
-          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="learn.html">Course</a></li>
+          <li><a href="review.html">Review</a></li>
           <li><a href="exam.html">Exam</a></li>
         </ul>
       </div>
@@ -155,7 +157,7 @@
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
-          <li><a href="guides.html">Exam guides</a></li>
+          <li><a href="prep.html">Exam prep</a></li>
           <li><a href="whats-new.html">What's new</a></li>
         </ul>
       </div>
@@ -224,7 +226,7 @@
     var st = N.streak ? N.streak() : { current: 0, best: 0, today: false, week: [] };
     html += "<section class='tile stk span2'><h2>🔥 Streak</h2><div class='top'><b>" + st.current + "</b><span class='small'>day" + (st.current === 1 ? "" : "s") + " in a row · best " + st.best + "</span></div>" +
       "<ol class='wk' aria-label='Last 7 days'>" + st.week.map(function (d) { return "<li class='" + (d.done ? "done" : "") + (d.today ? " today" : "") + "'><i></i><span>" + d.label + "</span></li>"; }).join("") + "</ol>" +
-      "<p class='small' style='margin:0'>" + (st.today ? "Done for today ✓" : st.current ? "Study today to keep it alive." : "Any lesson, drill or review starts it.") + "</p></section>";
+      "<p class='small' style='margin:0'>" + (st.today ? "Done for today ✓" : st.current ? "Study today to keep it alive." : "Any lesson or review starts it.") + "</p></section>";
 
     /* 4. word of the day */
     var w = C.vocab[dayIndex % C.vocab.length];
@@ -270,11 +272,47 @@
       ? "<p>You finished the whole course. Your certificate of completion is ready.</p><div class='row'><a class='btn btn-sm btn-primary' href='certificate.html'>Get my certificate</a></div>"
       : "<p>Finish all " + cTotal + " modules to unlock a printable certificate of completion. You've done <b>" + Math.min(cDone, cTotal) + "</b>.</p><div class='row'><a class='btn btn-sm' href='certificate.html'>See progress</a></div>") + "</section>";
     html += badgeHtml;
+    html += "<section class='tile span6' id='backup'><h2>💾 Back up your progress</h2><p>Your progress is saved only in this browser. Download a backup file to keep it safe or move it to another device.</p>" +
+      "<div class='row'><button type='button' class='btn btn-sm' id='export-btn'>Export progress</button><button type='button' class='btn btn-sm' id='import-btn'>Import progress</button>" +
+      "<input type='file' id='import-file' accept='application/json,.json' aria-label='Choose a progress file to import' hidden><span class='small' id='data-msg' role='status'></span></div></section>";
 
     document.getElementById("grid").innerHTML = html;
+    wireBackup();
+    if (location.hash === "#backup") document.getElementById("backup").scrollIntoView();
     var base = location.href.replace(/[#?].*$/, "").replace(/[^/]*$/, "");
     document.getElementById("wa").href = "https://wa.me/?text=" + encodeURIComponent(inviteText() + " " + base);
     drawCard(st, done, total);
+  }
+
+  /* backup / restore every nclc5-* key, since localStorage is per-browser */
+  function wireBackup() {
+    var msg = document.getElementById("data-msg");
+    function note(t) { msg.textContent = t; setTimeout(function () { msg.textContent = ""; }, 4000); }
+    document.getElementById("export-btn").addEventListener("click", function () {
+      var out = { app: "nclc5-roadmap", saved: new Date().toISOString(), data: {} };
+      try { for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (/^nclc5-/.test(k)) out.data[k] = localStorage.getItem(k); } } catch (e) {}
+      var url = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], { type: "application/json" }));
+      var a = document.createElement("a"); a.href = url; a.download = "nclc5-progress.json";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      note("Downloaded nclc5-progress.json");
+    });
+    var file = document.getElementById("import-file");
+    document.getElementById("import-btn").addEventListener("click", function () { file.click(); });
+    file.addEventListener("change", function () {
+      var f = file.files && file.files[0]; if (!f) return;
+      var r = new FileReader();
+      r.onload = function () {
+        var d = null; try { d = JSON.parse(String(r.result)); } catch (e) {}
+        file.value = "";
+        if (!d || d.app !== "nclc5-roadmap" || !d.data) { note("That file isn't an NCLC 5 progress export."); return; }
+        var n = 0;
+        Object.keys(d.data).forEach(function (k) { if (/^nclc5-/.test(k) && typeof d.data[k] === "string") { try { localStorage.setItem(k, d.data[k]); n++; } catch (e) {} } });
+        note("Restored " + n + " item" + (n === 1 ? "" : "s") + " — reloading…");
+        setTimeout(function () { location.reload(); }, 900);
+      };
+      r.readAsText(f);
+    });
   }
 
   function inviteText() { return "I'm preparing for the TCF / TEF Canada with this free French course — want to study together?"; }

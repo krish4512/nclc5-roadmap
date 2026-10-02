@@ -9,7 +9,6 @@ window.COURSE.modules.push({
   level: "Exam",
   title: "TCF speaking task 2: asking questions like a pro",
   subtitle: "A ready-made kit for the interaction task: openings, a 10-question sequence, question patterns, transitions, reactions and closings.",
-  hours: "about 1 h",
   focus: true,
   why: "<p>In TCF Canada speaking <b>task 2</b>, you get a short everyday situation, about <b>2 minutes to prepare</b>, then <b>3½ minutes of conversation</b>. The examiner plays the other person; your job is to <b>ask questions</b> to get information, and react to the answers. This module gives you the few fixed phrases you need — nothing more.</p>",
   goals: [
@@ -211,7 +210,6 @@ window.COURSE.modules.push({
     { q: "<span class='fr'>Est-il nécessaire que je ___ présent ?</span>", o: ["suis", "sois", "serai"], a: 1, why: "il est nécessaire que → subjunctive: que je sois." },
     { q: "Which transition proves you listened to the answer?", o: ["Ma première question est…", "Puisque vous mentionnez cela, je me demande…", "J'ai une autre question."], a: 1, why: "Building on what the examiner just said shows real interaction." }
   ],
-  practice: [["Speaking mock with timers", "exam.html?s=speaking"], ["Negation & questions module", "learn.html#questions"], ["Subjunctive module", "learn.html#subjunctive"]],
   sources: [
     ["TCF Canada — expression orale, task formats and timing.", "https://tcf-canada.ca/expression-orale/"],
     ["Tâche 2 de l'expression orale TCF Canada : la méthode.", "https://tcfcad.com/blog/preparer-tache-2-expression-orale-tcf.html"],

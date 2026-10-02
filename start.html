@@ -126,8 +126,8 @@
     <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="today.html">Today</a>
-      <a href="learn.html" aria-current="page">Learn</a>
-      <a href="quiz.html">Practice</a>
+      <a href="learn.html" aria-current="page">Course</a>
+      <a href="review.html">Review</a>
       <a href="exam.html">Exam</a>
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
@@ -142,9 +142,6 @@
 
 <main id="main">
 <!-- partial:tabs -->
-<nav class="tabs" aria-label="Learn">
-  <div class="container"><a href="learn.html">Course</a><a href="start.html" aria-current="page">Find your level</a><a href="cheatsheets.html">Cheat sheets</a><a href="roadmap.html">Grammar reference</a></div>
-</nav>
 <!-- /partial:tabs -->
   <div class="pl" id="app" aria-live="polite"></div>
   <template id="art-tpl"><!-- partial:art start -->
@@ -167,14 +164,14 @@
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
-        <p>A structured French course, drills and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
+        <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
         <h4>Study</h4>
         <ul>
           <li><a href="today.html">Today</a></li>
-          <li><a href="learn.html">Learn</a></li>
-          <li><a href="quiz.html">Practice</a></li>
+          <li><a href="learn.html">Course</a></li>
+          <li><a href="review.html">Review</a></li>
           <li><a href="exam.html">Exam</a></li>
         </ul>
       </div>
@@ -183,7 +180,7 @@
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
-          <li><a href="guides.html">Exam guides</a></li>
+          <li><a href="prep.html">Exam prep</a></li>
           <li><a href="whats-new.html">What's new</a></li>
         </ul>
       </div>
@@ -310,8 +307,8 @@
   }
 
   var PLANS = {
-    none: "<b>No date yet?</b> Work through the modules in order from your starting point — about one a week is a good pace — with a short drill most days. Book your test once you reach Module 16 and your mock-exam scores are at NCLC 5.",
-    far: "<b>More than 3 months:</b> follow the modules in order from your starting point. Add a short drill most days and one mock-exam section each week, so the exam format is familiar long before test day.",
+    none: "<b>No date yet?</b> Work through the modules in order from your starting point — about one a week is a good pace — with your Daily review most days. Book your test once you reach Module 16 and your mock-exam scores are at NCLC 5.",
+    far: "<b>More than 3 months:</b> follow the modules in order from your starting point. Do your Daily review most days and one mock-exam section each week, so the exam format is familiar long before test day.",
     mid: "<b>1–3 months:</b> keep going from your starting point, but start <a href='learn.html#exam'>Module 18 (exam technique)</a> and the TCF speaking kits (<a href='learn.html#tcf-t2'>task 2</a>, <a href='learn.html#tcf-t3'>task 3</a>) now, and take a full <a href='exam.html'>mock exam</a> every two weeks.",
     soon: "<b>Less than a month:</b> focus on the exam itself — <a href='learn.html#exam'>Module 18</a>, the TCF <a href='learn.html#tcf-t2'>task 2</a> and <a href='learn.html#tcf-t3'>task 3</a> kits, and timed <a href='exam.html'>mock exams</a>. Use the topics marked ✗ below to patch your weakest grammar, one a day."
   };
@@ -326,7 +323,7 @@
     var when = state.when || "none";
     /* be honest: B1 isn't weeks away for a beginner */
     if ((state.self === 0 || r.level === "Beginner") && (when === "soon" || when === "mid"))
-      return "<b>An honest note:</b> from the very beginning, reaching NCLC 5 usually takes about 12–15 months at an hour a day, or 6–8 months at two hours a day (see <a href='learn.html#method'>Module 0</a>). If you can, move your test to a later date — then follow the modules in order with a short drill most days.";
+      return "<b>An honest note:</b> from the very beginning, reaching NCLC 5 usually takes about 12–15 months at an hour a day, or 6–8 months at two hours a day (see <a href='learn.html#method'>Module 0</a>). If you can, move your test to a later date — then follow the modules in order with your Daily review most days.";
     var t = PLANS[when];
     if (state.self === 0) t = t.replace(/ Use the topics marked ✗ below[^.]*\./, "");
     return t;
