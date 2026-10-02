@@ -13,10 +13,9 @@ You upload the folder and it works.
 | --- | --- |
 | `index.html` | Landing page |
 | `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite |
-| `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons, pronunciation, common mistakes, a shadowing drill, vocabulary and a self-check; plus TCF speaking task 2 (question framing) and task 3 (opinion template) modules with interactive builders |
+| `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons (cheat code + Try it), pronunciation, common mistakes, a writing task, vocabulary and a self-check; plus short TCF speaking task 2 and task 3 kits (lessons and a check only) |
 | `assets/course-visuals.js` | A "cheat code" picture at the top of each lesson (formula, conjugation grid, side-by-side, timeline…), built from a short spec per lesson — edit the `data` object to change one |
 | `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question, and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
-| `assets/course-reading.js` | The "Real life" text for each module (message, notice, email, voicemail or dialogue) with English and three questions |
 | `assets/course-visuals.css` | Styles for the cheat-code pictures, shared by `learn.html` and the PDF cheat sheets |
 | `assets/course-writing.js` | The "Write it" task for each module: prompt, word range, live checks (regular expressions, matched with Unicode word boundaries), mistake hints and a model answer |
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |

@@ -42,7 +42,6 @@
 <script src="assets/course-en.js"></script>
 <script src="assets/course-visuals.js"></script>
 <script src="assets/course-practice.js"></script>
-<script src="assets/course-reading.js"></script>
 <script src="assets/course-writing.js"></script>
 <link rel="stylesheet" href="assets/course-visuals.css">
 <style>
@@ -270,20 +269,6 @@
   .auto-list li.ok .ai, .wr-checks li.ok .ai { background: var(--good); border-color: var(--good); }
   .auto-list li.ok a { color: var(--ink-soft); }
   .auto-note { margin: 12px 0 0; font-size: 13px; color: var(--ink-faint); }
-  .dict { display: flex; flex-direction: column; gap: 12px; }
-  .d-q { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow-sm); }
-  .d-q[data-done="right"] { border-color: var(--good-border); }
-  .d-play { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .d-n { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--c-soft); color: var(--c-ink); font-size: 12px; font-weight: 700; }
-  .d-q .t-in { padding-left: 0; }
-  .d-out { margin-top: 10px; }
-  .d-words { margin: 0 0 6px; font-size: 16.5px; line-height: 1.7; }
-  .dw-ok { color: var(--good); font-weight: 600; }
-  .dw-acc { color: var(--gold); font-weight: 600; background: var(--gold-soft); border-radius: 4px; padding: 0 2px; }
-  .dw-miss { color: var(--bad); font-weight: 600; text-decoration: underline wavy; text-underline-offset: 4px; }
-  .d-extra { margin: 0 0 6px; font-size: 14px; color: var(--ink-soft); }
-  .d-verdict { margin: 0; font-size: 14.5px; font-weight: 600; } .d-verdict.good { color: var(--good); } .d-verdict.bad { color: var(--bad); }
-  .d-en { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-faint); }
   .wr { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 18px 20px; box-shadow: var(--shadow-sm); }
   .wr-prompt { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
   .wr-prompt b { font-size: 17px; line-height: 1.45; } .wr-prompt span { font-size: 14px; color: var(--ink-faint); }
@@ -307,43 +292,6 @@
   .wr-done { margin: 12px 0 0; font-weight: 700; color: var(--good); font-size: 14px; }
   .wr-model { margin-top: 16px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--c-line); background: var(--c-soft); }
   .wr-model p { margin: 8px 0 0; line-height: 1.65; } .wr-en { font-size: 14px; color: var(--ink-faint); } .wr-note { font-size: 12.5px; color: var(--ink-faint); }
-  .rl.listen-mode .rl-lines { filter: blur(7px); user-select: none; pointer-events: none; }
-  .rl.listen-mode .rl-lines + .rl-tools::before { content: "Text hidden: listen, answer the questions, then show it."; display: block; width: 100%; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 4px; }
-  .sayit { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 6px; grid-column: -2; }
-  .rl-lines li:not(.has-sp) .sayit { grid-column: 1; padding-left: 36px; }
-  .sayit-b { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 99px; border: 1px solid var(--c-line); background: var(--surface); color: var(--c-ink); cursor: pointer; min-height: 32px; }
-  .sayit-b.on { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
-  .sayit-r { display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; }
-  .sr-ok { color: var(--good); font-weight: 600; } .sr-miss { color: var(--bad); font-weight: 600; text-decoration: underline wavy; }
-  .sr-good { color: var(--good); font-weight: 600; } .sr-bad { color: var(--bad); } .sr-heard { color: var(--ink-faint); font-size: 12.5px; }
-  .sayit-hint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-faint); }
-  /* ---------- Real life ---------- */
-  .rl { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px 22px; box-shadow: var(--shadow-sm); }
-  .rl-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-  .rl-kind { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--c-ink); }
-  .rl-title { font-family: var(--serif); font-size: 20px; letter-spacing: -0.015em; color: var(--ink); }
-  .rl-intro { font-size: 14px; color: var(--ink-faint); }
-  .rl-by { font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
-  .rl-lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-  .rl-lines li { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 2px 12px; align-items: baseline; padding: 4px 8px; margin: 0 -8px; border-radius: 10px; transition: background .2s; }
-  .rl-lines li:not(.has-sp) { grid-template-columns: minmax(0, 1fr); }
-  .rl-lines li.active { background: var(--c-soft); }
-  .rl-sp { font-size: 13px; font-weight: 700; color: var(--c-ink); }
-  .rl-line { display: flex; gap: 8px; align-items: flex-start; font-size: 16.5px; line-height: 1.6; }
-  .rl-line .say-btn { margin-top: 2px; flex: none; }
-  .rl-fr { color: var(--ink); }
-  .rl-en { grid-column: -2; font-size: 14px; color: var(--ink-faint); padding-left: 36px; }
-  .rl-lines li:not(.has-sp) .rl-en { grid-column: 1; }
-  .rl-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .rl-text .rl-lines, .rl-voicemail .rl-lines { background: var(--surface-alt); border-radius: 16px; padding: 12px 14px; }
-  .rl-text .rl-lines li, .rl-voicemail .rl-lines li { margin: 0; }
-  .rl-notice .rl-lines, .rl-ad .rl-lines { border: 2px solid var(--c-line); border-radius: 14px; padding: 12px 14px; }
-  .rl-notice .rl-lines li, .rl-ad .rl-lines li { margin: 0; }
-  @media (max-width: 560px) {
-    .rl { padding: 16px 14px; }
-    .rl-lines li { grid-template-columns: minmax(0, 1fr); }
-    .rl-en { grid-column: 1; padding-left: 36px; }
-  }
   /* ---------- "Try it" practice and checkpoints ---------- */
   .lesson h3 .n.tried { background: var(--good-soft); border-color: var(--good-border); color: var(--good); }
   .lesson h3 .n.tried::after { content: " ✓"; }
@@ -483,22 +431,6 @@
   }
 
   /* speak */
-  .speak-panel { background: linear-gradient(180deg, var(--c-soft), var(--surface) 200px); border: 1px solid var(--c-line); border-radius: 22px; padding: 22px 24px; }
-  @media (max-width: 560px) { .speak-panel { padding: 18px 14px; } }
-  .speak-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 8px 0 16px; }
-  .speak-controls .btn-teal { background: var(--c); border-color: var(--c); color: var(--bg); }
-  .speak-controls label { font-size: 14px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
-  .speak-controls input { accent-color: var(--c); }
-  .shadow-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .shadow-list li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; background: var(--surface); border: 1.5px solid var(--border); transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s var(--ease); }
-  .shadow-list li.active { border-color: var(--c); background: var(--c-soft); transform: scale(1.01); }
-  .shadow-list li.yourturn { border-color: var(--h-amber); background: color-mix(in srgb, var(--h-amber) 10%, var(--surface)); }
-  .shadow-list .txt { flex: 1; min-width: 0; }
-  .shadow-list .frx { font-size: 17px; font-weight: 600; line-height: 1.45; }
-  .shadow-list .enx { font-size: 14px; color: var(--ink-soft); }
-  .shadow-list .rec-ctl { margin-top: 8px; }
-  .task-box { margin-top: 18px; background: var(--surface); border: 1px dashed var(--c); border-radius: 14px; padding: 15px 18px; font-size: 15.5px; line-height: 1.6; }
-  .task-box > b:first-child { color: var(--c-ink); }
 
   /* vocab */
   .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
@@ -723,8 +655,8 @@
   var SEC = {
     lessons: ["blue", "Lessons", "learn"], sounds: ["cyan", "Say it right", "sound"], mistakes: ["rose", "Common mistakes", "warn"],
     speak: ["orange", "Speak it", "speak"], vocab: ["indigo", "Vocabulary", "vocab"], builder: ["magenta", "Answer builder", "build"],
-    check: ["amber", "Check yourself", "check"], done: ["green", "Finish", "done"], reading: ["green", "Real life", "read"],
-    listen: ["blue", "Dictation", "sound"], write: ["violet", "Write it", "build"]
+    check: ["amber", "Check yourself", "check"], done: ["green", "Finish", "done"],
+    write: ["violet", "Write it", "build"]
   };
 
   var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
@@ -981,11 +913,8 @@
     /* "focus" modules (the TCF speaking kits) show only the lessons and the check */
     var F = !!m.focus;
     var chips = [["overview", "Overview", L.hue], ["lessons"]];
-    if (!F && RL[m.id]) chips.push(["reading"]);
-    if (!F && dictItems(m).length) chips.push(["listen"]);
     if (!F && m.sounds) chips.push(["sounds"]);
     if (!F && m.mistakes) chips.push(["mistakes"]);
-    if (!F && m.speak) chips.push(["speak"]);
     if (!F && WR[m.id]) chips.push(["write"]);
     if (!F && m.vocab) chips.push(["vocab"]);
     if (!F && m.builder) chips.push(["builder"]);
@@ -1024,7 +953,6 @@
       h += "<div class='lesson-foot'>" + reportBtn("Module " + m.num + " · Lesson " + m.num + "." + (i + 1) + ": " + strip(Ls.title)) + "</div></article>";
     });
     h += "</section>";
-    if (!F) { h += readingBlock(m); h += dictBlock(m); }
 
     if (!F && m.sounds) {
       h += secHead("sounds", "Say it right", canSpeak() ? "Tap any word to hear it, then copy it straight away." : "") +
@@ -1044,18 +972,6 @@
         "</tbody></table></section>";
     }
 
-    if (!F && m.speak) {
-      h += secHead("speak", "Speak it") +
-        "<div class='speak-panel'><div class='why' style='font-size:16px'>" + (m.speak.intro || "Listen to each line, then say it out loud during the pause — copy the rhythm and melody, not just the words. This is <b>shadowing</b>.") + "</div>" +
-        (canSpeak() ? "<div class='speak-controls'><button type='button' class='btn btn-teal btn-sm' id='shadow-go'>▶ Shadow all lines</button>" +
-          "<button type='button' class='btn btn-sm' id='shadow-stop' hidden>Stop</button>" +
-          "<label><input type='checkbox' id='shadow-slow'> Slow</label><label><input type='checkbox' id='shadow-hide'> Hide the French (listening only)</label></div>" : "<p class='muted'>Audio needs a browser with speech synthesis.</p>") +
-        "<ol class='shadow-list' id='shadow-list'>" + m.speak.lines.map(function (l, i) {
-          return "<li data-i='" + i + "'>" + sayBtn(l[0]) + "<div class='txt'><div class='frx'>" + l[0] + "</div><div class='enx'>" + l[1] + "</div>" +
-            (window.NCLCRecorder ? window.NCLCRecorder.controls(strip(l[0])) : "") + sayItBtn(strip(l[0])) + "</div></li>";
-        }).join("") + "</ol>" +
-        (m.speak.task ? "<div class='task-box'><b>Your turn · </b>" + m.speak.task + "</div>" : "") + sayHint() + "</div></section>";
-    }
     if (!F) h += writeBlock(m);
 
     if (!F && m.vocab) {
@@ -1159,8 +1075,6 @@
 
     wireToc(m);
     if (m.quiz) buildQuiz(m);
-    if (!m.focus && m.speak && canSpeak()) wireShadow(m);
-    wireReading(m);
     if (!m.focus && m.builder) wireBuilder(m);
     refreshProgress(m.id);
   }
@@ -1213,43 +1127,6 @@
   }
 
   var shadowRun = 0;
-  function wireShadow(m) {
-    var go = document.getElementById("shadow-go"), stop = document.getElementById("shadow-stop");
-    var slow = document.getElementById("shadow-slow"), hide = document.getElementById("shadow-hide");
-    var items = view.querySelectorAll("#shadow-list li");
-    hide.addEventListener("change", function () {
-      view.querySelectorAll("#shadow-list .frx").forEach(function (x) { x.style.visibility = hide.checked ? "hidden" : ""; });
-    });
-    function end() {
-      shadowRun++;
-      items.forEach(function (li) { li.classList.remove("active", "yourturn"); });
-      go.hidden = false; stop.hidden = true;
-      if (Speech) Speech.stop();
-    }
-    stop.addEventListener("click", end);
-    go.addEventListener("click", function () {
-      var run = ++shadowRun;
-      go.hidden = true; stop.hidden = false;
-      var i = 0;
-      (function step() {
-        if (run !== shadowRun) return;
-        if (i >= m.speak.lines.length) return end();
-        items.forEach(function (li) { li.classList.remove("active", "yourturn"); });
-        var li = items[i];
-        li.classList.add("active");
-        li.scrollIntoView({ block: "nearest", behavior: "smooth" });
-        var text = strip(m.speak.lines[i][0]);
-        Speech.speak(text, { slow: slow.checked, onend: function () {
-          if (run !== shadowRun) return;
-          li.classList.remove("active"); li.classList.add("yourturn");
-          /* the pause is long enough to repeat the line at a natural pace */
-          var gap = Math.min(9000, 1400 + text.split(/\s+/).length * (slow.checked ? 650 : 480));
-          setTimeout(function () { if (run !== shadowRun) return; li.classList.remove("yourturn"); i++; step(); }, gap);
-        } });
-      })();
-    });
-  }
-
   /* ---------- answer builder ----------
      Fields fill the {slots} of the template parts; the assembled answer is
      saved per module so learners can come back to their own versions. */
@@ -1383,15 +1260,7 @@
     else if (window.NCLC && NCLC.miss) NCLC.miss({ q: it.c || it.t, a: right, why: it.why, mod: reg.mod, l: reg.l });
     if (reg.onDone) reg.onDone(reg);
     var box = qEl.closest(".try");
-    if (box && box.classList.contains("rl-try") && !box.querySelector(".t-q:not([data-done])")) {
-      prog[reg.mod] = prog[reg.mod] || {};
-      prog[reg.mod].read = 1;
-      save();
-      box.classList.add("all-done");
-      var ok2 = document.getElementById("rl-ok"); if (ok2) ok2.hidden = false;
-      refreshProgress(reg.mod);
-    }
-    if (box && !box.classList.contains("cp-try") && !box.classList.contains("rl-try") && !box.querySelector(".t-q:not([data-done])")) {
+    if (box && !box.classList.contains("cp-try") && !box.querySelector(".t-q:not([data-done])")) {
       var l = +box.getAttribute("data-try-l");
       prog[reg.mod] = prog[reg.mod] || {};
       prog[reg.mod].tried = prog[reg.mod].tried || {};
@@ -1438,65 +1307,6 @@
     answer(qEl, v > 0, v === 1);
   });
 
-  /* "Real life": one authentic-style text per module, with audio, English and 3 questions */
-  var RL = window.NCLC_READING || {};
-  var RL_KIND = { text: ["📱", "Text message"], email: ["📧", "Email"], notice: ["🗒️", "Notice"], voicemail: ["📞", "Voicemail"], dialogue: ["💬", "Conversation"], post: ["✍️", "Post"], ad: ["📌", "Ad"] };
-  function readingBlock(m) {
-    var t = RL[m.id];
-    if (!t) return "";
-    var k = RL_KIND[t.kind] || RL_KIND.post, done = !!(prog[m.id] && prog[m.id].read);
-    /* conversations name every speaker; anything else has one author, shown in the header */
-    var talk = t.kind === "dialogue", author = talk ? "" : (t.lines.filter(function (l) { return l[0]; })[0] || [""])[0];
-    var lines = t.lines.map(function (l, i) {
-      var sp = talk ? l[0] : "";
-      return "<li" + (sp ? " class='has-sp'" : "") + " data-rl='" + i + "'>" + (sp ? "<span class='rl-sp'>" + esc(sp) + "</span>" : "") +
-        "<span class='rl-line'>" + sayBtn(l[1]) + "<span class='rl-fr' lang='fr'>" + esc(l[1]) + "</span></span><span class='rl-en' hidden>" + esc(l[2]) + "</span>" + sayItBtn(l[1]) + "</li>";
-    }).join("");
-    return secHead("reading", "Real life", "French as you'll meet it in Canada, using this module's grammar. Read it, listen, then answer.") +
-      "<div class='rl rl-" + t.kind + "'><div class='rl-head'><span class='rl-kind'><span aria-hidden='true'>" + k[0] + "</span>" + k[1] + "</span>" +
-      "<b class='rl-title' lang='fr'>" + esc(t.title) + "</b>" + (author ? "<span class='rl-by'>From: " + esc(author) + "</span>" : "") + "<span class='rl-intro'>" + esc(t.intro) + "</span></div>" +
-      "<ul class='rl-lines'>" + lines + "</ul><div class='rl-tools'>" +
-      (canSpeak() ? "<button type='button' class='btn btn-sm' id='rl-play'>▶ Listen to it all</button><button type='button' class='btn btn-sm' id='rl-stop' hidden>■ Stop</button>" +
-        "<button type='button' class='btn btn-sm' id='rl-hide' aria-pressed='false'>🎧 Listen first (hide the text)</button>" : "") +
-      "<button type='button' class='btn btn-sm' id='rl-en' aria-pressed='false'>Show English</button></div>" + sayHint() + "</div>" +
-      "<div class='try rl-try" + (done ? " all-done" : "") + "'><div class='try-h'><span class='try-k'>Did you get it?</span><b>" + t.q.length + " questions</b>" +
-      "<span class='try-ok' id='rl-ok'" + (done ? "" : " hidden") + ">✓ Read</span></div>" +
-      t.q.map(function (it, n) { var key = m.id + "|rl|" + n; ITEMS[key] = { it: it, mod: m.id, l: null }; return itemHtml(it, key, n + 1); }).join("") + "</div></section>";
-  }
-  function wireReading(m) {
-    var t = RL[m.id], enBtn = document.getElementById("rl-en");
-    if (!t || !enBtn) return;
-    var hide = document.getElementById("rl-hide");
-    if (hide) hide.addEventListener("click", function () {
-      var on = hide.getAttribute("aria-pressed") !== "true";
-      hide.setAttribute("aria-pressed", on);
-      hide.textContent = on ? "👁 Show the text" : "🎧 Listen first (hide the text)";
-      var box = view.querySelector(".rl"); box.classList.toggle("listen-mode", on);
-      box.querySelector(".rl-lines").setAttribute("aria-hidden", on ? "true" : "false");
-    });
-    enBtn.addEventListener("click", function () {
-      var on = enBtn.getAttribute("aria-pressed") !== "true";
-      enBtn.setAttribute("aria-pressed", on); enBtn.textContent = on ? "Hide English" : "Show English";
-      view.querySelectorAll(".rl-en").forEach(function (x) { x.hidden = !on; });
-    });
-    var play = document.getElementById("rl-play"), stop = document.getElementById("rl-stop");
-    if (!play) return;
-    var items = view.querySelectorAll(".rl-lines li");
-    function end() { shadowRun++; items.forEach(function (li) { li.classList.remove("active"); }); play.hidden = false; stop.hidden = true; if (Speech) Speech.stop(); }
-    stop.addEventListener("click", end);
-    play.addEventListener("click", function () {
-      var run = ++shadowRun, i = 0;
-      play.hidden = true; stop.hidden = false;
-      (function step() {
-        if (run !== shadowRun) return;
-        if (i >= t.lines.length) return end();
-        items.forEach(function (li) { li.classList.remove("active"); });
-        items[i].classList.add("active");
-        Speech.speak(t.lines[i][1], { onend: function () { if (run !== shadowRun) return; i++; setTimeout(step, 450); } });
-      })();
-    });
-  }
-
   /* ---------- module progress: what you've actually done ---------- */
   var WR = window.NCLC_WRITING || {};
   function modProgress(m) {
@@ -1504,8 +1314,6 @@
     var withTry = m.focus ? [] : m.lessons.map(function (_, i) { return i; }).filter(function (i) { return ((PR.data[m.id] || [])[i] || []).length; });
     var tried = withTry.filter(function (i) { return p.tried && p.tried[i]; }).length;
     if (withTry.length) parts.push({ key: "lessons", label: "Practise every lesson (Try it)", sub: tried + " of " + withTry.length, ratio: tried / withTry.length, w: 4 });
-    if (!m.focus && RL[m.id]) parts.push({ key: "reading", label: "Read the real-life text", ratio: p.read ? 1 : 0, w: 1 });
-    if (!m.focus && dictItems(m).length) parts.push({ key: "listen", label: "Do the dictation", ratio: p.dict ? 1 : 0, w: 1 });
     if (!m.focus && WR[m.id]) parts.push({ key: "write", label: "Write it: complete the writing task", ratio: p.wrote ? 1 : 0, w: 1 });
     if (m.quiz) parts.push({ key: "check", label: "Score 80% on the check", sub: p.best ? "best " + p.best + "%" : "", ratio: (p.best || 0) >= 80 ? 1 : 0, w: 2 });
     var tw = parts.reduce(function (n, x) { return n + x.w; }, 0) || 1;
@@ -1535,47 +1343,7 @@
     renderSide(mid);
   }
 
-  /* ---------- dictation: three sentences from the module, heard and typed ---------- */
-  function dictItems(m) {
-    if (!canSpeak()) return [];
-    var pool = [];
-    m.lessons.forEach(function (Ls) { (Ls.examples || []).forEach(function (e) { pool.push(e); }); });
-    if (m.speak) m.speak.lines.forEach(function (l) { pool.push(l); });
-    pool = pool.map(function (e) { return [strip(e[0]), strip(e[1] || "")]; }).filter(function (e) {
-      var w = e[0].split(/\s+/).length;
-      return w >= 4 && w <= 12 && !/[…\/→\[\]()|=]|\.\.\./.test(e[0]);
-    });
-    if (pool.length < 3) return [];
-    return [pool[0], pool[Math.floor(pool.length / 2)], pool[pool.length - 1]];
-  }
-  function dictBlock(m) {
-    var items = dictItems(m);
-    if (!items.length) return "";
-    return secHead("listen", "Dictation", "Listen, then type exactly what you hear. Slow it down as often as you like.") +
-      "<div class='dict'>" + items.map(function (e, i) {
-        return "<div class='d-q' data-d='" + i + "'><div class='d-play'><span class='d-n'>" + (i + 1) + "</span>" +
-          "<button type='button' class='btn btn-sm' data-dsay='" + i + "'>▶ Play</button><button type='button' class='btn btn-sm' data-dsay='" + i + "' data-slow='1'>🐢 Slow</button></div>" +
-          "<form class='t-in' data-dict><input type='text' lang='fr' autocomplete='off' autocapitalize='off' spellcheck='false' aria-label='Type the sentence you hear' placeholder='Type what you hear'><button type='submit' class='btn btn-sm'>Check</button></form>" +
-          "<div class='d-out' hidden></div></div>";
-      }).join("") + "</div></section>";
-  }
   function words(t) { return (String(t).match(/[\p{L}\p{N}'’-]+/gu) || []); }
-  /* word-by-word comparison: longest common subsequence on accent-free words */
-  function diffWords(target, typed) {
-    var a = words(target), b = words(typed);
-    var A = a.map(function (w) { return fold(clean(w)); }), Bf = b.map(function (w) { return fold(clean(w)); });
-    var L = []; for (var i = 0; i <= a.length; i++) { L.push(new Array(b.length + 1).fill(0)); }
-    for (i = a.length - 1; i >= 0; i--) for (var j = b.length - 1; j >= 0; j--) L[i][j] = A[i] === Bf[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
-    var out = [], extra = [], ok = 0, acc = 0; i = 0; j = 0;
-    while (i < a.length && j < b.length) {
-      if (A[i] === Bf[j]) { var exact = clean(a[i]) === clean(b[j]); out.push([a[i], exact ? "ok" : "acc"]); if (exact) ok++; else acc++; i++; j++; }
-      else if (L[i + 1][j] >= L[i][j + 1]) { out.push([a[i], "miss"]); i++; }
-      else { extra.push(b[j]); j++; }
-    }
-    for (; i < a.length; i++) out.push([a[i], "miss"]);
-    for (; j < b.length; j++) extra.push(b[j]);
-    return { out: out, extra: extra, ok: ok, acc: acc, total: a.length };
-  }
 
   /* ---------- "Write it": a short task checked live ---------- */
   var WB = "(?:(?<=[\\p{L}\\p{N}])(?![\\p{L}\\p{N}])|(?<![\\p{L}\\p{N}])(?=[\\p{L}\\p{N}]))";
@@ -1633,70 +1401,6 @@
     });
     update();
   }
-
-  /* ---------- "Say it": the browser's speech recognition checks if you were understood ---------- */
-  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  function sayItBtn(text) {
-    if (!SR) return "";
-    return "<span class='sayit'><button type='button' class='sayit-b' data-sayit='" + esc(strip(text)) + "'>🎤 Say it</button><span class='sayit-r' aria-live='polite'></span></span>";
-  }
-  function sayHint() { return SR ? "<p class='sayit-hint'>🎤 <b>Say it</b> uses your browser's speech recognition to check you were understood. Your browser's provider (for example Google or Apple) may process the audio.</p>" : ""; }
-  var recog = null;
-  function sayIt(btn) {
-    var target = btn.getAttribute("data-sayit"), out = btn.parentNode.querySelector(".sayit-r");
-    if (recog) { try { recog.abort(); } catch (e) {} recog = null; }
-    if (Speech) Speech.stop();
-    var rc = new SR(); recog = rc;
-    rc.lang = "fr-CA"; rc.interimResults = false; rc.maxAlternatives = 3;
-    btn.classList.add("on"); btn.textContent = "● Listening…"; out.innerHTML = "";
-    var finish = function () { btn.classList.remove("on"); btn.textContent = "🎤 Say it"; recog = null; };
-    rc.onresult = function (ev) {
-      var alts = [].slice.call(ev.results[0]).map(function (a) { return a.transcript; });
-      var best = alts.map(function (h) { return { h: h, d: diffWords(target, h) }; }).sort(function (x, y) { return (y.d.ok + y.d.acc) - (x.d.ok + x.d.acc); })[0];
-      out.innerHTML = sayItResult(best.d, best.h);
-      if (best.d.ok + best.d.acc === best.d.total) studied();
-    };
-    rc.onerror = function (ev) { out.innerHTML = "<span class='sr-bad'>" + (ev.error === "not-allowed" ? "Microphone blocked — allow it in your browser's site settings." : ev.error === "no-speech" ? "Didn't hear anything — try again a little louder." : "Speech recognition isn't available right now.") + "</span>"; };
-    rc.onend = finish;
-    try { rc.start(); } catch (e) { finish(); }
-  }
-  function sayItResult(d, heard) {
-    var got = d.ok + d.acc, all = got === d.total;
-    return "<span class='sr-words'>" + d.out.map(function (x) { return "<span class='" + (x[1] === "miss" ? "sr-miss" : "sr-ok") + "'>" + esc(x[0]) + "</span>"; }).join(" ") + "</span>" +
-      "<span class='" + (all ? "sr-good" : "sr-bad") + "'>" + (all ? "✓ Understood — every word." : got + " of " + d.total + " words understood. The red ones weren't recognised — listen and try again.") + "</span>" +
-      "<span class='sr-heard'>We heard: « " + esc(heard) + " »</span>";
-  }
-
-  /* dictation + say-it clicks */
-  view.addEventListener("click", function (e) {
-    var sb = e.target.closest("[data-sayit]");
-    if (sb) { e.preventDefault(); sayIt(sb); return; }
-    var db = e.target.closest("[data-dsay]");
-    if (db) {
-      var m = M.filter(function (x) { return x.id === curMod; })[0]; if (!m) return;
-      var it = dictItems(m)[+db.getAttribute("data-dsay")];
-      say(it[0], db, { slow: db.hasAttribute("data-slow") });
-    }
-  });
-  view.addEventListener("submit", function (e) {
-    var f = e.target.closest("[data-dict]");
-    if (!f) return;
-    e.preventDefault();
-    var m = M.filter(function (x) { return x.id === curMod; })[0]; if (!m) return;
-    var q = f.closest(".d-q"), i = +q.getAttribute("data-d"), it = dictItems(m)[i], inp = f.querySelector("input");
-    if (!clean(inp.value)) { inp.focus(); return; }
-    var d = diffWords(it[0], inp.value), perfect = d.ok === d.total && !d.extra.length, close = d.ok + d.acc === d.total && !d.extra.length;
-    var out = q.querySelector(".d-out");
-    out.hidden = false;
-    out.innerHTML = "<p class='d-words' lang='fr'>" + d.out.map(function (x) { return "<span class='dw-" + x[1] + "'>" + esc(x[0]) + "</span>"; }).join(" ") + "</p>" +
-      (d.extra.length ? "<p class='d-extra'>Extra words: <s lang='fr'>" + esc(d.extra.join(" ")) + "</s></p>" : "") +
-      "<p class='d-verdict " + (close ? "good" : "bad") + "'>" + (perfect ? "✓ Perfect." : close ? "✓ Right — check the accents in amber." : d.ok + d.acc + " of " + d.total + " words. Red words are missing — play it again.") + "</p>" +
-      (it[1] ? "<p class='d-en'>" + esc(it[1]) + "</p>" : "");
-    q.setAttribute("data-done", close ? "right" : "wrong");
-    if (close) studied();
-    else if (window.NCLC && NCLC.miss) NCLC.miss({ q: "In French: « " + (it[1] || "dictation") + " »", a: it[0], why: "From the Module " + m.num + " dictation.", mod: m.id, l: null });
-    if (!view.querySelector(".d-q:not([data-done])")) { prog[m.id] = prog[m.id] || {}; prog[m.id].dict = 1; save(); refreshProgress(m.id); }
-  });
 
   /* level checkpoints: 15 questions drawn from every lesson of a level */
   function cpRead() { try { return JSON.parse(localStorage.getItem(CP_KEY) || "{}") || {}; } catch (e) { return {}; } }
