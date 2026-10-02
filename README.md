@@ -14,6 +14,7 @@ You upload the folder and it works.
 | `index.html` | Landing page |
 | `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite |
 | `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons, pronunciation, common mistakes, a shadowing drill, vocabulary and a self-check; plus TCF speaking task 2 (question framing) and task 3 (opinion template) modules with interactive builders |
+| `assets/course-visuals.js` | A "cheat code" picture at the top of each lesson (formula, conjugation grid, side-by-side, timeline…), built from a short spec per lesson — edit the `data` object to change one |
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `review.html` + `assets/srs.js` | Daily review: spaced repetition over the vocabulary, sentences and mistakes of the modules reached |
 | `conjugate.html` + `assets/verbs.js` | Verb conjugator: 360+ verbs, 7 tenses, English for every form, audio |
