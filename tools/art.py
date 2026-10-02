@@ -251,7 +251,7 @@ svg("guides", body, label="A free guide showing the NCLC 5 scores for each skill
 # ---------------------------------------------------------------- contact
 body = card(44, 40, 330, 280)
 body += f'<circle cx="80" cy="78" r="18" fill="url(#g)"/>' + t(80, 82.5, "B1", 12, 800, "", "middle", 'fill="#fff"')
-body += t(108, 74, "NCLC 5 Roadmap", 15, 800) + t(108, 93, "Replies within two business days", 12, 600, "t-mute")
+body += t(108, 74, "Prêt Français", 15, 800) + t(108, 93, "Replies within two business days", 12, 600, "t-mute")
 body += '<rect x="44" y="110" width="330" height="1" class="c-line"/>'
 body += '<rect x="64" y="128" width="224" height="44" rx="16" class="c-soft"/>' + t(82, 155, "Bonjour ! How can we help?", 14, 600)
 body += '<rect x="134" y="184" width="220" height="44" rx="16" fill="url(#gh)"/>' + t(152, 211, "Where should I start?", 14, 600, "", "start", 'fill="#fff"')

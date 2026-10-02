@@ -32,7 +32,7 @@ HEAD = """<!-- partial:head -->
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-title" content="NCLC 5">
+<meta name="apple-mobile-web-app-title" content="Prêt">
 <link rel="manifest" href="site.webmanifest">
 {SOCIAL}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,7 +102,7 @@ def header(active):
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">ê</span><span data-site="brand">Prêt Français</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
 {nav}
     </nav>
@@ -152,7 +152,7 @@ def footer():
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">B1</span><span data-site="brand">NCLC 5 Roadmap</span></a>
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">ê</span><span data-site="brand">Prêt Français</span></a>
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
 {cols}
@@ -170,7 +170,7 @@ def social(text, name):
     """Link-preview tags built from the page's own <title> and description."""
     title = re.search(r"<title>(.*?)</title>", text, re.S)
     desc = re.search(r'<meta name="description" content="(.*?)">', text, re.S)
-    title = title.group(1).strip() if title else "NCLC 5 Roadmap"
+    title = title.group(1).strip() if title else "Prêt Français"
     desc = desc.group(1).strip() if desc else "A research-based French course, drills and mock exams for NCLC 5 on the TCF Canada and TEF Canada."
     url = SITE_URL + "/" + ("" if name == "index.html" else name)
     stem = name[:-5] if name.endswith(".html") else name
@@ -178,7 +178,7 @@ def social(text, name):
     image = SITE_URL + ("/assets/og/" + stem + ".jpg" if own.exists() else "/assets/og-image.jpg")
     return "\n".join([
         '<meta property="og:type" content="website">',
-        '<meta property="og:site_name" content="NCLC 5 Roadmap">',
+        '<meta property="og:site_name" content="Prêt Français">',
         f'<meta property="og:title" content="{title}">',
         f'<meta property="og:description" content="{desc}">',
         f'<meta property="og:url" content="{url}">',
