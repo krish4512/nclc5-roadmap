@@ -216,9 +216,10 @@
     if (!session.cards.length) return finish();
     var c = session.cards[0];
     session.shown = false;
-    var kind = c.t === "w" ? "Word" : c.t === "s" ? "Sentence" : "Fix the mistake";
+    var kind = c.t === "w" ? "Word" : c.t === "s" ? "Sentence" : c.t === "x" ? "From your mistakes" : "Fix the mistake";
     var front, ask;
     if (c.t === "m") { front = "<p class='front wrong' lang='fr'>" + esc(c.wrong) + "</p>"; ask = "What's the correct version?"; }
+    else if (c.t === "x") { front = "<p class='front' style='font-size:22px'>" + esc(c.q) + "</p>"; ask = "You missed this one in the course. What's the answer?"; }
     else if (c.t === "w" && dir === "en") { front = "<p class='front'>" + esc(c.en) + "</p>"; ask = "Say it in French."; }
     else { front = "<p class='front' lang='fr'>" + sayBtn(c.fr) + "<span>" + esc(c.fr) + "</span></p>"; ask = "What does it mean?"; }
     app.innerHTML =
@@ -227,7 +228,7 @@
       front + "<p class='ask'>" + ask + "</p><div id='back'></div><div class='spacer'></div>" +
       "<div class='rv-actions one' id='acts'><button type='button' class='show' data-show><b>Show answer</b></button></div></div>" +
       "<p class='rv-keys'>Space: show answer · 1 Again · 2 Good · 3 Easy</p>";
-    if (c.t !== "m" && !(c.t === "w" && dir === "en")) say(c.fr);
+    if (c.t !== "m" && c.t !== "x" && !(c.t === "w" && dir === "en")) say(c.fr);
   }
 
   function show() {
@@ -236,6 +237,8 @@
     session.shown = true;
     var back;
     if (c.t === "m") back = "<p class='right' lang='fr'>" + sayBtn(c.fr) + "<span>✓ " + esc(c.fr) + "</span></p><p class='sub'>" + esc(c.en) + "</p><p class='why'>" + esc(c.why) + "</p>";
+    else if (c.t === "x") back = "<p class='right' lang='fr'><span>✓ " + esc(c.fr) + "</span></p>" + (c.why ? "<p class='why'>" + esc(c.why) + "</p>" : "") +
+      (c.mod ? "<p class='sub'><a href='learn.html#" + encodeURIComponent(c.mod) + (c.l != null ? "/l" + c.l : "") + "'>Go back to the lesson →</a></p>" : "");
     else if (c.t === "w" && dir === "en") back = "<p class='right' lang='fr' style='color:var(--ink)'>" + sayBtn(c.fr) + "<span>" + esc(c.fr) + "</span></p>";
     else back = "<p class='en'>" + esc(c.en) + "</p>";
     document.getElementById("back").innerHTML = "<div class='back'>" + back + "</div>";

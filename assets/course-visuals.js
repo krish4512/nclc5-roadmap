@@ -24,10 +24,18 @@
   function hl(s) {
     return String(s == null ? "" : s).replace(/\[\[(.+?)\]\]/g, "<b class='vh'>$1</b>").replace(/~~(.+?)~~/g, "<s>$1</s>");
   }
+  var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
+  /* a listen button (needs assets/speech.js); the page's [data-say] handler plays it */
+  function say(s) {
+    if (!(window.NCLCSpeech && NCLCSpeech.available())) return "";
+    var t = String(s).replace(/\[\[|\]\]/g, "").replace(/~~.+?~~/g, "").replace(/[“”"]/g, "").replace(/'/g, "&#39;");
+    if (!/[a-zà-ÿ]/i.test(t) || /…|___/.test(t)) return "";
+    return "<button type='button' class='say-btn vsay' data-say='" + t + "' aria-label='Listen'>" + SPK + "</button>";
+  }
   function exs(list) {
     if (!list || !list.length) return "";
     return "<ul class='vex'>" + list.map(function (e) {
-      return "<li><span class='vfr' lang='fr'>" + hl(e[0]) + "</span>" + (e[1] ? "<span class='ven'>" + hl(e[1]) + "</span>" : "") + "</li>";
+      return "<li>" + say(e[0]) + "<span class='vfr' lang='fr'>" + hl(e[0]) + "</span>" + (e[1] ? "<span class='ven'>" + hl(e[1]) + "</span>" : "") + "</li>";
     }).join("") + "</ul>";
   }
   function box(p) {

@@ -487,6 +487,7 @@
     var st = streakInfo();
     var srs = readJ("nclc5-srs", {}), reviews = Object.keys(srs.log || {}).reduce(function (n, d) { return n + ((srs.log[d] || {}).n || 0); }, 0);
     var lvl = function (L) { return LEVEL_MODS[L].every(done); };
+    var cps = readJ("nclc5-checkpoints", {});
     var list = [
       ["start", "👣", "First step", "Took the placement check or opened a module", !!(readJ("nclc5-placement", null) || readJ("nclc5-resume", null))],
       ["mod1", "✅", "First module", "Completed your first module", nDone >= 1],
@@ -500,7 +501,10 @@
       ["drill", "💪", "First drill", "Finished a practice drill", Object.keys(readJ("nclc5-quiz-scores", {})).length > 0],
       ["rev50", "🧠", "50 reviews", "Reviewed 50 cards in Daily review", reviews >= 50],
       ["mock", "📝", "First mock exam", "Completed a mock-exam section", Object.keys(readJ("nclc5-exam-scores", {})).length > 0],
-      ["voice", "🎙️", "First recording", "Recorded yourself in Listen & repeat", (+localStorage.getItem("nclc5-rec-count") || 0) > 0]
+      ["voice", "🎙️", "First recording", "Recorded yourself in Listen & repeat", (+localStorage.getItem("nclc5-rec-count") || 0) > 0],
+      ["cpA1", "🏁", "A1 checkpoint", "Passed the A1 checkpoint", !!(cps.A1 && cps.A1.passed)],
+      ["cpA2", "🚩", "A2 checkpoint", "Passed the A2 checkpoint", !!(cps.A2 && cps.A2.passed)],
+      ["cpB1", "🎖️", "B1 checkpoint", "Passed the B1 checkpoint", !!(cps.B1 && cps.B1.passed)]
     ];
     return list.map(function (b) { return { id: b[0], icon: b[1], name: b[2], desc: b[3], earned: b[4] }; });
   }
@@ -525,7 +529,21 @@
   }
   function heroArt(on) { var a = document.getElementById("hero-art"); if (a) a.hidden = !on; }
 
-  window.NCLC = { fillArt: fillArt, heroArt: heroArt, badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
+  /* Answers you got wrong in the course ("Try it", module checks, checkpoints)
+     are kept in "nclc5-missed" so Daily review can bring them back. */
+  function miss(x) {
+    try {
+      var s = readJ("nclc5-missed", {}), h = 5381, key = x.q + "|" + x.a;
+      for (var i = 0; i < key.length; i++) h = ((h << 5) + h + key.charCodeAt(i)) | 0;
+      var id = "x" + (h >>> 0).toString(36);
+      if (!s[id]) s[id] = { q: x.q, a: x.a, why: x.why || "", mod: x.mod || "", l: x.l == null ? null : x.l, at: Date.now() };
+      var ids = Object.keys(s);
+      if (ids.length > 300) ids.sort(function (a, b) { return s[a].at - s[b].at; }).slice(0, ids.length - 300).forEach(function (k) { delete s[k]; });
+      localStorage.setItem("nclc5-missed", JSON.stringify(s));
+    } catch (e) {}
+  }
+
+  window.NCLC = { miss: miss, fillArt: fillArt, heroArt: heroArt, badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
 
   function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireTabs(); wireSettings(); setTimeout(checkBadges, 1200); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
