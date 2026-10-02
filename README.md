@@ -38,6 +38,7 @@ You upload the folder and it works.
 | `assets/art/` + `tools/art.py` | The illustrations (one per page, plus guide covers and the landing-page journey). Plain SVG coloured by the art tokens in `site.css`, so they follow light and dark mode; `tools/partials.py` inlines them where a page has `<!-- partial:art NAME -->` |
 | `tools/page-previews.js` | Renders a link-preview image per page into `assets/og/` from its illustration |
 | `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
+| `.claude/skills/brag-slim/` | The [`/brag-slim`](https://github.com/latent-spaces/brag) agent skill (MIT): ask Claude Code "let's /brag about this" to make a ~20-second launch video of the site with music and share copy. Output goes to `brag-output/`, which git ignores |
 
 ## Before you launch
 
