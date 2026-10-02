@@ -19,7 +19,6 @@ catch (e) { ({ chromium } = require(path.join(execSync("npm root -g").toString()
 const PAGES = {
   "learn": ["learn", "The course", "From first sounds to NCLC 5", "21 research-based modules, A1 to B1."],
   "start": ["start", "Placement check", "Where should you start?", "12 questions · 2 minutes · free."],
-  "today": ["today", "Your daily hub", "Five minutes of French, every day.", "Review, streak, word of the day."],
   "quiz": ["quiz", "Practice", "Drills that make it stick", "Type, choose, flip or listen. 300+ items."],
   "review": ["review", "Practice", "Daily review", "Spaced repetition: see each card just before you forget it."],
   "conjugate": ["conjugate", "Practice", "Verb conjugator", "360+ French verbs, 7 tenses, English for every form."],

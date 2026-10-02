@@ -1,26 +1,10 @@
-<svg class="art" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three steps labelled A1, A2 and B1 with a pin marking your level"><defs>
-<radialGradient id="bg" cx=".5" cy=".5" r=".5"><stop offset="0" class="sbg"/><stop offset=".65" class="sbg" stop-opacity=".55"/><stop offset="1" class="sbg" stop-opacity="0"/></radialGradient>
+<svg class="art" viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A placement question with the right answer chosen and a level of A2"><defs>
+<linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="pb1"/><stop offset=".55" class="pb2"/><stop offset="1" class="pb3"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" class="gw"/><stop offset="1" class="gw" stop-opacity="0"/></radialGradient>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="st1"/><stop offset=".55" class="st2"/><stop offset="1" class="st3"/></linearGradient>
-<linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="st1"/><stop offset=".55" class="st2"/><stop offset="1" class="st3"/></linearGradient>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dd95"/><stop offset="1" stop-color="#c9922e"/></linearGradient>
-<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf6b"/><stop offset="1" stop-color="#f27a9b"/></linearGradient>
-<filter id="sh" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1b2559" flood-opacity=".14"/></filter>
-<filter id="shs" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1b2559" flood-opacity=".14"/></filter>
-</defs><ellipse cx="260.0" cy="200.0" rx="244.39999999999998" ry="196.0" fill="url(#bg)"/>
-<g filter="url(#sh)">
-  <rect class="c-card" x="70" y="262" width="128" height="70" rx="16"/>
-  <rect class="c-card" x="196" y="200" width="128" height="132" rx="16"/>
-  <rect fill="url(#g)" x="322" y="134" width="128" height="198" rx="16"/>
-</g>
-<text class="t-mute" x="134" y="306" font-size="22" font-weight="800" text-anchor="middle">A1</text>
-<text class="t-ink" x="260" y="276" font-size="22" font-weight="800" text-anchor="middle">A2</text>
-<text x="386" y="244" font-size="26" font-weight="800" fill="#fff" text-anchor="middle">B1</text>
-<text x="386" y="268" font-size="13" font-weight="600" fill="#fff" fill-opacity=".85" text-anchor="middle">NCLC 5</text>
-<rect class="c-line" x="96" y="236" width="76" height="6" rx="3.0"/>
-<rect class="c-line" x="222" y="300" width="76" height="6" rx="3.0"/><rect class="c-line" x="222" y="314" width="50" height="6" rx="3.0"/>
-<g class="fl1">
-<g filter="url(#sh)"><path fill="url(#g)" d="M260 186 C 240 160, 228 146, 228 128 a32 32 0 0 1 64 0 c0 18 -12 32 -32 58z"/></g>
-<circle cx="260" cy="128" r="12" fill="#fff"/></g>
-<ellipse cx="260" cy="200" rx="16" ry="4" class="c-line"/><g class="fl2" filter="url(#shs)"><rect class="c-card" x="148" y="62" width="112" height="32" rx="16.0"/><text class="t-ink" x="204.0" y="82.68" font-size="13" text-anchor="middle" font-weight="700">You are here</text></g><g class="fl3" filter="url(#shs)"><rect class="c-card" x="372" y="58" width="96" height="40" rx="20"/>
-<circle cx="396" cy="78" r="10" fill="none" class="k-g2" stroke-width="3"/><path d="M396 72 v6 l4 3" fill="none" class="k-g2" stroke-width="2.5" stroke-linecap="round"/>
-<text class="t-ink" x="440" y="84" font-size="15" font-weight="700" text-anchor="middle">2 min</text></g><path class="fl3" fill="url(#g)" d="M80 140 Q82.8 147.2 90 150 Q82.8 152.8 80 160 Q77.2 152.8 70 150 Q77.2 147.2 80 140Z"/><path class="fl1" fill="url(#g)" d="M480 292 Q482.24 297.76 488 300 Q482.24 302.24 480 308 Q477.76 302.24 472 300 Q477.76 297.76 480 292Z"/><circle class="c-g2" cx="330" cy="80" r="4"/><circle class="c-g3" cx="110" cy="210" r="3"/></svg>
+<linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="st1"/><stop offset=".6" class="st2"/><stop offset="1" class="st3"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7e2a4"/><stop offset="1" stop-color="#c58f2c"/></linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#141c4d" flood-opacity=".16"/></filter>
+<filter id="shs" x="-30%" y="-40%" width="160%" height="190%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#141c4d" flood-opacity=".16"/></filter>
+<clipPath id="clip"><rect width="480" height="360" rx="28"/></clipPath>
+</defs><g clip-path="url(#clip)"><rect width="480" height="360" fill="url(#pbg)"/><ellipse cx="86.39999999999999" cy="36.0" rx="240.0" ry="180.0" fill="url(#glow)"/><ellipse cx="456.0" cy="360.0" rx="192.0" ry="162.0" fill="url(#glow)" opacity=".6"/><g filter="url(#sh)"><rect class="c-card" x="44" y="52" width="312" height="258" rx="20" /></g><text class="t-mute" x="68" y="88" font-size="12" font-weight="700" text-anchor="start" letter-spacing="1.2">QUESTION 4 / 12</text><rect class="c-line" x="68" y="100" width="264" height="6" rx="3.0"/><rect x="68" y="100" width="88" height="6" rx="3" fill="url(#gh)"/><text class="t-fr" x="68" y="146" font-size="23" text-anchor="start" >Hier, je ____ au cinéma.</text><text class="t-mute" x="68" y="170" font-size="13" font-weight="500" text-anchor="start" >Yesterday, I went to the cinema.</text><rect x="68" y="190" width="264" height="44" rx="13" fill="url(#gh)"/><text class="" x="88" y="218" font-size="17" font-weight="700" text-anchor="start" fill="#fff">suis allé</text><path d="M305.38 212.22 L308.9 215.74 L314.95 208.7" fill="none" stroke="#fff" stroke-width="2.6399999999999997" stroke-linecap="round" stroke-linejoin="round"/><rect x="68" y="244" width="264" height="44" rx="13" class="c-soft"/><text class="t-mute" x="88" y="272" font-size="17" font-weight="600" text-anchor="start" >ai allé</text><g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="330" y="56" width="128" height="96" rx="22"/></g><text class="t-mute" x="394" y="88" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="1.2">YOUR LEVEL</text><text class="" x="394" y="132" font-size="36" font-weight="800" text-anchor="middle" fill="url(#g)">A2</text></g><g class="fl2"><g filter="url(#shs)"><rect class="c-card" x="330" y="268" width="128" height="44" rx="22.0"/></g><circle cx="354" cy="290" r="10" fill="none" class="k-g2" stroke-width="2.6"/><path d="M354 284.5 v6.0 l4.2 3.0" fill="none" class="k-g2" stroke-width="2.4" stroke-linecap="round"/><text class="t-ink" x="374" y="296" font-size="14" font-weight="700" text-anchor="start" >2 minutes</text></g></g><rect x=".5" y=".5" width="479" height="359" rx="28" fill="none" class="k-frame"/></svg>

@@ -1,401 +1,394 @@
 #!/usr/bin/env python3
 """Draw the site illustrations into assets/art/*.svg.
 
-Each illustration is plain SVG that uses classes (c-card, t-ink, st1…) instead of
-fixed colours, so the colours come from the art tokens in assets/site.css and
-follow light and dark mode. Edit a scene below, then run from the repository root:
+Every illustration is a framed panel (soft brand gradient, rounded corners)
+holding one clear scene built from real interface pieces, with text large
+enough to read at the size it is shown. Colours come from classes (c-card,
+t-ink, st1…) mapped to the art tokens in assets/site.css, so the art follows
+light and dark mode.
+
+Edit a scene below, then run from the repository root:
 
     python3 tools/art.py && python3 tools/partials.py && node tools/page-previews.js
 """
+import math
 import pathlib
+
 OUT = pathlib.Path(__file__).resolve().parent.parent / "assets" / "art"
+OUT.mkdir(parents=True, exist_ok=True)
 
 DEFS = """<defs>
-<radialGradient id="bg" cx=".5" cy=".5" r=".5"><stop offset="0" class="sbg"/><stop offset=".65" class="sbg" stop-opacity=".55"/><stop offset="1" class="sbg" stop-opacity="0"/></radialGradient>
+<linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="pb1"/><stop offset=".55" class="pb2"/><stop offset="1" class="pb3"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" class="gw"/><stop offset="1" class="gw" stop-opacity="0"/></radialGradient>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="st1"/><stop offset=".55" class="st2"/><stop offset="1" class="st3"/></linearGradient>
-<linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="st1"/><stop offset=".55" class="st2"/><stop offset="1" class="st3"/></linearGradient>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dd95"/><stop offset="1" stop-color="#c9922e"/></linearGradient>
-<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf6b"/><stop offset="1" stop-color="#f27a9b"/></linearGradient>
-<filter id="sh" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1b2559" flood-opacity=".14"/></filter>
-<filter id="shs" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1b2559" flood-opacity=".14"/></filter>
+<linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="st1"/><stop offset=".6" class="st2"/><stop offset="1" class="st3"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7e2a4"/><stop offset="1" stop-color="#c58f2c"/></linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#141c4d" flood-opacity=".16"/></filter>
+<filter id="shs" x="-30%" y="-40%" width="160%" height="190%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#141c4d" flood-opacity=".16"/></filter>
+<clipPath id="clip"><rect width="{W}" height="{H}" rx="{R}"/></clipPath>
 </defs>"""
 
-def svg(name, body, vb="0 0 520 400", bg=True, label="", cls="art"):
-    w, h = map(int, vb.split()[2:])
-    back = f'<ellipse cx="{w/2}" cy="{h/2}" rx="{w*0.47}" ry="{h*0.49}" fill="url(#bg)"/>' if bg else ""
-    s = f'<svg class="{cls}" viewBox="{vb}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{label}">{DEFS}{back}{body}</svg>\n'
-    (OUT / f"{name}.svg").write_text(s)
 
-def spark(x, y, r=9, cls="fl3"):
-    k = r * 0.28
-    return f'<path class="{cls}" fill="url(#g)" d="M{x} {y-r} Q{x+k} {y-k} {x+r} {y} Q{x+k} {y+k} {x} {y+r} Q{x-k} {y+k} {x-r} {y} Q{x-k} {y-k} {x} {y-r}Z"/>'
-def dot(x, y, r=4, cls="c-g2"):
-    return f'<circle class="{cls}" cx="{x}" cy="{y}" r="{r}"/>'
+def svg(name, body, w=480, h=360, r=28, label="", cls="art"):
+    defs = DEFS.replace("{W}", str(w)).replace("{H}", str(h)).replace("{R}", str(r))
+    frame = (f'<g clip-path="url(#clip)"><rect width="{w}" height="{h}" fill="url(#pbg)"/>'
+             f'<ellipse cx="{w*0.18}" cy="{h*0.1}" rx="{w*0.5}" ry="{h*0.5}" fill="url(#glow)"/>'
+             f'<ellipse cx="{w*0.95}" cy="{h*1.0}" rx="{w*0.4}" ry="{h*0.45}" fill="url(#glow)" opacity=".6"/>'
+             f'{body}</g>'
+             f'<rect x=".5" y=".5" width="{w-1}" height="{h-1}" rx="{r}" fill="none" class="k-frame"/>')
+    s = (f'<svg class="{cls}" viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{label}">'
+         f'{defs}{frame}</svg>\n')
+    (OUT / f"{name}.svg").write_text(s, encoding="utf-8")
+
+
+# ---------------------------------------------------------------- helpers
+def card(x, y, w, h, r=20, cls="c-card", filt="sh", extra=""):
+    return f'<g filter="url(#{filt})"><rect class="{cls}" x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" {extra}/></g>'
+
+
+def t(x, y, s, size=15, w=600, cls="t-ink", a="start", extra=""):
+    return f'<text class="{cls}" x="{x}" y="{y}" font-size="{size}" font-weight="{w}" text-anchor="{a}" {extra}>{s}</text>'
+
+
+def label(x, y, s, cls="t-mute", a="start", size=12):
+    return t(x, y, s, size, 700, cls, a, 'letter-spacing="1.2"')
+
+
+def fr(x, y, s, size=20, a="start", cls="t-fr", extra=""):
+    return f'<text class="{cls}" x="{x}" y="{y}" font-size="{size}" text-anchor="{a}" {extra}>{s}</text>'
+
+
 def bar(x, y, w, h=8, cls="c-line"):
     return f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="{h}" rx="{h/2}"/>'
-def chip(x, y, w, text, h=34, cls="c-card", tcls="t-ink", fs=15, filt="shs", anim="", extra=""):
-    return (f'<g class="{anim}" filter="url(#{filt})"><rect class="{cls}" x="{x}" y="{y}" width="{w}" height="{h}" rx="{h/2}"/>{extra}'
-            f'<text class="{tcls}" x="{x + w/2}" y="{y + h/2 + fs*0.36}" font-size="{fs}" text-anchor="middle" font-weight="700">{text}</text></g>')
-def flame(cx, cy, s=1.0, fill='fill="url(#g)"'):
-    return (f'<path {fill} transform="translate({cx} {cy}) scale({s})" d="M0 -20 C 9 -11 15 -4 15 6 A15 15 0 0 1 -15 6 C -15 -3 -9 -7 -6 -15 C -3 -9 -1 -7 2 -5 C 3 -11 1 -16 0 -20Z"/>'
+
+
+def tick(cx, cy, r=11, color="#fff", sw=None):
+    sw = sw or r * 0.24
+    return (f'<path d="M{cx-r*.42} {cy+r*.02} L{cx-r*.1} {cy+r*.34} L{cx+r*.45} {cy-r*.3}" fill="none" '
+            f'stroke="{color}" stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round"/>')
+
+
+def check(cx, cy, r=12):
+    return f'<circle class="c-good" cx="{cx}" cy="{cy}" r="{r}"/>' + tick(cx, cy, r)
+
+
+def flame(cx, cy, s=1.0):
+    return (f'<path fill="url(#g)" transform="translate({cx} {cy}) scale({s})" d="M0 -20 C 9 -11 15 -4 15 6 A15 15 0 0 1 -15 6 C -15 -3 -9 -7 -6 -15 C -3 -9 -1 -7 2 -5 C 3 -11 1 -16 0 -20Z"/>'
             f'<path fill="#fff" fill-opacity=".9" transform="translate({cx} {cy}) scale({s})" d="M0 0 C 4 4 6 7 6 10 A6 6 0 0 1 -6 10 C -6 6 -3 3 0 0Z"/>')
 
-def check(cx, cy, r=13, cls="c-good"):
-    return (f'<circle class="{cls}" cx="{cx}" cy="{cy}" r="{r}"/>'
-            f'<path d="M{cx-r*.42} {cy+r*.02} L{cx-r*.1} {cy+r*.34} L{cx+r*.45} {cy-r*.3}" fill="none" stroke="#fff" stroke-width="{r*.24}" stroke-linecap="round" stroke-linejoin="round"/>')
 
-# ---------- learn: open book, level path to B1, Bonjour bubble ----------
-book = f'''
-<g filter="url(#sh)">
-  <path fill="url(#g)" d="M96 300 Q178 280 260 304 Q342 280 424 300 L424 318 Q342 298 260 322 Q178 298 96 318 Z"/>
-  <path class="c-card" d="M106 298 Q183 278 258 300 L258 186 Q183 164 106 184 Z"/>
-  <path class="c-card" d="M262 300 Q337 278 414 298 L414 184 Q337 164 262 186 Z"/>
-</g>
-<path class="c-line" d="M258 186 L262 186 L262 300 L258 300Z"/>
-''' + "".join(f'<path d="M{124} {206+i*18} Q183 {191+i*18} {242} {204+i*18}" fill="none" class="k-mute" stroke-width="5" stroke-linecap="round"/>' for i in range(5)) + \
-"".join(f'<path d="M{278} {204+i*18} Q337 {191+i*18} {396} {206+i*18}" fill="none" class="k-mute" stroke-width="5" stroke-linecap="round"/>' for i in (0,1,3,4)) + \
-'<path d="M278 240 Q310 232 340 236" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round"/>'
-path = '''<path d="M150 150 C 200 92, 250 168, 300 112 S 372 70, 414 76" fill="none" class="k-g2" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>'''
-nodes = f'''
-<g class="fl1" filter="url(#shs)"><circle class="c-card" cx="150" cy="150" r="22"/><text class="t-ink" x="150" y="156" font-size="15" font-weight="700" text-anchor="middle">A1</text></g>
-<g class="fl2" filter="url(#shs)"><circle class="c-card" cx="300" cy="112" r="22"/><text class="t-ink" x="300" y="118" font-size="15" font-weight="700" text-anchor="middle">A2</text></g>
-<g class="fl3" filter="url(#sh)"><circle fill="url(#g)" cx="414" cy="76" r="32"/><text x="414" y="84" font-size="21" font-weight="800" fill="#fff" text-anchor="middle">B1</text>
-  <path d="M432 40 L432 8 L458 16 L432 24" fill="url(#g)"/><rect class="c-ink" x="430" y="6" width="3" height="40" rx="1.5"/></g>
-'''
-bubble = f'''<g class="fl2" filter="url(#sh)">
-<path class="c-card" d="M22 236 h112 a18 18 0 0 1 18 18 v6 a18 18 0 0 1 -18 18 h-74 l-16 14 l2 -14 h-24 a18 18 0 0 1 -18 -18 v-6 a18 18 0 0 1 18 -18z"/>
-<text class="t-fr" x="78" y="264" font-size="21" text-anchor="middle">Bonjour !</text></g>'''
-svg("learn", path + book + nodes + bubble + spark(78, 96, 11) + spark(470, 214, 8, "fl1") + dot(222, 60, 4) + dot(470, 150, 3, "c-g3") + dot(60, 180, 3, "c-g1"),
-    label="An open book with a path from A1 to A2 to B1")
+def clock(cx, cy, r=10):
+    return (f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" class="k-g2" stroke-width="2.6"/>'
+            f'<path d="M{cx} {cy-r*.55} v{r*.6} l{r*.42} {r*.3}" fill="none" class="k-g2" stroke-width="2.4" stroke-linecap="round"/>')
 
-# ---------- start: staircase A1 A2 B1 with "you are here" pin ----------
-steps = f'''
-<g filter="url(#sh)">
-  <rect class="c-card" x="70" y="262" width="128" height="70" rx="16"/>
-  <rect class="c-card" x="196" y="200" width="128" height="132" rx="16"/>
-  <rect fill="url(#g)" x="322" y="134" width="128" height="198" rx="16"/>
-</g>
-<text class="t-mute" x="134" y="306" font-size="22" font-weight="800" text-anchor="middle">A1</text>
-<text class="t-ink" x="260" y="276" font-size="22" font-weight="800" text-anchor="middle">A2</text>
-<text x="386" y="244" font-size="26" font-weight="800" fill="#fff" text-anchor="middle">B1</text>
-<text x="386" y="268" font-size="13" font-weight="600" fill="#fff" fill-opacity=".85" text-anchor="middle">NCLC 5</text>
-{bar(96, 236, 76, 6, "c-line")}
-{bar(222, 300, 76, 6, "c-line")}{bar(222, 314, 50, 6, "c-line")}
-'''
-pin = '''<g class="fl1">
-<g filter="url(#sh)"><path fill="url(#g)" d="M260 186 C 240 160, 228 146, 228 128 a32 32 0 0 1 64 0 c0 18 -12 32 -32 58z"/></g>
-<circle cx="260" cy="128" r="12" fill="#fff"/></g>
-<ellipse cx="260" cy="200" rx="16" ry="4" class="c-line"/>'''
-here = chip(148, 62, 112, "You are here", h=32, fs=13, anim="fl2")
-timer = f'''<g class="fl3" filter="url(#shs)"><rect class="c-card" x="372" y="58" width="96" height="40" rx="20"/>
-<circle cx="396" cy="78" r="10" fill="none" class="k-g2" stroke-width="3"/><path d="M396 72 v6 l4 3" fill="none" class="k-g2" stroke-width="2.5" stroke-linecap="round"/>
-<text class="t-ink" x="440" y="84" font-size="15" font-weight="700" text-anchor="middle">2 min</text></g>'''
-svg("start", steps + pin + here + timer + spark(80, 150, 10) + spark(480, 300, 8, "fl1") + dot(330, 80, 4) + dot(110, 210, 3, "c-g3"),
-    label="Three steps labelled A1, A2 and B1 with a pin marking your level")
 
-# ---------- quiz: flashcard stack with check / cross ----------
-cards = f'''
-<g transform="rotate(-10 250 210)" filter="url(#shs)"><rect class="c-soft2" x="140" y="110" width="220" height="150" rx="20"/></g>
-<g transform="rotate(6 270 210)" filter="url(#shs)"><rect class="c-soft" x="160" y="104" width="220" height="150" rx="20"/></g>
-<g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="150" y="118" width="230" height="160" rx="22"/></g>
-<text class="t-mute" x="174" y="150" font-size="12" font-weight="700" letter-spacing="1.5">FLASHCARD · 7 / 20</text>
-<text class="t-fr" x="265" y="206" font-size="38" text-anchor="middle">le délai</text>
-{bar(212, 228, 106, 7, "c-line")}
-<rect fill="url(#gh)" x="174" y="256" width="182" height="5" rx="2.5" opacity=".9"/>
-<rect class="c-card" x="292" y="256" width="64" height="5" rx="2.5" opacity=".7"/></g>
-'''
-btns = f'''<g class="fl2" filter="url(#sh)"><circle class="c-bad" cx="150" cy="300" r="24"/>
-<path d="M141 291 l18 18 M159 291 l-18 18" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></g>
-<g class="fl3" filter="url(#sh)">{check(384, 296, 26)}</g>'''
-flamechip = f'''<g class="fl2" filter="url(#shs)"><rect class="c-card" x="372" y="62" width="104" height="44" rx="22"/>
-{flame(400, 84, 0.95)}
-<text class="t-ink" x="446" y="90" font-size="18" font-weight="800" text-anchor="middle">12</text></g>'''
-svg("quiz", cards + btns + flamechip + spark(92, 110, 11) + spark(458, 210, 8, "fl1") + dot(110, 210, 3, "c-g1") + dot(300, 70, 4, "c-g3"),
-    label="A stack of French flashcards with right and wrong buttons")
+def pill(x, y, w, h, inner, cls="c-card", anim="fl1", filt="shs"):
+    fill = 'fill="url(#gh)"' if cls == "grad" else f'class="{cls}"'
+    return f'<g class="{anim}"><g filter="url(#{filt})"><rect {fill} x="{x}" y="{y}" width="{w}" height="{h}" rx="{h/2}"/></g>{inner}</g>'
 
-# ---------- review: forgetting curve with spaced reviews ----------
-pts = [(118, 120), (196, 112), (282, 104), (384, 96)]
-curve = "M118 120 C 140 190, 160 210, 196 218 L196 112 C 222 170, 246 188, 282 192 L282 104 C 312 148, 344 160, 384 162 L384 96 C 410 120, 430 128, 446 130"
-chart = f'''
-<g filter="url(#sh)"><rect class="c-card" x="76" y="58" width="390" height="252" rx="24"/></g>
-<text class="t-ink" x="104" y="96" font-size="17" font-weight="800">Memory</text>
-<path d="M104 116 V266 H446" fill="none" class="k-line" stroke-width="2"/>
-<path d="M118 120 C 150 220, 200 250, 446 262" fill="none" class="k-mute" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>
-<path d="{curve}" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-''' + "".join(f'<circle cx="{x}" cy="{y}" r="7" class="c-card" stroke="url(#g)" stroke-width="4"/>' for x, y in pts) + \
-"".join(f'<text class="t-mute" x="{x}" y="290" font-size="12.5" font-weight="700" text-anchor="middle">{d}</text>' for (x, _), d in zip(pts, ["Day 1", "Day 3", "Day 7", "Day 21"]))
-brain = f'''<g class="fl2">{chip(26, 168, 104, "Revoir ✓", h=36, fs=15, cls="c-card")}</g>'''
-cal = f'''<g class="fl1" filter="url(#sh)"><rect fill="url(#g)" x="400" y="20" width="84" height="84" rx="20"/>
-<text x="442" y="56" font-size="12" font-weight="700" fill="#fff" fill-opacity=".85" text-anchor="middle" letter-spacing="1">TODAY</text>
-<text x="442" y="88" font-size="30" font-weight="800" fill="#fff" text-anchor="middle">10</text></g>'''
-svg("review", chart + brain + cal + spark(60, 72, 10) + spark(480, 340, 8, "fl1") + dot(250, 340, 4, "c-g3") + dot(40, 290, 3, "c-g1"),
-    label="A memory curve that rises again at each spaced review")
 
-# ---------- exam: answer sheet + stopwatch + NCLC chip ----------
-opts = ["A", "B", "C", "D"]
-sheet = f'''<g transform="rotate(-4 220 210)"><g filter="url(#sh)"><rect class="c-card" x="96" y="70" width="230" height="280" rx="22"/></g>
-<text class="t-mute" x="122" y="106" font-size="12" font-weight="700" letter-spacing="1.5">COMPRÉHENSION ORALE</text>
-{bar(122, 122, 170, 8, "c-mute")}{bar(122, 138, 120, 8, "c-mute")}
-''' + "".join(
-    (f'<rect x="122" y="{164 + i*40}" width="178" height="30" rx="10" ' + ('fill="url(#gh)"' if o == "B" else 'class="c-soft"') + '/>'
-     f'<circle cx="140" cy="{179 + i*40}" r="8" ' + ('fill="#fff"' if o == "B" else 'class="c-card"') + '/>'
-     f'<text x="140" y="{183.5 + i*40}" font-size="11" font-weight="800" text-anchor="middle" ' + ('fill="url(#g)"' if o == "B" else 'class="t-mute"') + f'>{o}</text>'
-     + bar(158, 175 + i*40, 70 + (i*23) % 60, 8, "c-white" if o == "B" else "c-mute"))
-    for i, o in enumerate(opts)) + '</g>'
-watch = f'''<g class="fl1"><g filter="url(#sh)">
-<rect fill="url(#g)" x="355" y="62" width="30" height="20" rx="6"/>
-<circle class="c-card" cx="370" cy="170" r="88"/></g>
-<circle cx="370" cy="170" r="70" fill="none" class="k-line" stroke-width="12"/>
-<circle cx="370" cy="170" r="70" fill="none" stroke="url(#g)" stroke-width="12" stroke-linecap="round" stroke-dasharray="439.8" stroke-dashoffset="110" transform="rotate(-90 370 170)"/>
-<text class="t-ink" x="370" y="178" font-size="30" font-weight="800" text-anchor="middle">35:00</text>
-<text class="t-mute" x="370" y="200" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">MINUTES</text></g>'''
-nclc = f'''<g class="fl2" filter="url(#sh)"><rect class="c-card" x="300" y="290" width="160" height="50" rx="25"/>{check(328, 315, 15)}
-<text class="t-ink" x="398" y="321" font-size="17" font-weight="800" text-anchor="middle">NCLC 5</text></g>'''
-svg("exam", sheet + watch + nclc + spark(56, 120, 11) + spark(480, 260, 8, "fl1") + dot(250, 46, 4, "c-g3") + dot(60, 300, 3, "c-g1"),
-    label="An answer sheet, a stopwatch and an NCLC 5 result")
+def speaker(cx, cy, r=16):
+    k = r / 16
+    return (f'<circle cx="{cx}" cy="{cy}" r="{r}" class="c-soft"/>'
+            f'<path transform="translate({cx-8*k} {cy-8*k}) scale({k})" d="M2 6h3l4-3.5v11L5 10H2z" class="c-g2"/>'
+            f'<path transform="translate({cx-8*k} {cy-8*k}) scale({k})" d="M11.5 5.2a3.8 3.8 0 0 1 0 5.6" fill="none" class="k-g2" stroke-width="1.6" stroke-linecap="round"/>')
 
 
 MAPLE = "M50 5 L57 20 L66 16 L63 38 L76 26 L79 33 L92 30 L87 44 L94 48 L72 64 L75 72 L53 69 L53 90 L47 90 L47 69 L25 72 L28 64 L6 48 L13 44 L8 30 L21 33 L24 26 L37 38 L34 16 L43 20 Z"
-def maple(x, y, size, fill='fill="url(#g)"', cls=""):
+
+
+def maple(x, y, size, fill='fill="#e0554b"'):
     k = size / 100
-    return f'<path class="{cls}" {fill} transform="translate({x - 50*k} {y - 50*k}) scale({k})" d="{MAPLE}"/>'
-def speaker(cx, cy, r=14):
-    return (f'<circle cx="{cx}" cy="{cy}" r="{r}" class="c-soft"/>'
-            f'<path transform="translate({cx-7} {cy-7}) scale(0.875)" d="M2 6h3l4-3.5v11L5 10H2z" class="c-g2"/>'
-            f'<path transform="translate({cx-7} {cy-7}) scale(0.875)" d="M11.5 5.5a3.5 3.5 0 0 1 0 5" fill="none" class="k-g2" stroke-width="1.6" stroke-linecap="round"/>')
+    return f'<path {fill} transform="translate({x - 50*k} {y - 50*k}) scale({k})" d="{MAPLE}"/>'
 
-# ---------- conjugate ----------
-rows = [("je", "étais", False), ("tu", "étais", False), ("nous", "étions", True), ("ils", "étaient", False)]
-conj = f'''<g filter="url(#sh)"><rect class="c-card" x="112" y="66" width="296" height="268" rx="26"/></g>
-<text class="t-fr" x="140" y="122" font-size="44">être</text><text class="t-mute" x="236" y="120" font-size="15" font-weight="600">to be</text>
-{speaker(376, 108, 16)}
-<rect class="c-soft" x="140" y="140" width="240" height="32" rx="16"/>
-<rect fill="url(#gh)" x="218" y="143" width="88" height="26" rx="13"/>
-<text class="t-mute" x="178" y="161" font-size="12" font-weight="700" text-anchor="middle">Présent</text>
-<text x="262" y="161" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Imparfait</text>
-<text class="t-mute" x="343" y="161" font-size="12" font-weight="700" text-anchor="middle">Futur</text>
-''' + "".join(
-    (f'<rect x="140" y="{186+i*36}" width="240" height="30" rx="10" class="c-soft2"/>' if hl else f'<rect x="140" y="{215+i*36}" width="240" height="1.5" class="c-line"/>') +
-    f'<text class="t-mute" x="154" y="{206+i*36}" font-size="14" font-weight="600">{pr}</text>'
-    f'<text x="214" y="{206+i*36}" font-size="16" font-weight="800" ' + ('fill="url(#gh)"' if hl else 'class="t-ink"') + f'>{v}</text>'
-    for i, (pr, v, hl) in enumerate(rows))
-floats = chip(28, 96, 74, "suis", fs=16, anim="fl1") + chip(424, 186, 84, "serai", fs=16, anim="fl2") + chip(44, 268, 64, "été", fs=16, anim="fl3")
-svg("conjugate", conj + floats + spark(464, 84, 10) + spark(80, 200, 7, "fl1") + dot(250, 360, 4, "c-g3") + dot(470, 300, 3, "c-g1"),
-    label="A conjugation card for the verb être")
 
-# ---------- speak ----------
-mic = f'''<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="98" y="96" width="74" height="132" rx="37"/></g>
-<rect x="112" y="128" width="46" height="5" rx="2.5" fill="#fff" fill-opacity=".35"/><rect x="112" y="144" width="46" height="5" rx="2.5" fill="#fff" fill-opacity=".35"/><rect x="112" y="160" width="46" height="5" rx="2.5" fill="#fff" fill-opacity=".35"/>
-<path d="M80 184 a55 55 0 0 0 110 0" fill="none" class="k-mute" stroke-width="8" stroke-linecap="round"/>
-<rect class="c-mute" x="131" y="238" width="8" height="34" rx="4"/><rect class="c-mute" x="104" y="270" width="62" height="10" rx="5"/></g>'''
-import math
-def wave(x, y, n, cls, fill, seed):
+# ---------------------------------------------------------------- learn
+rows = [("done", "The sounds of French", "A1"), ("done", "The present tense", "A1"),
+        ("now", "Passé composé", "A2"), ("lock", "The subjunctive", "B1")]
+body = card(52, 46, 304, 268)
+body += t(78, 86, "Your path to B1", 19, 800) + t(78, 108, "21 modules, in the right order", 13, 600, "t-mute")
+for i, (st, title, lv) in enumerate(rows):
+    y0 = 128 + i * 44
+    if st == "now":
+        body += f'<rect x="66" y="{y0}" width="276" height="38" rx="12" fill="url(#gh)"/>'
+        body += f'<circle cx="88" cy="{y0+19}" r="10" fill="#fff"/><circle cx="88" cy="{y0+19}" r="4.5" fill="url(#g)"/>'
+        body += t(108, y0 + 24, title, 15, 700, "", "start", 'fill="#fff"') + t(328, y0 + 24, lv, 12.5, 800, "", "end", 'fill="#fff" fill-opacity=".85"')
+    else:
+        body += (check(88, y0 + 19, 10) if st == "done" else f'<circle cx="88" cy="{y0+19}" r="10" class="c-line"/>')
+        body += t(108, y0 + 24, title, 15, 600, "t-ink" if st == "done" else "t-mute") + t(328, y0 + 24, lv, 12.5, 800, "t-mute", "end")
+        if i < 3:
+            body += f'<rect x="78" y="{y0+40}" width="252" height="1" class="c-line"/>'
+body += pill(326, 34, 132, 46, fr(392, 64, "Bonjour !", 20, "middle"), anim="fl2")
+body += (f'<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="348" y="250" width="112" height="90" rx="22"/></g>'
+         + t(404, 293, "B1", 32, 800, "", "middle", 'fill="#fff"') + t(404, 318, "NCLC 5", 13, 700, "", "middle", 'fill="#fff" fill-opacity=".85"') + '</g>')
+svg("learn", body, label="A learning path with finished modules, the current module and B1 ahead")
+
+# ---------------------------------------------------------------- start (placement check)
+body = card(44, 52, 312, 258)
+body += label(68, 88, "QUESTION 4 / 12")
+body += bar(68, 100, 264, 6) + f'<rect x="68" y="100" width="88" height="6" rx="3" fill="url(#gh)"/>'
+body += fr(68, 146, "Hier, je ____ au cinéma.", 23)
+body += t(68, 170, "Yesterday, I went to the cinema.", 13, 500, "t-mute")
+body += '<rect x="68" y="190" width="264" height="44" rx="13" fill="url(#gh)"/>' + t(88, 218, "suis allé", 17, 700, "", "start", 'fill="#fff"') + tick(310, 212, 11)
+body += '<rect x="68" y="244" width="264" height="44" rx="13" class="c-soft"/>' + t(88, 272, "ai allé", 17, 600, "t-mute")
+body += (f'<g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="330" y="56" width="128" height="96" rx="22"/></g>'
+         + label(394, 88, "YOUR LEVEL", a="middle", size=11.5) + t(394, 132, "A2", 36, 800, "", "middle", 'fill="url(#g)"') + '</g>')
+body += pill(330, 268, 128, 44, clock(354, 290) + t(374, 296, "2 minutes", 14, 700), anim="fl2")
+svg("start", body, label="A placement question with the right answer chosen and a level of A2")
+
+# ---------------------------------------------------------------- quiz (drills)
+body = f'<g transform="rotate(-6 240 180)">{card(96, 70, 288, 222, 22, "c-soft2", "shs")}</g>'
+body += f'<g transform="rotate(4 240 180)">{card(96, 64, 288, 222, 22, "c-soft", "shs")}</g>'
+body += card(92, 60, 296, 236, 24)
+body += label(116, 94, "FLASHCARD · 7 / 20")
+body += fr(240, 166, "le délai", 48, "middle")
+body += t(240, 196, "lead time, time needed", 15, 500, "t-mute", "middle")
+body += '<rect x="116" y="232" width="118" height="42" rx="14" class="c-soft"/>' + t(175, 259, "Again", 15, 700, "", "middle", 'style="fill:var(--art-bad)"')
+body += '<rect x="246" y="232" width="118" height="42" rx="14" fill="url(#gh)"/>' + t(305, 259, "Got it", 15, 700, "", "middle", 'fill="#fff"')
+body += pill(340, 28, 120, 46, flame(366, 53, .82) + t(386, 57, "12 days", 15, 800))
+svg("quiz", body, label="A French flashcard with Again and Got it buttons and a 12-day streak")
+
+# ---------------------------------------------------------------- review (spaced repetition)
+body = card(30, 50, 306, 262)
+body += t(54, 88, "Memory", 18, 800) + t(54, 108, "with spaced review", 13, 600, "t-mute")
+body += '<path d="M54 132 V268 H316" fill="none" class="k-line" stroke-width="2"/>'
+body += '<path d="M66 142 C 110 232, 170 256, 314 262" fill="none" class="k-mute" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round"/>'
+body += ('<path d="M66 142 C 82 190, 100 212, 124 218 L124 140 C 144 178, 166 194, 192 202 L192 136 C 214 168, 238 182, 262 188 '
+         'L262 132 C 282 150, 300 158, 314 160" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>')
+for (x, y), d in zip([(66, 142), (124, 140), (192, 136), (262, 132)], ["Day 1", "Day 3", "Day 7", "Day 21"]):
+    body += f'<circle cx="{x}" cy="{y}" r="7" class="c-card" stroke="url(#g)" stroke-width="4"/>' + t(x, 292, d, 12.5, 700, "t-mute", "middle")
+body += (f'<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="340" y="70" width="118" height="128" rx="26"/></g>'
+         + t(399, 104, "TODAY", 12, 800, "", "middle", 'fill="#fff" fill-opacity=".85" letter-spacing="1.5"')
+         + t(399, 154, "10", 44, 800, "", "middle", 'fill="#fff"') + t(399, 180, "cards due", 13, 600, "", "middle", 'fill="#fff" fill-opacity=".85"') + '</g>')
+svg("review", body, label="A memory curve that climbs back up at each spaced review, with 10 cards due today")
+
+# ---------------------------------------------------------------- conjugate
+conj = [("je", "étais", False), ("tu", "étais", False), ("nous", "étions", True), ("ils", "étaient", False)]
+body = card(44, 34, 306, 292)
+body += fr(68, 92, "être", 44) + t(160, 90, "to be", 15, 600, "t-mute") + speaker(318, 76, 17)
+body += '<rect x="68" y="110" width="258" height="38" rx="19" class="c-soft"/><rect x="154" y="114" width="96" height="30" rx="15" fill="url(#gh)"/>'
+body += t(111, 134, "Présent", 13, 700, "t-mute", "middle") + t(202, 134, "Imparfait", 13, 700, "", "middle", 'fill="#fff"') + t(288, 134, "Futur", 13, 700, "t-mute", "middle")
+for i, (p, v, hl) in enumerate(conj):
+    y0 = 162 + i * 38
+    if hl:
+        body += f'<rect x="60" y="{y0}" width="274" height="36" rx="11" class="c-soft2"/>'
+    elif i < 3 and not conj[i + 1][2]:
+        body += f'<rect x="72" y="{y0+37}" width="250" height="1" class="c-line"/>'
+    body += t(78, y0 + 24, p, 15, 600, "t-mute") + t(148, y0 + 25, v, 19, 800, "t-ink" if not hl else "", "start", 'fill="url(#gh)"' if hl else "")
+body += pill(332, 130, 126, 46, fr(395, 160, "je serai", 19, "middle"), anim="fl2")
+body += pill(332, 232, 126, 46, fr(395, 262, "j'ai été", 19, "middle"))
+svg("conjugate", body, label="The verb être conjugated in the imparfait, with other tenses beside it")
+
+
+# ---------------------------------------------------------------- speak (listen & repeat)
+def wave(x, cy, n, fill, seed, step=12, hmax=34):
     out = ""
     for i in range(n):
-        h = 8 + abs(math.sin(i * 0.9 + seed)) * 30 + abs(math.sin(i * 2.3 + seed)) * 12
-        out += f'<rect {cls} {fill} x="{x + i*11}" y="{y - h/2}" width="6" height="{h}" rx="3"/>'
+        h = 8 + abs(math.sin(i * 0.9 + seed)) * (hmax * .6) + abs(math.sin(i * 2.3 + seed)) * (hmax * .4)
+        out += f'<rect {fill} x="{x + i*step}" y="{cy - h/2:.1f}" width="6" height="{h:.1f}" rx="3"/>'
     return out
-panel = f'''<g filter="url(#sh)"><rect class="c-card" x="222" y="92" width="262" height="212" rx="24"/></g>
-<text class="t-mute" x="246" y="126" font-size="12" font-weight="700" letter-spacing="1.5">MODEL</text>
-{wave(246, 162, 20, 'class="c-mute"', '', 0.4)}
-<text class="t-mute" x="246" y="208" font-size="12" font-weight="700" letter-spacing="1.5">YOU</text>
-{wave(246, 244, 20, '', 'fill="url(#gh)"', 0.9)}
-<rect class="c-line" x="246" y="276" width="214" height="1.5"/>'''
-cmp = f'''<g class="fl2" filter="url(#sh)"><rect class="c-card" x="330" y="296" width="132" height="42" rx="21"/>
-<path d="M350 312 h22 l-5 -5 M372 322 h-22 l5 5" fill="none" class="k-g2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-<text class="t-ink" x="420" y="323" font-size="15" font-weight="700" text-anchor="middle">Compare</text></g>'''
-bub = f'''<g class="fl3" filter="url(#sh)"><path class="c-card" d="M40 40 h120 a18 18 0 0 1 18 18 v4 a18 18 0 0 1 -18 18 h-80 l-14 14 l1 -14 h-27 a18 18 0 0 1 -18 -18 v-4 a18 18 0 0 1 18 -18z"/>
-<text class="t-fr" x="99" y="67" font-size="21" text-anchor="middle">Pardon ?</text></g>'''
-svg("speak", mic + panel + cmp + bub + spark(470, 56, 10) + spark(60, 300, 8, "fl1") + dot(210, 52, 4, "c-g3") + dot(206, 340, 3, "c-g1"),
-    label="A microphone and two sound waves to compare: the model voice and you")
-
-# ---------- topics ----------
-ex = f'''<g class="fl1" filter="url(#sh)"><path class="c-card" d="M60 92 h210 a22 22 0 0 1 22 22 v62 a22 22 0 0 1 -22 22 h-160 l-26 22 l4 -22 h-28 a22 22 0 0 1 -22 -22 v-62 a22 22 0 0 1 22 -22z"/></g>
-<text class="t-mute" x="80" y="122" font-size="12" font-weight="700" letter-spacing="1.5">TÂCHE 2</text>
-{bar(80, 136, 180, 8, "c-mute")}{bar(80, 152, 150, 8, "c-mute")}{bar(80, 168, 110, 8, "c-mute")}'''
-you = f'''<g class="fl2"><g filter="url(#sh)"><path fill="url(#g)" d="M228 214 h220 a22 22 0 0 1 22 22 v40 a22 22 0 0 1 -22 22 h-28 l4 22 l-26 -22 h-170 a22 22 0 0 1 -22 -22 v-40 a22 22 0 0 1 22 -22z"/></g>
-<text class="t-fr" x="338" y="264" font-size="21" text-anchor="middle" style="fill:#fff">Quels sont vos horaires ?</text></g>'''
-dice = f'''<g class="fl3"><g transform="rotate(14 420 110)" filter="url(#sh)"><rect class="c-card" x="380" y="70" width="80" height="80" rx="18"/>
-<circle class="c-g1" cx="402" cy="92" r="6.5"/><circle class="c-g2" cx="420" cy="110" r="6.5"/><circle class="c-g3" cx="438" cy="128" r="6.5"/>
-<circle class="c-g1" cx="438" cy="92" r="6.5"/><circle class="c-g3" cx="402" cy="128" r="6.5"/></g></g>'''
-tmr = f'''<g class="fl1" filter="url(#shs)"><rect class="c-card" x="70" y="282" width="112" height="44" rx="22"/>
-<circle cx="96" cy="304" r="11" fill="none" class="k-g2" stroke-width="3"/><path d="M96 297 v7 l5 3" fill="none" class="k-g2" stroke-width="2.5" stroke-linecap="round"/>
-<text class="t-ink" x="146" y="311" font-size="18" font-weight="800" text-anchor="middle">3:30</text></g>'''
-svg("topics", ex + you + dice + tmr + spark(320, 60, 10) + spark(484, 200, 7, "fl1") + dot(40, 230, 3, "c-g1") + dot(250, 360, 4, "c-g3"),
-    label="Two speech bubbles, a die for a random topic and a 3:30 timer")
-
-# ---------- writing ----------
-paper = f'''<g transform="rotate(-3 240 210)"><g filter="url(#sh)"><rect class="c-card" x="90" y="56" width="290" height="300" rx="20"/></g>
-<text class="t-mute" x="118" y="92" font-size="12" font-weight="700" letter-spacing="1.5">TÂCHE 1 · 120–150 MOTS</text>
-{bar(118, 110, 220, 8, "c-mute")}{bar(118, 128, 190, 8, "c-mute")}
-<text class="t-ink" x="118" y="176" font-size="17" font-family="var(--italic)" style="font-family:var(--italic)">L'année dernière,</text>
-<text x="262" y="158" font-size="16.5" font-weight="700" class="c-good" style="font-family:var(--italic)">je suis allé</text>
-<text class="t-ink" x="262" y="182" font-size="17" style="font-family:var(--italic);fill:var(--art-bad)">j'ai allé</text>
-<rect x="260" y="176" width="70" height="2.5" class="c-bad"/>
-{bar(118, 200, 230, 8, "c-mute")}{bar(118, 218, 200, 8, "c-mute")}{bar(118, 236, 222, 8, "c-mute")}
-{bar(118, 262, 160, 8, "c-mute")}{bar(118, 280, 214, 8, "c-mute")}{bar(118, 298, 120, 8, "c-mute")}</g>'''
-pen = f'''<g class="fl1"><g transform="rotate(38 400 220)" filter="url(#sh)">
-<rect fill="url(#g)" x="384" y="96" width="32" height="190" rx="14"/>
-<rect class="c-card" x="384" y="140" width="32" height="10" opacity=".55"/>
-<path d="M384 284 L400 330 L416 284 Z" class="c-ink"/><path d="M392 300 L400 330 L408 300 Z" class="c-gold"/></g></g>'''
-chips = f'''<g class="fl2" filter="url(#sh)"><rect fill="url(#g)" x="370" y="54" width="110" height="44" rx="22"/>
-<text x="425" y="82" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">NCLC 7</text></g>''' + chip(32, 300, 116, "126 mots", h=40, fs=16, anim="fl3")
-svg("writing", paper + pen + chips + spark(60, 80, 10) + spark(470, 330, 8, "fl1") + dot(470, 150, 3, "c-g3") + dot(240, 380, 3, "c-g1"),
-    label="A writing task with a corrected mistake, a pen and an NCLC 7 badge")
-
-# ---------- guides ----------
-gd = f'''<g transform="rotate(-9 230 200)" filter="url(#shs)"><rect class="c-soft2" x="118" y="70" width="210" height="270" rx="20"/></g>
-<g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="150" y="62" width="230" height="290" rx="22"/></g>
-<rect fill="url(#gh)" x="150" y="62" width="230" height="74" rx="22"/><rect fill="url(#gh)" x="150" y="110" width="230" height="26"/>
-<text x="174" y="96" font-size="12" font-weight="700" fill="#fff" fill-opacity=".85" letter-spacing="1.5">EXAM GUIDE</text>
-<text x="174" y="122" font-size="20" font-weight="800" fill="#fff">NCLC 5 scores</text>
-''' + "".join(f'<rect x="{176 + i*28}" y="{300 - h}" width="18" height="{h}" rx="5" ' + ('fill="url(#g)"' if i == 1 else 'class="c-soft"') + '/>' for i, h in enumerate([40, 64, 88, 110, 134, 150])) + \
-f'''<rect x="168" y="301" width="190" height="2" class="c-line"/>{bar(174, 318, 150, 7, "c-mute")}{bar(174, 332, 100, 7, "c-mute")}
-<g filter="url(#shs)"><rect class="c-card" x="176" y="198" width="74" height="26" rx="13"/></g><text class="t-ink" x="213" y="216" font-size="12.5" font-weight="800" text-anchor="middle">NCLC 5</text></g>'''
-mag = f'''<g class="fl2"><g filter="url(#sh)"><circle class="c-card" cx="388" cy="252" r="48" fill-opacity=".55"/></g>
-<circle cx="388" cy="252" r="48" fill="none" stroke="url(#g)" stroke-width="12"/>
-<rect fill="url(#g)" x="424" y="284" width="18" height="64" rx="9" transform="rotate(-45 433 316)"/></g>'''
-bm = f'''<g class="fl3" filter="url(#sh)"><path fill="url(#g)" d="M74 120 h46 v76 l-23 -16 l-23 16z"/></g>'''
-svg("guides", gd + mag + bm + spark(460, 90, 10) + spark(70, 290, 8, "fl1") + dot(300, 36, 4, "c-g3") + dot(470, 180, 3, "c-g1"),
-    label="An exam guide with a score chart and a magnifying glass")
-
-# ---------- today ----------
-sun = '<g class="fl3"><circle cx="388" cy="96" r="56" fill="url(#sun)" opacity=".95"/></g>'
-week = ["L", "M", "M", "J", "V", "S", "D"]
-cal = f'''<g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="96" y="88" width="268" height="232" rx="26"/></g>
-<rect fill="url(#gh)" x="96" y="88" width="268" height="62" rx="26"/><rect fill="url(#gh)" x="96" y="124" width="268" height="26"/>
-<text x="124" y="128" font-size="15" font-weight="800" fill="#fff" letter-spacing="2">OCTOBRE</text>
-<text x="336" y="130" font-size="24" font-weight="800" fill="#fff" text-anchor="end">2</text>
-''' + "".join(
-    f'<text class="t-mute" x="{132 + i*33}" y="182" font-size="12" font-weight="700" text-anchor="middle">{d}</text>' +
-    (f'<circle cx="{132 + i*33}" cy="206" r="12" fill="url(#g)"/><path d="M{127+i*33} 206 l4 4 l7 -8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>' if i < 5
-     else f'<circle cx="{132 + i*33}" cy="206" r="12" class="c-soft"/>')
-    for i, d in enumerate(week)) + \
-f'''{bar(124, 244, 160, 9, "c-mute")}{bar(124, 264, 210, 9, "c-line")}{bar(124, 284, 120, 9, "c-line")}</g>'''
-streak = f'''<g class="fl2" filter="url(#sh)"><rect class="c-card" x="300" y="268" width="168" height="54" rx="27"/>
-{flame(332, 298, 1.05)}<text class="t-ink" x="356" y="301" font-size="17" font-weight="800">5 jours</text></g>'''
-wod = f'''<g class="fl3" filter="url(#shs)"><rect class="c-card" x="24" y="230" width="104" height="44" rx="22"/>
-<text class="t-fr" x="76" y="258" font-size="18" text-anchor="middle">le délai</text></g>'''
-svg("today", sun + cal + streak + wod + spark(60, 90, 10) + spark(470, 210, 7, "fl1") + dot(250, 50, 4, "c-g3") + dot(230, 360, 3, "c-g1"),
-    label="A calendar with five study days ticked, a sunrise and a five-day streak")
-
-# ---------- contact ----------
-env = f'''<g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="96" y="140" width="250" height="170" rx="20"/></g>
-<path d="M100 150 L221 236 L342 150" fill="none" class="k-line" stroke-width="3" stroke-linejoin="round"/>
-<path d="M100 304 L190 226 M342 304 L252 226" fill="none" class="k-line" stroke-width="3"/>
-<g filter="url(#shs)"><circle cx="221" cy="236" r="22" fill="url(#g)"/></g>
-<path d="M221 247 c-9 -6 -13 -10 -13 -15 a6 6 0 0 1 13 -2 a6 6 0 0 1 13 2 c0 5 -4 9 -13 15z" fill="#fff"/></g>'''
-plane = f'''<path d="M120 110 C 200 40, 300 120, 380 70" fill="none" class="k-g2" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
-<g class="fl2"><g transform="translate(400 66) rotate(-18)" filter="url(#sh)">
-<path d="M-34 -4 L36 -26 L10 30 L0 8 Z" fill="url(#g)"/><path d="M0 8 L36 -26 L-6 18 Z" class="c-card" opacity=".55"/></g></g>'''
-bub = f'''<g class="fl3" filter="url(#sh)"><path class="c-card" d="M330 216 h120 a18 18 0 0 1 18 18 v4 a18 18 0 0 1 -18 18 h-26 l2 14 l-16 -14 h-80 a18 18 0 0 1 -18 -18 v-4 a18 18 0 0 1 18 -18z"/>
-<text class="t-fr" x="390" y="243" font-size="21" text-anchor="middle">Merci !</text></g>'''
-svg("contact", plane + env + bub + spark(70, 90, 10) + spark(470, 320, 8, "fl1") + dot(250, 360, 4, "c-g3") + dot(60, 250, 3, "c-g1"),
-    label="An envelope with a heart and a paper airplane")
-
-# ---------- 404 ----------
-mp = f'''<g filter="url(#sh)">
-<path class="c-card" d="M80 96 L190 70 L300 96 L420 70 L420 300 L300 326 L190 300 L80 326 Z"/></g>
-<path class="c-soft" d="M190 70 L300 96 L300 326 L190 300 Z" opacity=".7"/>
-<path d="M120 286 C 150 220, 220 270, 240 210 S 300 150, 330 190 S 360 230, 372 150" fill="none" class="k-g2" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/>
-<circle cx="120" cy="286" r="8" fill="url(#g)"/>
-{maple(150, 130, 44, 'fill="#e0554b"')}'''
-qpin = f'''<g class="fl1"><g filter="url(#sh)"><path fill="url(#g)" d="M372 146 C 352 120, 340 106, 340 88 a32 32 0 0 1 64 0 c0 18 -12 32 -32 58z"/></g>
-<text x="372" y="100" font-size="30" font-weight="800" fill="#fff" text-anchor="middle">?</text></g>'''
-oups = chip(30, 190, 100, "Oups !", h=42, fs=19, anim="fl2", tcls="t-fr")
-svg("404", mp + qpin + oups + spark(470, 230, 9) + spark(250, 40, 7, "fl1") + dot(470, 340, 3, "c-g3") + dot(50, 120, 4, "c-g1"),
-    label="A map with a winding route that ends at a question mark")
-
-# ---------- what's new ----------
-gift = f'''<g class="fl1"><g filter="url(#sh)">
-<rect fill="url(#g)" x="160" y="186" width="200" height="140" rx="18"/>
-<g transform="rotate(-10 260 170)"><rect fill="url(#g)" x="146" y="148" width="228" height="44" rx="14"/></g></g>
-<rect class="c-card" x="246" y="186" width="28" height="140" opacity=".9"/>
-<g transform="rotate(-10 260 170)"><rect class="c-card" x="246" y="148" width="28" height="44" opacity=".9"/>
-<path d="M260 148 C 230 110, 200 128, 224 146 Z M260 148 C 290 110, 320 128, 296 146 Z" class="c-card"/></g></g>'''
-burst = "".join(spark(x, y, r, c) for x, y, r, c in [(150, 100, 13, "fl2"), (380, 92, 10, "fl3"), (262, 62, 9, "fl1"), (420, 170, 7, "fl2"), (110, 190, 7, "fl3")])
-newc = f'''<g class="fl2" filter="url(#sh)"><rect class="c-card" x="330" y="262" width="142" height="46" rx="23"/>
-<circle cx="356" cy="285" r="8" fill="url(#g)"/><text class="t-ink" x="414" y="291" font-size="17" font-weight="800" text-anchor="middle">Nouveau</text></g>'''
-svg("whats-new", gift + burst + newc + dot(70, 280, 4, "c-g3") + dot(470, 60, 3, "c-g1"),
-    label="A gift box with sparkles and a Nouveau label")
-
-# ---------- certificate ----------
-cert = f'''<g transform="rotate(-4 230 200)"><g filter="url(#sh)"><rect class="c-card" x="76" y="90" width="300" height="214" rx="12"/></g>
-<rect x="88" y="102" width="276" height="190" rx="6" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
-<text x="226" y="140" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="2.5" fill="#b2832a">CERTIFICAT</text>
-<text class="t-fr" x="226" y="182" font-size="28" text-anchor="middle">Félicitations</text>
-{bar(150, 206, 152, 7, "c-mute")}{bar(170, 222, 112, 7, "c-line")}
-<rect x="118" y="262" width="80" height="2" class="c-mute"/><rect x="254" y="262" width="80" height="2" class="c-mute"/></g>'''
-medal = f'''<g class="fl1"><path d="M376 250 l-18 84 l22 -12 l14 20 l12 -80z" fill="url(#g)"/><path d="M408 250 l18 84 l-22 -12 l-14 20 l-12 -80z" fill="url(#g)" opacity=".85"/>
-<g filter="url(#sh)"><circle cx="392" cy="232" r="50" fill="url(#gold)"/></g>
-<circle cx="392" cy="232" r="38" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2" stroke-dasharray="3 5"/>
-<text x="392" y="243" font-size="30" font-weight="800" text-anchor="middle" fill="#6b4a0f">B1</text></g>'''
-cap = f'''<g class="fl2" filter="url(#sh)"><path class="c-ink" d="M110 70 L170 44 L230 70 L170 96 Z"/><path class="c-ink" d="M136 82 v22 c18 12 50 12 68 0 v-22 l-34 14z"/>
-<path d="M224 72 v26" class="k-g2" stroke-width="3"/><circle cx="224" cy="102" r="5" class="c-gold"/></g>'''
-svg("certificate", cert + medal + cap + spark(470, 100, 10) + spark(60, 330, 8, "fl1") + dot(300, 50, 4, "c-g3") + dot(470, 340, 3, "c-g1"),
-    label="A certificate of completion with a gold B1 medal and a graduation cap")
-
-# ---------- journey (landing) ----------
-road = "M40 230 C 160 230, 180 120, 300 130 S 440 250, 560 230 S 700 100, 820 110 S 960 150, 1000 140"
-stops = [(180, 168, "A1", "The basics"), (430, 196, "A2", "Everyday French"), (690, 150, "B1", "Independent")]
-j = f'''<path d="{road}" fill="none" class="k-line" stroke-width="30" stroke-linecap="round"/>
-<path d="{road}" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 14"/>
-''' + "".join(f'''<g class="fl{i+1}"><g filter="url(#sh)"><rect class="c-card" x="{x-70}" y="{y-112}" width="140" height="74" rx="18"/></g>
-<text class="t-ink" x="{x}" y="{y-76}" font-size="24" font-weight="800" text-anchor="middle">{lv}</text>
-<text class="t-mute" x="{x}" y="{y-54}" font-size="13" font-weight="600" text-anchor="middle">{sub}</text>
-<path d="M{x-8} {y-38} L{x} {y-28} L{x+8} {y-38}Z" class="c-card"/></g>
-<circle cx="{x}" cy="{y}" r="11" class="c-card" stroke="url(#g)" stroke-width="5"/>''' for i, (x, y, lv, sub) in enumerate(stops)) + \
-f'''<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="852" y="10" width="170" height="96" rx="22"/></g>
-{maple(890, 58, 40, 'fill="#fff"')}<text x="962" y="54" font-size="22" font-weight="800" fill="#fff" text-anchor="middle">NCLC 5</text>
-<text x="962" y="78" font-size="13" font-weight="600" fill="#fff" fill-opacity=".85" text-anchor="middle">TCF · TEF</text></g>
-<circle cx="940" cy="132" r="13" fill="url(#g)"/><circle cx="940" cy="132" r="5" fill="#fff"/>
-<circle cx="40" cy="230" r="13" class="c-card" stroke="url(#g)" stroke-width="5"/>
-{chip(4, 262, 112, "Day 1", h=38, fs=15, anim="fl3")}'''
-svg("journey", j + spark(560, 60, 10) + spark(300, 270, 8, "fl1") + dot(780, 250, 4, "c-g3") + dot(120, 100, 3, "c-g1"), vb="0 0 1030 300", bg=False,
-    label="A road from day one through A1, A2 and B1 to NCLC 5")
 
 
-# ---------- guide covers (480 x 220) ----------
-def cover(name, body, label):
-    back = '<rect class="c-soft" width="480" height="220"/><circle class="c-soft2" cx="430" cy="20" r="150"/><circle class="c-soft2" cx="40" cy="230" r="90" opacity=".7"/>'
-    svg(name, back + body, vb="0 0 480 220", bg=False, label=label, cls="art cover")
+body = card(70, 58, 360, 252)
+body += fr(130, 102, "Pardon, pouvez-vous", 22) + fr(130, 130, "répéter ?", 22)
+body += label(98, 168, "MODEL", size=11.5) + wave(98, 192, 26, 'class="c-mute"', 0.4)
+body += label(98, 232, "YOU", size=11.5) + wave(98, 256, 26, 'fill="url(#gh)"', 0.9)
+body += (f'<g class="fl1"><g filter="url(#sh)"><circle cx="72" cy="80" r="38" fill="url(#g)"/></g>'
+         '<rect x="63" y="58" width="18" height="30" rx="9" fill="#fff"/><path d="M55 80 a17 17 0 0 0 34 0" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>'
+         '<rect x="70.5" y="96" width="3" height="9" rx="1.5" fill="#fff"/></g>')
+body += pill(318, 290, 144, 46, '<path d="M340 307 h22 l-5 -5 M362 319 h-22 l5 5" fill="none" class="k-g2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>' + t(410, 318, "Compare", 15, 700, "t-ink", "middle"), anim="fl2")
+svg("speak", body, label="A French sentence with the model voice and your recording as two sound waves")
+
+# ---------------------------------------------------------------- exam
+body = card(40, 44, 300, 276)
+body += label(64, 80, "COMPRÉHENSION ORALE", size=11.5) + t(64, 106, "Question 12 / 39", 18, 800)
+body += bar(64, 122, 236, 8, "c-mute") + bar(64, 138, 170, 8, "c-mute")
+for i, o in enumerate("ABCD"):
+    y0 = 164 + i * 38
+    if o == "B":
+        body += f'<rect x="64" y="{y0}" width="252" height="32" rx="11" fill="url(#gh)"/><circle cx="83" cy="{y0+16}" r="9" fill="#fff"/>'
+        body += t(83, y0 + 20.5, o, 11.5, 800, "", "middle", 'fill="url(#g)"') + bar(102, y0 + 12, 120, 8, "c-white")
+    else:
+        body += f'<rect x="64" y="{y0}" width="252" height="32" rx="11" class="c-soft"/><circle cx="83" cy="{y0+16}" r="9" class="c-card"/>'
+        body += t(83, y0 + 20.5, o, 11.5, 800, "t-mute", "middle") + bar(102, y0 + 12, [96, 0, 140, 80][i], 8, "c-mute")
+body += (f'<g class="fl1"><g filter="url(#sh)"><circle class="c-card" cx="384" cy="104" r="68"/></g>'
+         '<circle cx="384" cy="104" r="52" fill="none" class="k-line" stroke-width="10"/>'
+         '<circle cx="384" cy="104" r="52" fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="80" transform="rotate(-90 384 104)"/>'
+         + t(384, 110, "34:12", 24, 800, "t-ink", "middle") + t(384, 130, "LEFT", 11, 800, "t-mute", "middle", 'letter-spacing="1.5"') + '</g>')
+body += pill(300, 296, 158, 50, check(328, 321, 13) + t(398, 327, "NCLC 5", 17, 800, "t-ink", "middle"), anim="fl2")
+svg("exam", body, label="A listening question with answer B chosen, a countdown timer and an NCLC 5 result")
+
+# ---------------------------------------------------------------- topics (speaking)
+body = (f'<g filter="url(#sh)"><path class="c-card" d="M60 44 h268 a22 22 0 0 1 22 22 v64 a22 22 0 0 1 -22 22 h-206 l-26 22 l4 -22 h-40 '
+        'a22 22 0 0 1 -22 -22 v-64 a22 22 0 0 1 22 -22z"/></g>')
+body += label(64, 76, "EXAMINATEUR", size=11.5) + fr(64, 110, "Vous cherchez un appartement.", 19) + fr(64, 136, "Posez-moi des questions.", 19)
+body += (f'<g class="fl2"><g filter="url(#sh)"><path fill="url(#g)" d="M152 186 h268 a22 22 0 0 1 22 22 v54 a22 22 0 0 1 -22 22 h-36 l4 22 l-26 -22 h-210 '
+         'a22 22 0 0 1 -22 -22 v-54 a22 22 0 0 1 22 -22z"/></g>'
+         + t(156, 216, "VOUS", 11.5, 700, "", "start", 'fill="#fff" fill-opacity=".8" letter-spacing="1.2"')
+         + fr(156, 250, "Quel est le loyer ?", 22, "start", "t-fr", 'style="fill:#fff"') + '</g>')
+body += pill(30, 264, 112, 46, clock(56, 287) + t(76, 293, "3:30", 17, 800))
+body += (f'<g class="fl1"><g transform="rotate(12 412 92)" filter="url(#sh)"><rect class="c-card" x="380" y="60" width="64" height="64" rx="15"/></g>'
+         '<g transform="rotate(12 412 92)"><circle class="c-g1" cx="396" cy="76" r="5.5"/><circle class="c-g2" cx="412" cy="92" r="5.5"/><circle class="c-g3" cx="428" cy="108" r="5.5"/>'
+         '<circle class="c-g1" cx="428" cy="76" r="5.5"/><circle class="c-g3" cx="396" cy="108" r="5.5"/></g></g>')
+svg("topics", body, label="A speaking task: the examiner sets the scene and you ask a question, with a 3:30 timer and a die for a random topic")
+
+# ---------------------------------------------------------------- writing
+body = card(44, 30, 308, 300, 18)
+body += label(68, 64, "TÂCHE 1 · 120–150 MOTS", size=11.5)
+body += fr(68, 100, "L'année dernière, j'ai déménagé", 17.5) + fr(68, 128, "à Montréal. Le premier jour,", 17.5)
+body += '<rect x="62" y="142" width="266" height="34" rx="9" class="c-good-soft"/>'
+body += fr(70, 165, "j'ai allé", 17.5, "start", "t-fr", 'style="fill:var(--art-bad)"') + '<rect x="70" y="159" width="62" height="2" class="c-bad"/>'
+body += fr(142, 165, "je suis allé", 17.5, "start", "t-fr", 'style="fill:var(--art-good);font-weight:700"')
+body += fr(68, 202, "au bureau en métro.", 17.5)
+for i, w in enumerate([250, 222, 240, 160]):
+    body += bar(68, 222 + i * 20, w, 8, "c-mute")
+body += (f'<g class="fl1"><g transform="rotate(36 400 200)" filter="url(#sh)"><rect fill="url(#g)" x="386" y="96" width="30" height="176" rx="13"/>'
+         '<rect class="c-card" x="386" y="136" width="30" height="9" opacity=".5"/><path d="M386 270 L401 312 L416 270 Z" class="c-ink"/>'
+         '<path d="M393 286 L401 312 L409 286 Z" class="c-gold"/></g></g>')
+body += pill(340, 26, 118, 46, t(399, 55, "NCLC 7", 17, 800, "", "middle", 'fill="#fff"'), cls="grad", anim="fl2")
+body += pill(330, 288, 128, 44, t(394, 315, "142 mots", 15, 800, "t-ink", "middle"))
+svg("writing", body, label="A writing task with a mistake corrected, a pen and an NCLC 7 badge")
+
+# ---------------------------------------------------------------- guides
+body = card(52, 36, 304, 288)
+body += f'<g clip-path="url(#hdr)"><rect x="52" y="36" width="304" height="84" fill="url(#gh)"/></g>'
+body = body.replace("<g clip-path=\"url(#hdr)\">", "<clipPath id=\"hdr\"><rect x=\"52\" y=\"36\" width=\"304\" height=\"288\" rx=\"20\"/></clipPath><g clip-path=\"url(#hdr)\">")
+body += t(76, 70, "FREE GUIDE", 11.5, 800, "", "start", 'fill="#fff" fill-opacity=".85" letter-spacing="1.4"') + t(76, 100, "NCLC 5 score chart", 20, 800, "", "start", 'fill="#fff"')
+body += label(76, 148, "TCF CANADA · NCLC 5", size=11.5)
+for i, (k, v) in enumerate([("Listening", "369+"), ("Reading", "375+"), ("Writing", "6 / 20"), ("Speaking", "6 / 20")]):
+    y0 = 180 + i * 36
+    body += t(76, y0, k, 15, 600) + t(332, y0, v, 16, 800, "", "end", 'fill="url(#gh)"')
+    if i < 3:
+        body += f'<rect x="76" y="{y0+13}" width="256" height="1" class="c-line"/>'
+body += (f'<g class="fl1"><circle cx="392" cy="236" r="44" class="c-card" opacity=".55"/>'
+         f'<g filter="url(#shs)"><circle cx="392" cy="236" r="44" fill="none" stroke="url(#g)" stroke-width="12"/></g>'
+         '<rect fill="url(#g)" x="426" y="268" width="18" height="62" rx="9" transform="rotate(-45 435 299)"/></g>')
+svg("guides", body, label="A free guide showing the NCLC 5 scores for each skill, under a magnifying glass")
+
+# ---------------------------------------------------------------- contact
+body = card(44, 40, 330, 280)
+body += f'<circle cx="80" cy="78" r="18" fill="url(#g)"/>' + t(80, 82.5, "B1", 12, 800, "", "middle", 'fill="#fff"')
+body += t(108, 74, "NCLC 5 Roadmap", 15, 800) + t(108, 93, "Replies within two business days", 12, 600, "t-mute")
+body += '<rect x="44" y="110" width="330" height="1" class="c-line"/>'
+body += '<rect x="64" y="128" width="224" height="44" rx="16" class="c-soft"/>' + t(82, 155, "Bonjour ! How can we help?", 14, 600)
+body += '<rect x="134" y="184" width="220" height="44" rx="16" fill="url(#gh)"/>' + t(152, 211, "Where should I start?", 14, 600, "", "start", 'fill="#fff"')
+body += '<rect x="64" y="240" width="250" height="44" rx="16" class="c-soft"/>' + t(82, 267, "Try the 2-minute check →", 14, 600)
+body += (f'<g class="fl1"><g filter="url(#sh)"><circle cx="404" cy="96" r="44" fill="url(#g)"/></g>'
+         '<rect x="380" y="80" width="48" height="34" rx="6" fill="none" stroke="#fff" stroke-width="3.2"/>'
+         '<path d="M382 84 L404 100 L426 84" fill="none" stroke="#fff" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/></g>')
+svg("contact", body, label="A support chat with a friendly reply and an envelope")
+
+# ---------------------------------------------------------------- what's new
+items = [("Full mock exam", "All four skills, timed"), ("Speaking topics", "60 TCF prompts"), ("Writing models", "NCLC 4, 5 and 7")]
+body = card(44, 40, 316, 280)
+body += t(68, 80, "What's new", 19, 800) + t(68, 100, "October 2026", 13, 600, "t-mute")
+for i, (a, b) in enumerate(items):
+    y0 = 124 + i * 62
+    body += f'<rect x="68" y="{y0}" width="40" height="40" rx="12" fill="url(#g)"/>' + tick(88, y0 + 20, 12)
+    body += t(122, y0 + 18, a, 15.5, 700) + t(122, y0 + 36, b, 12.5, 600, "t-mute")
+    if i == 0:
+        body += f'<rect x="282" y="{y0+6}" width="56" height="24" rx="12" fill="url(#gh)"/>' + t(310, y0 + 22.5, "NEW", 11.5, 800, "", "middle", 'fill="#fff" letter-spacing="1"')
+    if i < 2:
+        body += f'<rect x="68" y="{y0+52}" width="270" height="1" class="c-line"/>'
+body += ('<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="352" y="226" width="96" height="78" rx="14"/>'
+         '<rect fill="url(#g)" x="342" y="204" width="116" height="30" rx="10"/></g>'
+         '<rect class="c-card" x="391" y="204" width="18" height="100" opacity=".9"/>'
+         '<path d="M400 204 C 380 178, 360 190, 378 203 Z M400 204 C 420 178, 440 190, 422 203 Z" class="c-card"/></g>')
+svg("whats-new", body, label="A list of new features with a gift box")
+
+# ---------------------------------------------------------------- certificate
+body = f'<g transform="rotate(-3 210 190)">{card(38, 74, 330, 226, 12)}'
+body += '<rect x="52" y="88" width="302" height="198" rx="6" fill="none" stroke="url(#gold)" stroke-width="2.5"/>'
+body += t(203, 128, "CERTIFICATE OF COMPLETION", 11.5, 800, "", "middle", 'fill="#b2832a" letter-spacing="2"')
+body += fr(203, 172, "Félicitations", 32, "middle")
+body += bar(128, 196, 150, 8, "c-mute") + bar(150, 214, 106, 8, "c-line")
+body += '<rect x="82" y="262" width="90" height="2" class="c-mute"/><rect x="234" y="262" width="90" height="2" class="c-mute"/></g>'
+body += ('<g class="fl1"><path d="M370 250 l-18 80 l22 -12 l14 20 l12 -78z" fill="url(#g)"/><path d="M404 250 l18 80 l-22 -12 l-14 20 l-12 -78z" fill="url(#g)" opacity=".85"/>'
+         '<g filter="url(#sh)"><circle cx="388" cy="232" r="54" fill="url(#gold)"/></g>'
+         '<circle cx="388" cy="232" r="42" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2" stroke-dasharray="3 5"/>'
+         + t(388, 244, "B1", 32, 800, "", "middle", 'fill="#6b4a0f"') + '</g>')
+body += ('<g class="fl2" filter="url(#shs)"><path class="c-ink" d="M76 54 L140 28 L204 54 L140 80 Z"/><path class="c-ink" d="M104 66 v22 c18 12 54 12 72 0 v-22 l-36 14z"/>'
+         '<path d="M198 56 v26" class="k-g2" stroke-width="3"/><circle cx="198" cy="86" r="5" class="c-gold"/></g>')
+svg("certificate", body, label="A certificate of completion with a gold B1 medal and a graduation cap")
+
+# ---------------------------------------------------------------- 404
+body = '<g filter="url(#sh)"><path class="c-card" d="M60 70 L170 44 L280 70 L400 44 L400 292 L280 318 L170 292 L60 318 Z"/></g>'
+body += '<path class="c-soft" d="M170 44 L280 70 L280 318 L170 292 Z" opacity=".75"/>'
+body += '<path d="M104 272 C 136 206, 204 258, 222 196 S 290 140, 314 178 S 344 214, 352 140" fill="none" class="k-g2" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/>'
+body += '<circle cx="104" cy="272" r="9" fill="url(#g)"/>' + maple(126, 112, 46)
+body += ('<g class="fl1"><g filter="url(#sh)"><path fill="url(#g)" d="M352 136 C 330 110, 318 96, 318 76 a34 34 0 0 1 68 0 c0 20 -12 34 -34 60z"/></g>'
+         + t(352, 89, "?", 30, 800, "", "middle", 'fill="#fff"') + '</g>')
+body += pill(306, 268, 120, 48, fr(366, 299, "Oups !", 22, "middle"), anim="fl2")
+svg("404", body, label="A map with a winding route that ends at a question mark")
+
+
+# ---------------------------------------------------------------- guide covers (480 × 220)
+def cover(name, body, label_):
+    svg(name, body, w=480, h=220, r=0, label=label_, cls="art cover")
+
 
 hs = [40, 58, 78, 98, 118, 138, 156]
-cover("cover-score", f'''<g filter="url(#sh)"><rect class="c-card" x="96" y="30" width="288" height="168" rx="20"/></g>
-''' + "".join(f'<rect x="{124 + i*36}" y="{176 - h*0.85}" width="24" height="{h*0.85}" rx="6" ' + ('fill="url(#g)"' if i == 1 else 'class="c-soft"') + '/>'
-               f'<text class="t-mute" x="{136 + i*36}" y="190" font-size="10" font-weight="700" text-anchor="middle">{i+4}</text>' for i, h in enumerate(hs)) +
-      f'''<g class="fl1"><g filter="url(#shs)"><rect class="c-card" x="130" y="78" width="84" height="28" rx="14"/></g>
-<text class="t-ink" x="172" y="97" font-size="13" font-weight="800" text-anchor="middle">NCLC 5</text></g>''' + spark(420, 170, 10) + spark(60, 60, 8, "fl1"),
-      "A bar chart of NCLC levels with level 5 highlighted")
+body = card(92, 26, 296, 172)
+for i, h in enumerate(hs):
+    body += (f'<rect x="{120 + i*36}" y="{172 - h*0.8:.1f}" width="24" height="{h*0.8:.1f}" rx="6" ' + ('fill="url(#g)"' if i == 1 else 'class="c-soft"') + '/>'
+             + t(132 + i * 36, 188, str(i + 4), 11, 700, "t-mute", "middle"))
+body += pill(110, 82, 92, 30, t(156, 102, "NCLC 5", 13, 800, "t-ink", "middle"))
+cover("cover-score", body, "A bar chart of NCLC levels with level 5 highlighted")
 
-cover("cover-tcf-tef", f'''<g class="fl1" transform="rotate(-6 160 110)" filter="url(#sh)"><rect class="c-card" x="88" y="44" width="140" height="140" rx="24"/></g>
-<text class="t-ink" x="158" y="122" font-size="34" font-weight="800" text-anchor="middle" transform="rotate(-6 160 110)">TCF</text>
-<g class="fl2" transform="rotate(6 320 110)" filter="url(#sh)"><rect fill="url(#g)" x="252" y="44" width="140" height="140" rx="24"/></g>
-<text x="322" y="122" font-size="34" font-weight="800" text-anchor="middle" fill="#fff" transform="rotate(6 320 110)">TEF</text>
-<g filter="url(#sh)"><circle class="c-card" cx="240" cy="112" r="28"/></g><text x="240" y="120" font-size="20" font-weight="800" text-anchor="middle" fill="url(#g)">vs</text>''' + spark(430, 60, 9) + spark(50, 170, 8, "fl1"),
-      "TCF and TEF side by side")
+body = (f'<g transform="rotate(-6 166 112)">{card(96, 42, 140, 140, 26)}' + t(166, 124, "TCF", 34, 800, "t-ink", "middle") + '</g>'
+        f'<g transform="rotate(6 314 112)"><g filter="url(#sh)"><rect fill="url(#g)" x="244" y="42" width="140" height="140" rx="26"/></g>' + t(314, 124, "TEF", 34, 800, "", "middle", 'fill="#fff"') + '</g>'
+        + card(212, 82, 56, 56, 28) + t(240, 117, "vs", 19, 800, "", "middle", 'fill="url(#g)"'))
+cover("cover-tcf-tef", body, "TCF and TEF side by side")
 
-q = [("Quel est le prix ?", 34, 46, "c-card"), ("Comment s'inscrire ?", 150, 88, "g"), ("Y a-t-il un parking ?", 70, 132, "c-card")]
-cover("cover-task2", "".join(
-    f'''<g class="fl{i+1}" filter="url(#sh)"><rect {'fill="url(#gh)"' if c == "g" else 'class="c-card"'} x="{x}" y="{y}" width="{250}" height="42" rx="21"/></g>
-<text class="t-fr" x="{x + 125}" y="{y + 28}" font-size="19" text-anchor="middle" {'style="fill:#fff"' if c == "g" else ''}>{t}</text>''' for i, (t, x, y, c) in enumerate(q)) +
-      f'''<g class="fl2" filter="url(#sh)"><circle fill="url(#g)" cx="408" cy="64" r="34"/></g><text x="408" y="76" font-size="36" font-weight="800" fill="#fff" text-anchor="middle">?</text>''' + spark(430, 180, 9, "fl1"),
-      "Three French questions in speech bubbles")
+body = ""
+for i, (q, x, y, g) in enumerate([("Quel est le prix ?", 40, 34, False), ("Comment s'inscrire ?", 150, 88, True), ("Y a-t-il un parking ?", 70, 142, False)]):
+    fill = 'fill="url(#gh)"' if g else 'class="c-card"'
+    body += (f'<g filter="url(#shs)"><rect {fill} x="{x}" y="{y}" width="250" height="44" rx="22"/></g>'
+             + fr(x + 125, y + 29, q, 19, "middle", "t-fr", 'style="fill:#fff"' if g else ""))
+body += f'<g filter="url(#sh)"><circle fill="url(#g)" cx="420" cy="70" r="34"/></g>' + t(420, 83, "?", 36, 800, "", "middle", 'fill="#fff"')
+cover("cover-task2", body, "Three French questions in speech bubbles")
 
-parts = ["Opening", "Argument 1", "Argument 2", "Counterpoint", "Conclusion"]
-cover("cover-task3", f'''<g filter="url(#sh)"><rect class="c-card" x="60" y="22" width="260" height="178" rx="20"/></g>''' + "".join(
-    f'<circle cx="92" cy="{52 + i*32}" r="11" ' + ('fill="url(#g)"' if i in (0, 4) else 'class="c-soft"') + f'/><text x="92" y="{56.5 + i*32}" font-size="12" font-weight="800" text-anchor="middle" ' + ('fill="#fff"' if i in (0, 4) else 'class="t-ink"') + f'>{i+1}</text>'
-    f'<text class="t-ink" x="114" y="{57 + i*32}" font-size="14" font-weight="700">{t}</text>' + bar(230, 51 + i*32, 64 - i*6, 6, "c-line") for i, t in enumerate(parts)) +
-      f'''<g class="fl1"><g filter="url(#sh)"><circle class="c-card" cx="390" cy="110" r="58"/></g>
-<circle cx="390" cy="110" r="46" fill="none" class="k-line" stroke-width="9"/><circle cx="390" cy="110" r="46" fill="none" stroke="url(#g)" stroke-width="9" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="70" transform="rotate(-90 390 110)"/>
-<text class="t-ink" x="390" y="118" font-size="24" font-weight="800" text-anchor="middle">4:30</text></g>''' + spark(452, 196, 8, "fl2"),
-      "The five parts of a Task 3 answer and a 4:30 timer")
+body = card(56, 20, 270, 180)
+for i, p in enumerate(["Opening", "Argument 1", "Argument 2", "Counterpoint", "Conclusion"]):
+    y0 = 52 + i * 32
+    on = i in (0, 4)
+    body += (f'<circle cx="86" cy="{y0}" r="11" ' + ('fill="url(#g)"' if on else 'class="c-soft"') + '/>'
+             + t(86, y0 + 4.5, str(i + 1), 12, 800, "" if on else "t-ink", "middle", 'fill="#fff"' if on else "")
+             + t(108, y0 + 5, p, 14.5, 700) + bar(236, y0 - 3, 66 - i * 6, 6))
+body += (card(338, 52, 116, 116, 58) + '<circle cx="396" cy="110" r="44" fill="none" class="k-line" stroke-width="9"/>'
+         '<circle cx="396" cy="110" r="44" fill="none" stroke="url(#g)" stroke-width="9" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="66" transform="rotate(-90 396 110)"/>'
+         + t(396, 118, "4:30", 23, 800, "t-ink", "middle"))
+cover("cover-task3", body, "The five parts of a Task 3 answer and a 4:30 timer")
 
-months = ["J", "F", "M", "A", "M", "J", "J", "A"]
-cover("cover-b1", f'''<g filter="url(#sh)"><rect class="c-card" x="56" y="40" width="300" height="146" rx="20"/></g>
-<text class="t-mute" x="80" y="72" font-size="11" font-weight="800" letter-spacing="1.5">1–2 H A DAY</text>''' + "".join(
-    f'<text class="t-mute" x="{90 + i*33}" y="170" font-size="11" font-weight="700" text-anchor="middle">{m}</text>' for i, m in enumerate(months)) +
-      '<path d="M90 146 C 140 140, 160 120, 200 112 S 280 82, 321 70" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round"/>' +
-      "".join(f'<circle cx="{x}" cy="{y}" r="6" class="c-card" stroke="url(#g)" stroke-width="3.5"/>' for x, y in [(90, 146), (200, 112), (321, 70)]) +
-      f'''<g class="fl1" filter="url(#sh)"><circle fill="url(#g)" cx="412" cy="96" r="40"/></g><text x="412" y="105" font-size="26" font-weight="800" fill="#fff" text-anchor="middle">B1</text>''' + spark(440, 180, 8, "fl2") + spark(40, 40, 8, "fl3"),
-      "A progress line across the months to B1")
+body = card(48, 32, 310, 156) + label(72, 64, "1–2 HOURS A DAY", size=11.5)
+for i, m in enumerate(["J", "F", "M", "A", "M", "J", "J", "A"]):
+    body += t(82 + i * 34, 172, m, 11.5, 700, "t-mute", "middle")
+body += '<path d="M82 146 C 132 140, 152 120, 194 112 S 276 80, 320 70" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round"/>'
+for x, y in [(82, 146), (194, 112), (320, 70)]:
+    body += f'<circle cx="{x}" cy="{y}" r="6.5" class="c-card" stroke="url(#g)" stroke-width="3.5"/>'
+body += f'<g filter="url(#sh)"><circle fill="url(#g)" cx="414" cy="110" r="42"/></g>' + t(414, 120, "B1", 28, 800, "", "middle", 'fill="#fff"')
+cover("cover-b1", body, "A progress line across the months to B1")
+
+# ---------------------------------------------------------------- learning journey (landing page)
+road = "M40 230 C 160 230, 180 120, 300 130 S 440 250, 560 230 S 700 100, 820 110 S 960 150, 1000 140"
+stops = [(180, 168, "A1", "The basics"), (430, 196, "A2", "Everyday French"), (690, 150, "B1", "Independent")]
+j = (f'<path d="{road}" fill="none" class="k-line" stroke-width="30" stroke-linecap="round"/>'
+     f'<path d="{road}" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 14"/>')
+for i, (x, y, lv, sub) in enumerate(stops):
+    j += (f'<g class="fl{i % 2 + 1}">{card(x-72, y-114, 144, 76, 18)}'
+          + t(x, y - 77, lv, 24, 800, "t-ink", "middle") + t(x, y - 55, sub, 13.5, 600, "t-mute", "middle")
+          + f'<path d="M{x-8} {y-39} L{x} {y-29} L{x+8} {y-39}Z" class="c-card"/></g>'
+          + f'<circle cx="{x}" cy="{y}" r="11" class="c-card" stroke="url(#g)" stroke-width="5"/>')
+j += (f'<g class="fl1"><g filter="url(#sh)"><rect fill="url(#g)" x="852" y="10" width="170" height="96" rx="22"/></g>'
+      + maple(890, 58, 40, 'fill="#fff"') + t(962, 56, "NCLC 5", 22, 800, "", "middle", 'fill="#fff"')
+      + t(962, 80, "TCF · TEF", 13, 600, "", "middle", 'fill="#fff" fill-opacity=".85"') + '</g>'
+      '<circle cx="940" cy="132" r="13" fill="url(#g)"/><circle cx="940" cy="132" r="5" fill="#fff"/>'
+      '<circle cx="40" cy="230" r="13" class="c-card" stroke="url(#g)" stroke-width="5"/>'
+      + pill(4, 262, 112, 38, t(60, 286, "Day 1", 15, 700, "t-ink", "middle")))
+(OUT / "journey.svg").write_text(
+    '<svg class="art" viewBox="0 0 1030 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A road from day one through A1, A2 and B1 to NCLC 5">'
+    + DEFS.replace("{W}", "1030").replace("{H}", "310").replace("{R}", "0") + j + "</svg>\n", encoding="utf-8")
+
+for old in ("today",):
+    (OUT / f"{old}.svg").unlink(missing_ok=True)
+print("wrote", len(list(OUT.glob("*.svg"))), "illustrations to assets/art/")
