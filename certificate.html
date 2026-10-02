@@ -44,6 +44,8 @@
   .cert::after { content: ""; position: absolute; inset: 3.6%; border: 1px solid #e7d4a5; border-radius: 2px; pointer-events: none; }
   .cert .k { font-size: 2.2cqi; letter-spacing: .22em; text-transform: uppercase; color: #8a6d2b; font-weight: 700; }
   .cert h2 { font-family: var(--serif); font-weight: 400; font-size: 6.4cqi; margin: 1.2cqi 0 3cqi; letter-spacing: -0.01em; }
+  .cert h2 { display: flex; align-items: center; justify-content: center; gap: 1.8cqi; }
+  .cert .cmark { width: 6.2cqi; height: 6.2cqi; }
   .cert .to { font-size: 2.1cqi; color: #6e6e73; }
   .cert .name { font-family: var(--serif); font-style: italic; font-size: 6cqi; margin: 1cqi 0 1.4cqi; padding: 0 4cqi .6cqi; border-bottom: 1px solid #c9a24a; min-width: 50%; }
   .cert .what { font-size: 2.15cqi; line-height: 1.55; max-width: 74%; color: #3a3a3c; }
@@ -67,7 +69,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">ê</span><span data-site="brand">Prêt Français</span></a>
+    <a class="brand" href="index.html"><img class="brand-mark" src="assets/brand/mark.svg" alt="" width="30" height="30"><span class="wordmark">Prêt <span>Français</span></span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="today.html">Today</a>
       <a href="learn.html" aria-current="page">Course</a>
@@ -113,7 +115,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">ê</span><span data-site="brand">Prêt Français</span></a>
+        <a class="brand" href="index.html"><img class="brand-mark" src="assets/brand/mark.svg" alt="" width="30" height="30"><span class="wordmark">Prêt <span>Français</span></span></a>
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
@@ -179,7 +181,7 @@
 
   app.innerHTML = "<div class='cert-form'><label>Your name, as it should appear<input id='nm' autocomplete='name' maxlength='60' value=\"" + esc(saved.name || "") + "\" placeholder='Your full name'></label>" +
     "<button type='button' class='btn btn-primary' id='print'>Print or save as PDF</button></div>" +
-    "<div class='cert' id='cert'><span class='k'>Certificate of completion</span><h2>" + esc(brand) + "</h2>" +
+    "<div class='cert' id='cert'><span class='k'>Certificate of completion</span><h2><img class='cmark' src='assets/brand/mark.svg' alt=''>" + esc(brand) + "</h2>" +
     "<span class='to'>This certifies that</span><div class='name' id='cn'></div>" +
     "<p class='what'>has completed all " + mods.length + " modules of the Prêt Français French course, from first sounds to B1 grammar and TCF Canada speaking and writing preparation.</p>" +
     "<div class='foot'><div><b>" + esc(dateStr) + "</b>Date</div><div class='seal' aria-hidden='true'>B1</div><div><b>" + mods.length + " / " + mods.length + "</b>Modules</div></div>" +
