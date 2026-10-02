@@ -1,0 +1,22 @@
+<svg class="art" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A stack of French flashcards with right and wrong buttons"><defs>
+<radialGradient id="bg" cx=".5" cy=".5" r=".5"><stop offset="0" class="sbg"/><stop offset=".65" class="sbg" stop-opacity=".55"/><stop offset="1" class="sbg" stop-opacity="0"/></radialGradient>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="st1"/><stop offset=".55" class="st2"/><stop offset="1" class="st3"/></linearGradient>
+<linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="st1"/><stop offset=".55" class="st2"/><stop offset="1" class="st3"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dd95"/><stop offset="1" stop-color="#c9922e"/></linearGradient>
+<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcf6b"/><stop offset="1" stop-color="#f27a9b"/></linearGradient>
+<filter id="sh" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1b2559" flood-opacity=".14"/></filter>
+<filter id="shs" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1b2559" flood-opacity=".14"/></filter>
+</defs><ellipse cx="260.0" cy="200.0" rx="244.39999999999998" ry="196.0" fill="url(#bg)"/>
+<g transform="rotate(-10 250 210)" filter="url(#shs)"><rect class="c-soft2" x="140" y="110" width="220" height="150" rx="20"/></g>
+<g transform="rotate(6 270 210)" filter="url(#shs)"><rect class="c-soft" x="160" y="104" width="220" height="150" rx="20"/></g>
+<g class="fl1"><g filter="url(#sh)"><rect class="c-card" x="150" y="118" width="230" height="160" rx="22"/></g>
+<text class="t-mute" x="174" y="150" font-size="12" font-weight="700" letter-spacing="1.5">FLASHCARD · 7 / 20</text>
+<text class="t-fr" x="265" y="206" font-size="38" text-anchor="middle">le délai</text>
+<rect class="c-line" x="212" y="228" width="106" height="7" rx="3.5"/>
+<rect fill="url(#gh)" x="174" y="256" width="182" height="5" rx="2.5" opacity=".9"/>
+<rect class="c-card" x="292" y="256" width="64" height="5" rx="2.5" opacity=".7"/></g>
+<g class="fl2" filter="url(#sh)"><circle class="c-bad" cx="150" cy="300" r="24"/>
+<path d="M141 291 l18 18 M159 291 l-18 18" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></g>
+<g class="fl3" filter="url(#sh)"><circle class="c-good" cx="384" cy="296" r="26"/><path d="M373.08 296.52 L381.4 304.84 L395.7 288.2" fill="none" stroke="#fff" stroke-width="6.24" stroke-linecap="round" stroke-linejoin="round"/></g><g class="fl2" filter="url(#shs)"><rect class="c-card" x="372" y="62" width="104" height="44" rx="22"/>
+<path fill="url(#g)" transform="translate(400 84) scale(0.95)" d="M0 -20 C 9 -11 15 -4 15 6 A15 15 0 0 1 -15 6 C -15 -3 -9 -7 -6 -15 C -3 -9 -1 -7 2 -5 C 3 -11 1 -16 0 -20Z"/><path fill="#fff" fill-opacity=".9" transform="translate(400 84) scale(0.95)" d="M0 0 C 4 4 6 7 6 10 A6 6 0 0 1 -6 10 C -6 6 -3 3 0 0Z"/>
+<text class="t-ink" x="446" y="90" font-size="18" font-weight="800" text-anchor="middle">12</text></g><path class="fl3" fill="url(#g)" d="M92 99 Q95.08 106.92 103 110 Q95.08 113.08 92 121 Q88.92 113.08 81 110 Q88.92 106.92 92 99Z"/><path class="fl1" fill="url(#g)" d="M458 202 Q460.24 207.76 466 210 Q460.24 212.24 458 218 Q455.76 212.24 450 210 Q455.76 207.76 458 202Z"/><circle class="c-g1" cx="110" cy="210" r="3"/><circle class="c-g3" cx="300" cy="70" r="4"/></svg>

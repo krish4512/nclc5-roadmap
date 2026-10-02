@@ -7,6 +7,7 @@ Each page marks the regions this script owns:
     <!-- partial:header KEY -->  ... <!-- /partial:header -->
     <!-- partial:footer -->      ... <!-- /partial:footer -->
     <!-- partial:tabs -->         ... <!-- /partial:tabs -->      (the section's tabs)
+    <!-- partial:art NAME -->     ... <!-- /partial:art -->       (assets/art/NAME.svg, inlined)
 
 KEY is the section to highlight (today, learn, practice, exam) or "none".
 Tabs work out the section and active tab from the page's file name (TABS).
@@ -186,7 +187,9 @@ def social(text, name):
     title = title.group(1).strip() if title else "NCLC 5 Roadmap"
     desc = desc.group(1).strip() if desc else "A research-based French course, drills and mock exams for NCLC 5 on the TCF Canada and TEF Canada."
     url = SITE_URL + "/" + ("" if name == "index.html" else name)
-    image = SITE_URL + "/assets/og-image.jpg"
+    stem = name[:-5] if name.endswith(".html") else name
+    own = ROOT / "assets" / "og" / (stem + ".jpg")   # made by tools/page-previews.js
+    image = SITE_URL + ("/assets/og/" + stem + ".jpg" if own.exists() else "/assets/og-image.jpg")
     return "\n".join([
         '<meta property="og:type" content="website">',
         '<meta property="og:site_name" content="NCLC 5 Roadmap">',
@@ -196,10 +199,20 @@ def social(text, name):
         f'<meta property="og:image" content="{image}">',
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
-        '<meta property="og:image:alt" content="NCLC 5 Roadmap — Your French, exam-ready.">',
+        f'<meta property="og:image:alt" content="{title}">',
         '<meta name="twitter:card" content="summary_large_image">',
         f'<meta name="twitter:image" content="{image}">',
     ])
+
+
+def art(name):
+    """Inline an illustration so it can follow the page's light/dark colours.
+    Ids are prefixed so several illustrations can share one page."""
+    svg = (ROOT / "assets" / "art" / (name + ".svg")).read_text(encoding="utf-8").strip()
+    pre = "a-" + name + "-"
+    svg = re.sub(r'id="([^"]+)"', lambda m: 'id="' + pre + m.group(1) + '"', svg)
+    svg = re.sub(r'url\(#([^)]+)\)', lambda m: "url(#" + pre + m.group(1) + ")", svg)
+    return "<!-- partial:art " + name + " -->\n" + svg + "\n<!-- /partial:art -->"
 
 
 def render(text, name=""):
@@ -209,6 +222,7 @@ def render(text, name=""):
                   lambda m: header(m.group(1)), text, flags=re.S)
     text = re.sub(r"<!-- partial:footer -->.*?<!-- /partial:footer -->", lambda m: footer(), text, flags=re.S)
     text = re.sub(r"<!-- partial:tabs -->.*?<!-- /partial:tabs -->", lambda m: tabs(name), text, flags=re.S)
+    text = re.sub(r"<!-- partial:art ([\w-]+) -->.*?<!-- /partial:art -->", lambda m: art(m.group(1)), text, flags=re.S)
     return text
 
 
