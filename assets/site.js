@@ -319,9 +319,80 @@
   }
   function onStreak(fn) { streakListeners.push(fn); }
 
-  window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak };
+  /* on phones the "how this site works" strip scrolls sideways: bring the
+     current step into view */
+  function wireJourney() {
+    var bar = document.querySelector(".journey .container"), cur = bar && bar.querySelector(".cur");
+    if (bar && cur && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = Math.max(0, cur.offsetLeft - bar.offsetLeft - 24);
+  }
 
-  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); }
+  /* ---------- "Report a mistake" ----------
+     NCLC.report("Module 9 · Lesson 9.2: …") opens a small form. With
+     SITE.feedbackForm set (e.g. a Formspree URL) the report is posted there;
+     otherwise it opens a pre-filled email to SITE.email. */
+  var reportDlg = null, reportWhere = "";
+  function buildReport() {
+    reportDlg = document.createElement("dialog");
+    reportDlg.className = "report-dlg";
+    reportDlg.setAttribute("aria-labelledby", "rep-title");
+    reportDlg.innerHTML =
+      "<form class='rep' novalidate>" +
+        "<h2 id='rep-title'>Report a mistake</h2>" +
+        "<p class='rep-where' id='rep-where'></p>" +
+        "<label for='rep-msg'>What's wrong?</label>" +
+        "<textarea id='rep-msg' rows='4' required placeholder='e.g. The English for “j&#39;ai pris” should be “I took”, not “I take”.'></textarea>" +
+        "<label for='rep-email'>Your email <span>(optional, if you'd like a reply)</span></label>" +
+        "<input type='email' id='rep-email' autocomplete='email' placeholder='you@example.com'>" +
+        "<p class='rep-err' id='rep-err' role='alert'></p>" +
+        "<div class='rep-actions'><button type='button' class='btn btn-ghost' data-rep-cancel>Cancel</button><button type='submit' class='btn btn-primary'>Send report</button></div>" +
+        "<p class='rep-fine'>Thank you — every report gets read and fixed.</p>" +
+      "</form>";
+    document.body.appendChild(reportDlg);
+    reportDlg.querySelector("[data-rep-cancel]").addEventListener("click", function () { reportDlg.close(); });
+    reportDlg.addEventListener("click", function (e) { if (e.target === reportDlg) reportDlg.close(); });
+    /* pages can put focus back where the learner was (e.g. the drill's Next button) */
+    reportDlg.addEventListener("close", function () { document.dispatchEvent(new CustomEvent("nclc:report-closed")); });
+    reportDlg.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = document.getElementById("rep-msg").value.trim(), email = document.getElementById("rep-email").value.trim();
+      var err = document.getElementById("rep-err");
+      if (msg.length < 3) { err.textContent = "Please describe the mistake."; document.getElementById("rep-msg").focus(); return; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = "That email address doesn't look right."; document.getElementById("rep-email").focus(); return; }
+      err.textContent = "";
+      var page = location.href;
+      if (SITE.feedbackForm) {
+        var body = new FormData();
+        body.append("where", reportWhere); body.append("message", msg); body.append("page", page);
+        if (email) body.append("email", email);
+        fetch(SITE.feedbackForm, { method: "POST", body: body, mode: "no-cors" }).catch(function () {});
+        toast("Thanks — your report was sent.");
+      } else {
+        var text = "Where: " + reportWhere + "\nPage: " + page + "\n\nWhat's wrong:\n" + msg + (email ? "\n\nReply to: " + email : "");
+        location.href = "mailto:" + (SITE.email || "") + "?subject=" + encodeURIComponent("Mistake report — " + reportWhere) + "&body=" + encodeURIComponent(text);
+        toast("Opening your email app…");
+      }
+      document.getElementById("rep-msg").value = "";
+      reportDlg.close();
+    });
+  }
+  function report(where) {
+    reportWhere = where || document.title;
+    if (!reportDlg) buildReport();
+    document.getElementById("rep-where").textContent = reportWhere;
+    document.getElementById("rep-err").textContent = "";
+    if (typeof reportDlg.showModal === "function") { reportDlg.showModal(); document.getElementById("rep-msg").focus(); }
+    else location.href = "mailto:" + (SITE.email || "") + "?subject=" + encodeURIComponent("Mistake report — " + reportWhere);
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-report]");
+    if (!b) return;
+    e.preventDefault();
+    report(b.getAttribute("data-report"));
+  });
+
+  window.NCLC = { toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
+
+  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireJourney(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();

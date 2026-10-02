@@ -7,6 +7,7 @@ Each page marks the regions this script owns:
     <!-- partial:header KEY -->  ... <!-- /partial:header -->
     <!-- partial:footer -->      ... <!-- /partial:footer -->
     <!-- partial:related KEY --> ... <!-- /partial:related -->   ("Keep going" cards)
+    <!-- partial:journey KEY --> ... <!-- /partial:journey -->   ("How this site works" strip)
 
 KEY is the nav item to highlight (learn, roadmap, practice, exam, pricing) or "none".
 Edit the templates below, then run from the repository root:
@@ -47,6 +48,7 @@ HEAD = """<!-- partial:head -->
 NAV = [
     ("learn", "learn.html", "Learn", [
         ("learn.html", "Course overview", "All 21 modules and your progress"),
+        ("start.html", "Find your level", "2-minute check: where to start"),
         ("learn.html#method", "How to learn French", "The research-based method"),
         ("learn.html#sounds", "Pronunciation", "The sounds of French"),
         ("learn.html#basics", "A1 · Foundations", "Être, avoir, present tense, questions"),
@@ -161,6 +163,7 @@ FOOTER = """<!-- partial:footer -->
       <div>
         <h4>Study</h4>
         <ul>
+          <li><a href="start.html">Find your level</a></li>
           <li><a href="learn.html">French course</a></li>
           <li><a href="cheatsheets.html">Free cheat sheets</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
@@ -202,6 +205,36 @@ FOOTER = """<!-- partial:footer -->
   </div>
 </footer>
 <!-- /partial:footer -->"""
+
+
+# "How this site works" strip at the top of the study pages. KEY is the
+# current step: start, learn, practice, exam, or roadmap (the reference).
+JOURNEY = [
+    ("start", "start.html", "Find your level", "2-minute check"),
+    ("learn", "learn.html", "Learn", "21 modules, in order"),
+    ("practice", "quiz.html", "Drill", "Make it automatic"),
+    ("exam", "exam.html", "Test", "Timed mock exams"),
+]
+
+
+def journey(key):
+    steps = []
+    for i, (k, href, title, hint) in enumerate(JOURNEY, 1):
+        cur = ' aria-current="step"' if k == key else ""
+        cls = "j-step cur" if k == key else "j-step"
+        steps.append(f'<li><a class="{cls}" href="{href}"{cur}><i>{i}</i><span><b>{title}</b><small>{hint}</small></span></a></li>')
+    ref_cls = "j-ref cur" if key == "roadmap" else "j-ref"
+    ref_cur = ' aria-current="page"' if key == "roadmap" else ""
+    return f"""<!-- partial:journey {key} -->
+<nav class="journey" aria-label="How this site works">
+  <div class="container">
+    <ol>
+      {"".join(steps)}
+    </ol>
+    <a class="{ref_cls}" href="roadmap.html"{ref_cur}><b>Roadmap</b><small>Your checklist &amp; reference</small></a>
+  </div>
+</nav>
+<!-- /partial:journey -->"""
 
 
 def related(key):
@@ -249,6 +282,8 @@ def render(text, name=""):
     text = re.sub(r"<!-- partial:header (\w+) -->.*?<!-- /partial:header -->",
                   lambda m: header(m.group(1)), text, flags=re.S)
     text = re.sub(r"<!-- partial:footer -->.*?<!-- /partial:footer -->", lambda m: FOOTER, text, flags=re.S)
+    text = re.sub(r"<!-- partial:journey (\w+) -->.*?<!-- /partial:journey -->",
+                  lambda m: journey(m.group(1)), text, flags=re.S)
     text = re.sub(r"<!-- partial:related (\w+) -->.*?<!-- /partial:related -->",
                   lambda m: related(m.group(1)), text, flags=re.S)
     return text

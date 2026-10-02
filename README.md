@@ -16,6 +16,7 @@ You upload the folder and it works.
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `quiz.html` | Practice drills built from the roadmap's tables: type, multiple choice, flashcards and listen-and-type; streaks, hints, weak-item review |
 | `exam.html` + `exam-data.js` | Mock exam: 20 listening and 20 reading questions (exam or practice mode), 3 writing tasks with a live coach and model answers, 3 speaking tasks with timers and recording |
+| `start.html` | 2-minute placement check: 12 questions from A1 to B1 that recommend a starting module and a plan for the learner's test date |
 | `cheatsheets.html` + `assets/cheatsheets/` | 21 free one-page PDF cheat sheets (one per module, plus all-in-one), with an optional email sign-up to unlock them |
 | `pricing.html` | Plans and Stripe checkout buttons |
 | `contact.html` | Support email, billing portal link, FAQ |
@@ -95,6 +96,11 @@ python3 -m http.server 8000
 - **Cheat sheets:** they're generated from the course, so after editing a module run
   `node tools/cheatsheets.js` (needs Node and Playwright: `npm i -g playwright`). Each sheet
   is fitted to one Letter page automatically. English glosses come from `assets/course-en.js`.
+- **Mistake reports:** every lesson (and every wrong drill answer) has a "Report a mistake"
+  button. Set `feedbackForm` in `assets/config.js` to a form endpoint (e.g. Formspree) to
+  receive reports there; left empty, the button opens a pre-filled email to your `email`.
+- **Placement check:** the 12 questions live at the top of the script in `start.html`
+  (`Q`), each tied to the module it tests. Keep them ordered from easiest to hardest.
 - **Email sign-ups for the cheat sheets:** set `leadForm` in `assets/config.js` to a form
   endpoint (Formspree, Mailchimp, ConvertKit, Buttondown…). Leave it empty to let anyone
   download without an email.

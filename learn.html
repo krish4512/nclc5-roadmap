@@ -75,6 +75,8 @@
 
   /* ---------- layout ---------- */
   .learn { max-width: 1220px; margin: 0 auto; padding: 32px 24px 24px; display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 44px; align-items: start; }
+  .journey .container { max-width: 1220px; padding-left: 24px; padding-right: 24px; }
+  @media (max-width: 560px) { .journey .container { padding-left: 16px; padding-right: 16px; } }
   @media (max-width: 960px) { .learn { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
   @media (max-width: 560px) { .learn { padding: 18px 16px 16px; } }
 
@@ -106,6 +108,9 @@
     .mobile-nav { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
     .mobile-nav select { flex: 1; min-width: 0; font-family: var(--sans); font-size: 15px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
   }
+
+  .place-note { margin: 16px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+  .place-note a { font-weight: 600; }
 
   /* ---------- streak ---------- */
   .streak { margin-top: 26px; max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px; box-shadow: var(--shadow-sm); }
@@ -250,6 +255,8 @@
   .lesson h3 .n { flex: none; font-size: 12.5px; font-weight: 700; color: var(--c-ink); background: var(--c-soft); border: 1px solid var(--c-line); border-radius: 9px; padding: 3px 8px; margin-top: 2px; }
   .lesson .body { font-size: 16.5px; line-height: 1.72; color: var(--ink); }
   .lesson .body p { margin: 0 0 12px; }
+  .lesson-foot { display: flex; justify-content: flex-end; margin-top: 10px; }
+  .finish + .lesson-foot, .sources + .lesson-foot { justify-content: flex-start; }
   .lesson .body ul, .lesson .body ol { margin: 6px 0 14px; padding-left: 22px; }
   .lesson .body li { margin: 5px 0; }
   .lesson .body li::marker { color: var(--c); }
@@ -381,7 +388,7 @@
   .finish { display: flex; gap: 18px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: linear-gradient(135deg, var(--c-soft), var(--surface) 70%); border: 1px solid var(--c-line); border-radius: 22px; padding: 22px 24px; }
   .finish .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
   .finish .checks label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
-  .finish .checks input { margin-top: 3px; accent-color: var(--c); width: 17px; height: 17px; flex: none; }
+  .finish .checks input { margin-top: 2px; accent-color: var(--c); width: 20px; height: 20px; flex: none; }
   .pager { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 34px; }
   .pager a { text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px 20px; color: var(--ink); font-weight: 600; transition: transform 0.3s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease; }
   .pager a:hover { border-color: var(--c-line); color: var(--ink); transform: translateY(-2px); box-shadow: 0 14px 30px -16px var(--c-glow); }
@@ -450,6 +457,7 @@
         <a class="nav-top" href="learn.html" aria-current="page">Learn</a><button type="button" class="dd-toggle" aria-expanded="false" aria-label="Learn menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="dd">
           <a href="learn.html"><b>Course overview</b><span>All 21 modules and your progress</span></a>
+          <a href="start.html"><b>Find your level</b><span>2-minute check: where to start</span></a>
           <a href="learn.html#method"><b>How to learn French</b><span>The research-based method</span></a>
           <a href="learn.html#sounds"><b>Pronunciation</b><span>The sounds of French</span></a>
           <a href="learn.html#basics"><b>A1 · Foundations</b><span>Être, avoir, present tense, questions</span></a>
@@ -505,6 +513,16 @@
 <!-- /partial:header -->
 
 <main id="main">
+<!-- partial:journey learn -->
+<nav class="journey" aria-label="How this site works">
+  <div class="container">
+    <ol>
+      <li><a class="j-step" href="start.html"><i>1</i><span><b>Find your level</b><small>2-minute check</small></span></a></li><li><a class="j-step cur" href="learn.html" aria-current="step"><i>2</i><span><b>Learn</b><small>21 modules, in order</small></span></a></li><li><a class="j-step" href="quiz.html"><i>3</i><span><b>Drill</b><small>Make it automatic</small></span></a></li><li><a class="j-step" href="exam.html"><i>4</i><span><b>Test</b><small>Timed mock exams</small></span></a></li>
+    </ol>
+    <a class="j-ref" href="roadmap.html"><b>Roadmap</b><small>Your checklist &amp; reference</small></a>
+  </div>
+</nav>
+<!-- /partial:journey -->
   <div class="learn">
     <aside class="side" id="side" aria-label="Course modules"></aside>
     <div>
@@ -537,6 +555,7 @@
       <div>
         <h4>Study</h4>
         <ul>
+          <li><a href="start.html">Find your level</a></li>
           <li><a href="learn.html">French course</a></li>
           <li><a href="cheatsheets.html">Free cheat sheets</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
@@ -682,6 +701,18 @@
     return "<button type='button' class='say-btn' data-say='" + esc(strip(text)) + "' aria-label='Listen: " + esc(strip(text)) + "'>" + SPK + "</button>";
   }
 
+  var FLAG = "<svg viewBox='0 0 16 16' aria-hidden='true'><path fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 14.5V2.5M3.5 2.5h8l-1.8 3 1.8 3h-8'/></svg>";
+  function reportBtn(where, label) {
+    return "<button type='button' class='report-link' data-report='" + esc(where) + "'>" + FLAG + (label || "Report a mistake") + "</button>";
+  }
+
+  function placementNote() {
+    var p = null;
+    try { p = JSON.parse(localStorage.getItem("nclc5-placement") || "null"); } catch (e) {}
+    if (p && p.start) return "<p class='place-note'>Your placement check suggested <a href='#" + esc(p.start) + "'>Module " + esc(String(p.startNum)) + "</a> as your starting point · <a href='start.html'>Retake it</a></p>";
+    return "<p class='place-note'>Not sure where to begin? <a href='start.html'>Take the 2-minute placement check →</a></p>";
+  }
+
   /* ---------- daily streak + resume point ---------- */
   function streakHtml(compact) {
     var S = window.NCLC && window.NCLC.streak ? window.NCLC.streak() : null;
@@ -707,7 +738,10 @@
     var prev = null;
     try { prev = JSON.parse(localStorage.getItem("nclc5-resume") || "null"); } catch (e) {}
     /* the module you last opened, unless you've finished it; then the first one not done */
-    var lastId = cur ? cur.id : prev && prev.last;
+    var placed = null;
+    try { placed = JSON.parse(localStorage.getItem("nclc5-placement") || "null"); } catch (e) {}
+    /* before you've opened any module, the placement check's result is the starting point */
+    var lastId = cur ? cur.id : (prev && prev.last) || (placed && placed.start);
     var last = M.filter(function (m) { return m.id === lastId; })[0];
     var notDone = M.filter(function (m) { return !isDone(m.id); });
     var after = last ? notDone.filter(function (m) { return m.num > last.num; })[0] : null;
@@ -722,7 +756,7 @@
   var readTimer = null;
   function studied() { if (window.NCLC && window.NCLC.markStudy) window.NCLC.markStudy(); }
   view.addEventListener("click", function (e) {
-    if (curMod && e.target.closest("button, input, textarea, select") && !e.target.closest("#en-toggle")) studied();
+    if (curMod && e.target.closest("button, input, textarea, select") && !e.target.closest("#en-toggle, [data-report]")) studied();
   });
   view.addEventListener("input", function () { if (curMod) studied(); });
 
@@ -769,8 +803,8 @@
     var html = "<div class='hero-l'><span class='eyebrow'>The course</span>" +
       "<h1>From your first French sounds to NCLC 5</h1>" +
       "<p class='lead'>" + M.length + " modules in the order research and the CEFR say you should learn them. Each one explains the grammar properly, shows you how to pronounce it, flags the mistakes English speakers make, gets you speaking out loud, and checks that it stuck.</p>" +
-      "<div class='practice-row'>" + (next ? "<a class='btn btn-primary btn-lg' href='#" + next.id + "'>" + (done || next.num > 0 ? "Continue: " : "Start: ") + esc(next.title) + "</a>" : "<a class='btn btn-primary btn-lg' href='exam.html'>Take a mock exam</a>") +
-      "<a class='btn btn-lg' href='#method'>How this course works</a></div>" + streakHtml(false) + "</div>" +
+      "<div class='practice-row'>" + (next ? "<a class='btn btn-primary btn-lg' href='#" + next.id + "'>" + (done || Object.keys(prog).length ? "Continue: " : "Start: ") + esc(next.title) + "</a>" : "<a class='btn btn-primary btn-lg' href='exam.html'>Take a mock exam</a>") +
+      "<a class='btn btn-lg' href='#method'>How this course works</a></div>" + placementNote() + streakHtml(false) + "</div>" +
       "<div class='path' aria-label='Course levels'>";
     LEVELS.forEach(function (L) {
       var list = M.filter(function (m) { return m.level === L.id; });
@@ -886,7 +920,7 @@
         }).join("") + "</ul>";
       }
       if (Ls.tip) h += "<div class='tipbox'><b>Tip · </b>" + Ls.tip + "</div>";
-      h += "</article>";
+      h += "<div class='lesson-foot'>" + reportBtn("Module " + m.num + " · Lesson " + m.num + "." + (i + 1) + ": " + strip(Ls.title)) + "</div></article>";
     });
     h += "</section>";
 
@@ -951,7 +985,8 @@
       "</ul>" +
       "<div class='practice-row' style='margin-top:14px'>" + (m.practice || []).map(function (p) { return "<a class='btn btn-sm' href='" + p[1] + "'>" + esc(p[0]) + " →</a>"; }).join("") +
         "<a class='btn btn-sm' href='cheatsheets.html?m=" + m.id + "'>↓ One-page cheat sheet (PDF)</a></div>" +
-      "</div><button type='button' class='btn " + (isDone(m.id) ? "" : "btn-primary") + "' id='done-btn'>" + (isDone(m.id) ? "✓ Completed — mark as not done" : "Mark module complete") + "</button></div>";
+      "</div><button type='button' class='btn " + (isDone(m.id) ? "" : "btn-primary") + "' id='done-btn'>" + (isDone(m.id) ? "✓ Completed — mark as not done" : "Mark module complete") + "</button></div>" +
+      "<div class='lesson-foot'>" + reportBtn("Module " + m.num + ": " + m.title, "Spotted a mistake anywhere in this module? Tell us") + "</div>";
     if (m.sources) {
       h += "<div class='sources' style='margin-top:18px'><b>Research behind this module</b><ol>" +
         m.sources.map(function (s) { return "<li>" + (s[1] ? "<a href='" + s[1] + "' target='_blank' rel='noopener'>" + s[0] + "</a>" : s[0]) + "</li>"; }).join("") + "</ol></div>";
