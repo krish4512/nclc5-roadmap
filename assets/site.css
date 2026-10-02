@@ -600,3 +600,20 @@ html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-mo
 .rec-btn[hidden] { display: none; }
 .rec-btn.on { color: #fff; background: var(--bad); border-color: var(--bad); animation: rec-pulse 1.2s ease-in-out infinite; }
 @keyframes rec-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--bad) 25%, transparent); } }
+
+/* ---------------- guides ---------------- */
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 14px; padding-bottom: 72px; }
+.guide-card { display: flex; flex-direction: column; gap: 6px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--ink); transition: border-color .15s, transform .15s; }
+.guide-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.guide-card strong { font-size: 19px; letter-spacing: -0.01em; }
+.guide-card span:not(.eyebrow):not(.go) { color: var(--ink-soft); font-size: 15px; line-height: 1.5; }
+.guide-card .go { margin-top: auto; padding-top: 8px; color: var(--accent); font-weight: 600; font-size: 14.5px; }
+.guide .ex { border-left: 3px solid var(--accent); background: var(--surface-alt); border-radius: 0 12px 12px 0; padding: 12px 16px; margin: 8px 0 14px; }
+.guide .ex p { margin: 0; }
+.guide .ex .fr { color: var(--ink); }
+.guide .ex .en { font-size: 14.5px; color: var(--ink-faint); margin-top: 6px; }
+.guide span.fr { color: var(--ink); font-style: italic; }
+.guide table.score tr.hl td { background: var(--accent-soft, rgba(0,113,227,.08)); color: var(--ink); font-weight: 600; }
+.guide-cta { margin: 44px 0 0; padding: 22px 24px; border-radius: var(--radius); background: var(--surface-alt); }
+.guide-cta strong { display: block; font-size: 18px; margin-bottom: 12px; }
+.guide-cta-row { display: flex; flex-wrap: wrap; gap: 10px; }

@@ -212,6 +212,28 @@
   .checks .found { display: block; font-size: 12px; color: var(--teal); font-family: var(--mono); margin-top: 1px; }
   .coach .saved { margin-top: 12px; font-size: 12px; color: var(--ink-faint); }
 
+  .fullbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 0 0 10px; padding: 10px 14px; border-radius: 14px; background: var(--accent-soft); border: 1px solid var(--accent-soft-border); font-size: 13.5px; }
+  .fullbar[hidden] { display: none; }
+  .fullbar .fb-k { font-weight: 700; color: var(--accent); }
+  .fullbar ol { list-style: none; display: flex; gap: 6px; margin: 0; padding: 0; flex: 1; flex-wrap: wrap; }
+  .fullbar li { padding: 3px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--ink-faint); font-weight: 600; }
+  .fullbar li.done { color: var(--good); border-color: var(--good-border); background: var(--good-soft); }
+  .fullbar li.done::before { content: "✓ "; }
+  .fullbar li.cur { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+  .fullbar a { font-weight: 600; font-size: 13px; color: var(--ink-soft); }
+  .full-card { display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; border-radius: 24px; padding: 24px 26px; border: 1px solid var(--accent-soft-border); background: radial-gradient(120% 140% at 100% 0%, var(--teal-soft), transparent 60%), var(--surface); box-shadow: var(--shadow); }
+  .full-card > div { flex: 1 1 340px; }
+  .full-card .fc-k { font-size: 13px; font-weight: 700; color: var(--accent); }
+  .full-card h2 { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -0.025em; margin: 4px 0 6px; }
+  .full-card p { margin: 0; color: var(--ink-soft); }
+  .report-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 760px) { .report-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .rep-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-sm); }
+  .rep-tile.weak { border-color: var(--bad-border); background: color-mix(in srgb, var(--bad-soft) 60%, var(--surface)); }
+  .rep-tile .rt-name { font-weight: 600; margin-top: 10px; }
+  .rep-tile .rt-nclc { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin: 2px 0 8px; }
+  .rep-tile .rt-bar { height: 6px; border-radius: 99px; background: var(--surface-alt); overflow: hidden; margin-bottom: 6px; }
+  .rep-tile .rt-bar i { display: block; height: 100%; background: var(--brand-gradient); }
   ul.rubric { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
   ul.rubric label { display: flex; gap: 11px; font-size: 14.5px; color: var(--ink); line-height: 1.45; padding: 9px 11px; border-radius: 9px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); }
   ul.rubric label:hover { background: var(--surface-alt); }
@@ -271,11 +293,12 @@
 <main id="main">
 <!-- partial:tabs -->
 <nav class="tabs" aria-label="Exam">
-  <div class="container"><a href="exam.html" aria-current="page">Mock exam</a></div>
+  <div class="container"><a href="exam.html" aria-current="page">Mock exam</a><a href="topics.html">Speaking topics</a><a href="writing.html">Writing models</a><a href="guides.html">Guides</a></div>
 </nav>
 <!-- /partial:tabs -->
 <div class="wrap">
-  <div class="crumbs" id="crumbs"><a href="roadmap.html">Roadmap</a><span aria-hidden="true">/</span><span>Mock exam</span></div>
+  <div class="crumbs" id="crumbs"><span>Mock exam</span></div>
+  <div class="fullbar" id="fullbar" hidden></div>
   <h1 class="title" id="title">Mock exam</h1>
   <p class="dek" id="dek">Exam-condition practice under the clock, in the format of the real TCF Canada and TEF Canada sections.</p>
   <div id="stage"></div>
@@ -304,6 +327,8 @@
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
+          <li><a href="guides.html">Exam guides</a></li>
+          <li><a href="whats-new.html">What's new</a></li>
         </ul>
       </div>
       <div>
@@ -381,8 +406,93 @@
     return id;
   }
   function setCrumb(label) {
-    crumbs.innerHTML = "<a href='roadmap.html'>Roadmap</a><span aria-hidden='true'>/</span>" +
-      (label ? "<a href='exam.html'>Mock exam</a><span aria-hidden='true'>/</span><span>" + esc(label) + "</span>" : "<span>Mock exam</span>");
+    crumbs.innerHTML = label ? "<a href='exam.html'>Mock exam</a><span aria-hidden='true'>/</span><span>" + esc(label) + "</span>" : "<span>Mock exam</span>";
+  }
+
+  /* ================= full mock exam (all four sections in one sitting) =================
+     Progress lives in sessionStorage so a reload doesn't lose it; finished
+     reports are kept in localStorage (nclc5-full-history). */
+  var FULL_KEY = "nclc5-full", FULL_HIST = "nclc5-full-history";
+  var STEPS = ["listening", "reading", "writing", "speaking"];
+  function fullState() { try { return JSON.parse(sessionStorage.getItem(FULL_KEY) || "null"); } catch (e) { return null; } }
+  function saveFull(f) { try { sessionStorage.setItem(FULL_KEY, JSON.stringify(f)); } catch (e) {} }
+  var inFull = new URLSearchParams(location.search).get("full") === "1" && !!fullState();
+  function nextHref(cur) { var i = STEPS.indexOf(cur); return i + 1 < STEPS.length ? "?s=" + STEPS[i + 1] + "&full=1" : "?s=report&full=1"; }
+  function nextLabel(cur) { var i = STEPS.indexOf(cur); return i + 1 < STEPS.length ? "Continue to " + SECTIONS[STEPS[i + 1]].code.split(" · ")[1] + " →" : "See your results →"; }
+  function fullRecord(kind, value, task) {
+    if (!inFull) return;
+    var f = fullState(); if (!f) return;
+    f.results = f.results || {};
+    if (task == null) f.results[kind] = value;
+    else { f.results[kind] = f.results[kind] || []; f.results[kind][task] = value; }
+    saveFull(f);
+  }
+  function drawFullbar(cur) {
+    var bar = document.getElementById("fullbar");
+    if (!inFull) { bar.hidden = true; return; }
+    var i = STEPS.indexOf(cur);
+    bar.hidden = false;
+    bar.innerHTML = "<span class='fb-k'>Full mock exam</span><ol>" + STEPS.map(function (st, n) {
+      return "<li class='" + (n < i || cur === "report" ? "done" : n === i ? "cur" : "") + "'>" + SECTIONS[st].code.split(" · ")[1] + "</li>";
+    }).join("") + "</ol><a href='exam.html' data-end-full>Stop</a>";
+  }
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest("[data-end-full]")) return;
+    if (!confirm("Stop the full mock exam? Your section scores are still saved.")) { e.preventDefault(); return; }
+    try { sessionStorage.removeItem(FULL_KEY); } catch (er) {}
+  });
+  function startFull() {
+    saveFull({ started: Date.now(), results: {} });
+    location.href = "?s=listening&full=1";
+  }
+  var FULL_MIN = 18 + 30 + DATA.writing.reduce(function (n, t) { return n + t.minutes; }, 0) +
+    Math.round(DATA.speaking.reduce(function (n, t) { return n + t.prepSeconds + t.speakSeconds; }, 0) / 60);
+
+  /* indicative NCLC estimates — a short sample, not an official score */
+  function nclcFromPct(p) { return p >= 80 ? "6+" : p >= 65 ? "5" : p >= 50 ? "4" : p >= 35 ? "3" : "below 3"; }
+  function nclcFromRubric(r) { return r >= 0.8 ? "5+" : r >= 0.6 ? "4–5" : r >= 0.4 ? "4" : "below 4"; }
+  function showReport() {
+    reset();
+    var f = fullState();
+    setCrumb("Full mock exam results");
+    document.title = "Your full mock exam results · NCLC 5";
+    titleEl.textContent = "Your full mock exam results";
+    dekEl.textContent = "An indicative estimate per skill. Immigration programs look at each skill separately — your lowest skill is the one that decides.";
+    if (!f || !f.results) { stage.innerHTML = "<div class='card'>No full mock in progress. <a href='exam.html'>Start one from the Mock exam page.</a></div>"; return; }
+    drawFullbar("report");
+    var R = f.results;
+    var avg = function (a) { a = (a || []).filter(function (x) { return typeof x === "number"; }); return a.length ? a.reduce(function (s, x) { return s + x; }, 0) / a.length : null; };
+    var rows = [
+      { id: "listening", score: R.listening != null ? R.listening : null, kind: "pct" },
+      { id: "reading", score: R.reading != null ? R.reading : null, kind: "pct" },
+      { id: "writing", score: avg(R.writing), kind: "rub" },
+      { id: "speaking", score: avg(R.speaking), kind: "rub" }
+    ];
+    rows.forEach(function (r) {
+      r.frac = r.score == null ? null : r.kind === "pct" ? r.score / 100 : r.score;
+      r.nclc = r.score == null ? "—" : r.kind === "pct" ? nclcFromPct(r.score) : nclcFromRubric(r.score);
+    });
+    var done = rows.filter(function (r) { return r.frac != null; });
+    var weakest = done.slice().sort(function (a, b) { return a.frac - b.frac; })[0];
+    var html = "<div class='report-grid'>" + rows.map(function (r) {
+      var S = SECTIONS[r.id];
+      return "<div class='rep-tile" + (weakest && r.id === weakest.id && done.length > 1 ? " weak" : "") + "'><span class='sec-icon " + S.cls + "'>" + ICON[S.icon] + "</span>" +
+        "<div class='rt-name'>" + S.code.split(" · ")[1] + "</div><div class='rt-nclc'>" + (/^below/.test(r.nclc) ? "Below NCLC " + r.nclc.split(" ")[1] : "NCLC " + r.nclc) + "</div>" +
+        "<div class='rt-bar'><i style='width:" + Math.round((r.frac || 0) * 100) + "%'></i></div>" +
+        "<div class='muted'>" + (r.frac == null ? "Not completed" : r.kind === "pct" ? r.score + "% correct" : Math.round(r.score * 100) + "% of your self-check rubric") + "</div></div>";
+    }).join("") + "</div>";
+    if (weakest) {
+      html += "<div class='band low' style='margin-top:18px'><b>Focus next: " + SECTIONS[weakest.id].code.split(" · ")[1] + "</b>" +
+        "It's your lowest skill on this mock, and NCLC 5 has to be reached in every skill." + prepLinks(weakest.id) + "</div>";
+    }
+    html += "<div class='notice teal' style='margin-top:16px'><div>Listening and reading are marked automatically; writing and speaking come from your own rubric checks, so be strict with yourself. All estimates are indicative — this is a short practice sample, not an official TCF or TEF result.</div></div>" +
+      "<div class='row'><button class='btn btn-primary' id='again-full'>Sit another full mock</button><a class='btn' href='exam.html'>Mock exam home</a><a class='btn btn-ghost' href='today.html'>Back to Today</a></div>";
+    stage.innerHTML = html;
+    try {
+      var hist = JSON.parse(localStorage.getItem(FULL_HIST) || "[]");
+      if (!f.saved) { hist.push({ at: Date.now(), nclc: rows.map(function (r) { return r.nclc; }) }); localStorage.setItem(FULL_HIST, JSON.stringify(hist.slice(-10))); f.saved = true; saveFull(f); }
+    } catch (e) {}
+    document.getElementById("again-full").addEventListener("click", startFull);
   }
 
   /* Course modules that prepare for each section, shown above the task. */
@@ -426,7 +536,12 @@
     dekEl.textContent = "Exam-condition practice under the clock, in the format of the real TCF Canada and TEF Canada sections. Pick a section to sit.";
     var scores = readJSON(SCORE_KEY, {});
     var hist = readJSON(HIST_KEY, {});
-    var html = "<div class='sec-grid'>";
+    var last = null; try { last = JSON.parse(localStorage.getItem(FULL_HIST) || "[]").slice(-1)[0]; } catch (e) {}
+    var html = "<div class='full-card'><div><span class='fc-k'>Full mock exam</span><h2>All four sections in one sitting</h2>" +
+      "<p>Listening, reading, writing and speaking back to back — about " + Math.round(FULL_MIN / 60 * 10) / 10 + " hours, like test day. You finish with an estimated NCLC level for each skill." +
+      (last ? " Last time: " + ["CO", "CE", "EE", "EO"].map(function (c, i) { return c + " " + last.nclc[i]; }).join(" · ") + "." : "") + "</p></div>" +
+      "<button type='button' class='btn btn-primary btn-lg' id='start-full'>Start full mock</button></div>" +
+      "<h2 class='sub' style='margin-top:26px'>Or practise one section</h2><div class='sec-grid'>";
     ["listening", "reading", "writing", "speaking"].forEach(function (id) {
       var S = SECTIONS[id];
       var meta;
@@ -449,6 +564,7 @@
       "<div class='notice teal' style='margin-top:20px'><div>The comprehension sections are marked automatically. Writing and speaking can't be graded by a machine here, so they give you the real prompts, the real clock, a live coach and a rubric to mark yourself against. Results are indicative, not official TCF or TEF scores.</div></div>" +
       (speechOk ? "" : "<div class='warn' style='margin-top:12px'>This browser has no speech synthesis, so the listening section will show transcripts instead of playing audio.</div>");
     stage.innerHTML = html;
+    document.getElementById("start-full").addEventListener("click", startFull);
   }
 
   /* ================= MCQ ================= */
@@ -655,6 +771,7 @@
       var answered = items.filter(function (x) { return x.picked >= 0; }).length;
       saveScore(kind, correct, items.length);
       var pct = Math.round(correct / items.length * 100);
+      fullRecord(kind, pct);
       var band = bandFor(pct);
       var C = 2 * Math.PI * 54;
       var wrong = items.filter(function (x) { return x.picked !== x.answer; });
@@ -666,7 +783,8 @@
         "<div><h2>" + correct + " / " + items.length + " correct</h2><div class='muted'>" + esc(S.name) + " · " + (practice ? "practice mode" : "exam mode") + " · time used " + fmt(S.minutes * 60 - Math.max(0, left)) + "</div></div></div>" +
         "<div class='band " + band.cls + "'><b>" + band.label + "</b>" + band.note +
         "<div class='muted' style='margin-top:8px'>Indicative only — a short practice sample, not an official TCF or TEF score.</div></div>" +
-        "<div class='row'><button class='btn btn-primary' id='again'>Sit it again</button><a class='btn' href='exam.html'>Other sections</a><a class='btn btn-ghost' href='roadmap.html#skills'>Skill checklist</a></div>";
+        (inFull ? "<div class='row'><a class='btn btn-primary btn-lg' href='" + nextHref(kind) + "'>" + nextLabel(kind) + "</a></div>"
+          : "<div class='row'><button class='btn btn-primary' id='again'>Sit it again</button><a class='btn' href='exam.html'>Other sections</a><a class='btn btn-ghost' href='roadmap.html#skills'>Skill checklist</a></div>");
       if (wrong.length) {
         html += "<h2 class='sub'>What to review</h2><div class='review'>";
         wrong.forEach(function (w) {
@@ -682,7 +800,7 @@
       requestAnimationFrame(function () { requestAnimationFrame(function () {
         var r = document.getElementById("rfg"); if (r) { r.style.strokeDashoffset = String(C * (1 - correct / items.length)); if (!correct) r.style.opacity = "0"; }
       }); });
-      document.getElementById("again").addEventListener("click", function () { introMCQ(kind); });
+      var ag = document.getElementById("again"); if (ag) ag.addEventListener("click", function () { introMCQ(kind); });
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -828,12 +946,14 @@
         html += "</ul><div class='self-score' id='ss'>0 / " + task.rubric.length + "</div>" +
           (task.model ? "<details class='model'><summary>Compare with a model answer</summary><div class='model-text'>" + esc(task.model) + "</div></details>" : "") +
           "<div class='row'>" +
-          (t + 1 < DATA.writing.length ? "<button class='btn btn-primary' id='nextTask'>Next task &rarr;</button>" : "<a class='btn btn-primary' href='exam.html'>Other sections</a>") +
-          "<a class='btn btn-ghost' href='roadmap.html#order'>Review grammar</a></div>";
+          (t + 1 < DATA.writing.length ? "<button class='btn btn-primary' id='nextTask'>Next task &rarr;</button>" : inFull ? "<a class='btn btn-primary' href='" + nextHref("writing") + "'>" + nextLabel("writing") + "</a>" : "<a class='btn btn-primary' href='exam.html'>Other sections</a>") +
+          "<a class='btn btn-ghost' href='writing.html'>Model answers at three levels</a></div>";
+        fullRecord("writing", 0, t);
         m.innerHTML = html;
         m.querySelector("#rub").addEventListener("change", function () {
           var n = m.querySelectorAll("#rub input:checked").length;
           document.getElementById("ss").textContent = n + " / " + task.rubric.length;
+          fullRecord("writing", n / task.rubric.length, t);
         });
         var nt = document.getElementById("nextTask");
         if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: "smooth" }); });
@@ -987,11 +1107,14 @@
           html += "<li><label><input type='checkbox' data-r='" + n + "'><span>" + esc(r) + "</span></label></li>";
         });
         html += "</ul><div class='self-score' id='ss'>0 / " + task.rubric.length + "</div><div class='row'>" +
-          (t + 1 < DATA.speaking.length ? "<button class='btn btn-primary' id='nextTask'>Next task &rarr;</button>" : "<a class='btn btn-primary' href='exam.html'>Other sections</a>") +
+          (t + 1 < DATA.speaking.length ? "<button class='btn btn-primary' id='nextTask'>Next task &rarr;</button>" : inFull ? "<a class='btn btn-primary' href='" + nextHref("speaking") + "'>" + nextLabel("speaking") + "</a>" : "<a class='btn btn-primary' href='exam.html'>Other sections</a>") +
           "<button class='btn' id='retry'>Try this task again</button></div>";
+        fullRecord("speaking", 0, t);
         m.innerHTML = html;
         m.querySelector("#rub").addEventListener("change", function () {
-          document.getElementById("ss").textContent = m.querySelectorAll("#rub input:checked").length + " / " + task.rubric.length;
+          var n = m.querySelectorAll("#rub input:checked").length;
+          document.getElementById("ss").textContent = n + " / " + task.rubric.length;
+          fullRecord("speaking", n / task.rubric.length, t);
         });
         var nt = document.getElementById("nextTask");
         if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: "smooth" }); });
@@ -1004,7 +1127,9 @@
   /* ================= boot ================= */
   function route() {
     var want = new URLSearchParams(location.search).get("s");
-    if (want === "listening" || want === "reading") introMCQ(want);
+    drawFullbar(want);
+    if (want === "report") showReport();
+    else if (want === "listening" || want === "reading") introMCQ(want);
     else if (want === "writing") runWriting();
     else if (want === "speaking") runSpeaking();
     else showPicker();

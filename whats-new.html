@@ -3,11 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Page not found · NCLC 5 Roadmap</title>
-<meta name="robots" content="noindex">
-<!-- Hosts serve this page at any missing URL, so links resolve from the site's folder.
-     This is set for GitHub Pages (krish4512.github.io/nclc5-roadmap/). On your own domain, change it to "/". -->
-<base href="/nclc5-roadmap/">
+<title>What's new · NCLC 5 Roadmap</title>
+<meta name="description" content="Everything new on NCLC 5 Roadmap: new practice tools, exam features, guides and fixes, newest first.">
 <!-- partial:head -->
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -17,9 +14,9 @@
 <link rel="manifest" href="site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NCLC 5 Roadmap">
-<meta property="og:title" content="Page not found · NCLC 5 Roadmap">
-<meta property="og:description" content="A research-based French course, drills and mock exams for NCLC 5 on the TCF Canada and TEF Canada.">
-<meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/404.html">
+<meta property="og:title" content="What's new · NCLC 5 Roadmap">
+<meta property="og:description" content="Everything new on NCLC 5 Roadmap: new practice tools, exam features, guides and fixes, newest first.">
+<meta property="og:url" content="https://krish4512.github.io/nclc5-roadmap/whats-new.html">
 <meta property="og:image" content="https://krish4512.github.io/nclc5-roadmap/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -34,6 +31,16 @@
 <script src="assets/config.js"></script>
 <script src="assets/site.js"></script>
 <!-- /partial:head -->
+<style>
+  .log { list-style: none; padding: 0 0 72px; margin: 0; }
+  .log > li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 26px 0; border-top: 1px solid var(--border); }
+  .log time { font-size: 13.5px; font-weight: 600; color: var(--ink-faint); padding-top: 4px; }
+  .log h2 { font-size: 21px; letter-spacing: -0.015em; margin: 0 0 8px; }
+  .log ul { margin: 0; padding-left: 20px; color: var(--ink-soft); line-height: 1.65; }
+  .log li li { margin: 4px 0; }
+  .log .new { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: var(--accent); color: #fff; border-radius: 99px; padding: 2px 8px; margin-left: 8px; vertical-align: 3px; }
+  @media (max-width: 600px) { .log > li { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+</style>
 </head>
 <body>
 
@@ -59,16 +66,64 @@
 <!-- /partial:header -->
 
 <main id="main">
-  <div class="container narrow" style="text-align:center;padding:72px 24px 24px">
-    <span class="eyebrow">Erreur 404</span>
-    <h1 style="font-family:var(--serif);font-size:clamp(34px,5vw,50px);margin:12px 0">Page introuvable.</h1>
-    <p style="color:var(--ink-soft);font-size:17px;margin:0 auto 28px;max-width:46ch">That page doesn't exist — or it moved. Here's where you probably wanted to go.</p>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn-primary" href="index.html">Home</a>
-      <a class="btn" href="roadmap.html">Study roadmap</a>
-      <a class="btn" href="quiz.html">Practice</a>
-      <a class="btn" href="exam.html">Mock exam</a>
+  <div class="container narrow">
+    <div class="page-hero">
+      <span class="eyebrow">Updates</span>
+      <h1>What's new</h1>
+      <p>New features and fixes, newest first. Got an idea or found a mistake? <a href="contact.html">Tell us</a>.</p>
     </div>
+    <ol class="log">
+      <li>
+        <time datetime="2026-10-02">October 2, 2026</time>
+        <div>
+          <h2>Full mock exam, speaking topics and writing models<span class="new">New</span></h2>
+          <ul>
+            <li><a href="exam.html">Full mock exam</a> in one sitting: all four skills back to back, then a report with an estimated NCLC level for each skill.</li>
+            <li><a href="topics.html">Speaking topics</a>: 60 TCF-style prompts for Task 2 and Task 3, with a random topic button, the real timers and recording.</li>
+            <li><a href="writing.html">Writing models</a>: the same TCF writing task answered at NCLC 4, 5 and 7, with mistakes marked and explained.</li>
+            <li>Free <a href="guides.html">exam guides</a>: NCLC 5 score chart, TCF vs TEF, Task 2 and Task 3 examples, and how long it takes to reach B1.</li>
+            <li>A <a href="certificate.html">certificate of completion</a> when you finish all 21 modules.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <time datetime="2026-10-01">October 1, 2026</time>
+        <div>
+          <h2>Simpler navigation and a Today page</h2>
+          <ul>
+            <li>Four sections only: Today, Learn, Practice and Exam, each with a few clear tabs.</li>
+            <li><a href="today.html">Today</a>: continue where you left off, daily review, streak, word and mistake of the day, exam countdown, badges, and a progress card to share.</li>
+            <li><a href="review.html">Daily review</a> with spaced repetition, so words come back just before you forget them.</li>
+            <li><a href="conjugate.html">Verb conjugator</a> for 360+ verbs, with sound.</li>
+            <li><a href="speak.html">Listen and repeat</a>: record yourself and compare with the model voice.</li>
+            <li>Reading settings (the <strong>Aa</strong> button): text size, an easy-to-read font, and dark mode.</li>
+            <li><a href="start.html">Find your level</a>: a 12-question check that tells you where to start.</li>
+            <li>A “Report a mistake” button on every lesson and drill.</li>
+            <li>Better layout on phones, a home-screen icon and link previews when you share the site.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <time datetime="2026-09-29">September 29, 2026</time>
+        <div>
+          <h2>Free cheat sheets</h2>
+          <ul>
+            <li><a href="cheatsheets.html">One-page PDF cheat sheets</a> for every module, plus one file with all of them.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <time datetime="2026-09-27">September 27, 2026</time>
+        <div>
+          <h2>The full course</h2>
+          <ul>
+            <li>A complete <a href="learn.html">course</a> from beginner to B1 in 21 modules, with English translations.</li>
+            <li>TCF speaking kits for Task 2 and Task 3, with answer builders.</li>
+            <li>A new design, colour-coded levels, drills and a timed mock exam.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
   </div>
 </main>
 
