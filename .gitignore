@@ -1,6 +1,11 @@
 # Local tooling state
 .claude-flow/
-.claude/
+.claude/*
+!.claude/skills/
+
+# /brag launch-video renders (large files; keep them out of the site)
+brag-output/
+brag-output-*/
 
 # macOS
 .DS_Store
