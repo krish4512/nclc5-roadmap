@@ -387,35 +387,26 @@
     ],
     /* ------------------------------------------------------------ 19 · tcf-t2 */
     "tcf-t2": [
-      { t: "bars", unit: " s", title: "The shape of Task 2", items: [["Prepare", 120, "tu or vous? keywords for 10 questions"], ["Opening", 15, "greet, context, ask for time"], ["Questions", 180, "ask, react, link, ask again"], ["Closing", 15, "summarise, thank, goodbye"]] },
-      { t: "vs", title: "Tu or vous? Decide first", cols: [
-        { h: "vous", sub: "an employee, a landlord, a stranger, any professional", ex: [["Avez-vous une minute ?"], ["Pourriez-vous me dire… ?"]], on: 1 },
-        { h: "tu", sub: "a friend, family, a colleague you know", ex: [["As-tu une minute ?"], ["Pourrais-tu me dire… ?"]] }], note: "Then never switch." },
-      { t: "steps", title: "Open in three lines", items: [["Greet", "Bonjour madame ! J'espère que vous allez bien."], ["Give the context", "J'ai vu votre annonce pour…"], ["Ask for time", "Avez-vous une minute ?"]] },
-      { t: "pairs", title: "The 10-question backbone", items: [["1 · Est-ce que… est possible ?", "availability"], ["2 · Quels sont les critères… ?", "requirements"], ["3 · Quel est le délai… ?", "timing"], ["4 · Combien coûte… ?", "price"], ["5 · Comment peut-on… ?", "procedure"], ["6 · Y a-t-il des restrictions ?", "limits"], ["7 · Faut-il… ?", "obligations"], ["8 · Que se passerait-il si… ?", "B1 boost"], ["9 · Que conseilleriez-vous… ?", "advice"], ["10 · Ma dernière question…", "wrap-up"]] },
-      { t: "pairs", title: "Vary the form, not just the content", items: [["Est-ce que… ?", "yes / no"], ["Faut-il… ?", "obligation"], ["Y a-t-il… ?", "is there"], ["Quel est le délai… ?", "how long"], ["Comment peut-on… ?", "how"], ["Que se passerait-il si… ?", "what if"]] },
-      { t: "eq", title: "B1 boost: one subjunctive question", parts: [["Est-il nécessaire", "a trigger"], "+", ["que"], "+", ["je sois", "subjunctive", "h"], ["présent en personne ?"]], ex: [["Faut-il que j'[[aie]] un justificatif ?"], ["Vaut-il mieux que je [[vienne]] le matin ?"]] },
-      { t: "steps", title: "Link your questions", items: [["Ma première question est la suivante :"], ["Ensuite, je voudrais savoir…"], ["Pourriez-vous me dire… ?"], ["Ma dernière question porte sur…"]] },
-      { t: "groups", title: "React before the next question", groups: [
-        { h: "Acknowledge", items: ["Je vois, c'est noté."] },
-        { h: "Surprise", items: ["Ah, je ne savais pas."] },
-        { h: "Check", items: ["Si je comprends bien…"] },
-        { h: "Evaluate", items: ["C'est un avantage non négligeable."] }] },
-      { t: "steps", title: "Close in four moves", items: [["Summarise", "J'ai bien compris toutes les informations."], ["Thank", "Merci beaucoup pour votre temps."], ["Next step", "Je vais y réfléchir."], ["Goodbye", "Bonne journée !"]] },
-      null,
-      null
+      { t: "bars", unit: " s", title: "The shape of Task 2", items: [["Prepare", 120, "tu or vous? one keyword per question"], ["Open", 15, "greet, context, ask for time"], ["Ask", 180, "question → react → next question"], ["Close", 15, "summarise, thank, goodbye"]] },
+      { t: "steps", title: "Open and close from memory", items: [["Greet", "Bonjour madame !"], ["Give the context", "J'ai vu votre annonce…"], ["Ask for time", "Avez-vous une minute ?"], ["Close", "Merci beaucoup pour votre temps. Bonne journée !"]] },
+      { t: "pairs", title: "The 10-question backbone", items: [["1 · Est-ce que… est disponible ?", "availability"], ["2 · Quels sont les critères… ?", "requirements"], ["3 · Quel est le délai… ?", "timing"], ["4 · Combien coûte… ?", "price"], ["5 · Comment peut-on… ?", "how"], ["6 · Y a-t-il des restrictions ?", "limits"], ["7 · Faut-il… ?", "obligations"], ["8 · Que se passerait-il si… ?", "what if"], ["9 · Que conseilleriez-vous… ?", "advice"], ["10 · Ma dernière question…", "wrap-up"]] },
+      { t: "pairs", title: "Vary the form, not just the content", items: [["Est-ce que… ?", "yes / no"], ["Y a-t-il… ?", "is there"], ["Faut-il… ?", "is it necessary"], ["Quels sont les… ?", "which, what"], ["Combien coûte… ?", "how much"], ["Comment peut-on… ?", "how"], ["Est-il possible de… ?", "can I"], ["Que se passerait-il si… ?", "what if"]] },
+      { t: "groups", title: "React, then move on", groups: [
+        { h: "React", items: ["Je vois, c'est noté.", "Ah, c'est bon à savoir !", "Si je comprends bien, …"] },
+        { h: "Link", items: ["Ensuite, je voudrais savoir…", "Justement, à ce sujet…", "Puisque vous mentionnez cela…"] }] },
+      { t: "eq", title: "B1 boost: one subjunctive question", parts: [["Est-il nécessaire", "a trigger"], "+", ["que"], "+", ["je sois", "subjunctive", "h"], ["présent en personne ?"]], ex: [["Faut-il que j'[[aie]] un justificatif ?"], ["Vaut-il mieux que je [[vienne]] le matin ?"]] }
     ],
     /* ------------------------------------------------------------ 20 · tcf-t3 */
     "tcf-t3": [
       { t: "bars", unit: " s", title: "Five parts, about 4 minutes", items: [["Opening", 40], ["Argument 1", 70], ["Bridge + argument 2", 60], ["Counterpoint", 45], ["Conclusion", 30]] },
       { t: "steps", title: "The opening, word for word", items: [["Le sujet… porte sur [[le thème]],", "name the topic"], ["…la question de savoir [[si…]]", "restate the question"], ["C'est un sujet qui concerne tout le monde.", "say why it matters"], ["J'ai un avis nuancé.", "announce your view"]] },
       { t: "steps", title: "Argument 1 and the reset phrases", items: [["La première raison, c'est que…", "your strongest reason"], ["Je m'explique :", "expand"], ["Par exemple,", "a concrete case"], ["C'est le cas de…", "a real person or group"]] },
-      { t: "steps", title: "Bridge to the second argument", items: [["Ce premier point m'amène au second :", "link"], ["Il faut considérer que…", "explain"], ["Pour ajouter à cette raison, je dirais que…", "add a detail"]] },
+      { t: "steps", title: "Argument 2: bridge from the first", items: [["Ce premier point m'amène au second :", "link"], ["Il faut considérer que…", "explain"], ["Pour ajouter à cette raison, je dirais que…", "add a detail"]] },
       { t: "vs", mid: "→", title: "Show the other side, then answer it", cols: [
         { h: "Concede", ex: [["D'un autre côté, certaines personnes pensent que…"]] },
         { h: "Push back", ex: [["En revanche, il ne fait aucun doute que…"]], on: 1 }] },
       { t: "steps", title: "Conclude in two sentences", items: [["Pour conclure, si je devais résumer ma pensée…", "your view in one sentence"], ["En fin de compte, il vaut mieux qu'un équilibre soit maintenu entre A et B.", "a balanced last word"]] },
-      null, null, null
+      null
     ]
   };
 

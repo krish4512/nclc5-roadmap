@@ -9,277 +9,110 @@ window.COURSE.modules.push({
   level: "Exam",
   title: "TCF speaking task 2: asking questions like a pro",
   subtitle: "A ready-made kit for the interaction task: openings, a 10-question sequence, question patterns, transitions, reactions and closings.",
-  hours: "4–5 h, then daily practice",
-  why: "<p>In TCF Canada speaking <b>task 2</b>, you get a short scenario — <span class='fr'>« Vous venez d'arriver dans une ville. Vous appelez l'agence des transports en commun pour obtenir des informations. »</span> — then about <b>2 minutes to prepare</b> and <b>3½ minutes of conversation</b> with the examiner, who plays the other person. The task tests whether you can <b>obtain information</b> in an everyday situation: ask varied, well-formed questions, follow up on the answers, and keep the exchange polite and natural.</p><p>The candidates who struggle usually know enough French — they just run out of question patterns after four questions, or ask a list without ever reacting to what they hear. This module gives you a <b>kit</b> of fixed phrases for every stage of the conversation. As with the task 3 template, the point is that the structure comes out automatically, so your attention goes to the scenario (fixed phrases like these are linked to being perceived as more proficient — Boers et al., 2006).</p>",
+  hours: "about 1 h",
+  focus: true,
+  why: "<p>In TCF Canada speaking <b>task 2</b>, you get a short everyday situation, about <b>2 minutes to prepare</b>, then <b>3½ minutes of conversation</b>. The examiner plays the other person; your job is to <b>ask questions</b> to get information, and react to the answers. This module gives you the few fixed phrases you need — nothing more.</p>",
   goals: [
-    "Decide instantly between tu and vous, and stay consistent",
-    "Open and close the conversation politely, from memory",
-    "Ask 10+ varied questions using at least six different patterns",
-    "React to every answer before moving on",
-    "Use one or two subjunctive questions for B1 range"
+    "Pick tu or vous and stick with it",
+    "Open and close the conversation from memory",
+    "Ask 8–10 varied questions, reacting to each answer"
   ],
   lessons: [
     {
-      title: "The shape of the conversation, and how to use your 2 minutes",
-      body: "<p>Use the preparation time to <b>decide the register</b> and <b>jot keywords</b> for about ten questions — not full sentences. Then follow this shape:</p>",
-      table: {
-        head: ["Stage", "What you do", "Time"],
-        rows: [
-          ["Preparation", "tu or vous? Keywords for ~10 questions using the 10-question sequence below", "2 min"],
-          ["Opening", "Greet, give the context, ask if they have time", "~15 s"],
-          ["Questions", "Ask, <b>react to the answer</b>, transition, ask the next", "~3 min"],
-          ["Closing", "Summarise, thank, say what you'll do next, say goodbye", "~15 s"]
-        ]
-      },
-      tip: "Aim for <b>8 to 12 questions</b>. Fewer and you'll run out of time to show range; more and you won't have time to react to answers — and reacting is part of what's assessed."
-    },
-    {
-      title: "Tu or vous? Decide first, then stay consistent",
-      body: "<p>Your first preparation decision (<em>faut-il vouvoyer ou tutoyer ?</em>). Read the scenario: <b>who is the other person?</b></p><ul><li><b>vous</b> — an employee, agency, store, service desk, landlord, stranger, or anyone in a professional role: <span class='fr'>Je travaille à l'accueil d'une billetterie…</span></li><li><b>tu</b> — a friend, a family member, or a colleague you're close to: <span class='fr'>Votre ami(e) fait partie d'un club de randonnée…</span> (In Quebec workplaces, colleagues usually say tu.)</li></ul><p>Then <b>stay consistent</b> — mixing <span class='fr'>tu</span> and <span class='fr'>vous</span> is the most common register error in this task. Everything changes together:</p>",
-      table: {
-        head: ["vous (formal)", "tu (informal)"],
-        rows: [
+      title: "How task 2 works — and tu or vous",
+      body: "<p>Use the 2 minutes to <b>choose tu or vous</b> and jot a keyword for each question. Then follow this shape:</p>",
+      tables: [
+        { head: ["Stage", "What you do", "Time"], rows: [
+          ["Prepare", "tu or vous? One keyword per question", "2 min"],
+          ["Open", "Greet, give the context, ask if they have time", "~15 s"],
+          ["Ask", "Question → <b>react</b> → next question", "~3 min"],
+          ["Close", "Summarise, thank, say goodbye", "~15 s"]
+        ] },
+        { cap: "vous for an employee, a landlord or a stranger · tu for a friend or family", head: ["vous", "tu"], rows: [
           ["Avez-vous une minute ?", "As-tu une minute ?"],
           ["Pourriez-vous me dire… ?", "Pourrais-tu me dire… ?"],
-          ["Que me conseillez-vous ?", "Qu'est-ce que tu me conseilles ?"],
-          ["votre annonce, vos horaires", "ton club, tes collègues"],
-          ["Je vous remercie. Au revoir !", "Merci beaucoup ! On se parle bientôt."]
-        ],
-        say: [0, 1]
-      }
-    },
-    {
-      title: "Opening lines",
-      body: "<p>Memorise one opening and adapt the middle sentence to the scenario:</p>",
-      examples: [
-        ["Bonjour madame ! J'espère que vous allez bien.", "Hello! I hope you're well. (vous)"],
-        ["Salut ! J'espère que tu vas bien.", "Hi! I hope you're doing well. (tu)"],
-        ["J'ai vu votre annonce pour les cours de yoga. / J'ai entendu dire que tu faisais partie d'un club de randonnée.", "I saw your ad for yoga classes. / I heard you're in a hiking club."],
-        ["Ça m'intéresse beaucoup, mais j'ai quelques questions à vous poser pour prendre une décision.", "I'm very interested, but I have a few questions before I decide."],
-        ["Avez-vous une minute ? / Avez-vous le temps de répondre à mes questions ?", "Do you have a minute? / Do you have time to answer my questions?"]
+          ["Je vous remercie. Au revoir !", "Merci beaucoup ! À bientôt !"]
+        ], say: [0, 1] }
       ],
-      tip: "Make the opening fit the scenario: if they called <em>you</em> or you're at their counter, skip \"do you have a minute\" and go straight to <span class='fr'>Je voudrais quelques renseignements sur…</span>"
+      tip: "Never mix tu and vous in the same conversation — it's the most common mistake in this task."
     },
     {
-      title: "The 10-question sequence (works for any scenario)",
-      body: "<p>This is the backbone. During preparation, fill each line with the scenario's details — you'll never run out of questions:</p>",
+      title: "Open and close",
+      body: "<p>Memorise one opening and one closing. Only the middle sentence changes with the situation.</p>",
+      examples: [
+        ["Bonjour madame ! J'espère que vous allez bien.", "Hello! I hope you're well."],
+        ["J'ai vu votre annonce pour les cours de yoga, et j'ai quelques questions.", "I saw your ad for yoga classes, and I have a few questions."],
+        ["Avez-vous une minute ?", "Do you have a minute?"],
+        ["D'accord. J'ai bien compris toutes les informations.", "All right. I've understood all the information."],
+        ["Je vais y réfléchir et je reviendrai vers vous.", "I'll think about it and get back to you."],
+        ["Merci beaucoup pour votre temps. Bonne journée !", "Thank you very much for your time. Have a good day!"]
+      ]
+    },
+    {
+      title: "The 10-question sequence",
+      body: "<p>This list works for any situation. In your 2 minutes, fill each line with the situation's details.</p>",
       table: {
-        head: ["#", "Pattern", "What it covers"],
+        head: ["#", "Question", "About"],
         rows: [
-          ["1", "Ma première question est la suivante : est-ce que [le service] est disponible / possible ?", "availability"],
-          ["2", "Quels sont les documents / les critères / les avantages… ?", "requirements, benefits"],
+          ["1", "Est-ce que [le service] est disponible ?", "availability"],
+          ["2", "Quels sont les critères / les documents nécessaires ?", "requirements"],
           ["3", "Quel est le délai pour [action] ?", "timing"],
-          ["4", "Combien coûte [le service] ? / Quels sont les tarifs ?", "price"],
-          ["5", "Comment peut-on [faire l'action] ?", "procedure"],
-          ["6", "Y a-t-il des inconvénients / des restrictions ?", "limits"],
+          ["4", "Combien coûte [le service] ?", "price"],
+          ["5", "Comment peut-on [faire l'action] ?", "how"],
+          ["6", "Y a-t-il des restrictions ?", "limits"],
           ["7", "Faut-il [condition] ?", "obligations"],
-          ["8", "Que se passerait-il si [problème] ?", "B1 boost: conditional"],
-          ["9", "Que conseilleriez-vous à quelqu'un dans ma situation ?", "B1 boost: advice"],
-          ["10", "Ma dernière question porte sur [le détail restant].", "wrap-up"]
+          ["8", "Que se passerait-il si [problème] ?", "what if"],
+          ["9", "Que conseilleriez-vous à quelqu'un comme moi ?", "advice"],
+          ["10", "Ma dernière question porte sur [détail].", "wrap-up"]
         ],
         say: [1]
       },
-      tip: "Questions 8 and 9 are your B1 boost: the conditional (<span class='fr'>se passerait-il, conseilleriez-vous</span>) shows range that simple present-tense questions can't."
+      tip: "Questions 8 and 9 use the conditional — an easy way to show B1 level."
     },
     {
-      title: "Question patterns by type",
-      body: "<p>Vary the <b>form</b> of your questions, not just the content. Pick from each family:</p>",
-      tables: [
-        { cap: "Yes / no", head: ["Pattern", "Example"], rows: [
+      title: "Ask in different ways",
+      body: "<p>Don't start every question the same way. Mix these:</p>",
+      table: {
+        head: ["Pattern", "Example"],
+        rows: [
           ["Est-ce que… ?", "Est-ce que le stationnement est inclus ?"],
-          ["Faut-il… ?", "Faut-il réserver à l'avance ?"],
           ["Y a-t-il… ?", "Y a-t-il des réductions pour les étudiants ?"],
-          ["Est-il possible de… ?", "Est-il possible de payer par carte ?"],
-          ["Doit-on / Dois-je… ?", "Dois-je apporter mon propre équipement ?"]
-        ], say: [1] },
-        { cap: "Quel / quelle", head: ["Pattern", "Example"], rows: [
-          ["Quel type de… ?", "Quel type de spectacles proposez-vous ?"],
+          ["Faut-il… ?", "Faut-il réserver à l'avance ?"],
           ["Quels sont les… ?", "Quels sont les horaires d'ouverture ?"],
-          ["Quelles sont les conditions… ?", "Quelles sont les conditions d'inscription ?"],
-          ["Quel est le délai… ?", "Quel est le délai de livraison ?"],
-          ["Quel est le prix / le coût… ?", "Quel est le prix d'un abonnement mensuel ?"]
-        ], say: [1] },
-        { cap: "Comment / combien", head: ["Pattern", "Example"], rows: [
-          ["Comment peut-on… ?", "Comment peut-on acheter les billets ?"],
-          ["Comment se déroule… ?", "Comment se déroule une séance ?"],
-          ["Combien de temps faut-il ?", "Combien de temps faut-il pour aller au centre-ville ?"],
-          ["Combien coûte… ?", "Combien coûte un billet aller-retour ?"],
-          ["Combien de… faut-il prévoir ?", "Combien d'argent faut-il prévoir pour le repas ?"]
-        ], say: [1] },
-        { cap: "Où / à qui / de quelle manière", head: ["Pattern", "Example"], rows: [
-          ["Où peut-on… ?", "Où peut-on trouver un plan du réseau ?"],
-          ["À qui dois-je m'adresser pour… ?", "À qui dois-je m'adresser pour un remboursement ?"],
-          ["De quelle manière… ?", "De quelle manière puis-je vous contacter ?"],
-          ["Dans quel cas… ?", "Dans quel cas les frais sont-ils remboursés ?"]
-        ], say: [1] },
-        { cap: "Quand / à partir de", head: ["Pattern", "Example"], rows: [
-          ["À partir de quand… ?", "À partir de quand l'appartement est-il libre ?"],
-          ["Jusqu'à quand… ?", "Jusqu'à quand les inscriptions sont-elles ouvertes ?"],
-          ["Quand aura lieu… ?", "Quand aura lieu la prochaine course ?"],
-          ["Depuis combien de temps… ?", "Depuis combien de temps le club existe-t-il ?"]
-        ], say: [1] },
-        { cap: "Conditional / hypothetical (B1)", head: ["Pattern", "Example"], rows: [
-          ["Que se passerait-il si… ?", "Que se passerait-il si je devais annuler ?"],
-          ["Dans le cas où…, que faudrait-il faire ?", "Dans le cas où le colis n'arrive pas, que faudrait-il faire ?"],
-          ["Serait-il possible de… ?", "Serait-il possible de visiter samedi ?"],
-          ["Dans quelle mesure… ?", "Dans quelle mesure le programme est-il adapté aux débutants ?"],
-          ["En cas de problème, à qui faudrait-il s'adresser ?", "En cas de problème, à qui faudrait-il s'adresser ?"]
-        ], say: [1] },
-        { cap: "Opinion / advice", head: ["Pattern", "Example"], rows: [
-          ["Pourquoi recommanderiez-vous… ?", "Pourquoi recommanderiez-vous ce quartier ?"],
-          ["Quels sont les avantages de… ?", "Quels sont les avantages de l'abonnement annuel ?"],
-          ["Y a-t-il des inconvénients à… ?", "Y a-t-il des inconvénients à commander en ligne ?"],
-          ["Que conseillez-vous à quelqu'un qui… ?", "Que conseillez-vous à quelqu'un qui n'a jamais fait de randonnée ?"],
-          ["Qu'est-ce qui distingue… de… ?", "Qu'est-ce qui distingue votre salle des autres ?"]
-        ], say: [1] }
-      ]
+          ["Combien coûte… ?", "Combien coûte un abonnement mensuel ?"],
+          ["Comment peut-on… ?", "Comment peut-on s'inscrire ?"],
+          ["Est-il possible de… ?", "Est-il possible de payer par carte ?"],
+          ["Que se passerait-il si… ?", "Que se passerait-il si je devais annuler ?"]
+        ],
+        say: [1]
+      }
     },
     {
-      title: "B1 boost: questions with the subjunctive",
-      body: "<p>One or two of these per conversation show clear B1 range. They all follow <span class='fr'>que</span> + a different subject (Module 15).</p>",
-      tables: [
-        { cap: "Il faut que / il est nécessaire que", head: ["Question"], rows: [
-          ["Est-il nécessaire que je sois présent en personne ?"],
-          ["Faut-il que j'aie un justificatif pour… ?"],
-          ["Est-il indispensable que je fasse une demande à l'avance ?"],
-          ["Est-il obligatoire que le dossier soit complet dès le départ ?"]
-        ], say: [0] },
-        { cap: "Il est important que / il vaut mieux que", head: ["Question"], rows: [
-          ["Est-il important que je puisse… ?"],
-          ["Vaut-il mieux que je vienne le matin ?"],
-          ["Est-il préférable que je réserve en ligne ?"],
-          ["Est-il conseillé que j'aille sur place, ou puis-je tout faire en ligne ?"]
-        ], say: [0] },
-        { cap: "Il est possible que / y a-t-il un risque que", head: ["Question"], rows: [
-          ["Est-il possible que le délai soit réduit dans certains cas ?"],
-          ["Y a-t-il un risque que ma demande soit refusée ?"],
-          ["Est-il probable que les conditions changent prochainement ?"],
-          ["Pensez-vous qu'il soit possible de… dans mon cas ?"]
-        ], say: [0] },
-        { cap: "Pour que / avant que / à condition que", head: ["Question"], rows: [
-          ["Que faut-il faire pour que ma demande soit acceptée ?"],
-          ["Y a-t-il des démarches à faire avant que le dossier soit traité ?"],
-          ["Le service est-il gratuit, à condition qu'on remplisse certains critères ?"],
-          ["Que se passe-t-il dans le cas où la demande ne serait pas validée ?"]
-        ], say: [0] },
-        { cap: "Remember — the irregular subjunctive forms you'll need most", head: ["Verb", "que je", "qu'il / elle"], rows: [
-          ["être", "sois", "soit"], ["avoir", "aie", "ait"], ["aller", "aille", "aille"],
-          ["pouvoir", "puisse", "puisse"], ["faire", "fasse", "fasse"], ["venir", "vienne", "vienne"]
-        ] }
-      ],
-      tip: "<span class='fr'>Dans le cas où</span> is followed by the <b>conditional</b>, not the subjunctive: <span class='fr'>dans le cas où la demande <u>ne serait pas</u> validée</span>."
-    },
-    {
-      title: "Transitions between questions",
-      body: "<p>Linking your questions makes the exchange sound like a conversation, not an interrogation:</p>",
+      title: "React, then move on",
+      body: "<p>After each answer, react in a few words, then link to your next question. That's what makes it a conversation.</p>",
       examples: [
-        ["Ma première question est la suivante : …", "My first question is…"],
+        ["Je vois, c'est noté.", "I see, noted."],
+        ["Ah, c'est bon à savoir !", "Oh, that's good to know!"],
+        ["Si je comprends bien, il faut réserver ?", "If I understand correctly, you have to book?"],
         ["Ensuite, je voudrais savoir…", "Next, I'd like to know…"],
-        ["Pourriez-vous me dire… ? / Pourrais-tu me dire… ?", "Could you tell me…?"],
-        ["J'aimerais également savoir…", "I'd also like to know…"],
-        ["Cela m'amène à ma prochaine question : …", "That brings me to my next question…"],
-        ["Dans ce cas, j'aimerais aussi savoir…", "In that case, I'd also like to know…"],
-        ["Justement, à ce sujet, …", "Actually, on that subject…"],
-        ["En lien avec ce que vous venez de dire, …", "Following on from what you just said…"],
+        ["Justement, à ce sujet…", "Actually, on that subject…"],
         ["Puisque vous mentionnez cela, je me demande…", "Since you mention that, I wonder…"]
-      ],
-      tip: "The last three are the strongest: they build your next question on the examiner's answer, which proves you're listening — exactly what an interaction task measures."
-    },
-    {
-      title: "Reacting to the answers",
-      body: "<p>After each answer, react in one short phrase <b>before</b> your next question. Four kinds of reaction:</p>",
-      tables: [
-        { cap: "Acknowledge", head: ["Phrase"], rows: [
-          ["Je vois, c'est noté."], ["D'accord, je comprends bien."], ["Très bien, merci pour cette précision."], ["C'est clair pour moi maintenant."], ["Je prends bonne note de cela."]
-        ], say: [0] },
-        { cap: "Surprise / interest", head: ["Phrase"], rows: [
-          ["Ah, je ne savais pas que c'était le cas."], ["C'est intéressant à savoir."], ["Je ne m'y attendais pas, mais c'est rassurant."], ["C'est plus simple que je ne le pensais."], ["Effectivement, c'est logique."]
-        ], say: [0] },
-        { cap: "Reformulate to confirm", head: ["Phrase"], rows: [
-          ["Si je comprends bien, cela signifie que…"], ["Donc, si j'ai bien compris, il faudrait…"], ["En d'autres termes, vous voulez dire que… ?"], ["Autrement dit, cela implique que…"], ["Cela veut dire qu'il est préférable de… ?"]
-        ], say: [0] },
-        { cap: "Evaluate / comment", head: ["Phrase"], rows: [
-          ["C'est une contrainte importante à prendre en compte."], ["C'est un avantage non négligeable."], ["Ça semble raisonnable dans ce contexte."], ["C'est bon à savoir, surtout dans mon cas."], ["Je comprends, même si ça représente un défi."]
-        ], say: [0] }
       ]
     },
     {
-      title: "Closing lines",
-      body: "<p>Summarise, thank, say what you'll do next. Memorise one version:</p>",
-      examples: [
-        ["D'accord, madame. J'ai bien compris toutes les informations, et elles me semblent très intéressantes.", "All right. I've understood all the information, and it sounds very interesting."],
-        ["Après en avoir discuté avec ma famille, je vous répondrai bientôt.", "After discussing it with my family, I'll get back to you soon."],
-        ["Je vais y réfléchir et je reviendrai vers vous dès que possible.", "I'll think about it and get back to you as soon as possible."],
-        ["Elles sont très claires et utiles pour moi. Merci beaucoup pour votre temps.", "It's all very clear and useful for me. Thank you very much for your time."],
-        ["Bonne journée ! / Bonne soirée ! / Au revoir ! (tu : On se parle bientôt !)", "Have a good day / evening! Goodbye! (tu: Talk soon!)"]
-      ]
-    },
-    {
-      title: "Scenario bank: the situations from your practice",
-      body: "<p>Each scenario below is one you practised, with a set of well-formed questions (corrected where needed). Use them as models, then build your own in the builder.</p>",
-      tables: [
-        { cap: "Transports — you've just arrived in a city (vous)", head: ["Questions"], rows: [
-          ["Quels types de transport en commun sont disponibles dans cette ville ?"],
-          ["Où peut-on trouver les informations sur le réseau ? Avez-vous un site web ou un plan de la ville ?"],
-          ["Quels sont les horaires du métro et de l'autobus ?"],
-          ["Y a-t-il des transports disponibles pendant la nuit ?"],
-          ["Où puis-je acheter les billets, et combien coûte un billet ?"],
-          ["Existe-t-il une carte mensuelle ou des tarifs réduits ?"]
-        ], say: [0] },
-        { cap: "A friend must move heavy things without a vehicle (tu)", head: ["Questions"], rows: [
-          ["Quels types d'objets as-tu besoin de transporter ?"],
-          ["Combien d'objets y a-t-il à transporter ? Est-ce qu'ils sont fragiles ou lourds ?"],
-          ["Où est-ce que tu veux les transporter ? C'est près de chez toi ?"],
-          ["Quand dois-tu les transporter ?"],
-          ["As-tu quelqu'un qui peut t'aider à les porter ?"],
-          ["Y a-t-il un ascenseur, ou seulement des escaliers au nouvel endroit ?"],
-          ["Quel est ton budget ? Tu préfères louer un camion ou utiliser un service de livraison ?"],
-          ["Est-ce que tu penses tout transporter en une journée, ou sur plusieurs jours ?"]
-        ], say: [0] },
-        { cap: "A colleague's spring running race (tu)", head: ["Questions"], rows: [
-          ["Où se déroule la course ? Qui l'organise ?"],
-          ["Quelle est la distance ? Y a-t-il un seul parcours ou plusieurs ?"],
-          ["Faut-il payer pour s'inscrire ?"],
-          ["La course soutient-elle une association caritative ?"],
-          ["Y a-t-il un âge minimum ?"]
-        ], say: [0] },
-        { cap: "A friend's hiking club (tu)", head: ["Questions"], rows: [
-          ["Où ont lieu les randonnées, en général ?"],
-          ["Est-ce que vous partez en groupe ? Y a-t-il un guide professionnel ?"],
-          ["Quels sont les niveaux de difficulté ?"],
-          ["Quel est l'âge minimum ? Quel est l'âge moyen des participants ?"],
-          ["Quelle est la meilleure saison pour aller à la montagne : l'hiver ou l'été ?"],
-          ["Quel type d'équipement est-ce qu'il faut apporter ?"]
-        ], say: [0] },
-        { cap: "Ordering groceries online for the first time (vous)", head: ["Questions"], rows: [
-          ["Comment puis-je passer une commande en ligne ?"],
-          ["Le service est-il seulement pour la livraison, ou puis-je aussi commander pour le ramassage en magasin ?"],
-          ["Quels sont les frais de livraison ? Y a-t-il un montant minimum pour commander ?"],
-          ["Y a-t-il des réductions pour les nouveaux clients ?"],
-          ["Quel est le délai de livraison en général ? Puis-je choisir l'heure ?"],
-          ["Que se passe-t-il si un produit n'est pas disponible ?"],
-          ["Quels sont les moyens de paiement acceptés ?"]
-        ], say: [0] },
-        { cap: "A theatre ticket office while you're on vacation (vous)", head: ["Questions"], rows: [
-          ["Quels types de spectacles proposez-vous ?"],
-          ["Quels sont les horaires des spectacles, en général ?"],
-          ["Comment puis-je réserver ma place ? Combien coûtent les billets ?"],
-          ["Y a-t-il des réductions pour les étudiants ou les familles ?"],
-          ["Faut-il arriver en avance ?"]
-        ], say: [0] },
-        { cap: "A colleague's wedding (tu)", head: ["Questions"], rows: [
-          ["Où a eu lieu le mariage ? Combien de personnes y ont assisté ?"],
-          ["Comment s'est passée la cérémonie ?"],
-          ["Comment était la salle de réception ?"],
-          ["Qu'est-ce que tu as le plus apprécié ?"],
-          ["Comment était le repas ? Quelles animations y avait-il ?"]
-        ], say: [0] }
-      ],
-      tip: "Past-event scenarios (the wedding) need past tenses: passé composé for what happened (<span class='fr'>Comment s'est passée la cérémonie ?</span>) and imparfait for descriptions (<span class='fr'>Comment était la salle ?</span>)."
-    },
-    {
-      title: "Notes on the handwritten board",
-      body: "<p>Your framework is excellent. These small language points were corrected in this module so you memorise the natural version:</p><ul><li><span class='fr'>J'écoute que…</span> → <span class='fr'>J'ai entendu dire que…</span> / <span class='fr'>J'ai vu que…</span> — to report something you heard, use <span class='fr'>entendre dire que</span>.</li><li><span class='fr'>Effectivement, ça fait sens</span> → <span class='fr'>Effectivement, c'est logique</span> — <span class='fr'>ça fait sens</span> is an anglicism; <span class='fr'>ça a du sens</span> or <span class='fr'>c'est logique</span> are standard.</li><li><span class='fr'>Quel types des objets</span> → <span class='fr'>Quels types d'objets</span>; <span class='fr'>Combien des objets</span> → <span class='fr'>Combien d'objets</span> — after <span class='fr'>combien</span> and <span class='fr'>type</span>, use <span class='fr'>de</span> with no article.</li><li><span class='fr'>Quel sont les frais</span> → <span class='fr'>Quels sont les frais</span> — <span class='fr'>quel</span> agrees with the plural noun.</li><li><span class='fr'>des transport disponible</span> → <span class='fr'>des transports disponibles</span> — plural agreement.</li><li><span class='fr'>Est-ce tu penses transporter…</span> → <span class='fr'>Est-ce que tu penses tout transporter…</span> — don't drop <span class='fr'>que</span>.</li><li><span class='fr'>Qu'est-ce qui distingue — de</span> is correct; also useful: <span class='fr'>Quelle est la différence entre… et… ?</span></li><li><span class='fr'>Que se passe-t-il dans le cas où la demande ne soit pas validée</span> → <span class='fr'>…ne serait pas validée</span> — <span class='fr'>dans le cas où</span> takes the conditional.</li></ul>"
+      title: "B1 boost: one subjunctive question",
+      body: "<p>One question like these shows B1 range. They all use <span class='fr'>que</span> + the subjunctive.</p>",
+      table: {
+        head: ["Question"],
+        rows: [
+          ["Est-il nécessaire que je sois présent en personne ?"],
+          ["Faut-il que j'aie un justificatif ?"],
+          ["Vaut-il mieux que je vienne le matin ?"],
+          ["Que faut-il faire pour que ma demande soit acceptée ?"]
+        ],
+        say: [0]
+      },
+      tip: "The forms you need: que je <b>sois</b> (être), que j'<b>aie</b> (avoir), que je <b>fasse</b> (faire), que je <b>vienne</b> (venir)."
     }
   ],
   builder: {
