@@ -6,7 +6,8 @@
    US Letter page, shrinks the type or trims the lowest-priority items
    until it fits, and writes:
 
-     assets/cheatsheets/<module-id>.pdf       one page per module
+     assets/cheatsheets/<module-id>.pdf       the summary page, then the module's
+                                              cheat-code pictures (assets/course-visuals.js)
      assets/cheatsheets/all-modules.pdf       every sheet in one file
      assets/cheatsheets/thumbs/<module-id>.jpg  previews for cheatsheets.html
      assets/cheatsheets/manifest.js           the list cheatsheets.html shows
@@ -35,16 +36,19 @@ global.window = {};
 require(path.join(ROOT, "assets", "config.js"));
 for (const f of ["1", "2", "3", "4", "t2", "5"]) require(path.join(ROOT, "assets", "course-" + f + ".js"));
 require(path.join(ROOT, "assets", "course-en.js"));
+require(path.join(ROOT, "assets", "course-visuals.js"));
+const VIS = window.NCLC_VISUALS;
+const VIS_CSS = fs.readFileSync(path.join(ROOT, "assets", "course-visuals.css"), "utf8");
 const SITE = window.SITE, M = window.COURSE.modules, EN = window.COURSE_EN;
 const BASE = /example\.com/.test(SITE.url || "") ? "https://krish4512.github.io/nclc5-roadmap" : SITE.url.replace(/\/$/, "");
 M.forEach((m, i) => { m.num = i; });
 
 const LEVELS = {
-  Start: { name: "Start here", color: "#6c47e4" },
-  A1: { name: "A1 · Foundations", color: "#2563eb" },
-  A2: { name: "A2 · Everyday French", color: "#0784a8" },
-  B1: { name: "B1 · Independent user", color: "#e0620d" },
-  Exam: { name: "Exam performance", color: "#b42ac6" }
+  Start: { name: "Start here", color: "#6c47e4", hue: "violet" },
+  A1: { name: "A1 · Foundations", color: "#2563eb", hue: "blue" },
+  A2: { name: "A2 · Everyday French", color: "#0784a8", hue: "cyan" },
+  B1: { name: "B1 · Independent user", color: "#e0620d", hue: "orange" },
+  Exam: { name: "Exam performance", color: "#b42ac6", hue: "magenta" }
 };
 
 const strip = s => String(s || "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
@@ -169,6 +173,64 @@ function sheet(m) {
 </div>`;
 }
 
+/* the module's lesson pictures; fitCodes() lays them out and adds pages if needed */
+function codes(m) {
+  const L = LEVELS[m.level] || LEVELS.Start;
+  const list = (VIS.data[m.id] || []).map((spec, i) => spec ? { spec, i } : null).filter(Boolean);
+  if (!list.length) return "";
+  const url = BASE + "/learn.html#" + m.id;
+  const figs = list.map(x => "<div class='cc-fig'><span class='cc-n'>Lesson " + m.num + "." + (x.i + 1) + "</span>" + VIS.render(x.spec, L.hue) + "</div>").join("");
+  return `<div class="page cc-page" style="--c:${L.color}">
+  <header class="cc-head">
+    <div class="brand"><span class="mark">B1</span>${esc(SITE.brand)} <span class="free">Cheat codes</span></div>
+    <div class="lvl">Module ${m.num} · ${esc(L.name)}</div>
+    <h1>${esc(m.title)}: the rules at a glance</h1>
+  </header>
+  <div class="cc-body"><div class="cc-inner"><div class="cc-col"></div><div class="cc-col"></div></div><div class="cc-pool">${figs}</div></div>
+  <footer>
+    <div><b>Every rule with audio, practice questions and a real-life text:</b> <a href="${url}">${esc(url.replace(/^https?:\/\//, ""))}</a></div>
+    <div class="fine">Independent study resource, not affiliated with France Éducation international, CCI Paris Île-de-France or IRCC. © ${new Date().getFullYear()} ${esc(SITE.legalName)}</div>
+  </footer>
+</div>`;
+}
+
+/* two balanced columns, scaled to fit; if the pictures would get too small,
+   the rest continue on another page */
+function fitCodes() {
+  const MAXZ = 0.8, MINZ = 0.6;
+  const fill = (page, figs, z) => {
+    const body = page.querySelector(".cc-body"), inner = page.querySelector(".cc-inner"), cols = inner.querySelectorAll(".cc-col");
+    inner.style.width = (body.clientWidth / z) + "px";
+    inner.style.transform = "scale(" + z + ")";
+    cols.forEach(c => { c.innerHTML = ""; });
+    figs.forEach(f => {
+      const [a, b] = cols;
+      (a.offsetHeight <= b.offsetHeight ? a : b).appendChild(f);
+    });
+    return Math.max(cols[0].offsetHeight, cols[1].offsetHeight) * z <= body.clientHeight;
+  };
+  [...document.querySelectorAll(".cc-page")].forEach(first => {
+    let page = first, figs = [...first.querySelectorAll(".cc-pool .cc-fig")];
+    first.querySelector(".cc-pool").remove();
+    let guard = 20;
+    while (figs.length && guard--) {
+      let z = MAXZ, ok = false;
+      for (; z >= MINZ - 1e-9; z -= 0.025) { if (fill(page, figs, z)) { ok = true; break; } }
+      if (ok || figs.length === 1) { if (!ok) fill(page, figs, MINZ); page.dataset.z = z.toFixed(3); break; }
+      /* too many for one page: keep the first ones here, the rest on a new page */
+      let keep = figs.length - 1;
+      while (keep > 1 && !fill(page, figs.slice(0, keep), MINZ + 0.1)) keep--;
+      fill(page, figs.slice(0, keep), MINZ + 0.1);
+      page.dataset.z = (MINZ + 0.1).toFixed(3);
+      const next = page.cloneNode(true);
+      next.querySelectorAll(".cc-col").forEach(c => { c.innerHTML = ""; });
+      next.querySelector("h1").textContent += " (continued)";
+      page.after(next);
+      page = next; figs = figs.slice(keep);
+    }
+  });
+}
+
 const CSS = `
 @page { size: 8.5in 11in; margin: 0; }
 * { box-sizing: border-box; }
@@ -223,11 +285,29 @@ td small { display: block; color: #86868b; font-size: calc(var(--fs) * 0.84); li
 footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e6e6eb; font-size: 8.6px; color: #515154; }
 footer a { color: var(--c); font-weight: 600; text-decoration: none; }
 footer .fine { margin-top: 3px; font-size: 7.2px; color: #a1a1a6; }
-`;
+/* cheat-code pages */
+.cc-page { --surface: #fff; --surface-alt: #f5f5f7; --border: #e6e6eb; --border-strong: #d2d2d7; --ink: #1d1d1f; --ink-soft: #515154; --ink-faint: #86868b;
+  --serif: "Inter Tight", Inter, sans-serif; --sans: Inter, sans-serif; --italic: Georgia, serif; --shadow-sm: none; }
+.cc-head h1 { font-size: 19px; }
+.cc-body { flex: 1; min-height: 0; overflow: hidden; position: relative; }
+.cc-inner { display: flex; gap: 14px; align-items: flex-start; transform-origin: 0 0; }
+.cc-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.cc-fig { break-inside: avoid; }
+.cc-n { display: block; font-size: 11px; font-weight: 700; color: var(--c); margin: 0 0 4px 4px; letter-spacing: .02em; }
+.cc-fig .vis { margin: 0; }
+.cc-fig .vconj { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.cc-fig .vsc { grid-auto-flow: row; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); }
+.cc-fig .vsteps { grid-auto-flow: row; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.cc-fig .vsteps li + li::before { display: none; }
+.cc-page .cc-fig .vgrid table { table-layout: fixed; }
+.cc-page .cc-fig .vgrid th, .cc-page .cc-fig .vgrid td { white-space: normal; overflow-wrap: anywhere; hyphens: auto; }
+.hue { --c-soft: color-mix(in srgb, var(--c) 9%, #fff); --c-line: color-mix(in srgb, var(--c) 30%, #fff); --c-ink: color-mix(in srgb, var(--c) 85%, #1d1d1f); --c-glow: color-mix(in srgb, var(--c) 22%, transparent); }
+.h-violet { --c: #6c47e4; } .h-blue { --c: #2563eb; } .h-cyan { --c: #0784a8; } .h-orange { --c: #e0620d; } .h-magenta { --c: #b42ac6; }
+` + VIS_CSS;
 
 /* shrink type, then drop the lowest-priority items, until the page fits */
 function fitAll() {
-  document.querySelectorAll(".page").forEach(page => {
+  document.querySelectorAll(".page:not(.cc-page)").forEach(page => {
     const main = page.querySelector("main");
     const over = () => [...main.querySelectorAll(".col")].some(c => c.scrollHeight > main.clientHeight + 0.5);
     let fs = 9.4;
@@ -257,19 +337,28 @@ function fitAll() {
   const thumb = await browser.newPage({ viewport: { width: 816, height: 1056 }, deviceScaleFactor: 0.5 });
   const report = [];
   for (const m of M) {
-    await page.setContent(head + sheet(m) + "</body></html>", { waitUntil: "load" });
+    await page.setContent(head + sheet(m) + codes(m) + "</body></html>", { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
     await page.evaluate(fitAll);
+    await page.evaluate(fitCodes);
+    const cc = await page.$$eval(".cc-page", ps => ps.map(p => p.dataset.z));
+    /* anything cut off inside a picture: a scroll box that overflows, or text sticking out of its card */
+    const clipped = await page.$$eval(".cc-page .vis *", els => els.filter(e => {
+      if (e.scrollWidth > e.clientWidth + 1 && getComputedStyle(e).overflow !== "visible") return true;
+      const box = e.parentElement && e.parentElement.closest(".vcol, .vcard, .vpair, .vbx, .vsc > div, .vsteps li, .vgrp");
+      return !!box && e.getBoundingClientRect().right > box.getBoundingClientRect().right + 1;
+    }).map(e => (e.className || e.tagName) + ":" + e.textContent.slice(0, 20)));
     const info = await page.$eval(".page", p => ({ fs: p.dataset.fs, over: p.dataset.over, dropped: 0 }));
-    await page.pdf({ path: path.join(OUT, m.id + ".pdf"), width: "8.5in", height: "11in", printBackground: true, pageRanges: "1" });
+    await page.pdf({ path: path.join(OUT, m.id + ".pdf"), width: "8.5in", height: "11in", printBackground: true });
     await thumb.setContent(await page.content(), { waitUntil: "load" });
     await thumb.evaluate(() => document.fonts.ready);
     await thumb.screenshot({ path: path.join(THUMBS, m.id + ".jpg"), type: "jpeg", quality: 80 });
-    report.push(m.id + " fs=" + info.fs + (info.over === "1" ? " OVERFLOW" : ""));
+    report.push(m.id + " fs=" + info.fs + (info.over === "1" ? " OVERFLOW" : "") + " codes=" + cc.length + "p z=" + cc.join(",") + (clipped.length ? " CLIPPED " + clipped.slice(0, 4).join(" | ") : ""));
   }
-  await page.setContent(head + M.map(sheet).join("") + "</body></html>", { waitUntil: "load" });
+  await page.setContent(head + M.map(m => sheet(m) + codes(m)).join("") + "</body></html>", { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(fitAll);
+  await page.evaluate(fitCodes);
   await page.pdf({ path: path.join(OUT, "all-modules.pdf"), width: "8.5in", height: "11in", printBackground: true });
   await browser.close();
   /* list read by cheatsheets.html */

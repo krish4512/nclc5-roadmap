@@ -16,6 +16,8 @@ You upload the folder and it works.
 | `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each with lessons, pronunciation, common mistakes, a shadowing drill, vocabulary and a self-check; plus TCF speaking task 2 (question framing) and task 3 (opinion template) modules with interactive builders |
 | `assets/course-visuals.js` | A "cheat code" picture at the top of each lesson (formula, conjugation grid, side-by-side, timeline…), built from a short spec per lesson — edit the `data` object to change one |
 | `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question, and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
+| `assets/course-reading.js` | The "Real life" text for each module (message, notice, email, voicemail or dialogue) with English and three questions |
+| `assets/course-visuals.css` | Styles for the cheat-code pictures, shared by `learn.html` and the PDF cheat sheets |
 | `roadmap.html` | The study roadmap: score bands, exam format, grammar stages with audio, vocabulary banks, checklists, EN⇄FR translator |
 | `review.html` + `assets/srs.js` | Daily review: spaced repetition over the vocabulary, sentences and mistakes of the modules reached |
 | `conjugate.html` + `assets/verbs.js` | Verb conjugator: 360+ verbs, 7 tenses, English for every form, audio |
@@ -28,7 +30,7 @@ You upload the folder and it works.
 | `certificate.html` | Printable certificate of completion, unlocked when all 21 modules are done |
 | `whats-new.html` | Changelog — add an entry at the top whenever you ship something |
 | `start.html` | 2-minute placement check: 12 questions from A1 to B1 that recommend a starting module and a plan for the learner's test date |
-| `cheatsheets.html` + `assets/cheatsheets/` | 21 free one-page PDF cheat sheets (one per module, plus all-in-one), with an optional email sign-up to unlock them |
+| `cheatsheets.html` + `assets/cheatsheets/` | 21 free PDF cheat sheets (a summary page plus a page of visual cheat codes per module, plus all-in-one), with an optional email sign-up to unlock them |
 | `pricing.html` | Plans and Stripe checkout buttons |
 | `contact.html` | Support email, billing portal link, FAQ |
 | `privacy.html`, `terms.html` | Privacy policy, and terms of service with the refund policy |
