@@ -617,3 +617,69 @@ html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-mo
 .guide-cta { margin: 44px 0 0; padding: 22px 24px; border-radius: var(--radius); background: var(--surface-alt); }
 .guide-cta strong { display: block; font-size: 18px; margin-bottom: 12px; }
 .guide-cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ---------------- illustrations (assets/art/*.svg, inlined by tools/partials.py) ---------------- */
+:root {
+  --art-card: #ffffff; --art-line: #e7e8ef; --art-mute: #cfd2de; --art-ink: #1d1d1f; --art-ink-soft: #8a8d9b;
+  --art-soft: #eaf0ff; --art-soft2: #f1ecff; --art-bg: #e9efff;
+  --art-g1: #2451d6; --art-g2: #6c47e4; --art-g3: #c2419a; --art-good: #1f9d6a; --art-bad: #e0554b; --art-gold: #e0a43a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --art-card: #1e1e24; --art-line: #2e2f38; --art-mute: #44465a; --art-ink: #f5f5f7; --art-ink-soft: #8c8fa3;
+    --art-soft: #172449; --art-soft2: #241a46; --art-bg: #121a36;
+    --art-g1: #6d97ff; --art-g2: #a58cff; --art-g3: #ef7ac2; --art-good: #4cc38a; --art-bad: #ff6b61; --art-gold: #e5b464;
+  }
+}
+:root[data-theme="dark"] {
+  --art-card: #1e1e24; --art-line: #2e2f38; --art-mute: #44465a; --art-ink: #f5f5f7; --art-ink-soft: #8c8fa3;
+  --art-soft: #172449; --art-soft2: #241a46; --art-bg: #121a36;
+  --art-g1: #6d97ff; --art-g2: #a58cff; --art-g3: #ef7ac2; --art-good: #4cc38a; --art-bad: #ff6b61; --art-gold: #e5b464;
+}
+.art { display: block; width: 100%; height: auto; overflow: visible; }
+.art text { font-family: var(--sans); }
+.art .t-fr { font-family: var(--italic); fill: var(--art-ink); }
+.art .t-ink { fill: var(--art-ink); }
+.art .t-mute { fill: var(--art-ink-soft); }
+.art .c-card { fill: var(--art-card); }
+.art .c-line { fill: var(--art-line); }
+.art .c-mute { fill: var(--art-mute); }
+.art .c-ink { fill: var(--art-ink); }
+.art .c-soft { fill: var(--art-soft); }
+.art .c-soft2 { fill: var(--art-soft2); }
+.art .c-white { fill: #fff; }
+.art .c-good { fill: var(--art-good); }
+.art .c-bad { fill: var(--art-bad); }
+.art .c-gold { fill: var(--art-gold); }
+.art .c-g1 { fill: var(--art-g1); } .art .c-g2 { fill: var(--art-g2); } .art .c-g3 { fill: var(--art-g3); }
+.art .k-line { stroke: var(--art-line); } .art .k-mute { stroke: var(--art-mute); } .art .k-g2 { stroke: var(--art-g2); } .art .k-ink { stroke: var(--art-ink); }
+.art .st1 { stop-color: var(--art-g1); } .art .st2 { stop-color: var(--art-g2); } .art .st3 { stop-color: var(--art-g3); }
+.art .sbg { stop-color: var(--art-bg); }
+.art .fl1, .art .fl2, .art .fl3 { transform-box: fill-box; transform-origin: center; }
+html.js-motion .art .fl1 { animation: art-float 6s ease-in-out infinite; }
+html.js-motion .art .fl2 { animation: art-float 7s ease-in-out -2s infinite; }
+html.js-motion .art .fl3 { animation: art-float 5s ease-in-out -1s infinite; }
+@keyframes art-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.art.cover { overflow: hidden; }
+
+/* page heroes with an illustration on the right */
+.hero-split { display: grid; grid-template-columns: minmax(0, 1fr) clamp(190px, 32%, 310px); gap: 32px; align-items: center; }
+.hero-split:has(> .hero-art[hidden]) { grid-template-columns: minmax(0, 1fr); }
+.hero-art { width: 100%; min-width: 0; }
+.hero-art[hidden] { display: none; }
+.page-hero .hero-split p { max-width: none; }
+@media (max-width: 760px) {
+  .hero-split { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .hero-split > .hero-art { order: -1; width: min(250px, 70%); margin: 0 auto 8px; }
+  .hero-split > .hero-art.tool { display: none; }
+}
+.art-404 { width: min(320px, 78%); margin: 0 auto 6px; }
+.guide-cover { display: block; margin: 0 0 8px; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); }
+.guide-card .guide-cover { margin: -22px -24px 10px; border-radius: 0; border: 0; border-bottom: 1px solid var(--border); }
+.guide-card { overflow: hidden; }
+.road-art { max-width: 1040px; margin: 36px auto 0; padding: 0 16px; }
+@media (max-width: 640px) {
+  .road-art { overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .road-art::-webkit-scrollbar { display: none; }
+  .road-art .art { width: 680px; max-width: none; }
+}

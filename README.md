@@ -36,6 +36,8 @@ You upload the folder and it works.
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
 | `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
 | `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today, Daily review and Listen & repeat) |
+| `assets/art/` + `tools/art.py` | The illustrations (one per page, plus guide covers and the landing-page journey). Plain SVG coloured by the art tokens in `site.css`, so they follow light and dark mode; `tools/partials.py` inlines them where a page has `<!-- partial:art NAME -->` |
+| `tools/page-previews.js` | Renders a link-preview image per page into `assets/og/` from its illustration |
 | `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
 
 ## Before you launch

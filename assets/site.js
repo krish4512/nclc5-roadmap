@@ -516,7 +516,16 @@
   }
   onStreak(function () { setTimeout(checkBadges, 2800); });
 
-  window.NCLC = { badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
+  /* Illustrations: a page keeps its art in <template id="art-tpl"> (filled by
+     tools/partials.py); script-rendered heroes leave an empty [data-art] slot. */
+  function fillArt(root) {
+    var t = document.getElementById("art-tpl");
+    if (!t) return;
+    (root || document).querySelectorAll("[data-art]").forEach(function (el) { if (!el.firstElementChild) el.appendChild(t.content.cloneNode(true)); });
+  }
+  function heroArt(on) { var a = document.getElementById("hero-art"); if (a) a.hidden = !on; }
+
+  window.NCLC = { fillArt: fillArt, heroArt: heroArt, badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
 
   function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireTabs(); wireSettings(); setTimeout(checkBadges, 1200); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
