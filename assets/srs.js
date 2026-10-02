@@ -3,6 +3,7 @@
      w — a word or phrase (French → English)
      s — a sentence from a speaking drill (French → English)
      m — a common mistake (spot the error → the correct version)
+     x — an answer you got wrong in the course ("nclc5-missed", saved by NCLC.miss)
    Progress lives in localStorage "nclc5-srs":
      { cards: { id: { b: box, due: "YYYY-MM-DD", n: reviews, lapses } }, log: { day: count }, perDay } */
 (function () {
@@ -42,7 +43,11 @@
     C.mistakes.forEach(function (x) { if (NUM[x[3]] <= f) cards.push({ id: "m" + hash(x[0] + x[1]), t: "m", wrong: x[0], fr: x[1], why: x[2], en: x[4], mod: x[3] }); });
     /* course order, so new cards follow the order you learned them */
     cards.sort(function (a, b) { return NUM[a.mod] - NUM[b.mod]; });
-    return cards;
+    /* your own mistakes come first, oldest first */
+    var missed = read("nclc5-missed", {});
+    var mine = Object.keys(missed).map(function (id) { var x = missed[id]; return { id: id, t: "x", q: x.q, fr: x.a, why: x.why, mod: x.mod, l: x.l, at: x.at }; });
+    mine.sort(function (a, b) { return a.at - b.at; });
+    return mine.concat(cards);
   }
 
   function newToday(s) { return (s.log[day()] && s.log[day()].fresh) || 0; }
