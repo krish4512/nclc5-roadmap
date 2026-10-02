@@ -1,7 +1,9 @@
-
 # Local tooling state
-# macOS
-.DS_Store
 .claude-flow/
 .claude/
+
+# macOS
+.DS_Store
+
+# Python
 __pycache__/
