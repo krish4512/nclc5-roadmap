@@ -77,7 +77,7 @@ function linkProblems(from, hrefs) {
     for (const [pg, sec] of Object.entries(NAV)) {
       await p.goto(U + pg);
       const got = await p.$$eval("#site-nav a", a => a.map(x => x.textContent.trim() + (x.getAttribute("aria-current") ? "*" : "")));
-      const want = ["Today", "Course", "Review", "Exam"].map(x => x + (x === sec ? "*" : "")).concat(["Get Pro"]);
+      const want = ["Today", "Course", "Review", "Exam"].map(x => x + (x === sec ? "*" : "")).concat([pg === "pricing.html" ? "Get Pro*" : "Get Pro"]);
       if (JSON.stringify(got) !== JSON.stringify(want)) nav.push(pg + ": " + JSON.stringify(got) + " (want " + JSON.stringify(want) + ")");
     }
     check("Nav shows Today · Course · Review · Exam with the current page marked", nav);

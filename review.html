@@ -45,6 +45,11 @@
   .rv-stats span { font-size: 13px; color: var(--ink-soft); }
   .rv-opts { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 18px 0 0; font-size: 14px; color: var(--ink-soft); }
   .rv-opts .seg { display: inline-flex; }
+  .rv-opts .seg button { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .rv-opts { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 12px; }
+    .rv-opts .seg button { min-width: 44px; min-height: 44px; }
+  }
 
   .rv-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
   .rv-bar .track { flex: 1; height: 6px; border-radius: 99px; background: var(--surface-alt); overflow: hidden; }
@@ -101,7 +106,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -136,7 +141,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -145,7 +150,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -154,7 +159,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -219,13 +224,14 @@
     else if (c.t === "x") { front = "<p class='front' style='font-size:22px'>" + esc(c.q) + "</p>"; ask = "You missed this one in the course. What's the answer?"; }
     else if (c.t === "w" && dir === "en") { front = "<p class='front'>" + esc(c.en) + "</p>"; ask = "Say it in French."; }
     else { front = "<p class='front' lang='fr'>" + sayBtn(c.fr) + "<span>" + esc(c.fr) + "</span></p>"; ask = "What does it mean?"; }
-    app.innerHTML =
-      "<div class='rv-bar'><span>" + session.done + " / " + session.total + "</span><span class='track'><i style='width:" + Math.round(session.done / Math.max(1, session.total) * 100) + "%'></i></span><button type='button' class='linkbtn muted' data-end style='font-size:13px;background:none;border:none;color:var(--ink-faint);cursor:pointer'>End</button></div>" +
+    app.innerHTML = "<h1 class='sr-only'>Daily review</h1>" +
+      "<div class='rv-bar'><span>" + session.done + " / " + session.total + "</span><span class='track'><i style='width:" + Math.round(session.done / Math.max(1, session.total) * 100) + "%'></i></span><button type='button' class='linkbtn muted' data-end style='font-size:13px;background:none;border:none;color:var(--ink-faint);cursor:pointer;min-height:44px;padding:0 10px;margin:-14px -10px'>End</button></div>" +
       "<div class='card-r'><div class='kind'><span>" + kind + "</span><small>Module " + S.num(c.mod) + " · " + esc(S.title(c.mod)) + "</small></div>" +
       front + "<p class='ask'>" + ask + "</p><div id='back'></div><div class='spacer'></div>" +
       "<div class='rv-actions one' id='acts'><button type='button' class='show' data-show><b>Show answer</b></button></div></div>" +
       "<p class='rv-keys'>Space: show answer · 1 Again · 2 Good · 3 Easy</p>";
     if (c.t !== "m" && c.t !== "x" && !(c.t === "w" && dir === "en")) say(c.fr);
+    refocus("[data-show]");
   }
 
   function show() {
@@ -263,7 +269,7 @@
 
   function finish() {
     var st = S.stats();
-    app.innerHTML = "<div class='rv-done'><div class='big' aria-hidden='true'>🎉</div><h2>Review done</h2>" +
+    app.innerHTML = "<h1 class='sr-only'>Daily review</h1><div class='rv-done'><div class='big' aria-hidden='true'>🎉</div><h2>Review done</h2>" +
       "<p>" + session.done + " card" + (session.done === 1 ? "" : "s") + " reviewed" + (session.again ? ", " + session.again + " repeated until they stuck" : "") + ". " + st.learned + " cards are now learned for good. See you tomorrow.</p>" +
       "<div class='row'><a class='btn btn-primary' href='today.html'>Back to Today</a><a class='btn' href='learn.html'>Continue the course</a></div></div>";
     session = null;
@@ -276,11 +282,15 @@
     else if ((t = e.target.closest("[data-rate]"))) rateIt(+t.getAttribute("data-rate"));
     else if ((t = e.target.closest("[data-say]"))) say(t.getAttribute("data-say"));
     else if (e.target.closest("[data-end]")) { session = null; home(); }
-    else if ((t = e.target.closest("[data-per]"))) { S.setPerDay(+t.getAttribute("data-per")); home(); }
-    else if ((t = e.target.closest("[data-dir]"))) { dir = t.getAttribute("data-dir"); try { localStorage.setItem(DIR_KEY, dir); } catch (er) {} home(); }
+    else if ((t = e.target.closest("[data-per]"))) { var per = t.getAttribute("data-per"); S.setPerDay(+per); home(); refocus("[data-per='" + per + "']"); }
+    else if ((t = e.target.closest("[data-dir]"))) { dir = t.getAttribute("data-dir"); try { localStorage.setItem(DIR_KEY, dir); } catch (er) {} home(); refocus("[data-dir='" + dir + "']"); }
   });
+  /* re-rendering replaces the buttons: put keyboard focus back */
+  function refocus(sel) { var b = app.querySelector(sel); if (b) b.focus({ preventScroll: true }); }
   document.addEventListener("keydown", function (e) {
     if (!session || e.ctrlKey || e.metaKey || e.altKey || /input|textarea/i.test(e.target.tagName)) return;
+    /* Space / Enter on a focused button or link does that button's own job */
+    if ((e.key === " " || e.key === "Enter") && /^(BUTTON|A|SELECT)$/.test(e.target.tagName)) return;
     if ((e.key === " " || e.key === "Enter") && !session.shown) { e.preventDefault(); show(); }
     else if (session.shown && /^[123]$/.test(e.key)) { e.preventDefault(); rateIt(+e.key - 1); }
   });
