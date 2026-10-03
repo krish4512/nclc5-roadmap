@@ -96,7 +96,8 @@ def header(active):
             continue
         cur = ' aria-current="page"' if key == active else ""
         links.append(f'      <a href="{href}"{cur}>{label}</a>')
-    links.append('      <a class="nav-cta" href="pricing.html">Get Pro</a>')
+    pro = ' aria-current="page"' if active == "pricing" else ""
+    links.append(f'      <a class="nav-cta" href="pricing.html"{pro}>Get Pro</a>')
     nav = "\n".join(links)
     return f"""<!-- partial:header {active} -->
 <a class="skip-link" href="#main">Skip to content</a>
@@ -107,7 +108,7 @@ def header(active):
 {nav}
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font">{AA}</button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)">{AA}</button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu">{MENU}</button>
     </div>
@@ -137,7 +138,7 @@ def footer():
     def col(title, links):
         lis = "\n".join(f'          <li><a href="{h}">{l}</a></li>' for h, l in links if exists(h))
         return f"""      <div>
-        <h4>{title}</h4>
+        <h2>{title}</h2>
         <ul>
 {lis}
         </ul>

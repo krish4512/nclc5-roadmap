@@ -50,8 +50,8 @@
      with .hue plus one .h-* class; --c-soft / --c-line / --c-ink are derived
      from --c so tinted surfaces work in both themes. */
   :root {
-    --h-violet: #6c47e4; --h-blue: #2563eb; --h-cyan: #0784a8; --h-orange: #e0620d;
-    --h-magenta: #b42ac6; --h-rose: #dc2649; --h-indigo: #4f46e5; --h-amber: #b06a00; --h-green: #16865a;
+    --h-violet: #6c47e4; --h-blue: #2563eb; --h-cyan: #06708f; --h-orange: #b8500a;
+    --h-magenta: #b42ac6; --h-rose: #dc2649; --h-indigo: #4f46e5; --h-amber: #9a5d00; --h-green: #127a52;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -93,8 +93,8 @@
   .side-prog .bar { height: 6px; background: var(--surface-alt); border-radius: 4px; overflow: hidden; margin-top: 10px; }
   .side-prog .bar i { display: block; height: 100%; background: var(--brand-gradient); border-radius: 4px; transition: width 0.5s var(--ease); }
   .side-prog .sub { font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; }
-  .side h4 { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: var(--c-ink); margin: 18px 0 6px 8px; }
-  .side h4::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 3px var(--c-soft); }
+  .side h2 { line-height: 1.3; display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: var(--c-ink); margin: 18px 0 6px 8px; }
+  .side h2::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 3px var(--c-soft); }
   .side a {
     display: flex; gap: 10px; align-items: flex-start; text-decoration: none; color: var(--ink-soft);
     font-size: 14px; line-height: 1.35; padding: 7px 8px; border-radius: 10px; transition: background 0.2s ease, color 0.2s ease;
@@ -238,6 +238,16 @@
 
   /* ---------- section blocks ---------- */
   .block { margin-top: 56px; scroll-margin-top: calc(var(--header-h) + 64px); }
+  .lesson, .p-set { scroll-margin-top: calc(var(--header-h) + 72px); }
+  .lesson td:first-child { white-space: nowrap; }
+  .quiz-q .expl:focus, .t-fb:focus { outline: none; }
+  @media (max-width: 560px) {
+    .toc-bar a { min-height: 44px; }
+    .mod-head .meta .pill { min-height: 40px; }
+    details.sources > summary { padding-block: 12px; }
+    .vex .vsay { width: 36px; height: 36px; }
+    .p-set h3 a { display: inline-block; padding: 10px 4px; margin: -10px -4px; }
+  }
   .block > h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); letter-spacing: -0.03em; margin: 0 0 6px; display: flex; align-items: center; gap: 14px; }
   .block > h2 .ic {
     width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; flex: none;
@@ -249,7 +259,7 @@
 
   .why { font-size: 17px; line-height: 1.7; color: var(--ink); }
   .why p { margin: 0 0 12px; }
-  .goals { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .goals { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 10px; }
   .goals li { display: flex; gap: 12px; align-items: flex-start; background: var(--c-soft); border: 1px solid var(--c-line); border-radius: 14px; padding: 13px 14px; font-size: 15px; line-height: 1.5; }
   .goals li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: var(--bg); font-weight: 800; font-size: 12px; margin-top: 1px; }
 
@@ -261,11 +271,12 @@
   .mod-card .mbar { display: block; height: 4px; border-radius: 3px; background: var(--c-line); margin-top: 8px; overflow: hidden; }
   .mod-card .mbar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
   .auto-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
-  .auto-list li { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .auto-list li { display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 10px; row-gap: 2px; align-items: start; }
+  .auto-list li > small { grid-column: 2; }
   .auto-list a { color: var(--ink); text-decoration: none; font-weight: 500; }
   .auto-list a:hover { text-decoration: underline; }
   .auto-list small { color: var(--ink-faint); font-size: 13px; }
-  .auto-list .ai, .wr-checks .ai { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--border-strong); display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--surface); }
+  .auto-list .ai, .wr-checks .ai { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--ink-faint); display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--surface); }
   .auto-list li.ok .ai, .wr-checks li.ok .ai { background: var(--good); border-color: var(--good); }
   .auto-list li.ok a { color: var(--ink-soft); }
   .auto-note { margin: 12px 0 0; font-size: 13px; color: var(--ink-faint); }
@@ -419,7 +430,7 @@
   @media (max-width: 560px) { .quiz-q .opts { padding-left: 0; } }
   .quiz-q .opts button {
     appearance: none; -webkit-appearance: none; font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--ink);
-    background: var(--surface); border: 1.5px solid var(--border); border-radius: 999px; padding: 9px 16px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease);
+    background: var(--surface); border: 1.5px solid var(--border); border-radius: 999px; padding: 9px 16px; min-height: 44px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease);
   }
   .quiz-q .opts button:hover:not([disabled]) { border-color: var(--c); background: var(--c-soft); transform: translateY(-1px); }
   .quiz-q .opts button[disabled] { cursor: default; }
@@ -478,7 +489,7 @@
   .toc-bar.steps a::before { display: none; }
   .toc-bar.steps a i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--c-soft); color: var(--c-ink); font-size: 11.5px; font-weight: 800; }
   .toc-bar.steps a.on i { background: var(--c); color: var(--bg); }
-  .mod-head .goals { position: relative; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; }
+  .mod-head .goals { position: relative; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 8px; }
   .mod-head .goals li { background: var(--surface); padding: 10px 12px; font-size: 14.5px; }
   /* notes inside a lesson */
   .note-k { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--c-ink); margin-bottom: 6px; }
@@ -491,7 +502,7 @@
   .watch li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px 14px; font-size: 15px; line-height: 1.5; }
   .watch li + li { border-top: 1px solid var(--border); padding-top: 10px; }
   .watch .w { color: var(--bad); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--bad) 60%, transparent); font-weight: 600; }
-  .watch .r { color: var(--good); font-weight: 650; }
+  .watch .r { color: color-mix(in srgb, var(--good) 85%, var(--ink)); font-weight: 650; }
   .watch .r::before { content: "✓ "; }
   .watch .y { grid-column: 1 / -1; color: var(--ink-soft); font-size: 14px; }
   @media (max-width: 560px) { .watch li { grid-template-columns: minmax(0, 1fr); } }
@@ -520,7 +531,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -561,7 +572,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -570,7 +581,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -579,7 +590,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -772,9 +783,9 @@
     LEVELS.forEach(function (L) {
       var list = M.filter(function (m) { return m.level === L.id; });
       if (!list.length) return;
-      html += "<h4 class='" + hue(L.hue) + "'>" + esc(L.name) + "</h4>";
+      html += "<h2 class='" + hue(L.hue) + "'>" + esc(L.name) + "</h2>";
       list.forEach(function (m) {
-        html += "<a href='#" + m.id + "' class='" + hue(L.hue) + (m.id === curId ? " cur" : "") + (isDone(m.id) ? " done" : "") + "'>" +
+        html += "<a href='#" + m.id + "' class='" + hue(L.hue) + (m.id === curId ? " cur" : "") + (isDone(m.id) ? " done" : "") + "'" + (m.id === curId ? " aria-current='page'" : "") + ">" +
           "<span class='dot' style='--p:" + (isDone(m.id) ? 100 : modProgress(m).pct) + "'>" + (isDone(m.id) ? "✓" : m.num) + "</span><span>" + tH(m.title) + "</span></a>";
       });
     });
@@ -846,7 +857,7 @@
     view.querySelectorAll(".path [data-level]").forEach(function (b) {
       b.addEventListener("click", function () {
         var el = document.getElementById("level-" + b.getAttribute("data-level"));
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (el) el.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "start" });
       });
     });
   }
@@ -928,7 +939,7 @@
     h += secHead("lessons", "Lessons", "Short lessons. The quick tip under each one is the fastest way to remember it.");
     var VIS = window.NCLC_VISUALS ? NCLC_VISUALS.data[m.id] || [] : [];
     m.lessons.forEach(function (Ls, i) {
-      h += "<article class='lesson' id='sec-l" + i + "'><h3><span class='n" + (tried(m.id, i) ? " tried" : "") + "'>" + m.num + "." + (i + 1) + "</span><span>" + tH(Ls.title) + "</span></h3>" +
+      h += "<article class='lesson' id='sec-l" + i + "'><h3><span class='n" + (tried(m.id, i) ? " tried" : "") + "'>" + m.num + "." + (i + 1) + "</span> <span>" + tH(Ls.title) + "</span></h3>" +
         (VIS[i] ? NCLC_VISUALS.render(VIS[i], L.hue) : "") + "<div class='body'>" + (Ls.body || "") + "</div>";
       (Ls.tables || (Ls.table ? [Ls.table] : [])).forEach(function (t) { h += renderTable(t); });
       if (Ls.after) h += "<div class='body'>" + Ls.after + "</div>";
@@ -1013,14 +1024,15 @@
       links.forEach(function (a) {
         var on = a.getAttribute("data-sec") === key;
         a.classList.toggle("on", on);
-        if (on && toc.scrollWidth > toc.clientWidth) toc.scrollTo({ left: a.offsetLeft - 16, behavior: "smooth" });
+        if (on) a.setAttribute("aria-current", "step"); else a.removeAttribute("aria-current");
+        if (on && toc.scrollWidth > toc.clientWidth) toc.scrollTo({ left: a.offsetLeft - 16, behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth") });
       });
     }
     toc.addEventListener("click", function (e) {
       var a = e.target.closest("a[data-sec]"); if (!a) return;
       var el = document.getElementById("sec-" + a.getAttribute("data-sec")); if (!el) return;
       e.preventDefault();
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "start" });
       try { history.replaceState(null, "", "#" + m.id + "/" + a.getAttribute("data-sec")); } catch (err) {}
       mark(a.getAttribute("data-sec"));
     });
@@ -1057,7 +1069,7 @@
       for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
       var d = document.createElement("div");
       d.className = "quiz-q";
-      d.innerHTML = "<div class='q'><i>" + (qi + 1) + "</i><span>" + q.q + "</span></div><div class='opts'></div><div class='expl' hidden></div>";
+      d.innerHTML = "<div class='q'><i>" + (qi + 1) + "</i><span>" + q.q + "</span></div><div class='opts'></div><div class='expl' role='status' tabindex='-1' hidden></div>";
       var opts = d.querySelector(".opts");
       order.forEach(function (oi) {
         var b = document.createElement("button");
@@ -1080,6 +1092,7 @@
             (oi !== q.a && li != null && m.lessons[li] ? "<button type='button' class='back-l' data-goto-l='" + li + "'>Go back to lesson " + m.num + "." + (li + 1) + ": " + esc(strip(m.lessons[li].title)) + " →</button>" +
               "<span class='to-rev'>Added to your Daily review.</span>" : "");
           glossFr(ex);
+          ex.focus({ preventScroll: true });
           if (answered === m.quiz.length) {
             var pct = Math.round(right / m.quiz.length * 100);
             document.getElementById("qscore").textContent = "Score: " + right + " / " + m.quiz.length + " (" + pct + "%) — " +
@@ -1118,7 +1131,7 @@
     } else {
       body = "<form class='t-in' data-try-form><input type='text' lang='fr' autocomplete='off' autocapitalize='off' spellcheck='false' aria-label='Your answer' placeholder='Type your answer'><button type='submit' class='btn btn-sm'>Check</button></form>";
     }
-    return "<div class='t-q' data-key='" + key + "'><p class='t-p'><i>" + num + "</i><span>" + esc(q) + "</span></p>" + body + "<p class='t-fb' hidden></p></div>";
+    return "<div class='t-q' data-key='" + key + "'><p class='t-p'><i>" + num + "</i><span>" + esc(q) + "</span></p>" + body + "<p class='t-fb' role='status' tabindex='-1' hidden></p></div>";
   }
   function tryBlock(m, i) {
     var list = (PR.data[m.id] || [])[i];
@@ -1139,6 +1152,7 @@
     fb.innerHTML = (ok ? "<b>Correct" + (accents ? " — watch the accents: <span lang='fr'>" + esc(right) + "</span>" : "") + ".</b> "
                        : "<b>Not quite.</b> The answer is <b lang='fr'>" + esc(right) + "</b>. ") + esc(it.why || "") +
       (ok ? "" : "<span class='to-rev'>Added to your Daily review.</span>");
+    fb.focus({ preventScroll: true });
     if (ok) studied();
     else if (window.NCLC && NCLC.miss) NCLC.miss({ q: it.c || it.t, a: right, why: it.why, mod: reg.mod, l: reg.l });
     if (reg.onDone) reg.onDone(reg);
@@ -1174,7 +1188,7 @@
     var g = e.target.closest("[data-goto-l]");
     if (g) {
       var el = document.getElementById("sec-l" + g.getAttribute("data-goto-l"));
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) el.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "start" });
     }
   });
   view.addEventListener("submit", function (e) {
@@ -1342,7 +1356,7 @@
           (back.length ? "<p>Go back over these lessons:</p><ul class='cp-back'>" + back.map(function (x) {
             return "<li><a href='#" + x.mod + "/l" + x.l + "'>Module " + x.m.num + "." + (x.l + 1) + " · " + esc(strip(x.m.lessons[x.l].title)) + "</a></li>"; }).join("") + "</ul>" : "<p>No mistakes. Excellent.</p>") +
           "<div class='practice-row'><button type='button' class='btn btn-primary' data-cp-again='" + lv + "'>Try a new set</button><a class='btn' href='review.html'>Daily review</a><a class='btn' href='#'>Course overview</a></div>";
-        res.scrollIntoView({ behavior: "smooth", block: "center" });
+        res.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "center" });
         if (window.NCLC && NCLC.checkBadges) NCLC.checkBadges();
       };
     });

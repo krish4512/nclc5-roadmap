@@ -33,7 +33,7 @@
 <!-- /partial:head -->
 <script src="assets/cheatsheets/manifest.js"></script>
 <style>
-  :root { --lv-A1: #2563eb; --lv-A2: #0784a8; --lv-B1: #e0620d; --lv-Exam: #b42ac6; --lv-Start: #6c47e4; }
+  :root { --lv-A1: #2563eb; --lv-A2: #06708f; --lv-B1: #b8500a; --lv-Exam: #b42ac6; --lv-Start: #6c47e4; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --lv-A1: #6d9bff; --lv-A2: #3cc3e0; --lv-B1: #ff9a57; --lv-Exam: #e27cf2; --lv-Start: #a58cff; } }
   :root[data-theme="dark"] { --lv-A1: #6d9bff; --lv-A2: #3cc3e0; --lv-B1: #ff9a57; --lv-Exam: #e27cf2; --lv-Start: #a58cff; }
 
@@ -132,7 +132,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -167,7 +167,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -176,7 +176,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -185,7 +185,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -240,11 +240,11 @@
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function shuffle(n) { var a = []; for (var i = 0; i < n; i++) a.push(i); for (var j = n - 1; j > 0; j--) { var k = Math.floor(Math.random() * (j + 1)); var t = a[j]; a[j] = a[k]; a[k] = t; } return a; }
   function show(html, focusSel) {
-    app.innerHTML = "<div class='step'>" + html + "</div>";
+    app.innerHTML = (html.indexOf("<h1") < 0 ? "<h1 class='sr-only'>Placement check</h1>" : "") + "<div class='step'>" + html + "</div>";
     if (window.NCLC) NCLC.fillArt(app);
     var f = focusSel && app.querySelector(focusSel);
     if (f) { f.setAttribute("tabindex", "-1"); f.focus({ preventScroll: true }); }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth") });
   }
   function choices(list, attr) {
     return "<div class='choices'>" + list.map(function (c, i) {

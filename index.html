@@ -51,7 +51,7 @@
     background: var(--surface-raised); border: 1px solid var(--border); padding: 6px 14px 6px 8px; border-radius: 999px;
     -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); text-decoration: none; }
   .hero .kicker:hover { color: var(--ink); }
-  .hero .kicker b { background: var(--brand-gradient); color: #fff; font-size: 11.5px; padding: 2px 8px; border-radius: 999px; }
+  .hero .kicker b { background: var(--brand-gradient); color: var(--accent-ink); font-size: 11.5px; padding: 2px 8px; border-radius: 999px; }
   .hero h1 {
     font-family: var(--serif); font-weight: 800; letter-spacing: -0.05em; line-height: 0.98;
     font-size: clamp(48px, 9vw, 112px); margin: 26px auto 22px; max-width: 12ch;
@@ -181,6 +181,7 @@
   .no-motion .story-pin { position: static; height: auto; padding: 60px 0; }
   .no-motion .story-step { position: static; opacity: 1; transform: none; margin-bottom: 40px; }
   .no-motion .story-visual, .no-motion .story-dots { display: none; }
+  .no-motion .story-grid { grid-template-columns: minmax(0, 1fr); }
   .no-motion .story-steps { min-height: 0; }
 
   /* ---------------- counters ---------------- */
@@ -203,12 +204,13 @@
   .t-b { grid-column: span 2; grid-row: span 2; }
   .t-c, .t-d, .t-e { grid-column: span 2; }
   .t-f { grid-column: span 3; }
-  .t-g { grid-column: span 3; background: var(--brand-gradient); color: #fff; }
-  a.t-g:hover { color: #fff; }
-  .t-g p, .t-g .k { color: rgba(255, 255, 255, 0.88); }
+  .t-g { grid-column: span 3; background: var(--brand-gradient); color: var(--accent-ink); }
+  a.t-g:hover { color: var(--accent-ink); }
+  .t-g p, .t-g .k { color: var(--accent-ink); opacity: 0.88; }
   @media (max-width: 900px) { .t-a, .t-b, .t-c, .t-d, .t-e, .t-f, .t-g { grid-column: span 6; grid-row: auto; } }
   .wave { display: flex; align-items: flex-end; gap: 5px; height: 90px; margin-top: auto; }
-  .wave i { flex: 1; border-radius: 4px; background: linear-gradient(to top, #2451d6, #a58cff); animation: wave 1.6s ease-in-out infinite; }
+  .wave i { flex: 1; border-radius: 4px; background: linear-gradient(to top, #2451d6, #a58cff); height: 45%; animation: wave 1.6s ease-in-out infinite; }
+  .wave i:nth-child(3n) { height: 75%; } .wave i:nth-child(3n+1) { height: 30%; }
   @keyframes wave { 0%, 100% { height: 18%; } 50% { height: 100%; } }
   .phrase-stack { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
   .phrase-stack div { font-family: var(--italic); font-style: italic; font-size: clamp(18px, 2vw, 22px); padding: 10px 16px; border-radius: 14px; background: #1a1a1d; }
@@ -255,7 +257,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -268,7 +270,7 @@
 <section class="hero">
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="container">
-    <a class="kicker fade-late" href="learn.html#tcf-t2"><b>New</b> TCF speaking kits for tasks 2 &amp; 3 ›</a>
+    <a class="kicker fade-late" href="learn.html#tcf-t2"><b>New</b> TCF speaking kits for tasks 2 &amp;&nbsp;3&nbsp;›</a>
     <h1 aria-label="Your French, exam-ready.">
       <span class="rise" style="--i:0" aria-hidden="true">Your</span> <span class="rise" style="--i:1" aria-hidden="true">French,</span><br>
       <span class="rise it gradient-text" style="--i:2" aria-hidden="true">exam-ready.</span>
@@ -327,7 +329,7 @@
   <div class="container">
     <p id="statement">Most learners stall because they study everything at once. B1 takes around four hundred focused hours — spent in the right order, tested constantly, and spoken out loud from day one.</p>
   </div>
-  <div class="road-art" data-reveal aria-hidden="true"><!-- partial:art journey -->
+  <div class="road-art" data-reveal aria-hidden="true" inert><!-- partial:art journey -->
 <svg class="art" viewBox="0 0 1030 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A road from day one through A1, A2 and B1 to NCLC 5"><defs>
 <linearGradient id="a-journey-pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="pb1"/><stop offset=".55" class="pb2"/><stop offset="1" class="pb3"/></linearGradient>
 <radialGradient id="a-journey-glow" cx=".5" cy=".5" r=".5"><stop offset="0" class="gw"/><stop offset="1" class="gw" stop-opacity="0"/></radialGradient>
@@ -520,7 +522,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -529,7 +531,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -538,7 +540,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -621,6 +623,14 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     frame();
+    /* keyboard: a link inside a hidden step brings that step into view */
+    if (story) story.addEventListener("focusin", function (e) {
+      var st2 = e.target.closest(".story-step"); if (!st2) return;
+      var n = Array.prototype.indexOf.call(steps, st2), total = story.offsetHeight - window.innerHeight;
+      if (n < 0 || total <= 0) return;
+      window.scrollTo(0, story.getBoundingClientRect().top + window.pageYOffset + total * (n + 0.5) / steps.length);
+      setStep(n);
+    });
   }
 })();
 

@@ -104,6 +104,8 @@
   .navdots button.ok { background: var(--good-soft); color: var(--good); border-color: var(--good-border); }
   .navdots button.ko { background: var(--bad-soft); color: var(--bad); border-color: var(--bad-border); }
   .navdots button.cur { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .qnum:focus { outline: none; }
+  @media (max-width: 560px) { .navdots { gap: 8px; } .navdots button { width: 36px; height: 36px; font-size: 12px; } }
   .navdots button[disabled] { cursor: default; }
 
   .qcard { padding: 24px 26px 22px; }
@@ -282,7 +284,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -327,7 +329,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -336,7 +338,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -345,7 +347,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -469,7 +471,7 @@
     var f = fullState();
     setCrumb("Full mock exam results");
     document.title = "Your full mock exam results · NCLC 5";
-    titleEl.textContent = "Your full mock exam results"; if (window.NCLC) NCLC.heroArt(false);
+    titleEl.textContent = "Your full mock exam results"; titleEl.removeAttribute("lang"); if (window.NCLC) NCLC.heroArt(false);
     dekEl.textContent = "An indicative estimate per skill. Immigration programs look at each skill separately — your lowest skill is the one that decides.";
     if (!f || !f.results) { stage.innerHTML = "<div class='card'>No full mock in progress. <a href='exam.html'>Start one from the Mock exam page.</a></div>"; return; }
     drawFullbar("report");
@@ -545,7 +547,7 @@
     reset();
     setCrumb(null);
     document.title = "TCF & TEF Canada Mock Exam · NCLC 5";
-    titleEl.textContent = "Mock exam"; if (window.NCLC) NCLC.heroArt(true);
+    titleEl.textContent = "Mock exam"; titleEl.removeAttribute("lang"); if (window.NCLC) NCLC.heroArt(true);
     dekEl.textContent = "Exam-condition practice under the clock, in the format of the real TCF Canada and TEF Canada sections. Pick a section to sit.";
     var scores = readJSON(SCORE_KEY, {});
     var hist = readJSON(HIST_KEY, {});
@@ -595,7 +597,7 @@
     var S = SECTIONS[kind];
     setCrumb(S.name);
     document.title = S.name + " · Mock exam · NCLC 5";
-    titleEl.textContent = S.name; if (window.NCLC) NCLC.heroArt(false);
+    titleEl.textContent = S.name; titleEl.lang = "fr"; if (window.NCLC) NCLC.heroArt(false);
     dekEl.textContent = S.blurb;
     if (window.NCLC && !window.NCLC.requirePro(stage, "Full mock exams are part of Pro")) return;
     stage.innerHTML = prepLinks(kind) + "<div class='card intro'>" +
@@ -607,7 +609,7 @@
       "</div></div>" +
       (kind === "listening" && !speechOk ? "<div class='warn'>No speech synthesis in this browser — transcripts will be shown instead of audio.</div>" : "") +
       "<div class='row' style='margin-top:0'><button class='btn btn-primary btn-lg' id='begin'>Start the clock</button><a class='btn btn-ghost' href='exam.html'>All sections</a></div>" +
-      "<div class='muted'>Keyboard: <span class='kbd'>A</span>–<span class='kbd'>D</span> or <span class='kbd'>1</span>–<span class='kbd'>4</span> to answer, <span class='kbd'>Enter</span> for next" + (kind === "listening" ? ", <span class='kbd'>P</span> to play" : "") + ".</div>" +
+      "<div class='muted kbd-hint'>Keyboard: <span class='kbd'>A</span>–<span class='kbd'>D</span> or <span class='kbd'>1</span>–<span class='kbd'>4</span> to answer, <span class='kbd'>Enter</span> for next" + (kind === "listening" ? ", <span class='kbd'>P</span> to play" : "") + ".</div>" +
     "</div>";
     document.getElementById("seg").addEventListener("click", function (e) {
       var b = e.target.closest("button[data-m]"); if (!b) return;
@@ -645,7 +647,7 @@
       var dots = document.getElementById("dots");
       dots.innerHTML = items.map(function (it, n) {
         var cls = it.picked < 0 ? "" : practice ? (it.picked === it.answer ? "ok" : "ko") : "done";
-        return "<button type='button' class='" + cls + (n === i ? " cur" : "") + "' data-n='" + n + "' aria-label='Question " + (n + 1) + "'" + (practice ? " disabled" : "") + ">" + (n + 1) + "</button>";
+        return "<button type='button' class='" + cls + (n === i ? " cur" : "") + "' data-n='" + n + "' aria-label='Question " + (n + 1) + (it.picked < 0 ? "" : ", answered") + "'" + (n === i ? " aria-current='step'" : "") + (practice ? " disabled" : "") + ">" + (n + 1) + "</button>";
       }).join("");
     }
     stage.querySelector(".exam-bar").addEventListener("click", function (e) {
@@ -659,19 +661,19 @@
       var item = items[i];
       drawDots();
       var locked = practice && item.picked >= 0;
-      var html = "<div class='qnum'>Question " + (i + 1) + " of " + items.length + "</div>";
+      var html = "<div class='qnum' tabindex='-1'>Question " + (i + 1) + " of " + items.length + "</div>";
       if (isListening) {
         if (speechOk) {
           html += "<div class='player' id='player'><button type='button' class='play-btn' id='play' aria-label='Play recording'>" + ICON.play + "</button>" +
             "<div class='bars' aria-hidden='true'>" + new Array(14).join("<i></i>") + "</div>" +
             "<span class='plays-left' id='pleft'></span></div>";
         } else {
-          html += "<div class='doc'>" + esc(item.text) + "</div>";
+          html += "<div class='doc' lang='fr'>" + esc(item.text) + "</div>";
         }
       } else {
-        html += "<div class='doc'>" + esc(item.text) + "</div>";
+        html += "<div class='doc' lang='fr'>" + esc(item.text) + "</div>";
       }
-      html += "<p class='qtext'>" + esc(item.q) + "</p><ul class='opts' id='opts'></ul><div id='after'></div>" +
+      html += "<p class='qtext' lang='fr'>" + esc(item.q) + "</p><ul class='opts' id='opts' lang='fr'></ul><div id='after'></div>" +
         "<div class='row'>" +
           (!practice && i > 0 ? "<button class='btn' id='prev'>&larr; Previous</button>" : "") +
           "<span class='spacer'></span>" +
@@ -685,12 +687,13 @@
         var b = document.createElement("button");
         b.type = "button";
         b.innerHTML = "<span class='letter'>" + "ABCD".charAt(idx) + "</span><span>" + esc(opt) + "</span>";
-        if (!practice && item.picked === idx) b.classList.add("sel");
+        if (!practice) { b.setAttribute("aria-pressed", item.picked === idx ? "true" : "false"); if (item.picked === idx) b.classList.add("sel"); }
         b.addEventListener("click", function () { choose(idx); });
         li.appendChild(b);
         ul.appendChild(li);
       });
       if (locked) reveal();
+      var qn = document.querySelector("#qcard .qnum"); if (qn) qn.focus({ preventScroll: true });
 
       if (isListening && speechOk) {
         var playBtn = document.getElementById("play");
@@ -753,7 +756,7 @@
         reveal();
       } else {
         item.picked = idx;
-        Array.prototype.forEach.call(document.querySelectorAll("#opts button"), function (b, n) { b.classList.toggle("sel", n === idx); });
+        Array.prototype.forEach.call(document.querySelectorAll("#opts button"), function (b, n) { b.classList.toggle("sel", n === idx); b.setAttribute("aria-pressed", n === idx ? "true" : "false"); });
         drawDots();
       }
     }
@@ -814,7 +817,7 @@
         var r = document.getElementById("rfg"); if (r) { r.style.strokeDashoffset = String(C * (1 - correct / items.length)); if (!correct) r.style.opacity = "0"; }
       }); });
       var ag = document.getElementById("again"); if (ag) ag.addEventListener("click", function () { introMCQ(kind); });
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth") });
     }
 
     render();
@@ -859,7 +862,7 @@
     var S = SECTIONS.writing;
     setCrumb(S.name);
     document.title = S.name + " · Mock exam · NCLC 5";
-    titleEl.textContent = S.name; if (window.NCLC) NCLC.heroArt(false);
+    titleEl.textContent = S.name; titleEl.lang = "fr"; if (window.NCLC) NCLC.heroArt(false);
     dekEl.textContent = "Write under the clock while the coach tracks length, connectors and tenses. Then mark yourself against the rubric and compare with a model answer.";
     if (window.NCLC && !window.NCLC.requirePro(stage, "The writing coach is part of Pro")) return;
     var drafts = readJSON(DRAFT_KEY, {});
@@ -878,10 +881,10 @@
         "<div class='exam-bar'><span class='pill'>Task " + (t + 1) + " of " + DATA.writing.length + "</span><span class='spacer' style='flex:1'></span>" +
         "<span class='clock' id='clock'>" + ICON.clock + "<span>" + fmt(left) + "</span></span></div>" +
         "<div class='card'>" +
-          "<div class='task-head'><h2>" + esc(task.title) + "</h2><span class='pill gold'>" + esc(task.words) + " · " + task.minutes + " min</span></div>" +
-          "<div class='doc' style='margin-top:14px'>" + esc(task.prompt) + "</div>" +
+          "<div class='task-head'><h2 lang='fr'>" + esc(task.title) + "</h2><span class='pill gold'>" + esc(task.words) + " · " + task.minutes + " min</span></div>" +
+          "<div class='doc' lang='fr' style='margin-top:14px'>" + esc(task.prompt) + "</div>" +
           "<div class='write-grid'>" +
-            "<div><textarea class='write' id='essay' spellcheck='false' lang='fr' placeholder='Écrivez votre réponse ici… The clock starts when you begin typing.'></textarea>" +
+            "<div><textarea class='write' id='essay' spellcheck='false' lang='fr' aria-label='Your answer (in French)' placeholder='Écrivez votre réponse ici… The clock starts when you begin typing.'></textarea>" +
             "<div class='row'><button class='btn btn-primary' id='done'>Finish &amp; mark</button><button class='btn btn-ghost' id='clear'>Clear draft</button></div></div>" +
             "<aside class='coach' aria-label='Writing coach'>" +
               "<h3>Live coach</h3>" +
@@ -969,8 +972,8 @@
           fullRecord("writing", n / task.rubric.length, t);
         });
         var nt = document.getElementById("nextTask");
-        if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: "smooth" }); });
-        m.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth") }); });
+        m.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "start" });
       });
     }
     renderTask();
@@ -982,7 +985,7 @@
     var S = SECTIONS.speaking;
     setCrumb(S.name);
     document.title = S.name + " · Mock exam · NCLC 5";
-    titleEl.textContent = S.name; if (window.NCLC) NCLC.heroArt(false);
+    titleEl.textContent = S.name; titleEl.lang = "fr"; if (window.NCLC) NCLC.heroArt(false);
     dekEl.textContent = "Prepare, then speak aloud for the full time. Record yourself if you can — hearing your own answer is the fastest way to find gaps.";
     if (window.NCLC && !window.NCLC.requirePro(stage, "Speaking practice with recording is part of Pro")) return;
     var canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
@@ -999,9 +1002,9 @@
         prepLinks("speaking") +
         "<div class='exam-bar'><span class='pill'>Task " + (t + 1) + " of " + DATA.speaking.length + "</span></div>" +
         "<div class='card'>" +
-          "<div class='task-head'><h2>" + esc(task.title) + "</h2><span class='pill gold'>" +
+          "<div class='task-head'><h2 lang='fr'>" + esc(task.title) + "</h2><span class='pill gold'>" +
             (task.prepSeconds ? task.prepSeconds + "s prep · " : "no prep · ") + Math.round(task.speakSeconds / 60) + " min speaking</span></div>" +
-          "<div class='doc' style='margin-top:14px'>" + esc(task.prompt) + "</div>" +
+          "<div class='doc' lang='fr' style='margin-top:14px'>" + esc(task.prompt) + "</div>" +
           (speechOk ? "<button class='btn btn-sm' id='hear-prompt'>Hear the prompt</button>" : "") +
           "<div class='speak-stage'>" +
             "<div class='big-timer' id='bt'><svg viewBox='0 0 190 190' aria-hidden='true'><circle class='bg' cx='95' cy='95' r='82'/>" +
@@ -1130,7 +1133,7 @@
           fullRecord("speaking", n / task.rubric.length, t);
         });
         var nt = document.getElementById("nextTask");
-        if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+        if (nt) nt.addEventListener("click", function () { t++; renderTask(); window.scrollTo({ top: 0, behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth") }); });
         document.getElementById("retry").addEventListener("click", function () { renderTask(); });
       }
     }

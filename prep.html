@@ -105,7 +105,7 @@
   .men p { margin: 0 0 10px; }
   .men[hidden] { display: none; }
   .notes { margin-top: 18px; border-radius: 16px; padding: 14px 18px; }
-  .notes h3 { margin: 0 0 8px; font-size: 15px; }
+  .notes h2, .notes h3 { margin: 0 0 8px; font-size: 15px; font-family: var(--sans); letter-spacing: 0; }
   .notes ul { margin: 0; padding-left: 20px; display: grid; gap: 5px; font-size: 14.5px; }
   .notes.l0 { background: var(--bad-soft); } .notes.l1 { background: var(--accent-soft); } .notes.l2 { background: var(--good-soft); }
   .row2 { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
@@ -137,7 +137,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -169,12 +169,12 @@
 </defs><g clip-path="url(#a-topics-clip)"><rect width="480" height="360" fill="url(#a-topics-pbg)"/><ellipse cx="86.39999999999999" cy="36.0" rx="240.0" ry="180.0" fill="url(#a-topics-glow)"/><ellipse cx="456.0" cy="360.0" rx="192.0" ry="162.0" fill="url(#a-topics-glow)" opacity=".6"/><g filter="url(#a-topics-sh)"><path class="c-card" d="M60 44 h268 a22 22 0 0 1 22 22 v64 a22 22 0 0 1 -22 22 h-206 l-26 22 l4 -22 h-40 a22 22 0 0 1 -22 -22 v-64 a22 22 0 0 1 22 -22z"/></g><text class="t-mute" x="64" y="76" font-size="11.5" font-weight="700" text-anchor="start" letter-spacing="1.2">EXAMINATEUR</text><text class="t-fr" x="64" y="110" font-size="19" text-anchor="start" >Vous cherchez un appartement.</text><text class="t-fr" x="64" y="136" font-size="19" text-anchor="start" >Posez-moi des questions.</text><g class="fl2"><g filter="url(#a-topics-sh)"><path fill="url(#a-topics-g)" d="M152 186 h268 a22 22 0 0 1 22 22 v54 a22 22 0 0 1 -22 22 h-36 l4 22 l-26 -22 h-210 a22 22 0 0 1 -22 -22 v-54 a22 22 0 0 1 22 -22z"/></g><text class="" x="156" y="216" font-size="11.5" font-weight="700" text-anchor="start" fill="#fff" fill-opacity=".8" letter-spacing="1.2">VOUS</text><text class="t-fr" x="156" y="250" font-size="22" text-anchor="start" style="fill:#fff">Quel est le loyer ?</text></g><g class="fl1"><g filter="url(#a-topics-shs)"><rect class="c-card" x="30" y="264" width="112" height="46" rx="23.0"/></g><circle cx="56" cy="287" r="10" fill="none" class="k-g2" stroke-width="2.6"/><path d="M56 281.5 v6.0 l4.2 3.0" fill="none" class="k-g2" stroke-width="2.4" stroke-linecap="round"/><text class="t-ink" x="76" y="293" font-size="17" font-weight="800" text-anchor="start" >3:30</text></g><g class="fl1"><g transform="rotate(12 412 92)" filter="url(#a-topics-sh)"><rect class="c-card" x="380" y="60" width="64" height="64" rx="15"/></g><g transform="rotate(12 412 92)"><circle class="c-g1" cx="396" cy="76" r="5.5"/><circle class="c-g2" cx="412" cy="92" r="5.5"/><circle class="c-g3" cx="428" cy="108" r="5.5"/><circle class="c-g1" cx="428" cy="76" r="5.5"/><circle class="c-g3" cx="396" cy="108" r="5.5"/></g></g></g><rect x=".5" y=".5" width="479" height="359" rx="28" fill="none" class="k-frame"/></svg>
 <!-- /partial:art --></div></div>
     <div class="seg prep-tabs" role="tablist" aria-label="Exam prep">
-      <button type="button" role="tab" data-panel="speaking" aria-selected="true">Speaking topics</button>
-      <button type="button" role="tab" data-panel="writing" aria-selected="false">Writing models</button>
-      <button type="button" role="tab" data-panel="guides" aria-selected="false">Guides</button>
+      <button type="button" role="tab" id="tab-speaking" aria-controls="speaking" data-panel="speaking" aria-selected="true">Speaking topics</button>
+      <button type="button" role="tab" id="tab-writing" aria-controls="writing" data-panel="writing" aria-selected="false" tabindex="-1">Writing models</button>
+      <button type="button" role="tab" id="tab-guides" aria-controls="guides" data-panel="guides" aria-selected="false" tabindex="-1">Guides</button>
     </div>
 
-    <section class="panel" id="speaking" role="tabpanel" aria-label="Speaking topics">
+    <section class="panel" id="speaking" role="tabpanel" aria-labelledby="tab-speaking">
       <p class="p-lead">Sixty topics in the style of the real test. Pick one, prepare, speak, and record yourself to listen back.</p>
       <div class="tp" id="tp-app">
     <div class="seg" role="group" aria-label="Task">
@@ -187,7 +187,7 @@
       </div>
     </section>
 
-    <section class="panel" id="writing" role="tabpanel" aria-label="Writing models" hidden>
+    <section class="panel" id="writing" role="tabpanel" aria-labelledby="tab-writing" hidden>
       <p class="p-lead">The same task answered at NCLC 4, NCLC 5 and NCLC 7, with English and notes on what changes between them.</p>
       <div class="wm" id="wm-app">
     <div class="seg" role="group" aria-label="Writing task" id="tasks"></div>
@@ -198,7 +198,7 @@
       </div>
     </section>
 
-    <section class="panel" id="guides" role="tabpanel" aria-label="Guides" hidden>
+    <section class="panel" id="guides" role="tabpanel" aria-labelledby="tab-guides" hidden>
       <p class="p-lead">Short, clear answers to the questions everyone asks about the TCF and TEF Canada.</p>
       <div class="guide-grid">
       <a class="guide-card" href="guide-nclc-5-score-chart.html"><span class="guide-cover" aria-hidden="true"><!-- partial:art cover-score -->
@@ -275,7 +275,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -284,7 +284,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -293,7 +293,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -397,7 +397,7 @@
     else if (e.target.closest("[data-random]")) { var n = idx; while (list().length > 1 && n === idx) n = Math.floor(Math.random() * list().length); idx = n; render(); }
     else if (e.target.closest("[data-prev]")) { idx = (idx - 1 + list().length) % list().length; render(); }
     else if (e.target.closest("[data-next]")) { idx = (idx + 1) % list().length; render(); }
-    else if ((t = e.target.closest("[data-pick]"))) { idx = +t.getAttribute("data-pick"); render(); document.getElementById("tp-app").scrollIntoView({ behavior: "smooth" }); }
+    else if ((t = e.target.closest("[data-pick]"))) { idx = +t.getAttribute("data-pick"); render(); document.getElementById("tp-app").scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth") }); }
   });
   document.getElementById("tp-app").addEventListener("change", function (e) {
     if (e.target.id !== "tp-en") return;
@@ -439,7 +439,7 @@
       "<div class='mtext' lang='fr'>" + paras(data.fr, true) + "</div>" +
       "<div class='row2'><label style='display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-soft)'><input type='checkbox' id='wm-en'" + (en ? " checked" : "") + "> Show English</label></div>" +
       "<div class='men' id='men'" + (en ? "" : " hidden") + ">" + paras(data.en, false) + "</div>" +
-      "<div class='notes l" + lv + "'><h3>" + HEAD[lv] + "</h3><ul>" + data.notes.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
+      "<div class='notes l" + lv + "'><h2>" + HEAD[lv] + "</h2><ul>" + data.notes.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       "<div class='row2'><a class='btn btn-primary btn-sm' href='exam.html?s=writing'>Try this task under the clock →</a>" + (lv < 2 ? "<button type='button' class='btn btn-sm' data-lv='" + (lv + 1) + "'>See " + W[t].levels[lv + 1].lvl + " →</button>" : "") + "</div></article>";
   }
   document.getElementById("wm-app").addEventListener("click", function (e) {
@@ -460,11 +460,21 @@
   var tabs = document.querySelectorAll("[data-panel]");
   function show(id, focus) {
     if (!document.getElementById(id)) id = "speaking";
-    tabs.forEach(function (b) { b.setAttribute("aria-selected", String(b.getAttribute("data-panel") === id)); b.setAttribute("aria-pressed", String(b.getAttribute("data-panel") === id)); });
+    tabs.forEach(function (b) { var on = b.getAttribute("data-panel") === id; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
     document.querySelectorAll(".panel").forEach(function (p) { p.hidden = p.id !== id; });
     if (focus) try { history.replaceState(null, "", location.pathname + location.search + "#" + id); } catch (e) {}
   }
-  tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute("data-panel"), true); }); });
+  tabs.forEach(function (b, i) {
+    b.addEventListener("click", function () { show(b.getAttribute("data-panel"), true); });
+    /* arrow keys move between tabs (the tabs pattern) */
+    b.addEventListener("keydown", function (e) {
+      var n = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (n == null) return;
+      e.preventDefault();
+      var nb = tabs[(n + tabs.length) % tabs.length];
+      show(nb.getAttribute("data-panel"), true); nb.focus();
+    });
+  });
   window.addEventListener("hashchange", function () { show(location.hash.slice(1)); });
   var start = location.hash.slice(1) || (/[?&](task|level)=/.test(location.search) ? "writing" : "speaking");
   show(start);

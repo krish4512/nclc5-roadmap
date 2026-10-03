@@ -38,7 +38,7 @@
   .log h2 { font-size: 21px; letter-spacing: -0.015em; margin: 0 0 8px; }
   .log ul { margin: 0; padding-left: 20px; color: var(--ink-soft); line-height: 1.65; }
   .log li li { margin: 4px 0; }
-  .log .new { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: var(--accent); color: #fff; border-radius: 99px; padding: 2px 8px; margin-left: 8px; vertical-align: 3px; }
+  .log .new { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: var(--accent); color: var(--accent-ink); border-radius: 99px; padding: 2px 8px; margin-left: 8px; vertical-align: 3px; }
   @media (max-width: 600px) { .log > li { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
 </style>
 </head>
@@ -57,7 +57,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -87,9 +87,20 @@
     </div>
     <ol class="log">
       <li>
+        <time datetime="2026-10-09">October 9, 2026</time>
+        <div>
+          <h2>Easier to read, easier to use with a keyboard<span class="new">New</span></h2>
+          <ul>
+            <li>Grey text, level colours and badges now have enough contrast in light and dark mode.</li>
+            <li>Bigger tap targets on phones: menu and Aa buttons, answer buttons, step chips, review options and exam question dots.</li>
+            <li>The menu, the Aa panel, Exam prep tabs and Daily review now work fully with a keyboard, and screen readers announce your answers and the chosen option.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
         <time datetime="2026-10-08">October 8, 2026</time>
         <div>
-          <h2>A full French check of the course<span class="new">New</span></h2>
+          <h2>A full French check of the course</h2>
           <ul>
             <li>Every lesson, example, check question and practice item was reviewed for French grammar, accents and level, and 41 fixes went in.</li>
             <li>Rules now include the exceptions you'll actually meet: <em>si</em> meaning “whether” can take the future or conditional, <em>sortir</em> and <em>monter</em> take <em>avoir</em> with an object, and <em>le/la/les</em> don't change after a negation.</li>
@@ -225,7 +236,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -234,7 +245,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -243,7 +254,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>

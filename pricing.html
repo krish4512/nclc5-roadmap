@@ -40,6 +40,7 @@
   .compare th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); background: var(--surface-alt); font-weight: 600; }
   .compare td.c, .compare th.c { text-align: center; width: 110px; }
   .compare tr:last-child td { border-bottom: none; }
+  @media (max-width: 560px) { .compare th, .compare td { padding: 12px 10px; } .compare td.c, .compare th.c { width: 56px; } }
   .yes { color: var(--teal); font-weight: 700; }
   .no { color: var(--ink-faint); }
   .table-scroll { overflow-x: auto; }
@@ -47,7 +48,7 @@
 </head>
 <body>
 
-<!-- partial:header none -->
+<!-- partial:header pricing -->
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
@@ -57,10 +58,10 @@
       <a href="learn.html">Course</a>
       <a href="review.html">Review</a>
       <a href="exam.html">Exam</a>
-      <a class="nav-cta" href="pricing.html">Get Pro</a>
+      <a class="nav-cta" href="pricing.html" aria-current="page">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -79,7 +80,7 @@
     <div class="price-wrap">
       <div class="price-grid">
         <div class="price-card">
-          <h3>Free</h3>
+          <h2>Free</h2>
           <p class="blurb">Everything you need to learn the material.</p>
           <div class="price"><span class="amt">$0</span><span class="per">forever</span></div>
           <div class="price-note"></div>
@@ -97,7 +98,7 @@
 
         <div class="price-card featured">
           <span class="flag">Most flexible</span>
-          <h3 data-site-plan="monthly">Pro Monthly</h3>
+          <h2 data-site-plan="monthly">Pro Monthly</h2>
           <p class="blurb">For steady practice while you study.</p>
           <div class="price"><span class="amt" data-price="monthly">$14.99</span><span class="per" data-period="monthly">CAD / month</span></div>
           <div class="price-note" data-plan-note="monthly"></div>
@@ -113,7 +114,7 @@
         </div>
 
         <div class="price-card">
-          <h3 data-site-plan="quarterly">Pro · Exam Season</h3>
+          <h2 data-site-plan="quarterly">Pro · Exam Season</h2>
           <p class="blurb">Three months of Pro for your final run-up.</p>
           <div class="price"><span class="amt" data-price="quarterly">$34.99</span><span class="per" data-period="quarterly">CAD / 3 months</span></div>
           <div class="price-note" data-plan-note="quarterly">Save 22% vs. monthly</div>
@@ -138,14 +139,14 @@
         <table class="compare">
           <thead><tr><th>Feature</th><th class="c">Free</th><th class="c">Pro</th></tr></thead>
           <tbody>
-            <tr><td>21-module course: lessons, practice and a check in each</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
-            <tr><td>Daily review with spaced repetition</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
-            <tr><td>Exam prep: speaking topics, writing models, guides</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
-            <tr><td>One-page cheat sheets (PDF)</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
-            <tr><td>Listening mock exam (20 questions, timed)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
-            <tr><td>Reading mock exam (20 questions, timed)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
-            <tr><td>Writing tasks with live coach and model answers</td><td class="c no">—</td><td class="c yes">✓</td></tr>
-            <tr><td>Speaking tasks with timers and recording</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>21-module course: lessons, practice and a check in each</td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>Daily review with spaced repetition</td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>Exam prep: speaking topics, writing models, guides</td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>One-page cheat sheets (PDF)</td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>Listening mock exam (20 questions, timed)</td><td class="c no"><span aria-hidden="true">—</span><span class="sr-only">Not included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>Reading mock exam (20 questions, timed)</td><td class="c no"><span aria-hidden="true">—</span><span class="sr-only">Not included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>Writing tasks with live coach and model answers</td><td class="c no"><span aria-hidden="true">—</span><span class="sr-only">Not included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
+            <tr><td>Speaking tasks with timers and recording</td><td class="c no"><span aria-hidden="true">—</span><span class="sr-only">Not included</span></td><td class="c yes"><span aria-hidden="true">✓</span><span class="sr-only">Included</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -191,7 +192,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -200,7 +201,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -209,7 +210,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>

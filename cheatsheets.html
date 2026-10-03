@@ -33,7 +33,7 @@
 <!-- /partial:head -->
 <script src="assets/cheatsheets/manifest.js"></script>
 <style>
-  :root { --h-Start: #6c47e4; --h-A1: #2563eb; --h-A2: #0784a8; --h-B1: #e0620d; --h-Exam: #b42ac6; }
+  :root { --h-Start: #6c47e4; --h-A1: #2563eb; --h-A2: #06708f; --h-B1: #b8500a; --h-Exam: #b42ac6; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --h-Start: #a58cff; --h-A1: #6d9bff; --h-A2: #3cc3e0; --h-B1: #ff9a57; --h-Exam: #e27cf2; } }
   :root[data-theme="dark"] { --h-Start: #a58cff; --h-A1: #6d9bff; --h-A2: #3cc3e0; --h-B1: #ff9a57; --h-Exam: #e27cf2; }
 
@@ -85,10 +85,10 @@
   .cs-card:hover .cs-thumb img { transform: translateY(-6px); }
   .cs-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
   .cs-num { font-size: 12px; font-weight: 700; color: var(--lv); }
-  .cs-title { font-weight: 650; font-size: 15px; line-height: 1.3; letter-spacing: -0.01em; }
+  .cs-title { margin: 0; font-family: var(--sans); font-weight: 650; font-size: 15px; line-height: 1.3; letter-spacing: -0.01em; }
   .cs-dl { margin-top: auto; padding-top: 10px; display: flex; gap: 8px; align-items: center; }
   .cs-dl .btn { flex: 1; justify-content: center; }
-  .cs-dl .open { font-size: 13px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+  .cs-dl .open { font-size: 13px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; padding: 12px 4px; }
   .cs-dl .open:hover { color: var(--accent); }
   .locked .cs-dl .btn::before { content: "🔒 "; }
 </style>
@@ -108,7 +108,7 @@
       <a class="nav-cta" href="pricing.html">Get Pro</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Reading settings: theme, text size, font"><span class="aa" aria-hidden="true">Aa</span></button>
+      <button type="button" class="icon-btn settings-btn" data-settings aria-haspopup="dialog" aria-label="Aa: reading settings (theme, text size, font)"><span class="aa" aria-hidden="true">Aa</span></button>
       <a class="btn btn-primary btn-sm" href="pricing.html">Get Pro</a>
       <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
@@ -170,7 +170,7 @@
         <p>A structured French course, daily review and timed mock exams for reaching NCLC / CLB 5 on the TCF Canada or TEF Canada.</p>
       </div>
       <div>
-        <h4>Study</h4>
+        <h2>Study</h2>
         <ul>
           <li><a href="today.html">Today</a></li>
           <li><a href="learn.html">Course</a></li>
@@ -179,7 +179,7 @@
         </ul>
       </div>
       <div>
-        <h4>Free</h4>
+        <h2>Free</h2>
         <ul>
           <li><a href="start.html">Find your level</a></li>
           <li><a href="cheatsheets.html">Cheat sheets</a></li>
@@ -188,7 +188,7 @@
         </ul>
       </div>
       <div>
-        <h4>Help</h4>
+        <h2>Help</h2>
         <ul>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="contact.html">Contact & FAQ</a></li>
@@ -229,9 +229,9 @@
     list.forEach(function (s) {
       var pdf = "assets/cheatsheets/" + s.id + ".pdf";
       html += "<article class='cs-card' id='sheet-" + s.id + "'>" +
-        "<a class='cs-thumb' href='" + pdf + "' data-pdf><img src='assets/cheatsheets/thumbs/" + s.id + ".jpg' alt='Preview of the " + esc(s.title) + " cheat sheet' loading='lazy' width='408' height='528'></a>" +
-        "<div class='cs-body'><span class='cs-num'>Module " + s.num + "</span><span class='cs-title'>" + esc(s.title) + "</span>" +
-        "<div class='cs-dl'><a class='btn btn-sm' href='" + pdf + "' download data-pdf>Download PDF</a><a class='open' href='learn.html#" + s.id + "'>Lesson →</a></div></div></article>";
+        "<a class='cs-thumb' href='" + pdf + "' data-pdf tabindex='-1' aria-hidden='true'><img src='assets/cheatsheets/thumbs/" + s.id + ".jpg' alt=\"Preview of the " + esc(s.title) + " cheat sheet\" loading='lazy' width='408' height='528'></a>" +
+        "<div class='cs-body'><span class='cs-num'>Module " + s.num + "</span><h3 class='cs-title'>" + esc(s.title) + "</h3>" +
+        "<div class='cs-dl'><a class='btn btn-sm' href='" + pdf + "' download data-pdf aria-label=\"Download PDF: " + esc(s.title) + "\">Download PDF</a><a class='open' href='learn.html#" + s.id + "' aria-label=\"Lesson: " + esc(s.title) + "\">Lesson →</a></div></div></article>";
     });
     html += "</div></section>";
   });
@@ -250,7 +250,7 @@
     var a = e.target.closest("[data-pdf], #dl-all");
     if (!a || unlocked()) return;
     e.preventDefault();
-    gate.scrollIntoView({ behavior: "smooth", block: "center" });
+    gate.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "center" });
     setTimeout(function () { document.getElementById("gate-email").focus({ preventScroll: true }); }, 450);
   });
 
@@ -275,7 +275,7 @@
   var card = m && document.getElementById("sheet-" + m);
   if (card) {
     card.classList.add("hi");
-    setTimeout(function () { card.scrollIntoView({ behavior: "smooth", block: "center" }); }, 300);
+    setTimeout(function () { card.scrollIntoView({ behavior: (window.NCLC && NCLC.sb ? NCLC.sb() : "smooth"), block: "center" }); }, 300);
   }
 })();
 </script>

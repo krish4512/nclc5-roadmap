@@ -36,8 +36,24 @@
       nav.classList.toggle("open", open);
       btn.setAttribute("aria-expanded", open ? "true" : "false");
     }
-    btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
+    function isOpen() { return nav.classList.contains("open") && getComputedStyle(btn).display !== "none"; }
+    btn.addEventListener("click", function () {
+      set(!nav.classList.contains("open"));
+      /* the nav sits before the button in the page, so move focus into it */
+      if (isOpen()) { var a = nav.querySelector("a"); if (a) a.focus(); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) { var inside = nav.contains(document.activeElement); set(false); if (inside || document.activeElement === document.body) btn.focus(); }
+      /* Tab from the last link returns to the button */
+      if (e.key === "Tab" && !e.shiftKey && isOpen()) {
+        var links = nav.querySelectorAll("a");
+        if (document.activeElement === links[links.length - 1]) { e.preventDefault(); btn.focus(); }
+        else if (document.activeElement === btn) { e.preventDefault(); links[0].focus(); }
+      }
+    });
+    nav.addEventListener("focusout", function (e) {
+      if (isOpen() && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== btn) set(false);
+    });
     nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
   }
 
@@ -395,6 +411,8 @@
         applyPrefs(r);
       }
       render();
+      /* render() rebuilds the panel: put focus back on the button just pressed */
+      var f = pop.querySelector("[data-k='" + k + "'][data-v='" + (v == null ? "" : v) + "']"); if (f) f.focus();
     }
     function close() { if (pop) { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); } }
     btn.setAttribute("aria-expanded", "false");
@@ -404,6 +422,19 @@
         pop = document.createElement("div");
         pop.className = "settings-pop"; pop.setAttribute("role", "dialog"); pop.setAttribute("aria-labelledby", "set-title"); pop.hidden = true;
         document.body.appendChild(pop);
+        /* the panel lives at the end of the page: Tab from the button goes into it */
+        btn.addEventListener("keydown", function (ev) {
+          if (ev.key === "Tab" && !ev.shiftKey && !pop.hidden) { var first = pop.querySelector("button, select"); if (first) { ev.preventDefault(); first.focus(); } }
+        });
+        pop.addEventListener("keydown", function (ev) {
+          if (ev.key !== "Tab") return;
+          var all = pop.querySelectorAll("button, select");
+          if (ev.shiftKey && document.activeElement === all[0]) { ev.preventDefault(); btn.focus(); }
+          else if (!ev.shiftKey && document.activeElement === all[all.length - 1]) { ev.preventDefault(); close(); btn.focus(); }
+        });
+        pop.addEventListener("focusout", function (ev) {
+          if (!pop.hidden && ev.relatedTarget && !pop.contains(ev.relatedTarget) && ev.relatedTarget !== btn) close();
+        });
         pop.addEventListener("change", function (ev) {
           var sel = ev.target.closest("[data-voice]");
           if (!sel) return;
@@ -418,6 +449,7 @@
           else if (ev.target.closest("[data-reset]")) {
             try { localStorage.removeItem(READ_KEY); localStorage.removeItem(THEME_KEY); } catch (er) {}
             root.removeAttribute("data-theme"); applyPrefs({}); render();
+            var rb = pop.querySelector("[data-reset]"); if (rb) rb.focus();
           }
         });
       }
@@ -563,9 +595,24 @@
     } catch (e) {}
   }
 
-  window.NCLC = { miss: miss, fillArt: fillArt, heroArt: heroArt, badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
+  /* scroll behaviour that respects reduced motion (OS setting or the Aa panel) */
+  function sb() {
+    var reduce = (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) || root.getAttribute("data-motion") === "reduce";
+    return reduce ? "auto" : "smooth";
+  }
+  window.NCLC = { sb: sb, miss: miss, fillArt: fillArt, heroArt: heroArt, badges: badges, checkBadges: checkBadges, toast: toast, requirePro: requirePro, mailto: mailto, markStudy: markStudy, streak: streakInfo, onStreak: onStreak, report: report };
 
-  function boot() { wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireTabs(); wireSettings(); setTimeout(checkBadges, 1200); }
+  /* ---------- skip link ----------
+     On pages with a <base> (404), "#main" would point at the home page,
+     so move focus to <main> directly. */
+  function wireSkip() {
+    var a = document.querySelector(".skip-link"), main = document.getElementById("main");
+    if (!a || !main) return;
+    if (!main.hasAttribute("tabindex")) main.setAttribute("tabindex", "-1");
+    a.addEventListener("click", function (e) { e.preventDefault(); main.focus(); main.scrollIntoView(); });
+  }
+
+  function boot() { wireSkip(); wireTheme(); wireMenu(); wireDropdowns(); fillConfig(); wireMotion(); wireTabs(); wireSettings(); setTimeout(checkBadges, 1200); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
