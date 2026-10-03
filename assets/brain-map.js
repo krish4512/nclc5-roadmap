@@ -9,7 +9,14 @@
    (answers missed in the course) and "nclc5-srs" (Daily review boxes).
    Use: NCLC_BRAIN.render(element) */
 (function () {
-  var C = window.COURSE_INDEX || { modules: [] };
+  /* the module list: from course-index.js (Today) or the full course (learn.html) */
+  function modules() {
+    if (window.COURSE_INDEX && COURSE_INDEX.modules.length) return COURSE_INDEX.modules;
+    var strip = function (t) { return String(t || "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim(); };
+    return ((window.COURSE && COURSE.modules) || []).map(function (m, i) {
+      return { id: m.id, num: i, level: m.level, title: m.title, n: m.lessons.length, ls: m.lessons.map(function (L) { return strip(L.title); }), focus: !!m.focus };
+    });
+  }
   var LEVELS = [["Start", "Start here"], ["A1", "A1 · Foundations"], ["A2", "A2 · Everyday French"], ["B1", "B1 · Independent"], ["Exam", "Exam skills"]];
   var LABEL = { "new": "Not started", learning: "Learning", good: "Understood", weak: "Needs another look" };
   var ICON = { "new": "", learning: "…", good: "✓", weak: "!" };
@@ -80,8 +87,9 @@
   }
 
   function render(el) {
-    if (!el || !C.modules.length) return;
-    var prog = read("nclc5-course", {}), weak = weakSpots(), M = C.modules;
+    var M = modules();
+    if (!el || !M.length) return;
+    var prog = read("nclc5-course", {}), weak = weakSpots();
     var F = M.map(function (m) { return info(m, prog, weak); });
     var groups = { good: [], learning: [], weak: [], "new": [] };
     F.forEach(function (f, i) { groups[f.st].push(i); });
