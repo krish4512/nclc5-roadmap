@@ -8,290 +8,2064 @@
    NCLC_PRACTICE.notes[moduleId] = { m: [...], s: [...] }: the lesson each common
    mistake and pronunciation point appears in. */
 window.NCLC_PRACTICE = {
-  data: {
-    method: [
-      [{ c: "Which of these is “meaning-focused input”?", o: ["Listening to an easy podcast for the story", "Learning a conjugation table", "Writing a message to a friend"], why: "Input means listening or reading for the message. The table is language study; the message is output." },
-       { c: "Roughly how should you split your time across the four strands?", o: ["About a quarter each", "Mostly grammar", "Mostly apps"], why: "Nation recommends roughly equal time: input, output, language study and fluency." }],
-      [{ c: "After reading a table once, what helps you remember it best a week later?", o: ["Writing it from memory, then checking", "Reading it three more times", "Highlighting it"], why: "Retrieval — pulling it out of memory — strengthens it far more than rereading." },
-       { c: "Retrieval practice usually feels…", o: ["harder, but it lasts", "easier, and it lasts", "the same as rereading"], why: "The effort is the point: it feels harder because it's working." }],
-      [{ c: "You finish a module today. When should you look at it again?", o: ["In 2–3 days, then about a week later", "Never — you passed the check", "Tomorrow and every day after"], why: "Spread your reviews out, with gaps that grow: day 2–3, day 7, day 21." },
-       { c: "The further away your exam is, the gaps between reviews should be…", o: ["longer", "shorter", "the same"], why: "Longer retention needs longer spacing (Cepeda et al., 2006)." }],
-      [{ c: "Mixing three tenses in one practice session tends to…", o: ["feel harder but work better a week later", "feel easier and work better", "confuse you for good"], why: "Interleaving makes you choose, like a real conversation — more errors now, better results later." },
-       { c: "When is blocked practice (one topic at a time) the right choice?", o: ["When you're learning something brand new", "Always", "Never"], why: "Block while it's new; mix once you know the pieces." }],
-      [{ c: "For a text to be useful input, you should know about…", o: ["95% of the words", "50% of the words", "every word"], why: "Below about 95% you're decoding, not learning. Choose graded material." },
-       { c: "Why push yourself to speak and write early?", o: ["You notice what you can't say yet", "It replaces grammar study", "It's only for advanced learners"], why: "Output shows you the gaps (Swain's output hypothesis), so you learn what you need." }],
-      [{ c: "Starting around A2 at 1 hour a day, B1 takes about…", o: ["5–7 months", "2 weeks", "3 years"], why: "The course estimate: 5–7 months at 1 h a day, 3–4 months at 2 h." },
-       { c: "Which routine works better?", o: ["45 minutes every day", "5 hours on Sunday only", "Whenever you feel like it"], why: "Little and often beats long, rare sessions — spacing and habit both help." }]
+  "data": {
+    "method": [
+      [
+        {
+          "c": "After reading a table once, what helps you remember it best a week later?",
+          "o": [
+            "Writing it from memory, then checking",
+            "Reading it three more times",
+            "Highlighting it"
+          ],
+          "why": "Retrieval — pulling it out of memory — strengthens it far more than rereading."
+        },
+        {
+          "c": "Retrieval practice usually feels…",
+          "o": [
+            "harder, but it lasts",
+            "easier, and it lasts",
+            "the same as rereading"
+          ],
+          "why": "The effort is the point: it feels harder because it's working."
+        }
+      ],
+      [
+        {
+          "c": "You finish a module today. When should you look at it again?",
+          "o": [
+            "In 2–3 days, then about a week later",
+            "Never — you passed the check",
+            "Tomorrow and every day after"
+          ],
+          "why": "Spread your reviews out, with gaps that grow: day 2–3, day 7, day 21."
+        },
+        {
+          "c": "The further away your exam is, the gaps between reviews should be…",
+          "o": [
+            "longer",
+            "shorter",
+            "the same"
+          ],
+          "why": "Longer retention needs longer spacing (Cepeda et al., 2006)."
+        }
+      ],
+      [
+        {
+          "c": "Mixing three tenses in one practice session tends to…",
+          "o": [
+            "feel harder but work better a week later",
+            "feel easier and work better",
+            "confuse you for good"
+          ],
+          "why": "Interleaving makes you choose, like a real conversation — more errors now, better results later."
+        },
+        {
+          "c": "When is blocked practice (one topic at a time) the right choice?",
+          "o": [
+            "When you're learning something brand new",
+            "Always",
+            "Never"
+          ],
+          "why": "Block while it's new; mix once you know the pieces."
+        }
+      ],
+      [
+        {
+          "c": "Starting around A2 at 1 hour a day, B1 takes about…",
+          "o": [
+            "5–7 months",
+            "2 weeks",
+            "3 years"
+          ],
+          "why": "The course estimate: 5–7 months at 1 h a day, 3–4 months at 2 h."
+        },
+        {
+          "c": "Which routine works better?",
+          "o": [
+            "45 minutes every day",
+            "5 hours on Sunday only",
+            "Whenever you feel like it"
+          ],
+          "why": "Little and often beats long, rare sessions — spacing and habit both help."
+        }
+      ]
     ],
-    sounds: [
-      [{ c: "In French, the stress falls on…", o: ["the last syllable of the group", "the first syllable of each word", "the longest word"], why: "Syllables are even; a light stress lands at the end of each rhythm group." },
-       { c: "In « Je voudrais un café », which syllable is a little stronger?", o: ["fé", "Je", "vou"], why: "It's the last syllable of the group: ca-FÉ." }],
-      [{ c: "To say the French u (tu, rue)…", o: ["say “ee”, then round your lips", "say “oo” as in food", "say “you”"], why: "Tongue for “ee”, lips for “oo” — together they make [y]." },
-       { c: "Which is the biggest marker of an English accent in French vowels?", o: ["Gliding the vowel (“day-ee”)", "Speaking too slowly", "Using liaison"], why: "French vowels are pure: lips and tongue hold still." }],
-      [{ c: "In « bon », is the n pronounced?", o: ["No — the vowel is nasal", "Yes, clearly", "Only in Quebec"], why: "A vowel followed by n or m in the same syllable turns nasal and the n is silent." },
-       { c: "Which word has the same nasal vowel as vin?", o: ["pain", "bon", "temps"], why: "in, ain, ein all make [ɛ̃]: vin, pain, plein." }],
-      [{ c: "How is h pronounced in l'hôpital?", o: ["It's silent", "Like English h", "Like k"], why: "French h is always silent." },
-       { c: "Which pair changes meaning: [z] vs [s]?", o: ["poison / poisson", "chat / chats", "petit / petite"], why: "One s between vowels = [z] (poison); ss = [s] (poisson, fish)." }],
-      [{ c: "In « ils parlent », how much of -ent is pronounced?", o: ["None of it", "Only the t", "All of it"], why: "The verb ending -ent is silent: [il paʁl]." },
-       { c: "Which final letter is usually pronounced?", o: ["the c in sac", "the t in petit", "the s in Paris"], why: "CaReFuL: c, r, f, l are usually said at the end." }],
-      [{ c: "Which is a liaison?", o: ["les‿amis", "l'ami", "il‿a"], why: "Liaison wakes up a silent letter: the s of les becomes [z]." },
-       { t: "Elision: le + ami → ___", a: "l'ami|l’ami", why: "A vowel drops before another vowel: l'ami, j'ai, c'est." }],
-      [{ c: "In Quebec, « petit » often sounds like…", o: ["p'tsi", "p'ti with a hard t", "pe-teet"], why: "t and d before i and u become ts and dz in Quebec speech." },
-       { c: "What do examiners score in your pronunciation?", o: ["How clear you are", "How Parisian you sound", "How Québécois you sound"], why: "Intelligibility, not accent." }]
+    "sounds": [
+      [
+        {
+          "c": "In French, the stress falls on…",
+          "o": [
+            "the last syllable of the group",
+            "the first syllable of each word",
+            "the longest word"
+          ],
+          "why": "Syllables are even; a light stress lands at the end of each rhythm group."
+        },
+        {
+          "c": "In « Je voudrais un café », which syllable is a little stronger?",
+          "o": [
+            "fé",
+            "Je",
+            "vou"
+          ],
+          "why": "It's the last syllable of the group: ca-FÉ."
+        }
+      ],
+      [
+        {
+          "c": "To say the French u (tu, rue)…",
+          "o": [
+            "say “ee”, then round your lips",
+            "say “oo” as in food",
+            "say “you”"
+          ],
+          "why": "Tongue for “ee”, lips for “oo” — together they make [y]."
+        },
+        {
+          "c": "Which is the biggest marker of an English accent in French vowels?",
+          "o": [
+            "Gliding the vowel (“day-ee”)",
+            "Speaking too slowly",
+            "Using liaison"
+          ],
+          "why": "French vowels are pure: lips and tongue hold still."
+        }
+      ],
+      [
+        {
+          "c": "In « bon », is the n pronounced?",
+          "o": [
+            "No — the vowel is nasal",
+            "Yes, clearly",
+            "Only in Quebec"
+          ],
+          "why": "A vowel followed by n or m in the same syllable turns nasal and the n is silent."
+        },
+        {
+          "c": "Which word has the same nasal vowel as vin?",
+          "o": [
+            "pain",
+            "bon",
+            "temps"
+          ],
+          "why": "in, ain, ein all make [ɛ̃]: vin, pain, plein."
+        }
+      ],
+      [
+        {
+          "c": "How is h pronounced in l'hôpital?",
+          "o": [
+            "It's silent",
+            "Like English h",
+            "Like k"
+          ],
+          "why": "French h is always silent."
+        },
+        {
+          "c": "Which pair changes meaning: [z] vs [s]?",
+          "o": [
+            "poison / poisson",
+            "chat / chats",
+            "petit / petite"
+          ],
+          "why": "One s between vowels = [z] (poison); ss = [s] (poisson, fish)."
+        }
+      ],
+      [
+        {
+          "c": "In « ils parlent », how much of -ent is pronounced?",
+          "o": [
+            "None of it",
+            "Only the t",
+            "All of it"
+          ],
+          "why": "The verb ending -ent is silent: [il paʁl]."
+        },
+        {
+          "c": "Which final letter is usually pronounced?",
+          "o": [
+            "the c in sac",
+            "the t in petit",
+            "the s in Paris"
+          ],
+          "why": "CaReFuL: c, r, f, l are usually said at the end."
+        }
+      ],
+      [
+        {
+          "c": "Which is a liaison?",
+          "o": [
+            "les‿amis",
+            "l'ami",
+            "il‿a"
+          ],
+          "why": "Liaison wakes up a silent letter: the s of les becomes [z]."
+        },
+        {
+          "t": "Elision: le + ami → ___",
+          "a": "l'ami|l’ami",
+          "why": "A vowel drops before another vowel: l'ami, j'ai, c'est."
+        }
+      ]
     ],
-    basics: [
-      [{ c: "You're talking to the examiner. Which do you use?", o: ["vous", "tu"], why: "Use vous with anyone you'd address politely — and with the examiner." },
-       { c: "« On » takes the same verb form as…", o: ["il / elle", "nous", "vous"], why: "on parle, il parle — even when on means “we”." }],
-      [{ t: "Nous ___ à Montréal. (être)", a: "sommes", why: "être: je suis, tu es, il est, nous sommes, vous êtes, ils sont." },
-       { t: "Ils ___ deux enfants. (avoir)", a: "ont", why: "avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont." },
-       { c: "Vous ___ en retard. (être)", o: ["êtes", "étez", "sommes"], why: "vous êtes — one of the irregular forms to learn by heart." }],
-      [{ c: "“I'm hungry.”", o: ["J'ai faim.", "Je suis faim.", "Je suis affamé."], why: "Hunger, thirst, heat, cold and age use avoir." },
-       { t: "“She is 30.” → Elle ___ 30 ans.", a: "a", why: "Age uses avoir: elle a 30 ans." }],
-      [{ c: "Most nouns ending in -tion are…", o: ["feminine", "masculine"], why: "la situation, la décision, la question." },
-       { c: "Which is masculine?", o: ["le fromage", "la page", "la plage"], why: "-age is usually masculine — but page and plage are famous exceptions." }],
-      [{ c: "“I drink coffee every morning.”", o: ["Je bois du café chaque matin.", "Je bois le café chaque matin.", "Je bois café chaque matin."], why: "An amount of something uses the partitive: du café." },
-       { t: "Il n'y a pas ___ place. (negative of « de la place »)", a: "de", why: "After a negative, du / de la / des become de." }],
-      [{ c: "___ est infirmière.", o: ["Elle", "C'"], why: "Il / elle est + a bare profession: Elle est infirmière." },
-       { c: "___ une bonne idée.", o: ["C'est", "Il est"], why: "C'est + a determiner + noun: c'est une bonne idée." }]
+    "basics": [
+      [
+        {
+          "c": "You're talking to the examiner. Which do you use?",
+          "o": [
+            "vous",
+            "tu"
+          ],
+          "why": "Use vous with anyone you'd address politely — and with the examiner."
+        },
+        {
+          "c": "« On » takes the same verb form as…",
+          "o": [
+            "il / elle",
+            "nous",
+            "vous"
+          ],
+          "why": "on parle, il parle — even when on means “we”."
+        }
+      ],
+      [
+        {
+          "t": "Nous ___ à Montréal. (être)",
+          "a": "sommes",
+          "why": "être: je suis, tu es, il est, nous sommes, vous êtes, ils sont."
+        },
+        {
+          "t": "Ils ___ deux enfants. (avoir)",
+          "a": "ont",
+          "why": "avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont."
+        },
+        {
+          "c": "Vous ___ en retard. (être)",
+          "o": [
+            "êtes",
+            "étez",
+            "sommes"
+          ],
+          "why": "vous êtes — one of the irregular forms to learn by heart."
+        }
+      ],
+      [
+        {
+          "c": "“I'm hungry.”",
+          "o": [
+            "J'ai faim.",
+            "Je suis faim.",
+            "Je suis affamé."
+          ],
+          "why": "Hunger, thirst, heat, cold and age use avoir."
+        },
+        {
+          "t": "“She is 30.” → Elle ___ 30 ans.",
+          "a": "a",
+          "why": "Age uses avoir: elle a 30 ans."
+        }
+      ],
+      [
+        {
+          "c": "Most nouns ending in -tion are…",
+          "o": [
+            "feminine",
+            "masculine"
+          ],
+          "why": "la situation, la décision, la question."
+        },
+        {
+          "c": "Which is masculine?",
+          "o": [
+            "le fromage",
+            "la page",
+            "la plage"
+          ],
+          "why": "-age is usually masculine — but page and plage are famous exceptions."
+        }
+      ],
+      [
+        {
+          "c": "“I drink coffee every morning.”",
+          "o": [
+            "Je bois du café chaque matin.",
+            "Je bois le café chaque matin.",
+            "Je bois café chaque matin."
+          ],
+          "why": "An amount of something uses the partitive: du café."
+        },
+        {
+          "t": "Il n'y a pas ___ place. (negative of « de la place »)",
+          "a": "de",
+          "why": "After a negative, du / de la / des become de."
+        }
+      ],
+      [
+        {
+          "c": "___ est infirmière.",
+          "o": [
+            "Elle",
+            "C'"
+          ],
+          "why": "Il / elle est + a bare profession: Elle est infirmière."
+        },
+        {
+          "c": "___ une bonne idée.",
+          "o": [
+            "C'est",
+            "Il est"
+          ],
+          "why": "C'est + a determiner + noun: c'est une bonne idée."
+        }
+      ]
     ],
-    present: [
-      [{ t: "Tu ___ français ? (parler)", a: "parles", why: "-er: je parle, tu parles, il parle." },
-       { t: "Nous ___ à 17 h. (finir)", a: "finissons", why: "-ir like finir add -iss- in the plural: nous finissons." },
-       { t: "Elle ___ le bus. (attendre)", a: "attend", why: "-re: il / elle attend — no ending after the d." }],
-      [{ t: "Nous ___ à huit heures. (commencer)", a: "commençons", why: "ç keeps the c soft before -ons." },
-       { c: "J'___ du pain. (acheter)", o: ["achète", "achete", "acheter"], why: "e → è when the ending is silent: j'achète." }],
-      [{ c: "“I've been working here for two years.”", o: ["Je travaille ici depuis deux ans.", "J'ai travaillé ici depuis deux ans.", "Je travaille ici pour deux ans."], why: "Still true now → present + depuis." },
-       { c: "Je travaille can mean…", o: ["I work / I'm working", "only “I work”", "I worked"], why: "One French present covers habits and right now." }],
-      [{ c: "“I'm looking for an apartment.”", o: ["Je cherche un appartement.", "Je cherche pour un appartement.", "Je regarde pour un appartement."], why: "chercher already means “look for” — no pour." },
-       { c: "“I'm calling my mother.”", o: ["Je téléphone à ma mère.", "Je téléphone ma mère."], why: "téléphoner needs à + person." }],
-      [{ c: "Where does souvent go?", o: ["Je prends souvent le métro.", "Je souvent prends le métro.", "Souvent je prends le métro souvent."], why: "Short frequency words go right after the verb." },
-       { t: "“usually” (one word, starts with d') = ___", a: "d'habitude|d’habitude|généralement", why: "d'habitude or généralement." }]
+    "present": [
+      [
+        {
+          "t": "Tu ___ français ? (parler)",
+          "a": "parles",
+          "why": "-er: je parle, tu parles, il parle."
+        },
+        {
+          "t": "Nous ___ à 17 h. (finir)",
+          "a": "finissons",
+          "why": "-ir like finir add -iss- in the plural: nous finissons."
+        },
+        {
+          "t": "Elle ___ le bus. (attendre)",
+          "a": "attend",
+          "why": "-re: il / elle attend — no ending after the d."
+        }
+      ],
+      [
+        {
+          "t": "Nous ___ à huit heures. (commencer)",
+          "a": "commençons",
+          "why": "ç keeps the c soft before -ons."
+        },
+        {
+          "c": "J'___ du pain. (acheter)",
+          "o": [
+            "achète",
+            "achete",
+            "acheter"
+          ],
+          "why": "e → è when the ending is silent: j'achète."
+        }
+      ],
+      [
+        {
+          "c": "“I've been working here for two years.”",
+          "o": [
+            "Je travaille ici depuis deux ans.",
+            "J'ai travaillé ici depuis deux ans.",
+            "Je travaille ici pour deux ans."
+          ],
+          "why": "Still true now → present + depuis."
+        },
+        {
+          "c": "Je travaille can mean…",
+          "o": [
+            "I work / I'm working",
+            "only “I work”",
+            "I worked"
+          ],
+          "why": "One French present covers habits and right now."
+        }
+      ],
+      [
+        {
+          "c": "“I'm looking for an apartment.”",
+          "o": [
+            "Je cherche un appartement.",
+            "Je cherche pour un appartement.",
+            "Je regarde pour un appartement."
+          ],
+          "why": "chercher already means “look for” — no pour."
+        },
+        {
+          "c": "“I'm calling my mother.”",
+          "o": [
+            "Je téléphone à ma mère.",
+            "Je téléphone ma mère."
+          ],
+          "why": "téléphoner needs à + person."
+        }
+      ],
+      [
+        {
+          "c": "Where does souvent go?",
+          "o": [
+            "Je prends souvent le métro.",
+            "Je souvent prends le métro.",
+            "Souvent je prends le métro souvent."
+          ],
+          "why": "Short frequency words go right after the verb."
+        },
+        {
+          "t": "“usually” (one word, starts with d') = ___",
+          "a": "d'habitude|d’habitude|généralement",
+          "why": "d'habitude or généralement."
+        }
+      ]
     ],
-    questions: [
-      [{ t: "Je travaille le dimanche. → Je ___ travaille ___ le dimanche.", a: "ne pas|ne ... pas|ne … pas", why: "ne and pas sandwich the verb." },
-       { c: "“We don't live in Laval anymore.”", o: ["Nous n'habitons plus à Laval.", "Nous n'habitons pas à Laval.", "Nous habitons jamais à Laval."], why: "no longer = ne… plus." }],
-      [{ c: "Which register is safest in the exam?", o: ["Est-ce que vous avez… ?", "Vous avez… ? (intonation)", "Any of them is fine"], why: "Est-ce que is neutral and always correct." },
-       { t: "Inversion: Vous avez un rendez-vous ? → ___ un rendez-vous ?", a: "Avez-vous", why: "Invert the verb and pronoun, with a hyphen." }],
-      [{ c: "___ coûte le loyer ?", o: ["Combien", "Comment", "Quand"], why: "combien = how much." },
-       { c: "___ documents faut-il apporter ?", o: ["Quels", "Quel", "Qu'est-ce que"], why: "quel agrees with its noun: documents is masculine plural → quels." }],
-      [{ c: "Which is the most polite?", o: ["Pourriez-vous me dire combien ça coûte ?", "C'est combien ?", "Dis-moi le prix."], why: "Pourriez-vous me dire… is a polite, natural softener." },
-       { c: "« Je voudrais savoir si l'appartement est libre. » — what does si mean here?", o: ["whether", "yes", "so"], why: "In an indirect question, si = if / whether." }]
+    "questions": [
+      [
+        {
+          "t": "Je travaille le dimanche. → Je ___ travaille ___ le dimanche.",
+          "a": "ne pas|ne ... pas|ne … pas",
+          "why": "ne and pas sandwich the verb."
+        },
+        {
+          "c": "“We don't live in Laval anymore.”",
+          "o": [
+            "Nous n'habitons plus à Laval.",
+            "Nous n'habitons pas à Laval.",
+            "Nous habitons jamais à Laval."
+          ],
+          "why": "no longer = ne… plus."
+        }
+      ],
+      [
+        {
+          "c": "Which register is safest in the exam?",
+          "o": [
+            "Est-ce que vous avez… ?",
+            "Vous avez… ? (intonation)",
+            "Any of them is fine"
+          ],
+          "why": "Est-ce que is neutral and always correct."
+        },
+        {
+          "t": "Inversion: Vous avez un rendez-vous ? → ___ un rendez-vous ?",
+          "a": "Avez-vous",
+          "why": "Invert the verb and pronoun, with a hyphen."
+        }
+      ],
+      [
+        {
+          "c": "___ coûte le loyer ?",
+          "o": [
+            "Combien",
+            "Comment",
+            "Quand"
+          ],
+          "why": "combien = how much."
+        },
+        {
+          "c": "___ documents faut-il apporter ?",
+          "o": [
+            "Quels",
+            "Quel",
+            "Qu'est-ce que"
+          ],
+          "why": "quel agrees with its noun: documents is masculine plural → quels."
+        }
+      ],
+      [
+        {
+          "c": "Which is the most polite?",
+          "o": [
+            "Pourriez-vous me dire combien ça coûte ?",
+            "C'est combien ?",
+            "Dis-moi le prix."
+          ],
+          "why": "Pourriez-vous me dire… is a polite, natural softener."
+        },
+        {
+          "c": "« Je voudrais savoir si l'appartement est libre. » — what does si mean here?",
+          "o": [
+            "whether",
+            "yes",
+            "so"
+          ],
+          "why": "In an indirect question, si = if / whether."
+        }
+      ]
     ],
-    describe: [
-      [{ t: "une rue ___ (petit)", a: "petite", why: "Feminine noun → add -e." },
-       { t: "une employée ___ (sérieux)", a: "sérieuse", why: "-eux → -euse." },
-       { c: "des maisons ___ (grand)", o: ["grandes", "grands", "grande"], why: "Feminine plural: add -e and -s." }],
-      [{ c: "Which is correct?", o: ["un petit studio", "un studio petit (as the default)"], why: "petit is a BAGS adjective (size): it goes before." },
-       { c: "Which is correct?", o: ["une voiture rouge", "une rouge voiture"], why: "Colours always follow the noun." }],
-      [{ c: "“his car” (voiture is feminine)", o: ["sa voiture", "son voiture"], why: "Possessives agree with the thing owned, not the owner." },
-       { c: "“my friend (female)” — amie starts with a vowel:", o: ["mon amie", "ma amie"], why: "Before a vowel, ma → mon so the sounds don't collide." }],
-      [{ t: "___ hôpital (this hospital)", a: "cet", why: "Masculine before a vowel: cet." },
-       { t: "___ semaine (this week)", a: "cette", why: "Feminine: cette." }],
-      [{ c: "Which is the most natural B1 description?", o: ["un petit appartement très lumineux", "un appartement petit lumineux très", "un lumineux petit appartement"], why: "BAGS before, others after, degree words before their adjective." },
-       { t: "“a bit far from downtown” = un peu loin ___ centre-ville", a: "du", why: "loin de + le = loin du." }]
+    "describe": [
+      [
+        {
+          "t": "une rue ___ (petit)",
+          "a": "petite",
+          "why": "Feminine noun → add -e."
+        },
+        {
+          "t": "une employée ___ (sérieux)",
+          "a": "sérieuse",
+          "why": "-eux → -euse."
+        },
+        {
+          "c": "des maisons ___ (grand)",
+          "o": [
+            "grandes",
+            "grands",
+            "grande"
+          ],
+          "why": "Feminine plural: add -e and -s."
+        }
+      ],
+      [
+        {
+          "c": "Which is correct?",
+          "o": [
+            "un petit studio",
+            "un studio petit (as the default)"
+          ],
+          "why": "petit is a BAGS adjective (size): it goes before."
+        },
+        {
+          "c": "Which is correct?",
+          "o": [
+            "une voiture rouge",
+            "une rouge voiture"
+          ],
+          "why": "Colours always follow the noun."
+        }
+      ],
+      [
+        {
+          "c": "“his car” (voiture is feminine)",
+          "o": [
+            "sa voiture",
+            "son voiture"
+          ],
+          "why": "Possessives agree with the thing owned, not the owner."
+        },
+        {
+          "c": "“my friend (female)” — amie starts with a vowel:",
+          "o": [
+            "mon amie",
+            "ma amie"
+          ],
+          "why": "Before a vowel, ma → mon so the sounds don't collide."
+        }
+      ],
+      [
+        {
+          "t": "___ hôpital (this hospital)",
+          "a": "cet",
+          "why": "Masculine before a vowel: cet."
+        },
+        {
+          "t": "___ semaine (this week)",
+          "a": "cette",
+          "why": "Feminine: cette."
+        }
+      ],
+      [
+        {
+          "c": "Which is the most natural B1 description?",
+          "o": [
+            "un petit appartement très lumineux",
+            "un appartement petit lumineux très",
+            "un lumineux petit appartement"
+          ],
+          "why": "BAGS before, others after, degree words before their adjective."
+        },
+        {
+          "t": "“a bit far from downtown” = un peu loin ___ centre-ville",
+          "a": "du",
+          "why": "loin de + le = loin du."
+        }
+      ]
     ],
-    numbers: [
-      [{ t: "21 in letters:", a: "vingt et un|vingt-et-un", why: "et for 21, 31, 41, 51, 61." },
-       { c: "Which is 56?", o: ["cinquante-six", "soixante-six", "cinq-six"], why: "50 = cinquante." }],
-      [{ c: "Which is 75?", o: ["soixante-quinze", "septante-cinq", "soixante-cinq"], why: "60 + 15. (septante is Belgian / Swiss.)" },
-       { c: "Which is 90?", o: ["quatre-vingt-dix", "quatre-vingts", "neuf-dix"], why: "4 × 20 + 10." },
-       { t: "80 in letters:", a: "quatre-vingts", why: "4 × 20, with an s when nothing follows." }],
-      [{ c: "Canadian French writing of $12.99:", o: ["12,99 $", "$12.99", "12.99$"], why: "Comma for decimals, $ after the amount, with a space." },
-       { c: "« taxes en sus » means…", o: ["plus taxes", "taxes included", "no taxes"], why: "en sus = on top." }],
-      [{ c: "“July 1st”", o: ["le premier juillet", "le un juillet", "le 1er Juillet"], why: "premier for the 1st; months take no capital." },
-       { t: "“on Tuesday March 3” = le ___ 3 mars", a: "mardi", why: "Days have no capital: le mardi 3 mars." }],
-      [{ c: "« quatre heures moins le quart » is…", o: ["3:45", "4:15", "4:45"], why: "moins le quart = quarter to." },
-       { c: "An official 17 h 30 is said…", o: ["dix-sept heures trente", "cinq heures et demie du matin", "dix-sept et demie"], why: "Timetables use the 24-hour clock." }]
+    "numbers": [
+      [
+        {
+          "t": "21 in letters:",
+          "a": "vingt et un|vingt-et-un",
+          "why": "et for 21, 31, 41, 51, 61."
+        },
+        {
+          "c": "Which is 56?",
+          "o": [
+            "cinquante-six",
+            "soixante-six",
+            "cinq-six"
+          ],
+          "why": "50 = cinquante."
+        }
+      ],
+      [
+        {
+          "c": "Which is 75?",
+          "o": [
+            "soixante-quinze",
+            "septante-cinq",
+            "soixante-cinq"
+          ],
+          "why": "60 + 15. (septante is Belgian / Swiss.)"
+        },
+        {
+          "c": "Which is 90?",
+          "o": [
+            "quatre-vingt-dix",
+            "quatre-vingts",
+            "neuf-dix"
+          ],
+          "why": "4 × 20 + 10."
+        },
+        {
+          "t": "80 in letters:",
+          "a": "quatre-vingts",
+          "why": "4 × 20, with an s when nothing follows."
+        }
+      ],
+      [
+        {
+          "c": "Canadian French writing of $12.99:",
+          "o": [
+            "12,99 $",
+            "$12.99",
+            "12.99$"
+          ],
+          "why": "Comma for decimals, $ after the amount, with a space."
+        },
+        {
+          "c": "« taxes en sus » means…",
+          "o": [
+            "plus taxes",
+            "taxes included",
+            "no taxes"
+          ],
+          "why": "en sus = on top."
+        }
+      ],
+      [
+        {
+          "c": "“July 1st”",
+          "o": [
+            "le premier juillet",
+            "le un juillet",
+            "le 1er Juillet"
+          ],
+          "why": "premier for the 1st; months take no capital."
+        },
+        {
+          "t": "“on Tuesday March 3” = le ___ 3 mars",
+          "a": "mardi",
+          "why": "Days have no capital: le mardi 3 mars."
+        }
+      ],
+      [
+        {
+          "c": "« quatre heures moins le quart » is…",
+          "o": [
+            "3:45",
+            "4:15",
+            "4:45"
+          ],
+          "why": "moins le quart = quarter to."
+        },
+        {
+          "c": "An official 17 h 30 is said…",
+          "o": [
+            "dix-sept heures trente",
+            "cinq heures et demie du matin",
+            "dix-sept et demie"
+          ],
+          "why": "Timetables use the 24-hour clock."
+        }
+      ]
     ],
-    irregulars: [
-      [{ t: "Nous ___ au cinéma. (aller)", a: "allons", why: "aller: je vais, tu vas, il va, nous allons, vous allez, ils vont." },
-       { t: "Vous ___ quoi ce soir ? (faire)", a: "faites", why: "vous faites — not « faisez »." },
-       { t: "Ils ___ le métro. (prendre)", a: "prennent", why: "ils prennent — double n." }],
-      [{ c: "“They have to leave.”", o: ["Ils doivent partir.", "Ils doivent de partir.", "Ils doivent à partir."], why: "Modal + infinitive, no preposition." },
-       { t: "Je ___ venir demain. (pouvoir)", a: "peux", why: "pouvoir: je peux, tu peux, il peut." }],
-      [{ c: "Je ___ bien ce quartier.", o: ["connais", "sais"], why: "Places and people: connaître." },
-       { c: "Je ___ conduire.", o: ["sais", "connais"], why: "How to do something: savoir + infinitive." }],
-      [{ c: "“We're going to move in June.”", o: ["Nous allons déménager en juin.", "Nous allons déménageons en juin.", "Nous allons à déménager en juin."], why: "aller (present) + infinitive." },
-       { c: "Negative of « Je vais travailler » :", o: ["Je ne vais pas travailler.", "Je vais ne pas travailler.", "Je ne vais travailler pas."], why: "Negation wraps aller." }],
-      [{ c: "“I've just arrived.”", o: ["Je viens d'arriver.", "Je viens arriver.", "Je suis juste arrivé de."], why: "venir de + infinitive." },
-       { t: "Le train ___ de partir. (venir)", a: "vient", why: "il vient de partir = it has just left." }],
-      [{ t: "J'habite ___ Canada.", a: "au", why: "Masculine country: au." },
-       { c: "Je vais ___ France.", o: ["en", "au", "à"], why: "Feminine country: en." },
-       { c: "Elle travaille ___ Toronto.", o: ["à", "en", "au"], why: "Cities: à." }]
+    "irregulars": [
+      [
+        {
+          "t": "Nous ___ au cinéma. (aller)",
+          "a": "allons",
+          "why": "aller: je vais, tu vas, il va, nous allons, vous allez, ils vont."
+        },
+        {
+          "t": "Vous ___ quoi ce soir ? (faire)",
+          "a": "faites",
+          "why": "vous faites — not « faisez »."
+        },
+        {
+          "t": "Ils ___ le métro. (prendre)",
+          "a": "prennent",
+          "why": "ils prennent — double n."
+        }
+      ],
+      [
+        {
+          "c": "“They have to leave.”",
+          "o": [
+            "Ils doivent partir.",
+            "Ils doivent de partir.",
+            "Ils doivent à partir."
+          ],
+          "why": "Modal + infinitive, no preposition."
+        },
+        {
+          "t": "Je ___ venir demain. (pouvoir)",
+          "a": "peux",
+          "why": "pouvoir: je peux, tu peux, il peut."
+        }
+      ],
+      [
+        {
+          "c": "Je ___ bien ce quartier.",
+          "o": [
+            "connais",
+            "sais"
+          ],
+          "why": "Places and people: connaître."
+        },
+        {
+          "c": "Je ___ conduire.",
+          "o": [
+            "sais",
+            "connais"
+          ],
+          "why": "How to do something: savoir + infinitive."
+        }
+      ],
+      [
+        {
+          "c": "“We're going to move in June.”",
+          "o": [
+            "Nous allons déménager en juin.",
+            "Nous allons déménageons en juin.",
+            "Nous allons à déménager en juin."
+          ],
+          "why": "aller (present) + infinitive."
+        },
+        {
+          "c": "Negative of « Je vais travailler » :",
+          "o": [
+            "Je ne vais pas travailler.",
+            "Je vais ne pas travailler.",
+            "Je ne vais travailler pas."
+          ],
+          "why": "Negation wraps aller."
+        }
+      ],
+      [
+        {
+          "c": "“I've just arrived.”",
+          "o": [
+            "Je viens d'arriver.",
+            "Je viens arriver.",
+            "Je suis juste arrivé de."
+          ],
+          "why": "venir de + infinitive."
+        },
+        {
+          "t": "Le train ___ de partir. (venir)",
+          "a": "vient",
+          "why": "il vient de partir = it has just left."
+        }
+      ],
+      [
+        {
+          "t": "J'habite ___ Canada.",
+          "a": "au",
+          "why": "Masculine country: au."
+        },
+        {
+          "c": "Je vais ___ France.",
+          "o": [
+            "en",
+            "au",
+            "à"
+          ],
+          "why": "Feminine country: en."
+        },
+        {
+          "c": "Elle travaille ___ Toronto.",
+          "o": [
+            "à",
+            "en",
+            "au"
+          ],
+          "why": "Cities: à."
+        }
+      ]
     ],
-    reflexive: [
-      [{ t: "Nous ___ levons à 7 h.", a: "nous", why: "The pronoun matches the subject: nous nous levons." },
-       { c: "Je ___ appelle Sam.", o: ["m'", "me", "se"], why: "me becomes m' before a vowel." }],
-      [{ c: "« Ils se parlent tous les jours » means…", o: ["They talk to each other every day.", "They talk to themselves.", "They are called every day."], why: "With a plural subject, se can mean “each other”." },
-       { c: "“I get along well with my colleagues.”", o: ["Je m'entends bien avec mes collègues.", "J'entends bien mes collègues.", "Je m'appelle bien avec mes collègues."], why: "s'entendre (avec) = to get along." }],
-      [{ t: "Imperative (tu) of écouter: ___ !", a: "écoute|Écoute", why: "-er verbs drop the s in the tu imperative." },
-       { c: "Imperative (vous) of prendre:", o: ["Prenez", "Prendez", "Prends-vous"], why: "vous prenez → Prenez !" }]
+    "reflexive": [
+      [
+        {
+          "t": "Nous ___ levons à 7 h.",
+          "a": "nous",
+          "why": "The pronoun matches the subject: nous nous levons."
+        },
+        {
+          "c": "Je ___ appelle Sam.",
+          "o": [
+            "m'",
+            "me",
+            "se"
+          ],
+          "why": "me becomes m' before a vowel."
+        }
+      ],
+      [
+        {
+          "c": "« Ils se parlent tous les jours » means…",
+          "o": [
+            "They talk to each other every day.",
+            "They talk to themselves.",
+            "They are called every day."
+          ],
+          "why": "With a plural subject, se can mean “each other”."
+        },
+        {
+          "c": "“I get along well with my colleagues.”",
+          "o": [
+            "Je m'entends bien avec mes collègues.",
+            "J'entends bien mes collègues.",
+            "Je m'appelle bien avec mes collègues."
+          ],
+          "why": "s'entendre (avec) = to get along."
+        }
+      ],
+      [
+        {
+          "t": "Imperative (tu) of écouter: ___ !",
+          "a": "écoute|Écoute",
+          "why": "-er verbs drop the s in the tu imperative."
+        },
+        {
+          "c": "Imperative (vous) of prendre:",
+          "o": [
+            "Prenez",
+            "Prendez",
+            "Prends-vous"
+          ],
+          "why": "vous prenez → Prenez !"
+        }
+      ]
     ],
     "passe-compose": [
-      [{ t: "J'___ mangé. (avoir)", a: "ai", why: "avoir in the present + past participle." },
-       { t: "Nous avons ___ le travail. (finir)", a: "fini", why: "-ir → -i." },
-       { t: "Ils ont ___ le bus. (attendre)", a: "attendu", why: "-re → -u." }],
-      [{ t: "Past participle of prendre:", a: "pris", why: "prendre → pris (appris, compris)." },
-       { c: "Past participle of faire:", o: ["fait", "faisé", "fu"], why: "dire → dit, écrire → écrit, faire → fait." },
-       { t: "Past participle of voir:", a: "vu", why: "-u group: vu, lu, bu, pu, su." }],
-      [{ c: "Hier, nous ___ au cinéma.", o: ["sommes allés", "avons allé", "sommes allé"], why: "aller takes être, and the participle agrees: allés." },
-       { t: "Elle est ___ à 8 h. (arriver)", a: "arrivée", why: "With être, the participle agrees with the subject: arrivée." }],
-      [{ c: "“I didn't understand.”", o: ["Je n'ai pas compris.", "Je n'ai compris pas.", "Je ne compris pas."], why: "Negation wraps the auxiliary." },
-       { c: "“I saw it” (le livre):", o: ["Je l'ai vu.", "J'ai le vu.", "Je ai l'vu."], why: "Object pronouns go before the auxiliary." }],
-      [{ c: "Best word to start a sequence:", o: ["D'abord", "Finalement", "Ensuite"], why: "D'abord = first; ensuite / puis = then; finalement = in the end." },
-       { t: "“in the end” = ___", a: "finalement|enfin", why: "finalement or enfin." }]
+      [
+        {
+          "t": "J'___ mangé. (avoir)",
+          "a": "ai",
+          "why": "avoir in the present + past participle."
+        },
+        {
+          "t": "Nous avons ___ le travail. (finir)",
+          "a": "fini",
+          "why": "-ir → -i."
+        },
+        {
+          "t": "Ils ont ___ le bus. (attendre)",
+          "a": "attendu",
+          "why": "-re → -u."
+        }
+      ],
+      [
+        {
+          "t": "Past participle of prendre:",
+          "a": "pris",
+          "why": "prendre → pris (appris, compris)."
+        },
+        {
+          "c": "Past participle of faire:",
+          "o": [
+            "fait",
+            "faisé",
+            "fu"
+          ],
+          "why": "dire → dit, écrire → écrit, faire → fait."
+        },
+        {
+          "t": "Past participle of voir:",
+          "a": "vu",
+          "why": "-u group: vu, lu, bu, pu, su."
+        }
+      ],
+      [
+        {
+          "c": "Hier, nous ___ au cinéma.",
+          "o": [
+            "sommes allés",
+            "avons allé",
+            "sommes allé"
+          ],
+          "why": "aller takes être, and the participle agrees: allés."
+        },
+        {
+          "t": "Elle est ___ à 8 h. (arriver)",
+          "a": "arrivée",
+          "why": "With être, the participle agrees with the subject: arrivée."
+        }
+      ],
+      [
+        {
+          "c": "“I didn't understand.”",
+          "o": [
+            "Je n'ai pas compris.",
+            "Je n'ai compris pas.",
+            "Je ne compris pas."
+          ],
+          "why": "Negation wraps the auxiliary."
+        },
+        {
+          "c": "“I saw it” (le livre):",
+          "o": [
+            "Je l'ai vu.",
+            "J'ai le vu.",
+            "Je ai l'vu."
+          ],
+          "why": "Object pronouns go before the auxiliary."
+        }
+      ],
+      [
+        {
+          "c": "Best word to start a sequence:",
+          "o": [
+            "D'abord",
+            "Finalement",
+            "Ensuite"
+          ],
+          "why": "D'abord = first; ensuite / puis = then; finalement = in the end."
+        },
+        {
+          "t": "“in the end” = ___",
+          "a": "finalement|enfin",
+          "why": "finalement or enfin."
+        }
+      ]
     ],
-    imparfait: [
-      [{ t: "Je ___ souvent. (parler, imparfait)", a: "parlais", why: "nous parlons → parl- + -ais." },
-       { t: "Nous ___ jeunes. (être, imparfait)", a: "étions", why: "être has the only irregular stem: ét-." },
-       { c: "Imparfait of « ils font » (faire):", o: ["ils faisaient", "ils fontaient", "ils faient"], why: "nous faisons → fais- + -aient." }],
-      [{ c: "Which describes the background?", o: ["Il faisait froid.", "Il a fait une erreur.", "Il fera beau."], why: "Weather and description = imparfait." },
-       { c: "“When I was little, I used to go to the park.”", o: ["Quand j'étais petit, j'allais au parc.", "Quand j'ai été petit, je suis allé au parc."], why: "Habits in the past = imparfait." }],
-      [{ c: "Je dormais quand le téléphone ___.", o: ["a sonné", "sonnait"], why: "The single event that interrupts = passé composé." },
-       { c: "Il ___ quand je suis sorti. (pleuvoir)", o: ["pleuvait", "a plu"], why: "What was going on in the background = imparfait." }],
-      [{ c: "“Before, I lived in a big city; now I live in a village.”", o: ["Avant, j'habitais… ; maintenant, je vis…", "Avant, j'ai habité… ; maintenant, je vivais…"], why: "Before = imparfait; now = present." },
-       { t: "« À l'époque, il n'y ___ pas de téléphone intelligent. » (avoir, imparfait)", a: "avait", why: "il y a → il y avait." }],
-      [{ c: "“I arrived six months ago.”", o: ["Je suis arrivé il y a six mois.", "Je suis arrivé depuis six mois.", "J'arrive pendant six mois."], why: "ago = il y a + passé composé." },
-       { c: "“I've been learning French for a year (and still am).”", o: ["J'apprends le français depuis un an.", "J'ai appris le français pendant un an."], why: "Still going on → present + depuis." }]
+    "imparfait": [
+      [
+        {
+          "t": "Je ___ souvent. (parler, imparfait)",
+          "a": "parlais",
+          "why": "nous parlons → parl- + -ais."
+        },
+        {
+          "t": "Nous ___ jeunes. (être, imparfait)",
+          "a": "étions",
+          "why": "être has the only irregular stem: ét-."
+        },
+        {
+          "c": "Imparfait of « ils font » (faire):",
+          "o": [
+            "ils faisaient",
+            "ils fontaient",
+            "ils faient"
+          ],
+          "why": "nous faisons → fais- + -aient."
+        }
+      ],
+      [
+        {
+          "c": "Which describes the background?",
+          "o": [
+            "Il faisait froid.",
+            "Il a fait une erreur.",
+            "Il fera beau."
+          ],
+          "why": "Weather and description = imparfait."
+        },
+        {
+          "c": "“When I was little, I used to go to the park.”",
+          "o": [
+            "Quand j'étais petit, j'allais au parc.",
+            "Quand j'ai été petit, je suis allé au parc."
+          ],
+          "why": "Habits in the past = imparfait."
+        }
+      ],
+      [
+        {
+          "c": "Je dormais quand le téléphone ___.",
+          "o": [
+            "a sonné",
+            "sonnait"
+          ],
+          "why": "The single event that interrupts = passé composé."
+        },
+        {
+          "c": "Il ___ quand je suis sorti. (pleuvoir)",
+          "o": [
+            "pleuvait",
+            "a plu"
+          ],
+          "why": "What was going on in the background = imparfait."
+        }
+      ],
+      [
+        {
+          "c": "“Before, I lived in a big city; now I live in a village.”",
+          "o": [
+            "Avant, j'habitais… ; maintenant, je vis…",
+            "Avant, j'ai habité… ; maintenant, je vivais…"
+          ],
+          "why": "Before = imparfait; now = present."
+        },
+        {
+          "t": "« À l'époque, il n'y ___ pas de téléphone intelligent. » (avoir, imparfait)",
+          "a": "avait",
+          "why": "il y a → il y avait."
+        }
+      ],
+      [
+        {
+          "c": "“I arrived six months ago.”",
+          "o": [
+            "Je suis arrivé il y a six mois.",
+            "Je suis arrivé depuis six mois.",
+            "J'arrive pendant six mois."
+          ],
+          "why": "ago = il y a + passé composé."
+        },
+        {
+          "c": "“I've been learning French for a year (and still am).”",
+          "o": [
+            "J'apprends le français depuis un an.",
+            "J'ai appris le français pendant un an."
+          ],
+          "why": "Still going on → present + depuis."
+        }
+      ]
     ],
-    pronouns: [
-      [{ t: "Le contrat ? Je ___ signe demain.", a: "le", why: "le contrat (masc.) → le, before the verb." },
-       { t: "Les documents ? Je ___ apporte.", a: "les", why: "Plural direct object → les." }],
-      [{ t: "Tu parles à ton patron ? — Oui, je ___ parle.", a: "lui", why: "à + one person → lui." },
-       { t: "Tu écris à tes parents ? — Oui, je ___ écris.", a: "leur", why: "à + several people → leur." }],
-      [{ t: "Tu vas à la banque ? — Oui, j'___ vais.", a: "y", why: "y replaces a place." },
-       { c: "Tu penses à ton entretien ? — Oui, …", o: ["j'y pense", "je lui pense", "j'en pense"], why: "à + a thing or idea → y." }],
-      [{ t: "Tu as des enfants ? — Oui, j'___ ai deux.", a: "en", why: "en + the number at the end." },
-       { c: "Il reste du café ? — Non, …", o: ["il n'y en a plus", "il n'y le a plus", "il n'en y a plus"], why: "y comes before en: il n'y en a plus." }],
-      [{ c: "“I'm going to see him.” (voir)", o: ["Je vais le voir.", "Je le vais voir.", "Je vais voir le."], why: "With verb + infinitive, the pronoun goes before the infinitive." },
-       { c: "“Send it to me!” (le document)", o: ["Envoyez-le-moi !", "Me le envoyez !", "Envoyez-moi-le !"], why: "Positive command: after the verb — le before moi." }]
+    "pronouns": [
+      [
+        {
+          "t": "Le contrat ? Je ___ signe demain.",
+          "a": "le",
+          "why": "le contrat (masc.) → le, before the verb."
+        },
+        {
+          "t": "Les documents ? Je ___ apporte.",
+          "a": "les",
+          "why": "Plural direct object → les."
+        }
+      ],
+      [
+        {
+          "t": "Tu parles à ton patron ? — Oui, je ___ parle.",
+          "a": "lui",
+          "why": "à + one person → lui."
+        },
+        {
+          "t": "Tu écris à tes parents ? — Oui, je ___ écris.",
+          "a": "leur",
+          "why": "à + several people → leur."
+        }
+      ],
+      [
+        {
+          "t": "Tu vas à la banque ? — Oui, j'___ vais.",
+          "a": "y",
+          "why": "y replaces a place."
+        },
+        {
+          "c": "Tu penses à ton entretien ? — Oui, …",
+          "o": [
+            "j'y pense",
+            "je lui pense",
+            "j'en pense"
+          ],
+          "why": "à + a thing or idea → y."
+        }
+      ],
+      [
+        {
+          "t": "Tu as des enfants ? — Oui, j'___ ai deux.",
+          "a": "en",
+          "why": "en + the number at the end."
+        },
+        {
+          "c": "Il reste du café ? — Non, …",
+          "o": [
+            "il n'y en a plus",
+            "il n'y le a plus",
+            "il n'en y a plus"
+          ],
+          "why": "y comes before en: il n'y en a plus."
+        }
+      ],
+      [
+        {
+          "c": "“I'm going to see him.” (voir)",
+          "o": [
+            "Je vais le voir.",
+            "Je le vais voir.",
+            "Je vais voir le."
+          ],
+          "why": "With verb + infinitive, the pronoun goes before the infinitive."
+        },
+        {
+          "c": "“Send it to me!” (le document)",
+          "o": [
+            "Envoyez-le-moi !",
+            "Me le envoyez !",
+            "Envoyez-moi-le !"
+          ],
+          "why": "Positive command: after the verb — le before moi."
+        }
+      ]
     ],
     "compare-future": [
-      [{ c: "“The metro is faster than the bus.”", o: ["Le métro est plus rapide que l'autobus.", "Le métro est plus rapide de l'autobus.", "Le métro est rapide plus que l'autobus."], why: "plus + adjective + que." },
-       { t: "“as much work as you” = ___ de travail que toi", a: "autant", why: "With nouns: autant de." }],
-      [{ c: "Ce restaurant est ___ que l'autre.", o: ["meilleur", "mieux", "plus bon"], why: "Describes a noun → meilleur. Never “plus bon”." },
-       { c: "Je dors ___ ici.", o: ["mieux", "meilleur"], why: "Describes a verb → mieux." }],
-      [{ t: "Je ___ demain. (parler, futur simple)", a: "parlerai", why: "infinitive + -ai." },
-       { t: "Nous ___ à Québec. (aller, futur simple)", a: "irons", why: "aller → ir-: nous irons." },
-       { c: "Futur of être, je…", o: ["serai", "étrai", "être-ai"], why: "être → ser-." }],
-      [{ c: "Quand tu ___ à Ottawa, appelle-moi.", o: ["arriveras", "arrives"], why: "quand + a future action → futur simple." },
-       { c: "A formal notice: « Le bureau ___ fermé lundi. »", o: ["sera", "va être"], why: "Formal announcements prefer the futur simple." }]
+      [
+        {
+          "c": "“The metro is faster than the bus.”",
+          "o": [
+            "Le métro est plus rapide que l'autobus.",
+            "Le métro est plus rapide de l'autobus.",
+            "Le métro est rapide plus que l'autobus."
+          ],
+          "why": "plus + adjective + que."
+        },
+        {
+          "t": "“as much work as you” = ___ de travail que toi",
+          "a": "autant",
+          "why": "With nouns: autant de."
+        }
+      ],
+      [
+        {
+          "c": "Ce restaurant est ___ que l'autre.",
+          "o": [
+            "meilleur",
+            "mieux",
+            "plus bon"
+          ],
+          "why": "Describes a noun → meilleur. Never “plus bon”."
+        },
+        {
+          "c": "Je dors ___ ici.",
+          "o": [
+            "mieux",
+            "meilleur"
+          ],
+          "why": "Describes a verb → mieux."
+        }
+      ],
+      [
+        {
+          "t": "Je ___ demain. (parler, futur simple)",
+          "a": "parlerai",
+          "why": "infinitive + -ai."
+        },
+        {
+          "t": "Nous ___ à Québec. (aller, futur simple)",
+          "a": "irons",
+          "why": "aller → ir-: nous irons."
+        },
+        {
+          "c": "Futur of être, je…",
+          "o": [
+            "serai",
+            "étrai",
+            "être-ai"
+          ],
+          "why": "être → ser-."
+        }
+      ],
+      [
+        {
+          "c": "Quand tu ___ à Ottawa, appelle-moi.",
+          "o": [
+            "arriveras",
+            "arrives"
+          ],
+          "why": "quand + a future action → futur simple."
+        },
+        {
+          "c": "A formal notice: « Le bureau ___ fermé lundi. »",
+          "o": [
+            "sera",
+            "va être"
+          ],
+          "why": "Formal announcements prefer the futur simple."
+        }
+      ]
     ],
-    conditional: [
-      [{ t: "Je ___ un café, s'il vous plaît. (vouloir, conditionnel)", a: "voudrais", why: "Future stem voudr- + the imparfait ending -ais." },
-       { t: "Nous ___ partir. (pouvoir, conditionnel)", a: "pourrions", why: "pourr- + -ions." }],
-      [{ c: "Most polite:", o: ["Pourriez-vous m'aider ?", "Vous pouvez m'aider ?", "Aidez-moi."], why: "The conditional softens a request." },
-       { c: "« Je veux un rendez-vous » → polite:", o: ["Je voudrais un rendez-vous.", "Je voulais un rendez-vous.", "Je vouloir un rendez-vous."], why: "voudrais = I would like." }],
-      [{ c: "“You should rest.” (friendly)", o: ["Tu devrais te reposer.", "Tu dois te reposer.", "Tu devras te reposer."], why: "devoir in the conditional = should." },
-       { t: "“If I were you, I'd talk to the landlord.” — À ta ___, je parlerais au propriétaire.", a: "place", why: "À ta place = if I were you." }],
-      [{ c: "Si j'___ le temps, je ferais du bénévolat.", o: ["avais", "aurais", "ai"], why: "si + imparfait → conditionnel. Never the conditional after si." },
-       { c: "S'il fait beau demain, nous ___ à la plage.", o: ["irons", "irions", "allions"], why: "si + présent → futur." }],
-      [{ c: "« Il m'a dit qu'il viendrait » means…", o: ["He told me he would come.", "He told me he came.", "He tells me he's coming."], why: "The conditional = the future seen from the past." },
-       { c: "« L'incendie aurait été causé par une cigarette » — the cause is…", o: ["reported, not confirmed", "certain", "denied"], why: "News uses the conditional for unconfirmed information." }]
+    "conditional": [
+      [
+        {
+          "t": "Je ___ un café, s'il vous plaît. (vouloir, conditionnel)",
+          "a": "voudrais",
+          "why": "Future stem voudr- + the imparfait ending -ais."
+        },
+        {
+          "t": "Nous ___ partir. (pouvoir, conditionnel)",
+          "a": "pourrions",
+          "why": "pourr- + -ions."
+        }
+      ],
+      [
+        {
+          "c": "Most polite:",
+          "o": [
+            "Pourriez-vous m'aider ?",
+            "Vous pouvez m'aider ?",
+            "Aidez-moi."
+          ],
+          "why": "The conditional softens a request."
+        },
+        {
+          "c": "« Je veux un rendez-vous » → polite:",
+          "o": [
+            "Je voudrais un rendez-vous.",
+            "Je voulais un rendez-vous.",
+            "Je vouloir un rendez-vous."
+          ],
+          "why": "voudrais = I would like."
+        }
+      ],
+      [
+        {
+          "c": "“You should rest.” (friendly)",
+          "o": [
+            "Tu devrais te reposer.",
+            "Tu dois te reposer.",
+            "Tu devras te reposer."
+          ],
+          "why": "devoir in the conditional = should."
+        },
+        {
+          "t": "“If I were you, I'd talk to the landlord.” — À ta ___, je parlerais au propriétaire.",
+          "a": "place",
+          "why": "À ta place = if I were you."
+        }
+      ],
+      [
+        {
+          "c": "Si j'___ le temps, je ferais du bénévolat.",
+          "o": [
+            "avais",
+            "aurais",
+            "ai"
+          ],
+          "why": "si + imparfait → conditionnel. Never the conditional after si."
+        },
+        {
+          "c": "S'il fait beau demain, nous ___ à la plage.",
+          "o": [
+            "irons",
+            "irions",
+            "allions"
+          ],
+          "why": "si + présent → futur."
+        }
+      ],
+      [
+        {
+          "c": "« Il m'a dit qu'il viendrait » means…",
+          "o": [
+            "He told me he would come.",
+            "He told me he came.",
+            "He tells me he's coming."
+          ],
+          "why": "The conditional = the future seen from the past."
+        },
+        {
+          "c": "« L'incendie aurait été causé par une cigarette » — the cause is…",
+          "o": [
+            "reported, not confirmed",
+            "certain",
+            "denied"
+          ],
+          "why": "News uses the conditional for unconfirmed information."
+        }
+      ]
     ],
-    relatives: [
-      [{ c: "C'est un collègue ___ je respecte beaucoup.", o: ["que", "qui"], why: "je is the subject; the colleague is the object → que." },
-       { c: "J'ai un appartement ___ est près du métro.", o: ["qui", "que"], why: "Followed directly by a verb → qui (subject)." }],
-      [{ c: "Je me souviens du jour ___ je suis arrivé.", o: ["où", "quand", "que"], why: "où also works for time: le jour où." },
-       { t: "La ville ___ j'habite est calme.", a: "où", why: "A place → où." }],
-      [{ c: "Voici le formulaire ___ tu as besoin.", o: ["dont", "que", "où"], why: "avoir besoin de → dont." },
-       { c: "Le projet ___ je vous ai parlé commence en mai.", o: ["dont", "que", "qui"], why: "parler de → dont." }],
-      [{ c: "___ m'inquiète, c'est le coût du logement.", o: ["Ce qui", "Ce que", "Qu'est-ce qui"], why: "Subject of m'inquiète → ce qui." },
-       { c: "Je ne comprends pas ___ vous voulez dire.", o: ["ce que", "ce qui", "qu'est-ce que"], why: "Object of vouloir dire → ce que." }],
-      [{ c: "La personne avec ___ je travaille est sympathique.", o: ["qui", "que", "laquelle"], why: "After a preposition, people → qui." },
-       { t: "la raison pour ___ je suis venu (raison is feminine)", a: "laquelle", why: "Things after a preposition: lequel / laquelle." }]
+    "relatives": [
+      [
+        {
+          "c": "C'est un collègue ___ je respecte beaucoup.",
+          "o": [
+            "que",
+            "qui"
+          ],
+          "why": "je is the subject; the colleague is the object → que."
+        },
+        {
+          "c": "J'ai un appartement ___ est près du métro.",
+          "o": [
+            "qui",
+            "que"
+          ],
+          "why": "Followed directly by a verb → qui (subject)."
+        }
+      ],
+      [
+        {
+          "c": "Je me souviens du jour ___ je suis arrivé.",
+          "o": [
+            "où",
+            "quand",
+            "que"
+          ],
+          "why": "où also works for time: le jour où."
+        },
+        {
+          "t": "La ville ___ j'habite est calme.",
+          "a": "où",
+          "why": "A place → où."
+        }
+      ],
+      [
+        {
+          "c": "Voici le formulaire ___ tu as besoin.",
+          "o": [
+            "dont",
+            "que",
+            "où"
+          ],
+          "why": "avoir besoin de → dont."
+        },
+        {
+          "c": "Le projet ___ je vous ai parlé commence en mai.",
+          "o": [
+            "dont",
+            "que",
+            "qui"
+          ],
+          "why": "parler de → dont."
+        }
+      ],
+      [
+        {
+          "c": "___ m'inquiète, c'est le coût du logement.",
+          "o": [
+            "Ce qui",
+            "Ce que",
+            "Qu'est-ce qui"
+          ],
+          "why": "Subject of m'inquiète → ce qui."
+        },
+        {
+          "c": "Je ne comprends pas ___ vous voulez dire.",
+          "o": [
+            "ce que",
+            "ce qui",
+            "qu'est-ce que"
+          ],
+          "why": "Object of vouloir dire → ce que."
+        }
+      ],
+      [
+        {
+          "c": "La personne avec ___ je travaille est sympathique.",
+          "o": [
+            "qui",
+            "que",
+            "laquelle"
+          ],
+          "why": "After a preposition, people → qui."
+        },
+        {
+          "t": "la raison pour ___ je suis venu (raison is feminine)",
+          "a": "laquelle",
+          "why": "Things after a preposition: lequel / laquelle."
+        }
+      ]
     ],
-    subjunctive: [
-      [{ t: "Il faut que je ___ (finir)", a: "finisse", why: "ils finissent → finiss- + -e." },
-       { t: "Il faut que nous ___ (parler)", a: "parlions", why: "nous: -ions." }],
-      [{ t: "Il faut que vous ___ une pièce d'identité. (avoir)", a: "ayez", why: "avoir: que j'aie, que nous ayons, que vous ayez." },
-       { c: "Je veux que tu ___ là. (être)", o: ["sois", "es", "soies"], why: "être: que je sois, que tu sois." }],
-      [{ c: "Je suis content que tu ___ venir. (pouvoir)", o: ["puisses", "peux"], why: "Emotion triggers the subjunctive." },
-       { c: "Bien qu'il ___ froid, on sort. (faire)", o: ["fasse", "fait"], why: "bien que + subjunctive." }],
-      [{ c: "“I want to succeed.”", o: ["Je veux réussir.", "Je veux que je réussisse."], why: "Same subject → infinitive." },
-       { c: "“I want you to succeed.”", o: ["Je veux que tu réussisses.", "Je veux tu réussir."], why: "Two subjects → que + subjunctive." }],
-      [{ c: "Je pense que c'___ une bonne idée.", o: ["est", "soit"], why: "Affirmative opinion → indicative." },
-       { c: "Je ne pense pas que ce ___ une bonne idée.", o: ["soit", "est"], why: "Negative opinion → subjunctive." }]
+    "subjunctive": [
+      [
+        {
+          "t": "Il faut que je ___ (finir)",
+          "a": "finisse",
+          "why": "ils finissent → finiss- + -e."
+        },
+        {
+          "t": "Il faut que nous ___ (parler)",
+          "a": "parlions",
+          "why": "nous: -ions."
+        }
+      ],
+      [
+        {
+          "t": "Il faut que vous ___ une pièce d'identité. (avoir)",
+          "a": "ayez",
+          "why": "avoir: que j'aie, que nous ayons, que vous ayez."
+        },
+        {
+          "c": "Je veux que tu ___ là. (être)",
+          "o": [
+            "sois",
+            "es",
+            "soies"
+          ],
+          "why": "être: que je sois, que tu sois."
+        }
+      ],
+      [
+        {
+          "c": "Je suis content que tu ___ venir. (pouvoir)",
+          "o": [
+            "puisses",
+            "peux"
+          ],
+          "why": "Emotion triggers the subjunctive."
+        },
+        {
+          "c": "Bien qu'il ___ froid, on sort. (faire)",
+          "o": [
+            "fasse",
+            "fait"
+          ],
+          "why": "bien que + subjunctive."
+        }
+      ],
+      [
+        {
+          "c": "“I want to succeed.”",
+          "o": [
+            "Je veux réussir.",
+            "Je veux que je réussisse."
+          ],
+          "why": "Same subject → infinitive."
+        },
+        {
+          "c": "“I want you to succeed.”",
+          "o": [
+            "Je veux que tu réussisses.",
+            "Je veux tu réussir."
+          ],
+          "why": "Two subjects → que + subjunctive."
+        }
+      ],
+      [
+        {
+          "c": "Je pense que c'___ une bonne idée.",
+          "o": [
+            "est",
+            "soit"
+          ],
+          "why": "Affirmative opinion → indicative."
+        },
+        {
+          "c": "Je ne pense pas que ce ___ une bonne idée.",
+          "o": [
+            "soit",
+            "est"
+          ],
+          "why": "Negative opinion → subjunctive."
+        }
+      ]
     ],
-    argue: [
-      [{ c: "Which connector shows a consequence?", o: ["par conséquent", "cependant", "même si"], why: "par conséquent = as a result." },
-       { c: "___ la neige, l'école est fermée.", o: ["À cause de", "Grâce à"], why: "Negative cause → à cause de; positive → grâce à." }],
-      [{ c: "What comes after your reasons in the four-part argument?", o: ["Concede the other side, then counter it", "Repeat your first reason", "Ask the examiner"], why: "Il est vrai que… Cependant… — then conclude." },
-       { t: "Start a concession: Il est ___ que…", a: "vrai", why: "Il est vrai que…, cependant…" }],
-      [{ c: "Most cautious:", o: ["Il me semble que…", "Je suis convaincu que…", "Il est évident que…"], why: "Il me semble que = it seems to me." },
-       { c: "Most certain:", o: ["Je suis convaincu(e) que…", "J'ai l'impression que…", "Ça dépend."], why: "convaincu = convinced." }],
-      [{ c: "Opening for a letter to a company:", o: ["Madame, Monsieur,", "Salut !", "Coucou,"], why: "Formal register for a company or landlord." },
-       { c: "A request in formal register:", o: ["Pourriez-vous m'envoyer… ?", "Tu peux m'envoyer… ?"], why: "vous + conditional." }],
-      [{ c: "You forget the word for “stapler”. Best move?", o: ["C'est un objet qui sert à attacher des feuilles.", "Stay silent", "Say it in English"], why: "Describe it — and keep talking." },
-       { c: "A natural filler while you think:", o: ["Alors…", "Euh… euh… euh…", "OK OK"], why: "Alors…, Bon…, Eh bien… buy time and sound natural." }]
+    "argue": [
+      [
+        {
+          "c": "Which connector shows a consequence?",
+          "o": [
+            "par conséquent",
+            "cependant",
+            "même si"
+          ],
+          "why": "par conséquent = as a result."
+        },
+        {
+          "c": "___ la neige, l'école est fermée.",
+          "o": [
+            "À cause de",
+            "Grâce à"
+          ],
+          "why": "Negative cause → à cause de; positive → grâce à."
+        }
+      ],
+      [
+        {
+          "c": "What comes after your reasons in the four-part argument?",
+          "o": [
+            "Concede the other side, then counter it",
+            "Repeat your first reason",
+            "Ask the examiner"
+          ],
+          "why": "Il est vrai que… Cependant… — then conclude."
+        },
+        {
+          "t": "Start a concession: Il est ___ que…",
+          "a": "vrai",
+          "why": "Il est vrai que…, cependant…"
+        }
+      ],
+      [
+        {
+          "c": "Most cautious:",
+          "o": [
+            "Il me semble que…",
+            "Je suis convaincu que…",
+            "Il est évident que…"
+          ],
+          "why": "Il me semble que = it seems to me."
+        },
+        {
+          "c": "Most certain:",
+          "o": [
+            "Je suis convaincu(e) que…",
+            "J'ai l'impression que…",
+            "Ça dépend."
+          ],
+          "why": "convaincu = convinced."
+        }
+      ],
+      [
+        {
+          "c": "Opening for a letter to a company:",
+          "o": [
+            "Madame, Monsieur,",
+            "Salut !",
+            "Coucou,"
+          ],
+          "why": "Formal register for a company or landlord."
+        },
+        {
+          "c": "A request in formal register:",
+          "o": [
+            "Pourriez-vous m'envoyer… ?",
+            "Tu peux m'envoyer… ?"
+          ],
+          "why": "vous + conditional."
+        }
+      ]
     ],
-    reported: [
-      [{ t: "J'___ déjà mangé quand ils sont arrivés. (avoir, plus-que-parfait)", a: "avais", why: "avoir in the imparfait + participle: j'avais mangé." },
-       { c: "Le train ___ quand je suis arrivé à la gare.", o: ["était déjà parti", "est déjà parti", "partait déjà"], why: "It happened before the other past event → plus-que-parfait." }],
-      [{ c: "« Je suis malade. » → Il a dit qu'il…", o: ["était malade", "est malade", "sera malade"], why: "After a past reporting verb: présent → imparfait." },
-       { c: "« Je finirai demain. » → Il a dit qu'il…", o: ["finirait le lendemain", "finira demain", "finissait demain"], why: "futur → conditionnel, and demain → le lendemain." }],
-      [{ c: "« Avez-vous vos documents ? » → Elle m'a demandé…", o: ["si j'avais mes documents", "est-ce que j'avais mes documents", "que j'avais mes documents"], why: "Yes/no question → si." },
-       { c: "« Fermez la porte. » → Il nous a demandé…", o: ["de fermer la porte", "que fermer la porte", "fermez la porte"], why: "An order → de + infinitive." }]
+    "reported": [
+      [
+        {
+          "t": "J'___ déjà mangé quand ils sont arrivés. (avoir, plus-que-parfait)",
+          "a": "avais",
+          "why": "avoir in the imparfait + participle: j'avais mangé."
+        },
+        {
+          "c": "Le train ___ quand je suis arrivé à la gare.",
+          "o": [
+            "était déjà parti",
+            "est déjà parti",
+            "partait déjà"
+          ],
+          "why": "It happened before the other past event → plus-que-parfait."
+        }
+      ],
+      [
+        {
+          "c": "« Je suis malade. » → Il a dit qu'il…",
+          "o": [
+            "était malade",
+            "est malade",
+            "sera malade"
+          ],
+          "why": "After a past reporting verb: présent → imparfait."
+        },
+        {
+          "c": "« Je finirai demain. » → Il a dit qu'il…",
+          "o": [
+            "finirait le lendemain",
+            "finira demain",
+            "finissait demain"
+          ],
+          "why": "futur → conditionnel, and demain → le lendemain."
+        }
+      ],
+      [
+        {
+          "c": "« Avez-vous vos documents ? » → Elle m'a demandé…",
+          "o": [
+            "si j'avais mes documents",
+            "est-ce que j'avais mes documents",
+            "que j'avais mes documents"
+          ],
+          "why": "Yes/no question → si."
+        },
+        {
+          "c": "« Fermez la porte. » → Il nous a demandé…",
+          "o": [
+            "de fermer la porte",
+            "que fermer la porte",
+            "fermez la porte"
+          ],
+          "why": "An order → de + infinitive."
+        }
+      ]
     ],
-    exam: [
-      [{ c: "When should you read the options in listening?", o: ["Before the audio starts", "After the audio", "Only if you're unsure"], why: "Predict what you'll hear: a price, a reason, an opinion?" },
-       { c: "« Finalement, on a choisi le train. » — the answer is…", o: ["the train", "whatever was mentioned first"], why: "Watch for the final decision, not the first thing mentioned." }],
-      [{ c: "About how long per reading question?", o: ["90 seconds", "5 minutes", "20 seconds"], why: "And the questions get harder as you go." },
-       { c: "An option that copies exact words from the text is…", o: ["often a trap", "always right"], why: "Correct answers usually paraphrase." }],
-      [{ c: "TCF Canada writing task 1 is about…", o: ["60–120 words", "300 words", "20 words"], why: "A short message: invite, inform or ask." },
-       { c: "In task 3, the first part asks you to…", o: ["summarise both documents neutrally", "give your opinion straight away", "copy the documents"], why: "Part 1: neutral summary (40–60 words). Part 2: your view." }],
-      [{ c: "How long is TCF speaking task 3?", o: ["About 4 min 30, no preparation", "1 minute", "10 minutes with preparation"], why: "Plan to fill the whole time." },
-       { c: "You don't understand the examiner's question. Best move?", o: ["Politely ask them to repeat", "Guess and answer anything", "Stay silent"], why: "Pourriez-vous répéter, s'il vous plaît ?" }],
-      [{ c: "Three weeks out, focus on…", o: ["your weakest section and your top errors", "learning new grammar", "resting"], why: "Target the weak spots daily." },
-       { c: "The final week should be…", o: ["light review and good sleep", "the most intense week", "only new topics"], why: "Memory consolidation needs sleep." }]
+    "exam": [
+      [
+        {
+          "c": "When should you read the options in listening?",
+          "o": [
+            "Before the audio starts",
+            "After the audio",
+            "Only if you're unsure"
+          ],
+          "why": "Predict what you'll hear: a price, a reason, an opinion?"
+        },
+        {
+          "c": "« Finalement, on a choisi le train. » — the answer is…",
+          "o": [
+            "the train",
+            "whatever was mentioned first"
+          ],
+          "why": "Watch for the final decision, not the first thing mentioned."
+        }
+      ],
+      [
+        {
+          "c": "About how long per reading question?",
+          "o": [
+            "90 seconds",
+            "5 minutes",
+            "20 seconds"
+          ],
+          "why": "And the questions get harder as you go."
+        },
+        {
+          "c": "An option that copies exact words from the text is…",
+          "o": [
+            "often a trap",
+            "always right"
+          ],
+          "why": "Correct answers usually paraphrase."
+        }
+      ],
+      [
+        {
+          "c": "TCF Canada writing task 1 is about…",
+          "o": [
+            "60–120 words",
+            "300 words",
+            "20 words"
+          ],
+          "why": "A short message: invite, inform or ask."
+        },
+        {
+          "c": "In task 3, the first part asks you to…",
+          "o": [
+            "summarise both documents neutrally",
+            "give your opinion straight away",
+            "copy the documents"
+          ],
+          "why": "Part 1: neutral summary (40–60 words). Part 2: your view."
+        }
+      ],
+      [
+        {
+          "c": "How long is TCF speaking task 3?",
+          "o": [
+            "About 4 min 30, no preparation",
+            "1 minute",
+            "10 minutes with preparation"
+          ],
+          "why": "Plan to fill the whole time."
+        },
+        {
+          "c": "You don't understand the examiner's question. Best move?",
+          "o": [
+            "Politely ask them to repeat",
+            "Guess and answer anything",
+            "Stay silent"
+          ],
+          "why": "Pourriez-vous répéter, s'il vous plaît ?"
+        }
+      ],
+      [
+        {
+          "c": "Three weeks out, focus on…",
+          "o": [
+            "your weakest section and your top errors",
+            "learning new grammar",
+            "resting"
+          ],
+          "why": "Target the weak spots daily."
+        },
+        {
+          "c": "The final week should be…",
+          "o": [
+            "light review and good sleep",
+            "the most intense week",
+            "only new topics"
+          ],
+          "why": "Memory consolidation needs sleep."
+        }
+      ]
     ],
-    /* the TCF speaking kits are kept short: no "Try it" there */
-    "tcf-t2": [[], [], [], [], [], []],
-    "tcf-t3": [[], [], [], [], [], [], []]
+    "tcf-t2": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "tcf-t3": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
   },
-  /* where each common mistake (m) and pronunciation point (s) is shown: the lesson index */
-  notes: {
-    "method": { m: [1, 0, 3, 4, 4, 0], s: [] },
-    "sounds": { m: [4, 1, 4, 4, 0, 5, 5], s: [1, 1, 2, 2, 3, 5] },
-    "basics": { m: [2, 2, 5, 4, 4, 4, 3], s: [1, 4] },
-    "present": { m: [2, 3, 3, 2, 1, 1], s: [0, 0, 1] },
-    "questions": { m: [0, 0, 2, 2, 1, 3], s: [1, 1] },
-    "describe": { m: [0, 1, 2, 2, 1, 1, 2], s: [0, 1] },
-    "numbers": { m: [1, 0, 3, 3, 2, 2], s: [0, 2] },
-    "irregulars": { m: [3, 1, 2, 2, 4, 5, 1], s: [0, 0] },
-    "reflexive": { m: [0, 0, 0, 2, 2, 1], s: [0] },
-    "passe-compose": { m: [2, 2, 1, 3, 2, 4, 3], s: [0, 0] },
-    "imparfait": { m: [1, 2, 2, 2, 0, 4], s: [2, 0] },
-    "pronouns": { m: [0, 1, 1, 3, 4, 0, 4], s: [0, 3] },
-    "compare-future": { m: [1, 1, 1, 1, 3, 3, 2], s: [2] },
-    "conditional": { m: [3, 3, 1, 2, 0, 0], s: [0, 1] },
-    "relatives": { m: [0, 0, 1, 2, 3, 0], s: [] },
-    "subjunctive": { m: [1, 3, 4, 4, 4, 1, 2], s: [0] },
-    "argue": { m: [0, 0, 0, 3, 1, 2], s: [] },
-    "reported": { m: [1, 2, 2, 2, 0], s: [] },
-    "exam": { m: [3, 3, 2, 2, 1, 2], s: [] }
+  "notes": {
+    "method": {
+      "m": [
+        0,
+        0,
+        2
+      ],
+      "s": []
+    },
+    "sounds": {
+      "m": [
+        4,
+        1,
+        4,
+        4,
+        0,
+        5,
+        5
+      ],
+      "s": []
+    },
+    "basics": {
+      "m": [
+        2,
+        2,
+        5,
+        4,
+        4,
+        4,
+        3
+      ],
+      "s": []
+    },
+    "present": {
+      "m": [
+        2,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "s": []
+    },
+    "questions": {
+      "m": [
+        0,
+        0,
+        2,
+        2,
+        1,
+        3
+      ],
+      "s": []
+    },
+    "describe": {
+      "m": [
+        0,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "s": []
+    },
+    "numbers": {
+      "m": [
+        1,
+        0,
+        3,
+        3,
+        2,
+        2
+      ],
+      "s": []
+    },
+    "irregulars": {
+      "m": [
+        3,
+        1,
+        2,
+        2,
+        4,
+        5,
+        1
+      ],
+      "s": []
+    },
+    "reflexive": {
+      "m": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        1
+      ],
+      "s": []
+    },
+    "passe-compose": {
+      "m": [
+        2,
+        2,
+        1,
+        3,
+        2,
+        4,
+        3
+      ],
+      "s": []
+    },
+    "imparfait": {
+      "m": [
+        1,
+        2,
+        2,
+        2,
+        0,
+        4
+      ],
+      "s": []
+    },
+    "pronouns": {
+      "m": [
+        0,
+        1,
+        1,
+        3,
+        4,
+        0,
+        4
+      ],
+      "s": []
+    },
+    "compare-future": {
+      "m": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        3,
+        2
+      ],
+      "s": []
+    },
+    "conditional": {
+      "m": [
+        3,
+        3,
+        1,
+        2,
+        0,
+        0
+      ],
+      "s": []
+    },
+    "relatives": {
+      "m": [
+        0,
+        0,
+        1,
+        2,
+        3,
+        0
+      ],
+      "s": []
+    },
+    "subjunctive": {
+      "m": [
+        1,
+        3,
+        4,
+        4,
+        4,
+        1,
+        2
+      ],
+      "s": []
+    },
+    "argue": {
+      "m": [
+        0,
+        0,
+        0,
+        3,
+        1,
+        2
+      ],
+      "s": []
+    },
+    "reported": {
+      "m": [
+        1,
+        2,
+        2,
+        2,
+        0
+      ],
+      "s": []
+    },
+    "exam": {
+      "m": [
+        3,
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "s": []
+    }
   },
-  quizLesson: {
-    method: [1, 2, 4, 3, 4],
-    sounds: [4, 5, 2, 5, 6, 4],
-    basics: [2, 4, 5, 4, 4, 3],
-    present: [2, 1, 0, 3, 0, 4],
-    questions: [0, 0, 2, 1, 2, 3],
-    describe: [1, 2, 1, 1, 3, 0],
-    numbers: [1, 1, 3, 2, 4, 3],
-    irregulars: [1, 4, 2, 3, 3, 0],
-    reflexive: [0, 2, 2, 1, 2],
-    "passe-compose": [2, 1, 2, 3, 2, 4],
-    imparfait: [1, 2, 0, 4, 1, 2],
-    pronouns: [0, 1, 3, 4, 4, 2],
-    "compare-future": [1, 1, 2, 3, 3, 0],
-    conditional: [3, 1, 2, 3, 4],
-    relatives: [0, 2, 1, 3, 4],
-    subjunctive: [1, 4, 3, 2, 2],
-    argue: [0, 0, 3, 0, 4],
-    reported: [1, 2, 0, 2],
-    exam: [1, 2, 3, 4, 3],
-    "tcf-t2": [0, 3, 4, 2, 5, 4],
-    "tcf-t3": [0, 1, 2, 6, 5, 1]
+  "quizLesson": {
+    "method": [
+      0,
+      1,
+      2
+    ],
+    "sounds": [
+      4,
+      5,
+      2,
+      5,
+      4
+    ],
+    "basics": [
+      2,
+      4,
+      5,
+      4,
+      4,
+      3
+    ],
+    "present": [
+      2,
+      1,
+      0,
+      3,
+      0,
+      4
+    ],
+    "questions": [
+      0,
+      0,
+      2,
+      1,
+      2,
+      3
+    ],
+    "describe": [
+      1,
+      2,
+      1,
+      1,
+      3,
+      0
+    ],
+    "numbers": [
+      1,
+      1,
+      3,
+      2,
+      4,
+      3
+    ],
+    "irregulars": [
+      1,
+      4,
+      2,
+      3,
+      3,
+      0
+    ],
+    "reflexive": [
+      0,
+      2,
+      2,
+      1,
+      2
+    ],
+    "passe-compose": [
+      2,
+      1,
+      2,
+      3,
+      2,
+      4
+    ],
+    "imparfait": [
+      1,
+      2,
+      0,
+      4,
+      1,
+      2
+    ],
+    "pronouns": [
+      0,
+      1,
+      3,
+      4,
+      4,
+      2
+    ],
+    "compare-future": [
+      1,
+      1,
+      2,
+      3,
+      3,
+      0
+    ],
+    "conditional": [
+      3,
+      1,
+      2,
+      3,
+      4
+    ],
+    "relatives": [
+      0,
+      2,
+      1,
+      3,
+      4
+    ],
+    "subjunctive": [
+      1,
+      4,
+      3,
+      2,
+      2
+    ],
+    "argue": [
+      0,
+      0,
+      3,
+      0
+    ],
+    "reported": [
+      1,
+      2,
+      0,
+      2
+    ],
+    "exam": [
+      1,
+      2,
+      3,
+      4,
+      3
+    ],
+    "tcf-t2": [
+      0,
+      3,
+      4,
+      2,
+      5,
+      4
+    ],
+    "tcf-t3": [
+      0,
+      1,
+      2,
+      6,
+      5,
+      1
+    ]
   }
 };

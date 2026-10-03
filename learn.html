@@ -469,6 +469,11 @@
   .en-toggle[aria-pressed="true"] .sw { background: var(--c); }
   .en-toggle[aria-pressed="true"] .sw::after { transform: translateX(11px); }
 
+  /* the bracket in a title ("what you'll learn") is smaller and softer */
+  .tb { font-weight: 500; color: var(--ink-faint); font-size: .78em; letter-spacing: 0; }
+  .mod-head h1 .tb { display: block; font-family: var(--sans); font-size: .4em; font-weight: 600; letter-spacing: 0; margin-top: 10px; color: var(--c-ink); }
+  .lesson h3 .tb, .p-set h3 .tb { font-size: .8em; }
+  .mod-card .t .tb { display: block; font-size: .82em; margin-top: 2px; }
   /* numbered steps: Lessons → Practice → Check → Done */
   .toc-bar.steps a::before { display: none; }
   .toc-bar.steps a i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--c-soft); color: var(--c-ink); font-size: 11.5px; font-weight: 800; }
@@ -635,6 +640,11 @@
   var SPK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.3 2.2 4.2 4.8H2.1c-.5 0-.9.4-.9.9v4.6c0 .5.4.9.9.9h2.1l3.1 2.6c.5.4 1.2.1 1.2-.6V2.8c0-.7-.7-1-1.2-.6z"/><path fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" d="M11 5.6a3.4 3.4 0 0 1 0 4.8M13.2 3.5a6.3 6.3 0 0 1 0 9"/></svg>';
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+  /* "Title (what you learn)" → title + a small, softer bracket */
+  function tH(t) {
+    var m = /^(.*?)\s*\(([^()]*)\)\s*$/.exec(String(t));
+    return m ? esc(m[1]) + " <span class='tb'>(" + esc(m[2]) + ")</span>" : esc(t);
+  }
   function strip(html) { var d = document.createElement("div"); d.innerHTML = html; return d.textContent || ""; }
   function canSpeak() { return !!(Speech && Speech.available()); }
 
@@ -765,7 +775,7 @@
       html += "<h4 class='" + hue(L.hue) + "'>" + esc(L.name) + "</h4>";
       list.forEach(function (m) {
         html += "<a href='#" + m.id + "' class='" + hue(L.hue) + (m.id === curId ? " cur" : "") + (isDone(m.id) ? " done" : "") + "'>" +
-          "<span class='dot' style='--p:" + (isDone(m.id) ? 100 : modProgress(m).pct) + "'>" + (isDone(m.id) ? "✓" : m.num) + "</span><span>" + esc(m.title) + "</span></a>";
+          "<span class='dot' style='--p:" + (isDone(m.id) ? 100 : modProgress(m).pct) + "'>" + (isDone(m.id) ? "✓" : m.num) + "</span><span>" + tH(m.title) + "</span></a>";
       });
     });
     side.innerHTML = html;
@@ -810,7 +820,7 @@
     html += "</div><div class='principles'>" +
         "<div class='principle " + hue("blue") + "'><span class='pi'>" + ICONS.check + "</span><b>Retrieve, don't reread</b><span>Testing yourself beats re-studying for long-term memory. Every module ends with a check.</span></div>" +
         "<div class='principle " + hue("cyan") + "'><span class='pi'>" + ICONS.loop + "</span><b>Space it out</b><span>Come back to old modules days later. Spaced review beats cramming for retention.</span></div>" +
-        "<div class='principle " + hue("orange") + "'><span class='pi'>" + ICONS.speak + "</span><b>Say it out loud</b><span>Producing French shows you the gaps that reading hides. Say every example as you read.</span></div>" +
+        "<div class='principle " + hue("orange") + "'><span class='pi'>" + ICONS.learn + "</span><b>Learn the tip</b><span>Every lesson ends with a quick tip: the shortcut that makes the rule stick.</span></div>" +
         "<div class='principle " + hue("magenta") + "'><span class='pi'>" + ICONS.mix + "</span><b>Mix your practice</b><span>Interleaving topics feels harder but produces better retention a week later.</span></div>" +
       "</div><div class='levels'>";
     LEVELS.forEach(function (L) {
@@ -823,7 +833,7 @@
       list.forEach(function (m) {
         html += "<a class='mod-card" + (isDone(m.id) ? " done" : "") + "' href='#" + m.id + "'>" +
           "<div class='top'><span class='num'><i>" + m.num + "</i>Module</span>" + (isDone(m.id) ? "<span class='ok'>✓ Done</span>" : "") + "</div>" +
-          "<span class='t'>" + esc(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span><span class='hrs'>" + esc(modMinutes(m)) +
+          "<span class='t'>" + tH(m.title) + "</span><span class='s'>" + esc(m.subtitle) + "</span><span class='hrs'>" + esc(modMinutes(m)) +
           (!isDone(m.id) && modProgress(m).pct ? " · " + modProgress(m).pct + "% done" : "") + "</span>" +
           (!isDone(m.id) && modProgress(m).pct ? "<span class='mbar' aria-hidden='true'><i style='width:" + modProgress(m).pct + "%'></i></span>" : "") + "</a>";
       });
@@ -896,7 +906,7 @@
 
     var h = "<div class='mod-head " + hue(L.hue) + "'><span class='big' aria-hidden='true'>" + ("0" + m.num).slice(-2) + "</span>" +
       "<span class='lvl'><i>" + esc(L.tag) + "</i>Module " + m.num + " · " + esc(L.name) + "</span>" +
-      "<h1>" + esc(m.title) + "</h1><p class='subtitle'>" + esc(m.subtitle) + "</p>" +
+      "<h1>" + tH(m.title) + "</h1><p class='subtitle'>" + esc(m.subtitle) + "</p>" +
       "<div class='meta'><span class='pill'>⏱ " + esc(mins) + "</span><span class='pill'>" + m.lessons.length + " lessons</span>" +
       (isDone(m.id) ? "<span class='pill done'>✓ Completed</span>" : "") +
       "<a class='pill mring' id='mring' href='#" + m.id + "/done' style='--p:" + modProgress(m).pct + "' title='Your progress in this module'><i aria-hidden='true'></i><span>" + modProgress(m).pct + "% done</span></a>" +
@@ -915,10 +925,10 @@
     if (!F && m.sounds) m.sounds.points.forEach(function (p, k) { (SND[at(NT.s[k])] = SND[at(NT.s[k])] || []).push(p); });
     if (!F && m.mistakes) m.mistakes.forEach(function (x, k) { (MIS[at(NT.m[k])] = MIS[at(NT.m[k])] || []).push(x); });
 
-    h += secHead("lessons", "Lessons", "Read each lesson and say the examples out loud.");
+    h += secHead("lessons", "Lessons", "Short lessons. The quick tip under each one is the fastest way to remember it.");
     var VIS = window.NCLC_VISUALS ? NCLC_VISUALS.data[m.id] || [] : [];
     m.lessons.forEach(function (Ls, i) {
-      h += "<article class='lesson' id='sec-l" + i + "'><h3><span class='n" + (tried(m.id, i) ? " tried" : "") + "'>" + m.num + "." + (i + 1) + "</span><span>" + Ls.title + "</span></h3>" +
+      h += "<article class='lesson' id='sec-l" + i + "'><h3><span class='n" + (tried(m.id, i) ? " tried" : "") + "'>" + m.num + "." + (i + 1) + "</span><span>" + tH(Ls.title) + "</span></h3>" +
         (VIS[i] ? NCLC_VISUALS.render(VIS[i], L.hue) : "") + "<div class='body'>" + (Ls.body || "") + "</div>";
       (Ls.tables || (Ls.table ? [Ls.table] : [])).forEach(function (t) { h += renderTable(t); });
       if (Ls.after) h += "<div class='body'>" + Ls.after + "</div>";
@@ -927,7 +937,7 @@
           return "<li>" + (sayBtn(e[0]) || "<span></span>") + "<span class='frx'>" + e[0] + "</span><span class='enx'>" + e[1] + "</span></li>";
         }).join("") + "</ul>";
       }
-      if (Ls.tip) h += "<div class='tipbox'><b>Tip · </b>" + Ls.tip + "</div>";
+      if (Ls.tip) h += "<div class='tipbox'><b>Quick tip · </b>" + Ls.tip + "</div>";
       (SND[i] || []).forEach(function (p) {
         h += "<div class='sound-card'><span class='note-k'>" + ICONS.sound + "Say it right</span><h4>" + p.title + "</h4><div class='body'>" + p.body + "</div>" +
           (p.say && canSpeak() ? "<div class='pairs'>" + p.say.map(function (s) { return "<button type='button' data-say='" + esc(strip(s)) + "'>" + SPK + "<span class='pw'><span>" + s + "</span>" + glB(s) + "</span></button>"; }).join("") + "</div>" : "") +
@@ -946,7 +956,7 @@
       h += secHead("practice", "Practice", "Quick questions on each lesson. Anything you miss goes to your Daily review.");
       m.lessons.forEach(function (Ls, i) {
         var t = tryBlock(m, i);
-        if (t) h += "<div class='p-set' id='sec-p" + i + "'><h3><a href='#" + m.id + "/l" + i + "'>" + m.num + "." + (i + 1) + "</a> " + Ls.title + "</h3>" + t + "</div>";
+        if (t) h += "<div class='p-set' id='sec-p" + i + "'><h3><a href='#" + m.id + "/l" + i + "'>" + m.num + "." + (i + 1) + "</a> " + tH(Ls.title) + "</h3>" + t + "</div>";
       });
       h += "</section>";
     }
@@ -973,8 +983,8 @@
 
     var pl = function (x) { return hue(levelOf(x.level).hue); };
     h += "<nav class='pager' aria-label='Module navigation'>" +
-      (prev ? "<a class='" + pl(prev) + "' href='#" + prev.id + "'><small>← Previous</small>" + esc(prev.title) + "</a>" : "<a class='" + hue(L.hue) + "' href='#'><small>← Back</small>Course overview</a>") +
-      (next ? "<a class='next " + pl(next) + "' href='#" + next.id + "'><small>Next →</small>" + esc(next.title) + "</a>" : "<a class='next " + hue(L.hue) + "' href='exam.html'><small>Next →</small>Take a mock exam</a>") +
+      (prev ? "<a class='" + pl(prev) + "' href='#" + prev.id + "'><small>← Previous</small>" + tH(prev.title) + "</a>" : "<a class='" + hue(L.hue) + "' href='#'><small>← Back</small>Course overview</a>") +
+      (next ? "<a class='next " + pl(next) + "' href='#" + next.id + "'><small>Next →</small>" + tH(next.title) + "</a>" : "<a class='next " + hue(L.hue) + "' href='exam.html'><small>Next →</small>Take a mock exam</a>") +
       "</nav>";
 
     view.innerHTML = h;

@@ -118,7 +118,6 @@
   var D = {
     /* ------------------------------------------------------------ 0 · method */
     method: [
-      { t: "bars", title: "Four kinds of practice, equal time", items: [["Input", 25, "listen and read for the message"], ["Output", 25, "speak and write to say something real"], ["Language study", 25, "grammar, words, sounds"], ["Fluency", 25, "easy material, at speed"]] },
       { t: "vs", title: "Rereading feels good. Testing works.", cols: [
         { h: "Reread", sub: "Feels easy · fades within a week", tag: "✗" },
         { h: "Test yourself", sub: "Feels harder · still there a week later", tag: "✓", on: 1 }] },
@@ -128,7 +127,6 @@
       { t: "vs", title: "Mix topics once you know them", cols: [
         { h: "AAA · BBB · CCC", sub: "Blocked: fewer errors while practising" },
         { h: "ABC · CAB · BCA", sub: "Mixed: better results a week later", on: 1 }] },
-      { t: "steps", title: "Understand first, then push yourself", items: [["Understand", "material where you know ~95% of the words"], ["Produce", "speak and write, mistakes and all"], ["Compare and fix", "check against the model, try again"]] },
       { t: "grid", title: "How long to B1", head: ["Level", "1 h a day", "2 h a day"], rows: [["True beginner", "12–15 months", "6–8 months"], ["Around A2", "5–7 months", "3–4 months"], ["Around B1", "6–10 weeks", "4–6 weeks"]], note: "Little and often beats long, rare sessions." }
     ],
     /* ------------------------------------------------------------ 1 · sounds */
@@ -147,8 +145,7 @@
         { h: "Liaison", sub: "a silent letter wakes up", items: ["les‿amis", "nous‿avons", "deux‿heures"] },
         { h: "Élision", sub: "a vowel drops", items: ["le ami → l'ami", "je ai → j'ai"] },
         { h: "Enchaînement", sub: "a sound slides over", items: ["il‿a", "une‿amie"] }] },
-      { t: "pairs", title: "Canadian French: recognise it, aim for clear", items: [["petit → “p'tsi”", "t and d before i / u become ts / dz"], ["vite, route", "i, ou relax in closed syllables"], ["je suis → “chu”", "informal speech drops sounds"], ["la fin de semaine", "the weekend"], ["le dîner · le souper", "lunch · dinner"]], note: "Examiners score how clear you are, not your accent." }
-    ],
+      ],
     /* ------------------------------------------------------------ 2 · basics */
     basics: [
       { t: "vs", title: "Two ways to say “you”", cols: [
@@ -353,11 +350,7 @@
       { t: "vs", title: "Match the register", cols: [
         { h: "Informal · a friend", ex: [["Salut Marc,"], ["Tu peux m'envoyer… ?"], ["À bientôt !"]] },
         { h: "Formal · a company", ex: [["Madame, Monsieur,"], ["Pourriez-vous m'envoyer… ?"], ["Cordialement,"]], on: 1 }] },
-      { t: "groups", title: "Never go silent", groups: [
-        { h: "Thinking", items: ["Alors…", "Bon…", "Eh bien…"] },
-        { h: "Clarifying", items: ["En fait…", "C'est-à-dire que…"] },
-        { h: "Missing a word", items: ["C'est un truc qui sert à…", "Comment dire…"] }] }
-    ],
+      ],
     /* ------------------------------------------------------------ 17 · reported */
     reported: [
       { t: "line", title: "The past before the past", from: "earlier", to: "now", marks: [
