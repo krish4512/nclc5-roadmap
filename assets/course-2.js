@@ -185,7 +185,7 @@ window.COURSE.modules.push({
           "Would it be possible to visit on Saturday?"
         ]
       ],
-      "tip": "After je voudrais savoir / pourriez-vous me dire, use normal word order: …me dire où se trouve la gare."
+      "tip": "After je voudrais savoir / pourriez-vous me dire, drop est-ce que and the hyphen inversion: …me dire où est la gare / où la gare se trouve."
     }
   ],
   "mistakes": [
@@ -411,7 +411,7 @@ window.COURSE.modules.push({
             "une employée sérieuse"
           ],
           [
-            "-if → -ive",
+            "-f → -ve",
             "actif, neuf",
             "active, neuve",
             "une voiture neuve"
@@ -487,7 +487,7 @@ window.COURSE.modules.push({
           ],
           [
             "+ numbers and order",
-            "premier, dernier, deux…",
+            "premier, dernier, deux… (but la semaine dernière, l'an dernier go after)",
             "le premier jour"
           ]
         ],
@@ -495,7 +495,7 @@ window.COURSE.modules.push({
           2
         ]
       },
-      "after": "<p>Before a plural adjective, des → de: <span class='fr'>de grandes fenêtres</span>.</p>",
+      "after": "<p>Before a plural adjective, des → de: <span class='fr'>de grandes fenêtres</span>.</p><p>A few change meaning with position: <span class='fr'>mon ancien collègue</span> (former) vs <span class='fr'>une maison ancienne</span> (old); <span class='fr'>mon propre appartement</span> (my own) vs <span class='fr'>un appartement propre</span> (clean).</p>",
       "tip": "BAGS = Beauty, Age, Goodness, Size: beau, jeune, bon, grand go before the noun."
     },
     {
@@ -703,14 +703,14 @@ window.COURSE.modules.push({
   ],
   "quiz": [
     {
-      "q": "<span class='fr'>une ___ nouvelle</span> — which fits?",
+      "q": "<span class='fr'>une nouvelle ___</span> — which fits?",
       "o": [
         "idée",
         "appartement",
         "quartier"
       ],
       "a": 0,
-      "why": "nouvelle is feminine; idée is feminine. (And nouveau goes before the noun: une nouvelle idée.)"
+      "why": "nouvelle is feminine, so the noun must be too: une nouvelle idée. (nouveau goes before the noun.)"
     },
     {
       "q": "\"his car\" / \"her car\":",
@@ -1326,7 +1326,7 @@ window.COURSE.modules.push({
             "aux États-Unis, aux Philippines"
           ],
           [
-            "Countries starting with a vowel",
+            "Countries and provinces starting with a vowel",
             "en",
             "en Iran, en Ontario, en Alberta"
           ],
@@ -1498,7 +1498,7 @@ window.COURSE.modules.push({
         "Nous allons déménager au Alberta."
       ],
       "a": 1,
-      "why": "Places starting with a vowel take en: en Alberta, en Ontario."
+      "why": "Countries and provinces starting with a vowel take en: en Alberta, en Ontario. (Cities take à: à Ottawa.)"
     },
     {
       "q": "Negative of <span class='fr'>Je vais travailler demain</span>:",
@@ -1613,7 +1613,7 @@ window.COURSE.modules.push({
           ]
         ]
       },
-      "after": "<p>Some verbs change meaning with se: <span class='fr'>tromper</span> (deceive) → <span class='fr'>se tromper</span> (make a mistake); <span class='fr'>ennuyer</span> → <span class='fr'>s'ennuyer</span> (be bored).</p>",
+      "after": "<p>Some verbs change meaning with se: <span class='fr'>tromper</span> (deceive) → <span class='fr'>se tromper</span> (make a mistake); <span class='fr'>ennuyer</span> (bore, annoy) → <span class='fr'>s'ennuyer</span> (be bored).</p>",
       "examples": [
         [
           "Je m'occupe de mes parents la fin de semaine.",

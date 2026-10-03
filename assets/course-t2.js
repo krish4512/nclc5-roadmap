@@ -437,7 +437,7 @@ window.COURSE.modules.push({
       "q7": "valider son billet à chaque trajet",
       "q8": "je perdais ma carte mensuelle",
       "q9": "vient d'arriver et ne connaît pas encore la ville",
-      "q10": "les transports pendant la nuit : y a-t-il des autobus de nuit",
+      "q10": "les autobus de nuit",
       "next": "acheter une carte mensuelle dès demain"
     }
   },
@@ -504,7 +504,7 @@ window.COURSE.modules.push({
       ],
       [
         "Ah, je ne savais pas que c'était le cas. C'est intéressant à savoir.",
-        "Oh, I didn't know that. That's good to know."
+        "Oh, I didn't know that. That's interesting to know."
       ],
       [
         "Si je comprends bien, cela signifie qu'il faut réserver à l'avance ?",

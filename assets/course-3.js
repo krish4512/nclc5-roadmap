@@ -107,7 +107,7 @@ window.COURSE.modules.push({
     },
     {
       "title": "Être verbs (allé, venu, né, parti)",
-      "body": "<p>About 20 verbs of movement or change use <b>être</b> — remember DR &amp; MRS VANDERTRAMP. Every reflexive verb uses être too.</p>",
+      "body": "<p>About 20 verbs of movement or change use <b>être</b> — remember DR &amp; MRS VANDERTRAMP. Every reflexive verb uses être too. But monter, descendre, sortir, rentrer, retourner and passer take <b>avoir</b> when they have a direct object: <span class='fr'>J'ai sorti la poubelle.</span></p>",
       "table": {
         "head": [
           "Verb",
@@ -173,7 +173,7 @@ window.COURSE.modules.push({
         ]
       },
       "after": "<p>With être, the participle agrees with the subject: <span class='fr'>elle est arrivée, ils sont partis</span>.</p>",
-      "tip": "Did the subject move or change state? Use être."
+      "tip": "A DR and MRS VANDERTRAMP verb (or a reflexive one) with no direct object? Use être."
     },
     {
       "title": "Word order (je n'ai pas…, je l'ai vu)",
@@ -407,7 +407,7 @@ window.COURSE.modules.push({
       "why": "ne… pas wraps the auxiliary."
     },
     {
-      "q": "<span class='fr'>J'___ la poubelle.</span> (sortir = take out)",
+      "q": "<span class='fr'>Je/J' ___ la poubelle.</span> (sortir = take out)",
       "o": [
         "ai sorti",
         "suis sorti",
@@ -651,8 +651,8 @@ window.COURSE.modules.push({
       "A defined, completed period → passé composé."
     ],
     [
-      "Hier, il a fait beau et j'ai été content.",
-      "Hier, il faisait beau et j'étais content.",
+      "Quand je suis sorti, il a fait beau et j'ai été content.",
+      "Quand je suis sorti, il faisait beau et j'étais content.",
       "Weather and feelings as background → imparfait."
     ],
     [
@@ -747,7 +747,7 @@ window.COURSE.modules.push({
   ],
   "quiz": [
     {
-      "q": "<span class='fr'>Quand j'___ jeune, je jouais du piano.</span>",
+      "q": "<span class='fr'>Quand je/j' ___ jeune, je jouais du piano.</span>",
       "o": [
         "ai été",
         "étais",
@@ -797,14 +797,14 @@ window.COURSE.modules.push({
       "why": "Weather as background → imparfait."
     },
     {
-      "q": "<span class='fr'>J'ai su la nouvelle hier.</span> means…",
+      "q": "<span class='fr'>J'ai su la vérité hier.</span> means…",
       "o": [
-        "I knew the news yesterday.",
-        "I found out the news yesterday.",
-        "I used to know the news."
+        "I knew the truth yesterday.",
+        "I found out the truth yesterday.",
+        "I used to know the truth."
       ],
       "a": 1,
-      "why": "savoir in the passé composé = to find out."
+      "why": "savoir in the passé composé = to find out (the moment you learned it). Ongoing knowing → imparfait: je savais."
     }
   ]
 });
@@ -888,7 +888,7 @@ window.COURSE.modules.push({
           "Are you going to the bank? — Yes, I'm going (there) this afternoon."
         ],
         [
-          "J'habite à Moncton depuis 2021. J'y suis bien.",
+          "J'habite à Moncton depuis 2021. Je m'y plais.",
           "I've lived in Moncton since 2021. I'm happy there."
         ],
         [
@@ -1139,7 +1139,7 @@ window.COURSE.modules.push({
     },
     {
       "title": "Better and best (meilleur, mieux, le plus)",
-      "body": "<ul><li><b>bon → meilleur</b> (describes a noun); <b>bien → mieux</b> (describes a verb). Never <span class='fr'>plus bon</span>.</li><li>Superlative: <span class='fr'>le plus grand, la moins chère, la ville la plus chère du Canada</span> — \"in\" = <b>de</b>.</li></ul>",
+      "body": "<ul><li><b>bon → meilleur</b> (describes a noun); <b>bien → mieux</b> (describes a verb). Never <span class='fr'>plus bon</span>.</li><li>Superlative: <span class='fr'>le plus grand, la moins chère, la ville la plus chère du Canada</span> — \"in\" = <b>de</b>.</li><li><b>mauvais → pire</b> (or plus mauvais): <span class='fr'>La circulation est pire qu'avant.</span></li></ul>",
       "examples": [
         [
           "C'est la meilleure décision de ma vie.",
@@ -1207,11 +1207,11 @@ window.COURSE.modules.push({
         ],
         "pron": true
       },
-      "tip": "Irregular stems as a chant: ser, aur, ir, fer, pourr, voudr, devr, saur, viendr, verr (être, avoir, aller, faire, pouvoir, vouloir, devoir, savoir, venir, voir)."
+      "tip": "Irregular stems as a chant: ser, aur, ir, fer, pourr, voudr, devr, saur, viendr, verr, enverr (être, avoir, aller, faire, pouvoir, vouloir, devoir, savoir, venir, voir, envoyer)."
     },
     {
       "title": "Which future? (je vais partir, je partirai, quand)",
-      "body": "<ul><li><b>Futur proche</b> (<span class='fr'>je vais partir</span>): plans, near future.</li><li><b>Futur simple</b> (<span class='fr'>je partirai</span>): predictions, promises, formal writing.</li><li>After <span class='fr'>quand</span> about the future, use the futur: <span class='fr'>Quand j'aurai ma résidence, je chercherai un emploi.</span></li><li>Never futur after <span class='fr'>si</span>: <span class='fr'>S'il fait beau, nous irons au parc.</span></li></ul>",
+      "body": "<ul><li><b>Futur proche</b> (<span class='fr'>je vais partir</span>): plans, near future.</li><li><b>Futur simple</b> (<span class='fr'>je partirai</span>): predictions, promises, formal writing.</li><li>After <span class='fr'>quand</span> about the future, use the futur: <span class='fr'>Quand j'aurai ma résidence, je chercherai un emploi.</span></li><li>Never futur after <span class='fr'>si</span> meaning “if”: <span class='fr'>S'il fait beau, nous irons au parc.</span> When si means “whether”, the futur is fine: <span class='fr'>Je ne sais pas s'il viendra.</span></li></ul>",
       "examples": [
         [
           "Le bureau sera fermé lundi en raison du congé férié.",
@@ -1222,7 +1222,7 @@ window.COURSE.modules.push({
           "I'll send you the documents as soon as I receive them."
         ]
       ],
-      "tip": "si + present, never si + futur."
+      "tip": "si (if) + present, never si + futur. si (whether) + futur is fine."
     }
   ],
   "mistakes": [
@@ -1254,7 +1254,7 @@ window.COURSE.modules.push({
     [
       "Si j'aurai le temps…",
       "Si j'ai le temps…",
-      "Never futur after si."
+      "Never futur after si meaning “if”."
     ],
     [
       "je allerai, je faisrai",
@@ -1313,7 +1313,7 @@ window.COURSE.modules.push({
       "why": "Article repeated for a post-noun adjective, and \"in\" = de."
     },
     {
-      "q": "Futur of <span class='fr'>je vais</span> (aller):",
+      "q": "Futur simple of <span class='fr'>aller</span> (je…):",
       "o": [
         "j'allerai",
         "j'irai",

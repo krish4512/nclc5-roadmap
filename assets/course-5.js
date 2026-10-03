@@ -56,7 +56,7 @@ window.COURSE.modules.push({
     },
     {
       "title": "Part 1 — Opening (le sujet sur lequel…)",
-      "body": "<p>Learn it word for word. Only the brackets change.</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Alors, le sujet sur lequel je vais m'exprimer aujourd'hui porte sur <b>[le thème]</b>, et plus précisément sur la question de savoir <b>[la question]</b>. C'est un sujet qui concerne tout le monde. Personnellement, je ne crois pas qu'il existe une réponse unique. Donc, j'ai un avis nuancé, et je vais expliquer mon point de vue à travers quelques arguments.</span></div><p>After <span class='fr'>la question de savoir</span>, use <span class='fr'>si</span> for a yes/no question, with normal word order:</p>",
+      "body": "<p>Learn it word for word. Only the brackets change.</p><div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Alors, le sujet sur lequel je vais m'exprimer aujourd'hui porte sur <b>[le thème]</b>, et plus précisément sur la question de savoir <b>[la question]</b>. C'est un sujet qui concerne tout le monde. Personnellement, je ne crois pas qu'il existe une réponse unique. Donc, j'ai un avis nuancé, et je vais expliquer mon point de vue à travers quelques arguments.</span></div><p>After <span class='fr'>la question de savoir</span>, use <span class='fr'>si</span> for a yes/no question; for other questions keep the question word (pourquoi, comment…). Either way, use statement word order:</p>",
       "table": {
         "head": [
           "The examiner asks…",
@@ -68,7 +68,7 @@ window.COURSE.modules.push({
             "si les réseaux sociaux rapprochent les gens"
           ],
           [
-            "Pourquoi certaines personnes ne regardent jamais la télévision ?",
+            "Pourquoi certaines personnes ne regardent-elles jamais la télévision ?",
             "pourquoi certaines personnes ne regardent jamais la télévision"
           ]
         ],
@@ -106,11 +106,11 @@ window.COURSE.modules.push({
     },
     {
       "title": "Part 3 — Argument 2 (ce premier point…)",
-      "body": "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Ce premier point m'amène assez naturellement au second : <b>[argument 2]</b>. Il faut considérer que <b>[explication]</b>. Pour ajouter à cette raison, je dirais que <b>[un détail ou un exemple]</b>.</span></div>"
+      "body": "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>Ce premier point m'amène assez naturellement au second : <b>[argument 2]</b>. Il faut considérer que <b>[explication]</b>. J'ajouterais aussi que <b>[un détail ou un exemple]</b>.</span></div>"
     },
     {
       "title": "Part 4 — Counterpoint (d'un autre côté)",
-      "body": "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>D'un autre côté, certaines personnes pensent que <b>[l'avis contraire]</b>. En revanche, il ne fait aucun doute que <b>[votre réponse]</b>.</span></div><p>Showing the other side, then answering it, is what makes it a B1 argument.</p>"
+      "body": "<div class='tipbox' style='background:var(--teal-soft);margin:10px 0 12px'><span class='fr' style='font-style:normal;color:var(--ink)'>D'un autre côté, certaines personnes pensent que <b>[l'avis contraire]</b>. Cependant, il ne fait aucun doute que <b>[votre réponse]</b>.</span></div><p>Showing the other side, then answering it, is what makes it a B1 argument.</p>"
     },
     {
       "title": "Part 5 — Conclusion (pour conclure)",
@@ -129,11 +129,11 @@ window.COURSE.modules.push({
           "Argument 1"
         ],
         [
-          "Ce premier point m'amène assez naturellement au second : l'environnement. Il faut considérer que la fabrication d'un téléphone demande des métaux rares et beaucoup d'énergie. Pour ajouter à cette raison, je dirais que les vieux téléphones sont rarement recyclés.",
+          "Ce premier point m'amène assez naturellement au second : l'environnement. Il faut considérer que la fabrication d'un téléphone demande des métaux rares et beaucoup d'énergie. J'ajouterais aussi que les vieux téléphones sont rarement recyclés.",
           "Argument 2"
         ],
         [
-          "D'un autre côté, certaines personnes pensent qu'un nouveau téléphone est nécessaire pour leur travail. En revanche, il ne fait aucun doute qu'il y a des impacts négatifs sur notre budget et sur la planète quand on change d'appareil seulement pour suivre la mode.",
+          "D'un autre côté, certaines personnes pensent qu'un nouveau téléphone est nécessaire pour leur travail. Cependant, il ne fait aucun doute qu'il y a des impacts négatifs sur notre budget et sur la planète quand on change d'appareil seulement pour suivre la mode.",
           "Counterpoint"
         ],
         [
@@ -211,7 +211,7 @@ window.COURSE.modules.push({
           {
             "id": "add2",
             "label": "Extra detail",
-            "pre": "Pour ajouter à cette raison, je dirais que",
+            "pre": "J'ajouterais aussi que",
             "ph": "on y trouve souvent un logement ou même un emploi"
           }
         ]
@@ -268,11 +268,11 @@ window.COURSE.modules.push({
       },
       {
         "title": "Bridge + argument 2",
-        "text": "Ce premier point m'amène assez naturellement au second : {arg2}. Il faut considérer que {consider2}. Pour ajouter à cette raison, je dirais que {add2}."
+        "text": "Ce premier point m'amène assez naturellement au second : {arg2}. Il faut considérer que {consider2}. J'ajouterais aussi que {add2}."
       },
       {
         "title": "Counterpoint",
-        "text": "D'un autre côté, certaines personnes pensent que {counter}. En revanche, il ne fait aucun doute qu'il y a des impacts négatifs sur {impact}."
+        "text": "D'un autre côté, certaines personnes pensent que {counter}. Cependant, il ne fait aucun doute qu'il y a des impacts négatifs sur {impact}."
       },
       {
         "title": "Conclusion",
@@ -320,7 +320,7 @@ window.COURSE.modules.push({
     [
       "Qu'en pensez-vous de cette pratique ?",
       "Que pensez-vous de cette pratique ?",
-      "en and de cette pratique say the same thing twice."
+      "In careful French, en and de cette pratique say the same thing twice (casual speech allows it with a pause)."
     ],
     [
       "À la fin, il vaut mieux…",
@@ -369,7 +369,7 @@ window.COURSE.modules.push({
         "On the other hand, some people think that…"
       ],
       [
-        "En revanche, il ne fait aucun doute qu'il y a des impacts négatifs sur…",
+        "Cependant, il ne fait aucun doute qu'il y a des impacts négatifs sur…",
         "However, there's no doubt that there are negative impacts on…"
       ],
       [
@@ -469,10 +469,10 @@ window.COURSE.modules.push({
       "o": [
         "Qu'en pensez-vous de cette pratique ?",
         "Que pensez-vous de cette pratique ?",
-        "Qu'est-ce que vous en pensez de cette pratique ?"
+        "Quoi pensez-vous de cette pratique ?"
       ],
       "a": 1,
-      "why": "en already means \"of it\"; don't combine it with de cette pratique."
+      "why": "In careful French, en already means \"of it\", so don't add de cette pratique as well. (Casual speech allows « Qu'en pensez-vous, de cette pratique ? » with a pause.)"
     },
     {
       "q": "<span class='fr'>Il vaut mieux qu'un équilibre ___ maintenu.</span>",
