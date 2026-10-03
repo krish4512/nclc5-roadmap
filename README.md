@@ -36,11 +36,17 @@ You upload the folder and it works.
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
 | `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
 | `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today and Daily review) |
+| `tools/check-course.js` | Fast course data check (no browser): every per-lesson list in `course-practice.js` and `course-visuals.js` lines up with the lessons, and every title has its “(what you'll learn)” bracket. Exits 1 with the problems listed |
+| `tools/qa/` | Browser QA with Playwright. `tools/qa/run.sh` runs the course check, then `site-qa.js`: every page at 1280 and 390 px in light and dark (JS errors, sideways scroll), links and anchors, the nav, all modules, pictures at 360 px, progress, the check, the menu, the theme toggle and the paywall switch. `SHOTS=1` saves screenshots to `tools/qa/shots/` (git-ignored) |
 | `assets/art/` + `tools/art.py` | The illustrations (one per page, plus guide covers and the landing-page journey). Plain SVG coloured by the art tokens in `site.css`, so they follow light and dark mode; `tools/partials.py` inlines them where a page has `<!-- partial:art NAME -->` |
 | `tools/page-previews.js` | Renders a link-preview image per page into `assets/og/` from its illustration |
 | `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
 | `.claude/skills/brag-slim/` | The [`/brag-slim`](https://github.com/latent-spaces/brag) agent skill (MIT): ask Claude Code "let's /brag about this" to make a ~20-second launch video of the site with music and share copy. Output goes to `brag-output/`, which git ignores |
 | `.claude/skills/claude-automation-recommender/` | The `claude-automation-recommender` skill from Anthropic's [claude-code-setup](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-code-setup) plugin (Apache-2.0): ask Claude Code "what automations should this project use?" for 1–2 suggested hooks, subagents, skills, plugins and MCP servers. Read-only: it only recommends |
+| `CLAUDE.md` | Notes Claude Code reads at the start of every session: layout, course rules, generated files, how to check and ship |
+| `.claude/skills/site-qa/`, `.claude/skills/ship/` | Project skills: `site-qa` runs and reads `tools/qa/run.sh`; `/ship` rebuilds, runs QA, adds a What's new entry, commits, opens and merges the PR (only runs when you type it) |
+| `.claude/agents/` | Two read-only reviewers for Claude Code: `french-reviewer` (French grammar, accents, quiz answers, level) and `ui-reviewer` (accessibility, contrast, tap targets, 360 px, dark mode) |
+| `.mcp.json` | Adds the Playwright MCP server, so Claude Code can open and click through the site; Claude Code asks you to approve it the first time |
 
 ## Before you launch
 
@@ -121,7 +127,7 @@ font, spacing, animations) and, on pages with audio, the French audio speed and 
   When you add or remove a lesson, keep `assets/course-visuals.js` and `assets/course-practice.js`
   (`data`, `quizLesson`, `notes`) in the same order. Modules appear in the order they're pushed, and are numbered automatically.
 
-- **After editing course content**, run `node tools/build-index.js` (Today and Daily review read
+- **After editing course content**, run `node tools/check-course.js` and `node tools/build-index.js` (Today and Daily review read
   the digest it writes) and `node tools/cheatsheets.js`.
 - **Cheat sheets:** they're generated from the course, so after editing a module run
   `node tools/cheatsheets.js` (needs Node and Playwright: `npm i -g playwright`). Each sheet
