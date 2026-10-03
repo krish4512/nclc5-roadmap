@@ -288,9 +288,9 @@ window.COURSE.modules.push({
             "le, je, petit (→ p'tit)"
           ],
           [
-            "o, au, eau",
+            "au, eau, ô, o ending a syllable",
             "<span class='ipa'>[o]</span>",
-            "Rounded \"oh\" with no \"w\" glide",
+            "Rounded \"oh\" with no \"w\" glide. But o before a pronounced consonant is open [ɔ]: porte, bonne, école",
             "beau, chaud, mot"
           ],
           [
@@ -509,8 +509,8 @@ window.COURSE.modules.push({
         "The fish is delicious, the dessert too. (s / ss)"
       ],
       [
-        "Elle arrive à huit heures avec elle.",
-        "She arrives at eight with her. (enchaînement)"
+        "Elle arrive à huit heures avec Hélène.",
+        "She arrives at eight with Hélène. (enchaînement)"
       ],
       [
         "Mardi, il fait vingt degrés à Québec.",
@@ -784,7 +784,7 @@ window.COURSE.modules.push({
             "-ment",
             "le logement, le gouvernement",
             "-té",
-            "la santé, la ville, la liberté"
+            "la santé, la société, la liberté (but l'été, le côté m.)"
           ],
           [
             "-eau",
@@ -812,7 +812,7 @@ window.COURSE.modules.push({
           ]
         ]
       },
-      "tip": "-tion, -té, -ure → feminine. -age, -ment, -eau → usually masculine."
+      "tip": "-tion, -té, -ure → feminine (except l'été, le côté). -age, -ment, -eau → usually masculine."
     },
     {
       "title": "Articles (le, un, du, de)",
@@ -849,7 +849,7 @@ window.COURSE.modules.push({
           ]
         ]
       },
-      "after": "<ul><li>General likes use le/la/les: <span class='fr'>J'aime le café.</span></li><li>An amount uses du/de la: <span class='fr'>Je bois du café.</span></li><li>After a negation or a quantity → <b>de</b>: <span class='fr'>pas de voiture, beaucoup de travail</span></li><li>à + le = <b>au</b>, de + le = <b>du</b>: <span class='fr'>au bureau, le prix du loyer</span></li></ul>",
+      "after": "<ul><li>General likes use le/la/les: <span class='fr'>J'aime le café.</span></li><li>An amount uses du/de la: <span class='fr'>Je bois du café.</span></li><li>After a negation, un/une/des/du/de la → <b>de</b>: <span class='fr'>pas de voiture</span>. le/la/les don't change (<span class='fr'>je n'aime pas le café</span>), and nothing changes after être (<span class='fr'>ce n'est pas un problème</span>).</li><li>After a quantity → <b>de</b>: <span class='fr'>beaucoup de travail</span></li><li>à + le = <b>au</b>, de + le = <b>du</b>: <span class='fr'>au bureau, le prix du loyer</span></li></ul>",
       "examples": [
         [
           "J'aime le thé, mais aujourd'hui je bois du café.",
@@ -1121,7 +1121,7 @@ window.COURSE.modules.push({
         ],
         "pron": true
       },
-      "after": "<p>-ir verbs like <span class='fr'>finir</span> add <b>-iss-</b> in the plural: <span class='fr'>nous finissons</span>.</p>",
+      "after": "<p>-ir verbs like <span class='fr'>finir</span> add <b>-iss-</b> in the plural: <span class='fr'>nous finissons</span>. A few -ir verbs don't: <span class='fr'>sortir, partir, dormir → je sors, nous sortons</span>.</p>",
       "tip": "-er verbs: je, tu, il and ils forms sound the same — only nous (-ons) and vous (-ez) differ."
     },
     {
@@ -1166,8 +1166,8 @@ window.COURSE.modules.push({
           ]
         ]
       },
-      "after": "<p>The change happens only in je, tu, il, ils — never in nous or vous.</p>",
-      "tip": "The four changing forms make a \"boot\" shape in the table."
+      "after": "<p>For the è, double-consonant and y → i verbs, the change happens in je, tu, il, ils — never in nous or vous. For -ger and -cer it's the reverse: the change comes only before -ons (<span class='fr'>nous mangeons, nous commençons</span>).</p>",
+      "tip": "è, double-consonant and y → i verbs: the four changing forms (je, tu, il, ils) make a \"boot\" shape in the table."
     },
     {
       "title": "What the present means (now, habits, depuis)",
@@ -1249,8 +1249,8 @@ window.COURSE.modules.push({
           ],
           [
             "payer le loyer",
-            "to pay for the rent",
-            "no \"pour\""
+            "to pay the rent",
+            "no \"pour\" (payer quelque chose = to pay for something)"
           ],
           [
             "téléphoner à quelqu'un",
@@ -1281,7 +1281,7 @@ window.COURSE.modules.push({
     },
     {
       "title": "Routine and frequency (souvent, toujours, d'habitude)",
-      "body": "<p>Frequency words go right after the verb: <span class='fr'>Je prends souvent le métro.</span></p>",
+      "body": "<p>Short frequency words (souvent, toujours, rarement, parfois) go right after the verb: <span class='fr'>Je prends souvent le métro.</span> Longer ones (d'habitude, tous les jours, le samedi) go at the start or the end.</p>",
       "table": {
         "head": [
           "Frequency",
@@ -1417,12 +1417,12 @@ window.COURSE.modules.push({
       "to take the bus / subway"
     ],
     [
-      "travailler de la maison",
-      "to work from home"
+      "travailler de chez soi, faire du télétravail",
+      "to work from home (Québec also: travailler de la maison)"
     ],
     [
       "faire les courses",
-      "to do the groceries"
+      "to go grocery shopping"
     ],
     [
       "préparer le souper",
@@ -1481,7 +1481,7 @@ window.COURSE.modules.push({
       "why": "The endings -e, -es, -e, -ent are all silent."
     },
     {
-      "q": "<span class='fr'>J'___ un nouveau logement.</span> (chercher, present)",
+      "q": "<span class='fr'>Je ___ un nouveau logement.</span> (chercher, present)",
       "o": [
         "cherche pour",
         "cherche",

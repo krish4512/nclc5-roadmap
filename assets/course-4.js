@@ -126,7 +126,7 @@ window.COURSE.modules.push({
     },
     {
       "title": "If-sentences (si + imparfait → conditional)",
-      "body": "<p>The tense after <span class='fr'>si</span> decides the main verb — and never put the conditional right after si.</p>",
+      "body": "<p>The tense after <span class='fr'>si</span> decides the main verb — and never put the conditional right after si meaning “if”. (si meaning “whether” can take it: <span class='fr'>Je me demande s'il viendrait.</span>)</p>",
       "table": {
         "head": [
           "Type",
@@ -170,7 +170,7 @@ window.COURSE.modules.push({
     [
       "Si j'aurais le temps, je viendrais.",
       "Si j'avais le temps, je viendrais.",
-      "Never the conditional after si."
+      "Never the conditional after si meaning “if”."
     ],
     [
       "Si j'ai plus d'argent, j'achèterais une maison.",
@@ -279,7 +279,7 @@ window.COURSE.modules.push({
   ],
   "quiz": [
     {
-      "q": "<span class='fr'>Si j'___ le choix, je travaillerais de la maison.</span>",
+      "q": "<span class='fr'>Si j'___ le choix, je travaillerais de chez moi.</span>",
       "o": [
         "aurais",
         "avais",
@@ -539,10 +539,10 @@ window.COURSE.modules.push({
       "o": [
         "que",
         "qui",
-        "laquelle"
+        "dont"
       ],
       "a": 1,
-      "why": "After a preposition, people take qui (lequel/laquelle is possible but qui is standard for people)."
+      "why": "After a preposition, people take qui: avec qui. (dont replaces de + noun, and que is a direct object.)"
     }
   ]
 });
@@ -562,7 +562,7 @@ window.COURSE.modules.push({
   "lessons": [
     {
       "title": "Formation (que je parle, que je finisse)",
-      "body": "<p>Take the ils form, drop -ent, add <b>-e, -es, -e, -ions, -iez, -ent</b>.</p>",
+      "body": "<p>Take the ils form, drop -ent, add <b>-e, -es, -e, -ions, -iez, -ent</b>. For nous and vous, use the stem of the present nous form: <span class='fr'>nous prenons → que nous prenions, que vous preniez</span>.</p>",
       "table": {
         "head": [
           "",
@@ -857,10 +857,10 @@ window.COURSE.modules.push({
       "o": [
         "est",
         "soit",
-        "serait"
+        "être"
       ],
       "a": 0,
-      "why": "Affirmative penser → indicative."
+      "why": "Affirmative penser → indicative: est."
     },
     {
       "q": "\"I want to succeed.\"",

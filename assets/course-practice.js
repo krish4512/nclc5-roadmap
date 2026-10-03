@@ -256,7 +256,7 @@ window.NCLC_PRACTICE = {
           "o": [
             "J'ai faim.",
             "Je suis faim.",
-            "Je suis affamé."
+            "Je suis en faim."
           ],
           "why": "Hunger, thirst, heat, cold and age use avoir."
         },
@@ -404,7 +404,7 @@ window.NCLC_PRACTICE = {
           "why": "Short frequency words go right after the verb."
         },
         {
-          "t": "“usually” (one word, starts with d') = ___",
+          "t": "“usually” = ___",
           "a": "d'habitude|d’habitude|généralement",
           "why": "d'habitude or généralement."
         }
@@ -1235,7 +1235,7 @@ window.NCLC_PRACTICE = {
             "aurais",
             "ai"
           ],
-          "why": "si + imparfait → conditionnel. Never the conditional after si."
+          "why": "si + imparfait → conditionnel. Never the conditional after si meaning “if”."
         },
         {
           "c": "S'il fait beau demain, nous ___ à la plage.",
@@ -1349,9 +1349,9 @@ window.NCLC_PRACTICE = {
           "o": [
             "qui",
             "que",
-            "laquelle"
+            "dont"
           ],
-          "why": "After a preposition, people → qui."
+          "why": "After a preposition, people → qui: avec qui."
         },
         {
           "t": "la raison pour ___ je suis venu (raison is feminine)",

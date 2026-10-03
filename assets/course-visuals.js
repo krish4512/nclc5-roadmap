@@ -301,7 +301,7 @@
       { t: "vs", mid: "·", title: "The three si patterns", cols: [
         { h: "Likely", sub: "si + présent → présent / futur", ex: [["Si tu [[as]] le temps, viens me voir."]] },
         { h: "Imagined", sub: "si + imparfait → conditionnel", ex: [["Si j'[[avais]] le temps, je [[ferais]] du bénévolat."]], on: 1 },
-        { h: "Regret", sub: "si + plus-que-parfait → conditionnel passé", ex: [["Si j'[[avais su]], je [[serais venu]]."]] }], note: "Never put the conditional or the futur right after si." },
+        { h: "Regret", sub: "si + plus-que-parfait → conditionnel passé", ex: [["Si j'[[avais su]], je [[serais venu]]."]] }], note: "Never put the conditional or the futur right after si meaning “if”." },
       { t: "vs", title: "Two more uses to recognise", cols: [
         { h: "Future in the past", ex: [["Il m'a dit qu'il [[viendrait]].", "He said he would come."]] },
         { h: "Unconfirmed news", ex: [["L'accident [[aurait fait]] deux blessés.", "Reportedly injured two."]] }] }
@@ -322,7 +322,7 @@
     ],
     /* ------------------------------------------------------------ 15 · subjunctive */
     subjunctive: [
-      { t: "eq", title: "Forming the subjunctive", parts: [["ils parl~~ent~~", "ils form, drop -ent"], "→", ["parl-", "stem"], "+", ["-e · -es · -e · -ions · -iez · -ent", "endings", "h"]], ex: [["que je parl[[e]] · que nous parl[[ions]]"]] },
+      { t: "eq", title: "Forming the subjunctive", parts: [["ils parl~~ent~~", "ils form, drop -ent"], "→", ["parl-", "stem"], "+", ["-e · -es · -e · -ions · -iez · -ent", "endings", "h"]], ex: [["que je parl[[e]] · que nous parl[[ions]]"]], note: "nous and vous use the present nous stem: nous prenons → que nous [[prenions]]." },
       { t: "grid", title: "Irregular forms to know by heart", head: ["", "que je", "que nous"], rows: [["être", "sois", "soyons"], ["avoir", "aie", "ayons"], ["aller", "aille", "allions"], ["faire", "fasse", "fassions"], ["pouvoir", "puisse", "puissions"]] },
       { t: "groups", title: "Four families of triggers", groups: [
         { h: "Necessity", items: ["il faut que", "il est important que"] },
@@ -393,10 +393,10 @@
       { t: "bars", unit: " s", title: "Five parts, about 4 minutes", items: [["Opening", 40], ["Argument 1", 70], ["Bridge + argument 2", 60], ["Counterpoint", 45], ["Conclusion", 30]] },
       { t: "steps", title: "The opening, word for word", items: [["Le sujet… porte sur [[le thème]],", "name the topic"], ["…la question de savoir [[si…]]", "restate the question"], ["C'est un sujet qui concerne tout le monde.", "say why it matters"], ["J'ai un avis nuancé.", "announce your view"]] },
       { t: "steps", title: "Argument 1 and the reset phrases", items: [["La première raison, c'est que…", "your strongest reason"], ["Je m'explique :", "expand"], ["Par exemple,", "a concrete case"], ["C'est le cas de…", "a real person or group"]] },
-      { t: "steps", title: "Argument 2: bridge from the first", items: [["Ce premier point m'amène au second :", "link"], ["Il faut considérer que…", "explain"], ["Pour ajouter à cette raison, je dirais que…", "add a detail"]] },
+      { t: "steps", title: "Argument 2: bridge from the first", items: [["Ce premier point m'amène au second :", "link"], ["Il faut considérer que…", "explain"], ["J'ajouterais aussi que…", "add a detail"]] },
       { t: "vs", mid: "→", title: "Show the other side, then answer it", cols: [
         { h: "Concede", ex: [["D'un autre côté, certaines personnes pensent que…"]] },
-        { h: "Push back", ex: [["En revanche, il ne fait aucun doute que…"]], on: 1 }] },
+        { h: "Push back", ex: [["Cependant, il ne fait aucun doute que…"]], on: 1 }] },
       { t: "steps", title: "Conclude in two sentences", items: [["Pour conclure, si je devais résumer ma pensée…", "your view in one sentence"], ["En fin de compte, il vaut mieux qu'un équilibre soit maintenu entre A et B.", "a balanced last word"]] },
       null
     ]
