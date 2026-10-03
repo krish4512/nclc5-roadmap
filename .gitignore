@@ -2,6 +2,7 @@
 .claude-flow/
 .claude/*
 !.claude/skills/
+!.claude/agents/
 
 # /brag launch-video renders (large files; keep them out of the site)
 brag-output/
@@ -12,3 +13,4 @@ brag-output-*/
 
 # Python
 __pycache__/
+tools/qa/shots/
