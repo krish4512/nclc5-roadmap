@@ -19,7 +19,8 @@ const strip = s => String(s || "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " 
 /* mistakes: [wrong, right, why, module, English for right] */
 const out = { modules: [], vocab: [], mistakes: [], lines: [] };
 M.forEach((m, i) => {
-  out.modules.push({ id: m.id, num: i, level: m.level, title: m.title });
+  /* n / ls / focus feed the brain map on Today (lesson count, lesson titles, short TCF kit) */
+  out.modules.push({ id: m.id, num: i, level: m.level, title: m.title, n: m.lessons.length, ls: m.lessons.map(L => strip(L.title)), focus: !!m.focus, quiz: !!(m.quiz && m.quiz.length) });
   (m.vocab || []).forEach(v => out.vocab.push([strip(v[0]), strip(v[1]), m.id]));
   /* only the French mistakes (the exam modules also list English strategy tips);
      a French "right" version is one that has an English translation */

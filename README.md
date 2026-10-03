@@ -12,7 +12,7 @@ You upload the folder and it works.
 | Page | What it is |
 | --- | --- |
 | `index.html` | Landing page |
-| `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite, and progress backup (export / import) |
+| `today.html` | **Today**: the learner's hub — continue, daily review, the **brain map** (`assets/brain-map.js` / `.css`: every module as a dot in a brain, grey → yellow → green as you learn it, red when it needs another look; tap for lessons and the next step), word & mistake of the day, streak, exam countdown, badges, share card, invite, and progress backup (export / import) |
 | `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each in four steps — **Lessons** (short: cheat code, a few examples, a quick tip, and the common mistakes that belong to each lesson; topic titles carry a bracket of what you'll learn, e.g. “The present tense (-er, -ir, -re verbs, depuis)”), **Practice** (quick questions per lesson), **Check** (quiz + writing task) and **Done**; plus short TCF speaking task 2 and task 3 kits (lessons and a check only). Each module shows an honest time estimate worked out from its content |
 | `assets/course-visuals.js` | A "cheat code" picture at the top of each lesson (formula, conjugation grid, side-by-side, timeline…), built from a short spec per lesson — edit the `data` object to change one |
 | `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question (`quizLesson`), the lesson each common mistake and pronunciation point sits in (`notes`), and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
@@ -35,7 +35,7 @@ You upload the folder and it works.
 | `assets/site.css`, `assets/site.js`, `assets/speech.js` | Shared design system, header and footer behaviour, and French text-to-speech |
 | `tools/partials.py` | Keeps the shared header and footer identical on every page (optional; see below) |
 | `tools/cheatsheets.js` | Rebuilds the cheat-sheet PDFs and previews from the course content |
-| `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today and Daily review) |
+| `tools/build-index.js` | Rebuilds `assets/course-index.js` (the small course digest used by Today, the brain map and Daily review) |
 | `tools/check-course.js` | Fast course data check (no browser): every per-lesson list in `course-practice.js` and `course-visuals.js` lines up with the lessons, and every title has its “(what you'll learn)” bracket. Exits 1 with the problems listed |
 | `tools/qa/` | Browser QA with Playwright. `tools/qa/run.sh` runs the course check, then `site-qa.js`: every page at 1280 and 390 px in light and dark (JS errors, sideways scroll), links and anchors, the nav, all modules, pictures at 360 px, progress, the check, the menu, the theme toggle and the paywall switch. `SHOTS=1` saves screenshots to `tools/qa/shots/` (git-ignored) |
 | `assets/art/` + `tools/art.py` | The illustrations (one per page, plus guide covers and the landing-page journey). Plain SVG coloured by the art tokens in `site.css`, so they follow light and dark mode; `tools/partials.py` inlines them where a page has `<!-- partial:art NAME -->` |
