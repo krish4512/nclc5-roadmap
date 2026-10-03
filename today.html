@@ -232,7 +232,7 @@
       "<p class='small' style='margin:0'>" + (st.today ? "Done for today ✓" : st.current ? "Study today to keep it alive." : "Any lesson or review starts it.") + "</p></section>";
 
     /* 3b. brain map: every module coloured by how well you know it */
-    html += "<section class='tile span6 brain'><h2>🧠 Your French brain</h2><p class='small' style='margin:-6px 0 14px'>Each dot is a module. It turns yellow while you learn it and green once you pass its check. Red means it needs another look. Tap a dot to see its lessons.</p><div id='brain'></div></section>";
+    html += "<section class='tile span6 brain'><h2>🧠 Your French brain</h2><p class='small' style='margin:-6px 0 14px'>Every topic in the course. It turns yellow while you learn it and green once you pass its check. Red means it needs another look. Tap a topic to see what's in it.</p><div id='brain'></div></section>";
 
     /* 4. word of the day */
     var w = C.vocab[dayIndex % C.vocab.length];
