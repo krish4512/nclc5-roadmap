@@ -40,6 +40,7 @@ You upload the folder and it works.
 | `tools/page-previews.js` | Renders a link-preview image per page into `assets/og/` from its illustration |
 | `tools/brand-assets.js` | Renders the home-screen icons (`assets/icons/`) and the link-preview image (`assets/og-image.jpg`) |
 | `.claude/skills/brag-slim/` | The [`/brag-slim`](https://github.com/latent-spaces/brag) agent skill (MIT): ask Claude Code "let's /brag about this" to make a ~20-second launch video of the site with music and share copy. Output goes to `brag-output/`, which git ignores |
+| `.claude/skills/claude-automation-recommender/` | The `claude-automation-recommender` skill from Anthropic's [claude-code-setup](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-code-setup) plugin (Apache-2.0): ask Claude Code "what automations should this project use?" for 1–2 suggested hooks, subagents, skills, plugins and MCP servers. Read-only: it only recommends |
 
 ## Before you launch
 
