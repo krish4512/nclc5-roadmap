@@ -171,8 +171,11 @@ function linkProblems(from, hrefs) {
     if (!/Learning/.test(await bp.textContent("#bm-panel"))) bm.push("panel does not follow the tapped module");
     if ((await bp.evaluate(() => document.documentElement.scrollWidth)) > 390) bm.push("sideways scroll at 390");
     await shot(bp, "brain-390");
+    await bp.goto(U + "learn.html"); await bp.waitForTimeout(300);
+    const ovStates = await bp.$$eval(".brain-sec .bm-node", n => n.map(x => x.className.replace("bm-node ", "")));
+    if (ovStates.length !== mods.length || ovStates[0] !== "s-good") bm.push("course overview map: " + ovStates.length + " topics, first " + ovStates[0]);
     await bp.evaluate(() => localStorage.clear()); await bp.close();
-    check("Brain map shows every module coloured by progress", bm);
+    check("Brain map on Today and the course overview shows every topic coloured by progress", bm);
 
     /* 9. paywall switch in config.js */
     const pw = [];
