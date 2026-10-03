@@ -13,7 +13,7 @@ You upload the folder and it works.
 | --- | --- |
 | `index.html` | Landing page |
 | `today.html` | **Today**: the learner's hub — continue, daily review, word & mistake of the day, streak, exam countdown, badges, share card, invite, and progress backup (export / import) |
-| `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each in four steps — **Lessons** (cheat code, examples, and the pronunciation points and common mistakes that belong to each lesson), **Practice** (quick questions per lesson), **Check** (quiz + writing task) and **Done**; plus short TCF speaking task 2 and task 3 kits (lessons and a check only). Each module shows an honest time estimate worked out from its content |
+| `learn.html` + `assets/course-*.js` | The French course: 19 research-based modules from pronunciation to B1, each in four steps — **Lessons** (short: cheat code, a few examples, a quick tip, and the common mistakes that belong to each lesson; topic titles carry a bracket of what you'll learn, e.g. “The present tense (-er, -ir, -re verbs, depuis)”), **Practice** (quick questions per lesson), **Check** (quiz + writing task) and **Done**; plus short TCF speaking task 2 and task 3 kits (lessons and a check only). Each module shows an honest time estimate worked out from its content |
 | `assets/course-visuals.js` | A "cheat code" picture at the top of each lesson (formula, conjugation grid, side-by-side, timeline…), built from a short spec per lesson — edit the `data` object to change one |
 | `assets/course-practice.js` | "Try it" questions for every lesson (choose or type), the lesson behind each module-check question (`quizLesson`), the lesson each common mistake and pronunciation point sits in (`notes`), and the pool for the A1 / A2 / B1 checkpoints (`learn.html#checkpoint-A1`). Wrong answers are saved by `NCLC.miss()` and come back in Daily review |
 | `assets/course-visuals.css` | Styles for the cheat-code pictures, shared by `learn.html` and the PDF cheat sheets |
@@ -115,7 +115,7 @@ font, spacing, animations) and, on pages with audio, the French audio speed and 
 ## Editing content
 
 - **Course modules:** edit `assets/course-1.js` … `course-4.js`. Each module is one object
-  (`title`, `goals`, `lessons`, `sounds`, `mistakes`, `speak`, `vocab`, `quiz`, `sources`;
+  (`title` — end it with a short “(what you'll learn)” bracket — `goals`, `lessons`, `mistakes`, `speak` (key phrases for Review and the cheat sheet), `vocab`, `quiz`, `sources`;
   `why` is kept for reference but not shown). A module's `vocab` goes into Daily review automatically.
   When you add or remove a lesson, keep `assets/course-visuals.js` and `assets/course-practice.js`
   (`data`, `quizLesson`, `notes`) in the same order. Modules appear in the order they're pushed, and are numbered automatically.

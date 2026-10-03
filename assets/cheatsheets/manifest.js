@@ -4,147 +4,147 @@ window.CHEATSHEETS = [
   "id": "method",
   "num": 0,
   "level": "Start",
-  "title": "How to learn French (what the research says)",
-  "subtitle": "The study habits that actually move you from beginner to B1 — and the popular ones that don't."
+  "title": "How to learn French fast (memory tips)",
+  "subtitle": "Four research-backed habits that make grammar and words stick."
  },
  {
   "id": "sounds",
   "num": 1,
   "level": "Start",
-  "title": "The sounds of French",
-  "subtitle": "Vowels English doesn't have, silent letters, linking, rhythm — and what's different in Canadian French."
+  "title": "French pronunciation (vowels, silent letters, liaison)",
+  "subtitle": "How written French turns into sound — the rules that let you read any word."
  },
  {
   "id": "basics",
   "num": 2,
   "level": "A1",
-  "title": "Être, avoir, nouns and articles",
-  "subtitle": "The two verbs every sentence leans on, gender, and the articles that come with every noun."
+  "title": "Être, avoir and articles (je suis, j'ai, le, un, du)",
+  "subtitle": "The two verbs every sentence needs, noun gender, and the little words before nouns."
  },
  {
   "id": "present",
   "num": 3,
   "level": "A1",
-  "title": "The present tense, properly",
-  "subtitle": "Regular patterns, the spelling changes nobody warns you about, and three meanings English splits apart."
+  "title": "The present tense (-er, -ir, -re verbs, depuis)",
+  "subtitle": "Regular verbs, spelling changes, and the three things the present means."
  },
  {
   "id": "questions",
   "num": 4,
   "level": "A1",
-  "title": "Negation and asking questions",
-  "subtitle": "Say no in six ways, and ask questions in the three registers French speakers actually use."
+  "title": "Negation and questions (ne… pas, est-ce que, où, quel)",
+  "subtitle": "Say no, and ask any question politely."
  },
  {
   "id": "describe",
   "num": 5,
   "level": "A1",
-  "title": "Describing people, places and things",
-  "subtitle": "Adjective agreement and position, possessives, demonstratives — the words that make descriptions precise."
+  "title": "Describing things (adjectives, mon/ma, ce/cette)",
+  "subtitle": "Make adjectives agree, place them right, and say whose and which."
  },
  {
   "id": "numbers",
   "num": 6,
   "level": "A1",
-  "title": "Numbers, prices, dates and time",
-  "subtitle": "The details listening questions test most — and the part of French counting that trips everyone up."
+  "title": "Numbers, prices, dates and time (70–99, $, heures)",
+  "subtitle": "Count, read prices, write dates and tell the time the Canadian way."
  },
  {
   "id": "irregulars",
   "num": 7,
   "level": "A1",
-  "title": "Key irregular verbs, near future and recent past",
-  "subtitle": "Aller, faire, venir, prendre, pouvoir, vouloir, devoir, savoir, connaître — and two shortcuts to talk about time."
+  "title": "Key irregular verbs (aller, faire, pouvoir, savoir)",
+  "subtitle": "The irregular verbs you use every day, plus the near future and recent past."
  },
  {
   "id": "reflexive",
   "num": 8,
   "level": "A2",
-  "title": "Reflexive verbs, daily life and giving instructions",
-  "subtitle": "Se lever, s'habiller, s'occuper de… plus the imperative for directions, advice and instructions."
+  "title": "Reflexive verbs and commands (se lever, prenez !)",
+  "subtitle": "Daily-routine verbs, and how to give instructions."
  },
  {
   "id": "passe-compose",
   "num": 9,
   "level": "A2",
-  "title": "The passé composé: talking about what happened",
-  "subtitle": "Avoir or être, irregular past participles, agreement, and where negatives and pronouns go."
+  "title": "The passé composé (j'ai fini, je suis allé)",
+  "subtitle": "Talk about what happened: avoir or être, participles and word order."
  },
  {
   "id": "imparfait",
   "num": 10,
   "level": "A2",
-  "title": "The imparfait, and choosing between the two pasts",
-  "subtitle": "Background vs event, habit vs single action — the distinction that defines a B1 narrative."
+  "title": "The imparfait vs passé composé (j'étais, il pleuvait)",
+  "subtitle": "Background vs event — choosing the right past."
  },
  {
   "id": "pronouns",
   "num": 11,
   "level": "A2",
-  "title": "Object pronouns, y and en",
-  "subtitle": "Stop repeating nouns: le, la, lui, leur, y and en, and the order they go in."
+  "title": "Object pronouns (le, la, lui, leur, y, en)",
+  "subtitle": "Stop repeating nouns."
  },
  {
   "id": "compare-future",
   "num": 12,
   "level": "A2",
-  "title": "Comparing, and the futur simple",
-  "subtitle": "More than, less than, the best — and a future tense for predictions, promises and plans."
+  "title": "Comparing and the future (plus… que, meilleur, je ferai)",
+  "subtitle": "More than, the best, and a future tense."
  },
  {
   "id": "conditional",
   "num": 13,
   "level": "B1",
-  "title": "The conditional: politeness, advice and hypotheses",
-  "subtitle": "Je voudrais, tu devrais, si j'avais… — the mood of requests, suggestions and imagined situations."
+  "title": "The conditional (je voudrais, tu devrais, si j'avais)",
+  "subtitle": "Polite requests, advice and imagined situations."
  },
  {
   "id": "relatives",
   "num": 14,
   "level": "B1",
-  "title": "Relative pronouns: building longer sentences",
-  "subtitle": "Qui, que, où, dont, ce qui, ce que — join ideas the way B1 writers do."
+  "title": "Relative pronouns (qui, que, où, dont, ce que)",
+  "subtitle": "Join ideas into longer sentences."
  },
  {
   "id": "subjunctive",
   "num": 15,
   "level": "B1",
-  "title": "The subjunctive: necessity, wishes, feelings and doubt",
-  "subtitle": "Il faut que, je veux que, je suis content que, bien que — the triggers you actually need at B1."
+  "title": "The subjunctive (il faut que, je veux que)",
+  "subtitle": "The triggers you actually need at B1."
  },
  {
   "id": "argue",
   "num": 16,
   "level": "B1",
-  "title": "Connectors, arguments and register",
-  "subtitle": "Structure an opinion, defend it, concede a point, and switch between formal and informal French."
+  "title": "Connectors and opinions (cependant, donc, à mon avis)",
+  "subtitle": "Structure an opinion, concede a point, choose the right register."
  },
  {
   "id": "reported",
   "num": 17,
   "level": "B1",
-  "title": "The plus-que-parfait and reported speech",
-  "subtitle": "Talk about what had already happened, and report what someone said, asked or told you."
+  "title": "Reported speech (il a dit que, plus-que-parfait)",
+  "subtitle": "Say what had happened, and report what someone said or asked."
  },
  {
   "id": "exam",
   "num": 18,
   "level": "Exam",
-  "title": "Exam performance: TCF Canada and TEF Canada",
-  "subtitle": "Task-by-task strategy, what examiners score, and a four-week plan for the final stretch."
+  "title": "Exam strategy (TCF & TEF, section by section)",
+  "subtitle": "What examiners score, and how to manage each section."
  },
  {
   "id": "tcf-t2",
   "num": 19,
   "level": "Exam",
-  "title": "TCF speaking task 2: asking questions like a pro",
-  "subtitle": "A ready-made kit for the interaction task: openings, a 10-question sequence, question patterns, transitions, reactions and closings."
+  "title": "TCF speaking task 2 (10 ready-made questions)",
+  "subtitle": "Openings, a 10-question list, question patterns and closings for the interaction task."
  },
  {
   "id": "tcf-t3",
   "num": 20,
   "level": "Exam",
-  "title": "TCF speaking task 3: your answer template",
-  "subtitle": "A memorised five-part structure — opening, argument, bridge, counterpoint, conclusion — that you adapt to any opinion question."
+  "title": "TCF speaking task 3 (5-part opinion template)",
+  "subtitle": "A memorised five-part structure you adapt to any opinion question."
  }
 ];
