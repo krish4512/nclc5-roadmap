@@ -157,6 +157,23 @@ function linkProblems(from, hrefs) {
     await mob.close();
     check("Mobile menu opens and the Aa panel switches to dark", ui);
 
+    /* 8b. brain map on Today reflects progress */
+    const bm = [];
+    const bp = await b.newPage({ viewport: { width: 390, height: 844 } });
+    bp.on("pageerror", e => bm.push("JS: " + e.message));
+    await bp.goto(U + "today.html");
+    await bp.evaluate(() => { localStorage.setItem("nclc5-course", JSON.stringify({ method: { best: 90 }, sounds: { tried: { 0: 1 } }, basics: { best: 40 } })); localStorage.removeItem("nclc5-missed"); });
+    await bp.reload(); await bp.waitForTimeout(300);
+    const states = await bp.$$eval(".bm-node", n => n.map(x => x.className.replace("bm-node ", "")));
+    if (states.length !== mods.length) bm.push("shows " + states.length + " of " + mods.length + " modules");
+    if (states.slice(0, 4).join(",") !== "s-good,s-learning,s-weak,s-new") bm.push("states " + states.slice(0, 4).join(","));
+    await bp.click("[data-bm='1']");
+    if (!/Learning/.test(await bp.textContent("#bm-panel"))) bm.push("panel does not follow the tapped module");
+    if ((await bp.evaluate(() => document.documentElement.scrollWidth)) > 390) bm.push("sideways scroll at 390");
+    await shot(bp, "brain-390");
+    await bp.evaluate(() => localStorage.clear()); await bp.close();
+    check("Brain map shows every module coloured by progress", bm);
+
     /* 9. paywall switch in config.js */
     const pw = [];
     const pp = await b.newPage();

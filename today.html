@@ -34,6 +34,8 @@
 <script src="assets/speech.js"></script>
 <script src="assets/course-index.js"></script>
 <script src="assets/srs.js"></script>
+<script src="assets/brain-map.js"></script>
+<link rel="stylesheet" href="assets/brain-map.css">
 <style>
   .td { max-width: 1040px; margin: 0 auto; padding: 40px 24px 72px; }
   @media (max-width: 560px) { .td { padding: 26px 16px 56px; } }
@@ -219,7 +221,7 @@
 
     /* 2. daily review */
     var q = S.queue(), n = q.all.length;
-    html += "<section class='tile rev span2'><h2>🧠 Daily review</h2><div class='num'>" + n + "</div>" +
+    html += "<section class='tile rev span2'><h2>🔁 Daily review</h2><div class='num'>" + n + "</div>" +
       "<p>" + (n ? "card" + (n === 1 ? "" : "s") + " to review today · about " + Math.max(1, Math.round(n * 0.25)) + " min" : "Nothing due — you're all caught up.") + "</p>" +
       "<a class='btn " + (n ? "btn-primary" : "") + " btn-sm' href='review.html'>" + (n ? "Start review" : "Open review") + "</a></section>";
 
@@ -228,6 +230,9 @@
     html += "<section class='tile stk span2'><h2>🔥 Streak</h2><div class='top'><b>" + st.current + "</b><span class='small'>day" + (st.current === 1 ? "" : "s") + " in a row · best " + st.best + "</span></div>" +
       "<ol class='wk' aria-label='Last 7 days'>" + st.week.map(function (d) { return "<li class='" + (d.done ? "done" : "") + (d.today ? " today" : "") + "'><i></i><span>" + d.label + "</span></li>"; }).join("") + "</ol>" +
       "<p class='small' style='margin:0'>" + (st.today ? "Done for today ✓" : st.current ? "Study today to keep it alive." : "Any lesson or review starts it.") + "</p></section>";
+
+    /* 3b. brain map: every module coloured by how well you know it */
+    html += "<section class='tile span6 brain'><h2>🧠 Your French brain</h2><p class='small' style='margin:-6px 0 14px'>Each dot is a module. It turns yellow while you learn it and green once you pass its check. Red means it needs another look. Tap a dot to see its lessons.</p><div id='brain'></div></section>";
 
     /* 4. word of the day */
     var w = C.vocab[dayIndex % C.vocab.length];
@@ -278,6 +283,7 @@
       "<input type='file' id='import-file' accept='application/json,.json' aria-label='Choose a progress file to import' hidden><span class='small' id='data-msg' role='status'></span></div></section>";
 
     document.getElementById("grid").innerHTML = html;
+    if (window.NCLC_BRAIN) NCLC_BRAIN.render(document.getElementById("brain"));
     wireBackup();
     if (location.hash === "#backup") document.getElementById("backup").scrollIntoView();
     var base = location.href.replace(/[#?].*$/, "").replace(/[^/]*$/, "");
