@@ -12,6 +12,7 @@
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Prêt">
 <link rel="manifest" href="site.webmanifest">
+<link rel="canonical" href="https://krish4512.github.io/nclc5-roadmap/today.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Prêt Français">
 <meta property="og:title" content="Today · Prêt Français">
@@ -243,7 +244,7 @@
     var m = C.mistakes[(dayIndex * 7) % C.mistakes.length];
     html += "<section class='tile wod mod span2'><h2>🚫 Mistake of the day</h2><div class='w' lang='fr'>✗ " + esc(m[0]) + "</div>" +
       "<div class='r' lang='fr'>" + sayBtn(m[1]) + "<span>✓ " + esc(m[1]) + "</span></div><p class='en' style='margin:0'>" + esc(m[4]) + "</p><p class='why'>" + esc(m[2]) + "</p>" +
-      "<a class='from small' href='learn.html#" + esc(m[3]) + "/mistakes'>From Module " + MOD[m[3]].num + " →</a></section>";
+      "<a class='from small' href='learn.html#" + esc(m[3]) + (m[5] != null ? "/l" + m[5] + "'>See the lesson: Module " + MOD[m[3]].num + "." + (m[5] + 1) : "'>From Module " + MOD[m[3]].num) + " →</a></section>";
 
     /* 6. exam countdown */
     var ed = null; try { ed = localStorage.getItem(EXAM_KEY); } catch (e) {}

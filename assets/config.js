@@ -10,7 +10,7 @@ window.SITE = {
   brand: "Prêt Français",
 
   /* Your live domain, no trailing slash. Used in legal pages. */
-  url: "https://www.example.com",
+  url: "https://krish4512.github.io/nclc5-roadmap",
 
   /* Where customers write to you. Shown on Contact, Privacy and Terms. */
   email: "support@example.com",

@@ -12,11 +12,12 @@ const ROOT = path.resolve(__dirname, "..");
 global.window = {};
 for (const f of ["1", "2", "3", "4", "t2", "5"]) require(path.join(ROOT, "assets", "course-" + f + ".js"));
 require(path.join(ROOT, "assets", "course-en.js"));
-const M = window.COURSE.modules, EN = window.COURSE_EN;
+require(path.join(ROOT, "assets", "course-practice.js"));
+const M = window.COURSE.modules, EN = window.COURSE_EN, NOTES = window.NCLC_PRACTICE.notes || {};
 
 const strip = s => String(s || "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
-/* mistakes: [wrong, right, why, module, English for right] */
+/* mistakes: [wrong, right, why, module, English for right, lesson index or null] */
 const out = { modules: [], vocab: [], mistakes: [], lines: [] };
 M.forEach((m, i) => {
   /* n / ls / focus feed the brain map on Today (lesson count, lesson titles, short TCF kit) */
@@ -24,9 +25,9 @@ M.forEach((m, i) => {
   (m.vocab || []).forEach(v => out.vocab.push([strip(v[0]), strip(v[1]), m.id]));
   /* only the French mistakes (the exam modules also list English strategy tips);
      a French "right" version is one that has an English translation */
-  (m.mistakes || []).forEach(x => {
+  (m.mistakes || []).forEach((x, k) => {
     const right = strip(x[1]), en = EN.scoped[m.id + "|" + right] || EN.map[right];
-    if (en && !/^✗/.test(en)) out.mistakes.push([strip(x[0]), right, strip(x[2]), m.id, en]);
+    if (en && !/^✗/.test(en)) out.mistakes.push([strip(x[0]), right, strip(x[2]), m.id, en, NOTES[m.id] ? NOTES[m.id].m[k] : null]);
   });
   if (m.speak) m.speak.lines.forEach(l => out.lines.push([strip(l[0]), strip(l[1]), m.id]));
 });
