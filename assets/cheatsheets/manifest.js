@@ -146,5 +146,12 @@ window.CHEATSHEETS = [
   "level": "Exam",
   "title": "TCF speaking task 3 (5-part opinion template)",
   "subtitle": "A memorised five-part structure you adapt to any opinion question."
+ },
+ {
+  "id": "themes",
+  "num": 21,
+  "level": "Exam",
+  "title": "TCF task 3 themes (key words for 8 common topics)",
+  "subtitle": "Social media, work, environment, education, city life, health, technology and society: the words examiners expect."
  }
 ];

@@ -106,7 +106,7 @@ def maple(x, y, size, fill='fill="#e0554b"'):
 rows = [("done", "The sounds of French", "A1"), ("done", "The present tense", "A1"),
         ("now", "Passé composé", "A2"), ("lock", "The subjunctive", "B1")]
 body = card(52, 46, 304, 268)
-body += t(78, 86, "Your path to B1", 19, 800) + t(78, 108, "21 modules, in the right order", 13, 600, "t-mute")
+body += t(78, 86, "Your path to B1", 19, 800) + t(78, 108, "22 modules, in the right order", 13, 600, "t-mute")
 for i, (st, title, lv) in enumerate(rows):
     y0 = 128 + i * 44
     if st == "now":

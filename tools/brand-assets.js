@@ -66,7 +66,7 @@ p{position:absolute;left:72px;top:384px;margin:0;width:560px;font-size:28px;line
 <div class="brand"><span class="mark">${MARK}</span><span class="wm"><b>Prêt</b> <span>Français</span></span></div>
 <h1>Your French, <span>exam-ready.</span></h1>
 <p>A free, research-based French course for NCLC 5 on the TCF Canada and TEF Canada.</p>
-<div class="chips"><span>21 modules</span><span>Daily review</span><span>Mock exams</span></div>
+<div class="chips"><span>22 modules</span><span>Daily review</span><span>Mock exams</span></div>
 </body></html>`;
 
 (async () => {
