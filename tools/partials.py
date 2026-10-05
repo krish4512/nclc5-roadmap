@@ -177,7 +177,8 @@ def social(text, name):
     stem = name[:-5] if name.endswith(".html") else name
     own = ROOT / "assets" / "og" / (stem + ".jpg")   # made by tools/page-previews.js
     image = SITE_URL + ("/assets/og/" + stem + ".jpg" if own.exists() else "/assets/og-image.jpg")
-    return "\n".join([
+    canon = [] if name == "404.html" else [f'<link rel="canonical" href="{url}">']
+    return "\n".join(canon + [
         '<meta property="og:type" content="website">',
         '<meta property="og:site_name" content="Prêt Français">',
         f'<meta property="og:title" content="{title}">',
