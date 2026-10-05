@@ -18,7 +18,7 @@ catch (e) { ({ chromium } = require(path.join(execSync("npm root -g").toString()
 
 /* page → [art, eyebrow, title, line] */
 const PAGES = {
-  "learn": ["learn", "The course", "From first sounds to NCLC 5", "21 research-based modules, A1 to B1."],
+  "learn": ["learn", "The course", "From first sounds to NCLC 5", "22 research-based modules, A1 to B1."],
   "start": ["start", "Placement check", "Where should you start?", "12 questions · 2 minutes · free."],
   "review": ["review", "Review", "Daily review", "Spaced repetition: see each card just before you forget it."],
   "exam": ["exam", "Exam", "TCF & TEF mock exam", "All four skills, timed, with an estimated NCLC."],
@@ -29,7 +29,7 @@ const PAGES = {
   "guide-tcf-task-3": ["cover-task3", "Free guide", "TCF speaking Task 3", "A five-part template and a model answer."],
   "guide-how-long-b1": ["cover-b1", "Free guide", "How long to reach B1?", "Realistic timelines at 1 or 2 hours a day."],
   "whats-new": ["whats-new", "Updates", "What's new", "New features, newest first."],
-  "certificate": ["certificate", "Course complete", "Your certificate", "Finish all 21 modules to unlock it."],
+  "certificate": ["certificate", "Course complete", "Your certificate", "Finish all 22 modules to unlock it."],
   "contact": ["contact", "Help", "Contact & FAQ", "A real person replies within two business days."]
 };
 

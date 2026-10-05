@@ -546,7 +546,7 @@
       ["a1", "🧱", "A1 complete", "Finished every A1 module", lvl("A1")],
       ["a2", "🧭", "A2 complete", "Finished every A2 module", lvl("A2")],
       ["b1", "🎯", "B1 complete", "Finished every B1 module", lvl("B1")],
-      ["course", "🎓", "Course complete", "All 21 modules done", nDone >= 21],
+      ["course", "🎓", "Course complete", "All 22 modules done", nDone >= 22],
       ["s3", "🔥", "3-day streak", "Studied 3 days in a row", st.best >= 3],
       ["s7", "⚡", "7-day streak", "Studied a whole week in a row", st.best >= 7],
       ["s30", "🏆", "30-day streak", "A month without missing a day", st.best >= 30],

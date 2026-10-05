@@ -28,7 +28,7 @@
     imparfait: "Imparfait", pronouns: "Object pronouns", "compare-future": "Comparing & future",
     conditional: "Conditional", relatives: "qui, que, où, dont", subjunctive: "Subjunctive",
     argue: "Connectors & opinions", reported: "Reported speech", exam: "Exam strategy",
-    "tcf-t2": "TCF speaking task 2", "tcf-t3": "TCF speaking task 3"
+    "tcf-t2": "TCF speaking task 2", "tcf-t3": "TCF speaking task 3", themes: "Task 3 themes"
   };
 
   function read(k, f) { try { return JSON.parse(localStorage.getItem(k) || "null") || f; } catch (e) { return f; } }

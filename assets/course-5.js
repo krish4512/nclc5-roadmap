@@ -510,3 +510,1096 @@ window.COURSE.modules.push({
     ]
   ]
 });
+
+window.COURSE.modules.push({
+  "id": "themes",
+  "level": "Exam",
+  "focus": true,
+  "title": "TCF task 3 themes (key words for 8 common topics)",
+  "subtitle": "Social media, work, environment, education, city life, health, technology and society: the words examiners expect.",
+  "goals": [
+    "Know 7 key words for each of the 8 most common task 3 topics",
+    "Put two theme words into one clear opinion sentence",
+    "Recognise Canadian words examiners like: nouvel arrivant, médecin de famille, garderie"
+  ],
+  "lessons": [
+    {
+      "title": "Social media (les réseaux sociaux)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "l'abonné, l'abonnée",
+            "follower"
+          ],
+          [
+            "la vie privée",
+            "privacy"
+          ],
+          [
+            "la désinformation",
+            "misinformation"
+          ],
+          [
+            "l'influenceur, l'influenceuse",
+            "influencer"
+          ],
+          [
+            "le harcèlement en ligne",
+            "online bullying, harassment"
+          ],
+          [
+            "la dépendance aux écrans",
+            "screen addiction"
+          ],
+          [
+            "partager",
+            "to share"
+          ],
+          [
+            "publier",
+            "to post"
+          ],
+          [
+            "une fausse nouvelle",
+            "a piece of fake news"
+          ],
+          [
+            "les données personnelles",
+            "personal data"
+          ],
+          [
+            "un algorithme",
+            "an algorithm"
+          ],
+          [
+            "rester en contact",
+            "to stay in touch"
+          ],
+          [
+            "la cyberintimidation",
+            "cyberbullying (the usual word in Canada)"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Sur les réseaux sociaux, il faut protéger sa vie privée et vérifier une information avant de la partager.",
+          "On social media, you have to protect your privacy and check information before sharing it."
+        ]
+      ],
+      "tip": "un abonné comes from s'abonner (to subscribe): someone who subscribed to your account. The subscription itself is un abonnement."
+    },
+    {
+      "title": "Work and remote work (le travail, le télétravail)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "le télétravail",
+            "remote work"
+          ],
+          [
+            "l'équilibre travail-vie personnelle",
+            "work-life balance"
+          ],
+          [
+            "l'épuisement professionnel",
+            "burnout"
+          ],
+          [
+            "la productivité",
+            "productivity"
+          ],
+          [
+            "les horaires flexibles",
+            "flexible hours"
+          ],
+          [
+            "le salaire",
+            "salary"
+          ],
+          [
+            "la reconversion professionnelle",
+            "career change"
+          ],
+          [
+            "un emploi",
+            "a job"
+          ],
+          [
+            "le chômage",
+            "unemployment"
+          ],
+          [
+            "le trajet",
+            "the commute"
+          ],
+          [
+            "un employeur, une employeuse",
+            "an employer"
+          ],
+          [
+            "les collègues",
+            "colleagues"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Le télétravail réduit le temps de trajet et améliore l'équilibre entre le travail et la vie personnelle.",
+          "Remote work cuts commuting time and improves work-life balance."
+        ]
+      ],
+      "tip": "In Québec you'll often hear la conciliation travail-famille for work-life balance. It's a great phrase to drop in."
+    },
+    {
+      "title": "The environment (l'environnement)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "le réchauffement climatique",
+            "global warming"
+          ],
+          [
+            "la pollution",
+            "pollution"
+          ],
+          [
+            "le recyclage",
+            "recycling"
+          ],
+          [
+            "le gaspillage",
+            "waste, wasting"
+          ],
+          [
+            "l'empreinte carbone",
+            "carbon footprint"
+          ],
+          [
+            "les énergies renouvelables",
+            "renewable energy"
+          ],
+          [
+            "durable",
+            "sustainable"
+          ],
+          [
+            "les déchets",
+            "waste, garbage"
+          ],
+          [
+            "les gaz à effet de serre",
+            "greenhouse gases"
+          ],
+          [
+            "la sécheresse",
+            "drought"
+          ],
+          [
+            "protéger la planète",
+            "to protect the planet"
+          ],
+          [
+            "réduire",
+            "to reduce"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Pour réduire notre empreinte carbone, il faut éviter le gaspillage et utiliser des énergies renouvelables.",
+          "To reduce our carbon footprint, we must avoid waste and use renewable energy."
+        ]
+      ],
+      "tip": "le gaspillage is the act of wasting (le gaspillage alimentaire = food waste). les déchets are the garbage itself."
+    },
+    {
+      "title": "Education (l'éducation)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "le diplôme",
+            "degree, diploma"
+          ],
+          [
+            "l'enseignant, l'enseignante",
+            "teacher"
+          ],
+          [
+            "l'apprentissage",
+            "learning"
+          ],
+          [
+            "les frais de scolarité",
+            "tuition fees"
+          ],
+          [
+            "la bourse",
+            "scholarship"
+          ],
+          [
+            "la réussite",
+            "success"
+          ],
+          [
+            "le décrochage scolaire",
+            "dropping out of school"
+          ],
+          [
+            "obtenir un diplôme",
+            "to graduate, get a degree"
+          ],
+          [
+            "un cours en ligne",
+            "an online course"
+          ],
+          [
+            "la formation continue",
+            "continuing education"
+          ],
+          [
+            "un élève",
+            "a school pupil"
+          ],
+          [
+            "un étudiant",
+            "a college or university student"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Les cours en ligne rendent l'apprentissage plus accessible, mais ils augmentent parfois le décrochage scolaire.",
+          "Online courses make learning more accessible, but they sometimes increase dropout rates."
+        ]
+      ],
+      "tip": "un élève goes to school; un étudiant goes to college or university. Mixing them up is a classic mistake."
+    },
+    {
+      "title": "City life and immigration (la vie en ville, l'immigration)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "le coût de la vie",
+            "cost of living"
+          ],
+          [
+            "le loyer",
+            "rent"
+          ],
+          [
+            "le logement",
+            "housing"
+          ],
+          [
+            "les transports en commun",
+            "public transit"
+          ],
+          [
+            "les embouteillages",
+            "traffic jams"
+          ],
+          [
+            "l'intégration",
+            "integration"
+          ],
+          [
+            "la qualité de vie",
+            "quality of life"
+          ],
+          [
+            "un quartier",
+            "a neighbourhood"
+          ],
+          [
+            "s'installer",
+            "to settle in"
+          ],
+          [
+            "la banlieue",
+            "the suburbs"
+          ],
+          [
+            "un nouvel arrivant, une nouvelle arrivante",
+            "a newcomer"
+          ],
+          [
+            "la diversité",
+            "diversity"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Dans les grandes villes, les loyers sont élevés, mais les transports en commun améliorent la qualité de vie.",
+          "In big cities, rents are high, but public transit improves quality of life."
+        ]
+      ],
+      "tip": "un nouvel arrivant is the word Canada uses for a newcomer. Use it when the question is about immigration."
+    },
+    {
+      "title": "Health (la santé)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "la santé mentale",
+            "mental health"
+          ],
+          [
+            "le mode de vie",
+            "lifestyle"
+          ],
+          [
+            "l'alimentation",
+            "diet, food"
+          ],
+          [
+            "l'activité physique",
+            "physical activity"
+          ],
+          [
+            "le stress",
+            "stress"
+          ],
+          [
+            "le système de santé",
+            "healthcare system"
+          ],
+          [
+            "la prévention",
+            "prevention"
+          ],
+          [
+            "un médecin de famille",
+            "a family doctor"
+          ],
+          [
+            "les délais d'attente",
+            "wait times"
+          ],
+          [
+            "être en forme",
+            "to be fit"
+          ],
+          [
+            "la malbouffe",
+            "junk food"
+          ],
+          [
+            "le sommeil",
+            "sleep"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Une bonne alimentation et l'activité physique réduisent le stress et protègent la santé mentale.",
+          "A good diet and physical activity reduce stress and protect mental health."
+        ]
+      ],
+      "tip": "In Canada the hot health topics are les délais d'attente and finding un médecin de famille. Mention one and you sound local."
+    },
+    {
+      "title": "Technology and AI (la technologie, l'IA)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "l'intelligence artificielle (l'IA)",
+            "artificial intelligence (AI)"
+          ],
+          [
+            "le progrès",
+            "progress"
+          ],
+          [
+            "l'écran",
+            "screen"
+          ],
+          [
+            "le téléphone intelligent",
+            "smartphone"
+          ],
+          [
+            "la cybersécurité",
+            "cybersecurity"
+          ],
+          [
+            "automatiser",
+            "to automate"
+          ],
+          [
+            "remplacer",
+            "to replace"
+          ],
+          [
+            "un outil",
+            "a tool"
+          ],
+          [
+            "les données",
+            "data"
+          ],
+          [
+            "la vie quotidienne",
+            "daily life"
+          ],
+          [
+            "être connecté, connectée",
+            "to be online, connected"
+          ],
+          [
+            "un emploi menacé",
+            "a job at risk"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "L'intelligence artificielle peut automatiser certaines tâches, mais elle ne remplacera pas complètement l'être humain.",
+          "Artificial intelligence can automate some tasks, but it won't completely replace human beings."
+        ]
+      ],
+      "tip": "Say l'IA (lee-ah). Québec says le cellulaire or le téléphone intelligent; France says le smartphone."
+    },
+    {
+      "title": "Family and society (la famille, la société)",
+      "body": "<p>Learn the 7 words on the card first; they come up again and again on this topic. The table repeats them with audio and adds 5 more. Then use two of them in one sentence, like the example.</p>",
+      "table": {
+        "head": [
+          "French",
+          "English"
+        ],
+        "rows": [
+          [
+            "les personnes âgées",
+            "the elderly"
+          ],
+          [
+            "les jeunes",
+            "young people"
+          ],
+          [
+            "la solidarité",
+            "solidarity"
+          ],
+          [
+            "le bénévolat",
+            "volunteering"
+          ],
+          [
+            "l'égalité",
+            "equality"
+          ],
+          [
+            "les valeurs",
+            "values"
+          ],
+          [
+            "élever des enfants",
+            "to raise children"
+          ],
+          [
+            "la garderie",
+            "daycare"
+          ],
+          [
+            "le vivre-ensemble",
+            "living together, social harmony"
+          ],
+          [
+            "une génération",
+            "a generation"
+          ],
+          [
+            "le respect",
+            "respect"
+          ],
+          [
+            "faire du bénévolat",
+            "to volunteer"
+          ]
+        ],
+        "say": [
+          0
+        ]
+      },
+      "examples": [
+        [
+          "Le bénévolat renforce la solidarité entre les jeunes et les personnes âgées.",
+          "Volunteering strengthens solidarity between young people and the elderly."
+        ]
+      ],
+      "tip": "faire du bénévolat = to volunteer. In Québec, daycare is la garderie or le CPE, a very common task 3 topic."
+    }
+  ],
+  "speak": {
+    "lines": [
+      [
+        "Sur les réseaux sociaux, il faut protéger sa vie privée et vérifier une information avant de la partager.",
+        "On social media, you have to protect your privacy and check information before sharing it."
+      ],
+      [
+        "Le télétravail réduit le temps de trajet et améliore l'équilibre entre le travail et la vie personnelle.",
+        "Remote work cuts commuting time and improves work-life balance."
+      ],
+      [
+        "Pour réduire notre empreinte carbone, il faut éviter le gaspillage et utiliser des énergies renouvelables.",
+        "To reduce our carbon footprint, we must avoid waste and use renewable energy."
+      ],
+      [
+        "Les cours en ligne rendent l'apprentissage plus accessible, mais ils augmentent parfois le décrochage scolaire.",
+        "Online courses make learning more accessible, but they sometimes increase dropout rates."
+      ],
+      [
+        "Dans les grandes villes, les loyers sont élevés, mais les transports en commun améliorent la qualité de vie.",
+        "In big cities, rents are high, but public transit improves quality of life."
+      ],
+      [
+        "Une bonne alimentation et l'activité physique réduisent le stress et protègent la santé mentale.",
+        "A good diet and physical activity reduce stress and protect mental health."
+      ],
+      [
+        "L'intelligence artificielle peut automatiser certaines tâches, mais elle ne remplacera pas complètement l'être humain.",
+        "Artificial intelligence can automate some tasks, but it won't completely replace human beings."
+      ],
+      [
+        "Le bénévolat renforce la solidarité entre les jeunes et les personnes âgées.",
+        "Volunteering strengthens solidarity between young people and the elderly."
+      ]
+    ]
+  },
+  "vocab": [
+    [
+      "l'abonné, l'abonnée",
+      "follower"
+    ],
+    [
+      "la vie privée",
+      "privacy"
+    ],
+    [
+      "la désinformation",
+      "misinformation"
+    ],
+    [
+      "l'influenceur, l'influenceuse",
+      "influencer"
+    ],
+    [
+      "le harcèlement en ligne",
+      "online bullying, harassment"
+    ],
+    [
+      "la dépendance aux écrans",
+      "screen addiction"
+    ],
+    [
+      "partager",
+      "to share"
+    ],
+    [
+      "publier",
+      "to post"
+    ],
+    [
+      "une fausse nouvelle",
+      "a piece of fake news"
+    ],
+    [
+      "les données personnelles",
+      "personal data"
+    ],
+    [
+      "un algorithme",
+      "an algorithm"
+    ],
+    [
+      "rester en contact",
+      "to stay in touch"
+    ],
+    [
+      "la cyberintimidation",
+      "cyberbullying (the usual word in Canada)"
+    ],
+    [
+      "le télétravail",
+      "remote work"
+    ],
+    [
+      "l'équilibre travail-vie personnelle",
+      "work-life balance"
+    ],
+    [
+      "l'épuisement professionnel",
+      "burnout"
+    ],
+    [
+      "la productivité",
+      "productivity"
+    ],
+    [
+      "les horaires flexibles",
+      "flexible hours"
+    ],
+    [
+      "le salaire",
+      "salary"
+    ],
+    [
+      "la reconversion professionnelle",
+      "career change"
+    ],
+    [
+      "un emploi",
+      "a job"
+    ],
+    [
+      "le chômage",
+      "unemployment"
+    ],
+    [
+      "le trajet",
+      "the commute"
+    ],
+    [
+      "un employeur, une employeuse",
+      "an employer"
+    ],
+    [
+      "les collègues",
+      "colleagues"
+    ],
+    [
+      "le réchauffement climatique",
+      "global warming"
+    ],
+    [
+      "la pollution",
+      "pollution"
+    ],
+    [
+      "le recyclage",
+      "recycling"
+    ],
+    [
+      "le gaspillage",
+      "waste, wasting"
+    ],
+    [
+      "l'empreinte carbone",
+      "carbon footprint"
+    ],
+    [
+      "les énergies renouvelables",
+      "renewable energy"
+    ],
+    [
+      "durable",
+      "sustainable"
+    ],
+    [
+      "les déchets",
+      "waste, garbage"
+    ],
+    [
+      "les gaz à effet de serre",
+      "greenhouse gases"
+    ],
+    [
+      "la sécheresse",
+      "drought"
+    ],
+    [
+      "protéger la planète",
+      "to protect the planet"
+    ],
+    [
+      "réduire",
+      "to reduce"
+    ],
+    [
+      "le diplôme",
+      "degree, diploma"
+    ],
+    [
+      "l'enseignant, l'enseignante",
+      "teacher"
+    ],
+    [
+      "l'apprentissage",
+      "learning"
+    ],
+    [
+      "les frais de scolarité",
+      "tuition fees"
+    ],
+    [
+      "la bourse",
+      "scholarship"
+    ],
+    [
+      "la réussite",
+      "success"
+    ],
+    [
+      "le décrochage scolaire",
+      "dropping out of school"
+    ],
+    [
+      "obtenir un diplôme",
+      "to graduate, get a degree"
+    ],
+    [
+      "un cours en ligne",
+      "an online course"
+    ],
+    [
+      "la formation continue",
+      "continuing education"
+    ],
+    [
+      "un élève",
+      "a school pupil"
+    ],
+    [
+      "un étudiant",
+      "a college or university student"
+    ],
+    [
+      "le coût de la vie",
+      "cost of living"
+    ],
+    [
+      "le loyer",
+      "rent"
+    ],
+    [
+      "le logement",
+      "housing"
+    ],
+    [
+      "les transports en commun",
+      "public transit"
+    ],
+    [
+      "les embouteillages",
+      "traffic jams"
+    ],
+    [
+      "l'intégration",
+      "integration"
+    ],
+    [
+      "la qualité de vie",
+      "quality of life"
+    ],
+    [
+      "un quartier",
+      "a neighbourhood"
+    ],
+    [
+      "s'installer",
+      "to settle in"
+    ],
+    [
+      "la banlieue",
+      "the suburbs"
+    ],
+    [
+      "un nouvel arrivant, une nouvelle arrivante",
+      "a newcomer"
+    ],
+    [
+      "la diversité",
+      "diversity"
+    ],
+    [
+      "la santé mentale",
+      "mental health"
+    ],
+    [
+      "le mode de vie",
+      "lifestyle"
+    ],
+    [
+      "l'alimentation",
+      "diet, food"
+    ],
+    [
+      "l'activité physique",
+      "physical activity"
+    ],
+    [
+      "le stress",
+      "stress"
+    ],
+    [
+      "le système de santé",
+      "healthcare system"
+    ],
+    [
+      "la prévention",
+      "prevention"
+    ],
+    [
+      "un médecin de famille",
+      "a family doctor"
+    ],
+    [
+      "les délais d'attente",
+      "wait times"
+    ],
+    [
+      "être en forme",
+      "to be fit"
+    ],
+    [
+      "la malbouffe",
+      "junk food"
+    ],
+    [
+      "le sommeil",
+      "sleep"
+    ],
+    [
+      "l'intelligence artificielle (l'IA)",
+      "artificial intelligence (AI)"
+    ],
+    [
+      "le progrès",
+      "progress"
+    ],
+    [
+      "l'écran",
+      "screen"
+    ],
+    [
+      "le téléphone intelligent",
+      "smartphone"
+    ],
+    [
+      "la cybersécurité",
+      "cybersecurity"
+    ],
+    [
+      "automatiser",
+      "to automate"
+    ],
+    [
+      "remplacer",
+      "to replace"
+    ],
+    [
+      "un outil",
+      "a tool"
+    ],
+    [
+      "les données",
+      "data"
+    ],
+    [
+      "la vie quotidienne",
+      "daily life"
+    ],
+    [
+      "être connecté, connectée",
+      "to be online, connected"
+    ],
+    [
+      "un emploi menacé",
+      "a job at risk"
+    ],
+    [
+      "les personnes âgées",
+      "the elderly"
+    ],
+    [
+      "les jeunes",
+      "young people"
+    ],
+    [
+      "la solidarité",
+      "solidarity"
+    ],
+    [
+      "le bénévolat",
+      "volunteering"
+    ],
+    [
+      "l'égalité",
+      "equality"
+    ],
+    [
+      "les valeurs",
+      "values"
+    ],
+    [
+      "élever des enfants",
+      "to raise children"
+    ],
+    [
+      "la garderie",
+      "daycare"
+    ],
+    [
+      "le vivre-ensemble",
+      "living together, social harmony"
+    ],
+    [
+      "une génération",
+      "a generation"
+    ],
+    [
+      "le respect",
+      "respect"
+    ],
+    [
+      "faire du bénévolat",
+      "to volunteer"
+    ]
+  ],
+  "quiz": [
+    {
+      "q": "<span class='fr'>la vie privée</span> means…",
+      "o": [
+        "privacy",
+        "a private party",
+        "social life"
+      ],
+      "a": 0,
+      "why": "la vie privée = privacy, your private life. Protéger sa vie privée = to protect your privacy."
+    },
+    {
+      "q": "\"burnout\" in French:",
+      "o": [
+        "l'épuisement professionnel",
+        "la reconversion professionnelle",
+        "le chômage"
+      ],
+      "a": 0,
+      "why": "l'épuisement professionnel = burnout. La reconversion is a career change; le chômage is unemployment."
+    },
+    {
+      "q": "<span class='fr'>le gaspillage</span> means…",
+      "o": [
+        "waste, wasting",
+        "recycling",
+        "drought"
+      ],
+      "a": 0,
+      "why": "le gaspillage = wasting (le gaspillage alimentaire = food waste). Recycling is le recyclage."
+    },
+    {
+      "q": "\"tuition fees\" in French:",
+      "o": [
+        "les frais de scolarité",
+        "la bourse",
+        "le diplôme"
+      ],
+      "a": 0,
+      "why": "les frais de scolarité = tuition fees. La bourse is a scholarship; le diplôme is the degree."
+    },
+    {
+      "q": "<span class='fr'>les embouteillages</span> means…",
+      "o": [
+        "traffic jams",
+        "bottles",
+        "public transit"
+      ],
+      "a": 0,
+      "why": "les embouteillages = traffic jams. Public transit is les transports en commun."
+    },
+    {
+      "q": "\"a family doctor\" in Canadian French:",
+      "o": [
+        "un médecin de famille",
+        "un docteur familial",
+        "un médecin familier"
+      ],
+      "a": 0,
+      "why": "un médecin de famille. Finding one is a hot topic in Canada."
+    },
+    {
+      "q": "<span class='fr'>L'IA ne remplacera pas l'être humain.</span> — <span class='fr'>remplacer</span> means…",
+      "o": [
+        "to replace",
+        "to fill up again",
+        "to put back"
+      ],
+      "a": 0,
+      "why": "remplacer = to replace. To put back is remettre."
+    },
+    {
+      "q": "<span class='fr'>le bénévolat</span> means…",
+      "o": [
+        "volunteering",
+        "benefits",
+        "kindness"
+      ],
+      "a": 0,
+      "why": "le bénévolat = volunteering. Faire du bénévolat = to volunteer."
+    }
+  ],
+  "sources": [
+    [
+      "France Éducation international — TCF Canada, speaking test (tâche 3)",
+      "https://www.france-education-international.fr/test/tcf-canada"
+    ]
+  ]
+});

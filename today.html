@@ -274,7 +274,7 @@
       "<p>A progress card for WhatsApp, Instagram or anywhere else.</p><div class='row'><button type='button' class='btn btn-sm btn-primary' data-share-card>Share card</button><button type='button' class='btn btn-sm' data-dl-card>Download</button></div></section>";
     html += "<section class='tile share span2'><h2>🤝 Invite a friend</h2><p>Studying for the TCF or TEF together keeps you both going. Send a friend the link — the course is free to start.</p>" +
       "<div class='row'><button type='button' class='btn btn-sm btn-primary' data-invite>Share link</button><a class='btn btn-sm' id='wa' target='_blank' rel='noopener'>WhatsApp</a><button type='button' class='btn btn-sm' data-copy>Copy link</button></div></section>";
-    var cTotal = 21, cDone = Object.keys(prog).filter(function (k) { return prog[k] && prog[k].done; }).length;
+    var cTotal = C.modules.length, cDone = Object.keys(prog).filter(function (k) { return prog[k] && prog[k].done; }).length;
     html += "<section class='tile share span2'><h2>🎓 Certificate</h2>" + (cDone >= cTotal
       ? "<p>You finished the whole course. Your certificate of completion is ready.</p><div class='row'><a class='btn btn-sm btn-primary' href='certificate.html'>Get my certificate</a></div>"
       : "<p>Finish all " + cTotal + " modules to unlock a printable certificate of completion. You've done <b>" + Math.min(cDone, cTotal) + "</b>.</p><div class='row'><a class='btn btn-sm' href='certificate.html'>See progress</a></div>") + "</section>";
